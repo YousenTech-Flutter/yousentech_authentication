@@ -136,25 +136,33 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             borderColor: AppColor.silverGray,
                                             hintText: 'pin_number'.tr,
                                             obscureText: flag ? false : true,
-                                            suffixIcon: IconButton(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    flag = !flag;
-                                                  });
-                                                },
-                                                icon: flag
-                                                    ? Icon(
-                                                        Icons.visibility,
-                                                        color:
-                                                            AppColor.silverGray,
-                                                        size: 4.sp,
-                                                      )
-                                                    : Icon(
-                                                        Icons.visibility_off,
-                                                        size: 4.sp,
-                                                        color:
-                                                            AppColor.silverGray,
-                                                      )),
+                                            suffixIcon: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10.0, right: 10),
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      flag = !flag;
+                                                    });
+                                                  },
+                                                  icon: flag
+                                                      ? SvgPicture.asset(
+                                                          'assets/image/eye-open.svg',
+                                                          fit: BoxFit.scaleDown,
+                                                          color: AppColor
+                                                              .silverGray,
+                                                          package:
+                                                              'yousentech_authentication',
+                                                          // Adjust this to control scaling
+                                                        )
+                                                      : SvgPicture.asset(
+                                                          'assets/image/eye-closed.svg',
+                                                          package:
+                                                              'yousentech_authentication',
+                                                          fit: BoxFit
+                                                              .scaleDown, // Adjust this to control scaling
+                                                        )),
+                                            ),
                                             validator: (value) {
                                               if (value == null ||
                                                   value.isEmpty) {
@@ -205,6 +213,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                                 'assets/image/login_icon.svg',
                                                                 clipBehavior: Clip
                                                                     .antiAlias,
+                                                                package:
+                                                                    'yousentech_authentication',
                                                                 fit:
                                                                     BoxFit.fill,
                                                                 width: 10.r,

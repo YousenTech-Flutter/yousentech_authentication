@@ -286,6 +286,7 @@ changePasswordDialog() {
                             padding: EdgeInsets.all(8.0.r),
                             child: SvgPicture.asset(
                               'assets/image/lock_on.svg',
+                              package: 'yousentech_authentication',
                               fit: BoxFit
                                   .scaleDown, // Adjust this to control scaling
                             ),
@@ -305,11 +306,13 @@ changePasswordDialog() {
                                     ? SvgPicture.asset(
                                         'assets/image/eye-open.svg',
                                         fit: BoxFit.scaleDown,
+                                        package: 'yousentech_authentication',
                                         color: AppColor.silverGray,
                                         // Adjust this to control scaling
                                       )
                                     : SvgPicture.asset(
                                         'assets/image/eye-closed.svg',
+                                        package: 'yousentech_authentication',
                                         fit: BoxFit
                                             .scaleDown, // Adjust this to control scaling
                                       )),
@@ -350,6 +353,7 @@ changePasswordDialog() {
                             padding: EdgeInsets.all(8.0.r),
                             child: SvgPicture.asset(
                               'assets/image/lock_on.svg',
+                              package: 'yousentech_authentication',
                               fit: BoxFit
                                   .scaleDown, // Adjust this to control scaling
                             ),
@@ -369,11 +373,13 @@ changePasswordDialog() {
                                     ? SvgPicture.asset(
                                         'assets/image/eye-open.svg',
                                         fit: BoxFit.scaleDown,
+                                        package: 'yousentech_authentication',
                                         color: AppColor.silverGray,
                                         // Adjust this to control scaling
                                       )
                                     : SvgPicture.asset(
                                         'assets/image/eye-closed.svg',
+                                        package: 'yousentech_authentication',
                                         fit: BoxFit
                                             .scaleDown, // Adjust this to control scaling
                                       )),

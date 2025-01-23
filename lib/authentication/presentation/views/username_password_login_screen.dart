@@ -143,6 +143,7 @@ class _UsernameAndPasswordLoginScreenState
                                     child: SvgPicture.asset(
                                       'assets/image/user-1.svg',
                                       fit: BoxFit.scaleDown,
+                                      package: 'yousentech_authentication',
                                       color: AppColor.silverGray,
                                     ),
                                   ),
@@ -212,6 +213,7 @@ class _UsernameAndPasswordLoginScreenState
                                       padding: EdgeInsets.all(8.0.r),
                                       child: SvgPicture.asset(
                                         'assets/image/lock_on.svg',
+                                        package: 'yousentech_authentication',
                                         fit: BoxFit
                                             .scaleDown, // Adjust this to control scaling
                                       ),
@@ -229,11 +231,15 @@ class _UsernameAndPasswordLoginScreenState
                                               ? SvgPicture.asset(
                                                   'assets/image/eye-open.svg',
                                                   fit: BoxFit.scaleDown,
+                                                  package:
+                                                      'yousentech_authentication',
                                                   color: AppColor.silverGray,
                                                   // Adjust this to control scaling
                                                 )
                                               : SvgPicture.asset(
                                                   'assets/image/eye-closed.svg',
+                                                  package:
+                                                      'yousentech_authentication',
                                                   fit: BoxFit
                                                       .scaleDown, // Adjust this to control scaling
                                                 )),
@@ -295,6 +301,8 @@ class _UsernameAndPasswordLoginScreenState
                                                         'assets/image/login_icon.svg',
                                                         clipBehavior:
                                                             Clip.antiAlias,
+                                                        package:
+                                                            'yousentech_authentication',
                                                         fit: BoxFit.fill,
                                                         width: 10.r,
                                                         height: 10.r,

@@ -55,6 +55,7 @@ simulateConnectionDialog() {
                     'assets/image/user-1.svg',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
+                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'database'.tr,
@@ -89,6 +90,7 @@ simulateConnectionDialog() {
                     'assets/image/user-1.svg',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
+                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'url'.tr,
@@ -123,6 +125,7 @@ simulateConnectionDialog() {
                     'assets/image/user-1.svg',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
+                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'username'.tr,
@@ -158,6 +161,7 @@ simulateConnectionDialog() {
                       'assets/image/user-1.svg',
                       fit: BoxFit.scaleDown,
                       color: AppColor.silverGray,
+                      package: 'yousentech_authentication',
                     ),
                   ),
                   hintText: 'password'.tr,
@@ -193,10 +197,12 @@ simulateConnectionDialog() {
                                 'assets/image/eye-open.svg',
                                 fit: BoxFit.scaleDown,
                                 color: AppColor.silverGray,
+                                package: 'yousentech_authentication',
                                 // Adjust this to control scaling
                               )
                             : SvgPicture.asset(
                                 'assets/image/eye-closed.svg',
+                                package: 'yousentech_authentication',
                                 fit: BoxFit
                                     .scaleDown, // Adjust this to control scaling
                               )),
