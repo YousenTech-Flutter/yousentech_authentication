@@ -26,13 +26,15 @@ class _LoginScreenState extends State<LoginScreen> {
         body: GetBuilder<AuthenticationController>(
             id: "choosePin",
             builder: (context) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  (!authenticationController.choosePin)
-                      ? const UsernameAndPasswordLoginScreen()
-                      : const PINLoginScreen(),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    (!authenticationController.choosePin)
+                        ? const UsernameAndPasswordLoginScreen()
+                        : const PINLoginScreen(),
+                  ],
+                ),
               );
             }),
         //  Stack(
