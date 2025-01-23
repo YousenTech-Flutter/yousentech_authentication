@@ -78,77 +78,84 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
               body: Obx(() {
                 if (tokenController.isLoading.value ||
                     tokenController.result == null) {
-                  return CardLogin(children: [
-                    Text(
-                      'employee_list'.tr,
-                      style: TextStyle(
-                          fontSize: 12.r,
-                          color: AppColor.charcoal,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'welcomeBack'.tr,
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CardLogin(children: [
+                          Text(
+                            'employee_list'.tr,
                             style: TextStyle(
-                                fontSize: 8.r,
+                                fontSize: 12.r,
+                                color: AppColor.charcoal,
+                                fontWeight: FontWeight.w700),
+                          ),
+                          SizedBox(
+                            height: 0.01.sh,
+                          ),
+                          RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: 'welcomeBack'.tr,
+                                  style: TextStyle(
+                                      fontSize: 8.r,
+                                      color: AppColor.lavenderGray,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Tajawal'),
+                                ),
+                                TextSpan(
+                                  text: ' ${'to'.tr}  ',
+                                  style: TextStyle(
+                                      fontSize: 8.r,
+                                      color: AppColor.lavenderGray,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Tajawal'),
+                                ),
+                                TextSpan(
+                                  text: '${'qimam'.tr}  ',
+                                  style: TextStyle(
+                                      fontSize: 8.r,
+                                      color: AppColor.cyanTeal,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Tajawal'),
+                                ),
+                                TextSpan(
+                                  text: 'choose_your_account'.tr,
+                                  style: TextStyle(
+                                      fontSize: 8.r,
+                                      color: AppColor.lavenderGray,
+                                      fontWeight: FontWeight.w400,
+                                      fontFamily: 'Tajawal'),
+                                ),
+                              ],
+                            ),
+                            softWrap: true,
+                            overflow: TextOverflow.visible,
+                          ),
+                          SizedBox(
+                            height: 0.02.sh,
+                          ),
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: AppColor.cyanTeal,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 0.01.sh,
+                          ),
+                          Text(
+                            'loading'.tr,
+                            style: TextStyle(
+                                fontSize: 10.r,
                                 color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal'),
+                                fontWeight: FontWeight.w400),
                           ),
-                          TextSpan(
-                            text: ' ${'to'.tr}  ',
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal'),
-                          ),
-                          TextSpan(
-                            text: '${'qimam'.tr}  ',
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.cyanTeal,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal'),
-                          ),
-                          TextSpan(
-                            text: 'choose_your_account'.tr,
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal'),
-                          ),
-                        ],
-                      ),
-                      softWrap: true,
-                      overflow: TextOverflow.visible,
+                        ]),
+                      ],
                     ),
-                    SizedBox(
-                      height: 0.02.sh,
-                    ),
-                    Center(
-                      child: CircularProgressIndicator(
-                        color: AppColor.cyanTeal,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
-                    Text(
-                      'loading '.tr,
-                      style: TextStyle(
-                          fontSize: 10.r,
-                          color: AppColor.lavenderGray,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ]);
+                  );
                 } else if (!tokenController.result.status) {
                   return CardLogin(children: [
                     Expanded(
