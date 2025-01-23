@@ -142,7 +142,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                       height: 0.01.sh,
                     ),
                     Text(
-                      'loading'.tr,
+                      'loading '.tr,
                       style: TextStyle(
                           fontSize: 10.r,
                           color: AppColor.lavenderGray,
