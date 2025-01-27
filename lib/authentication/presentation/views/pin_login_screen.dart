@@ -74,7 +74,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             child: Text(
                                               'login'.tr,
                                               style: TextStyle(
-                                                  fontSize: 10.r,
+                                                  fontSize: 12.r,
                                                   color: AppColor.charcoal,
                                                   fontWeight: FontWeight.w700),
                                             ),
@@ -88,7 +88,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 TextSpan(
                                                   text: 'hi'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
+                                                      fontSize: 9.r,
                                                       color:
                                                           AppColor.lavenderGray,
                                                       fontWeight:
@@ -99,7 +99,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                   text:
                                                       '  ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
+                                                      fontSize: 9.r,
                                                       color: AppColor.cyanTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
@@ -108,7 +108,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 TextSpan(
                                                   text: 'enter_pin'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
+                                                      fontSize: 9.r,
                                                       color:
                                                           AppColor.lavenderGray,
                                                       fontWeight:
@@ -137,8 +137,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             hintText: 'pin_number'.tr,
                                             obscureText: flag ? false : true,
                                             suffixIcon: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10.0, right: 10),
+                                              padding: EdgeInsets.all(8.0.r),
                                               child: IconButton(
                                                   onPressed: () {
                                                     setState(() {
@@ -238,7 +237,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                                         .tr,
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        7.r,
+                                                                        9.r,
                                                                     color: AppColor
                                                                         .charcoal,
                                                                     fontWeight:
