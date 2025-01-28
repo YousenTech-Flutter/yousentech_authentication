@@ -61,10 +61,10 @@ class AuthenticationController extends GetxController {
           await countUsernameFailureAttempt(reset: true);
           authResult.data.accountLock = 0;
           await SharedPr.setUserObj(userObj: authResult.data);
-          // TODO: open commit after session featcher
+          // TODO : ADD AFTER SESSTION
           // SessionService sessionService = SessionService.getInstance();
           // await sessionService.getLastItemPosSessions();
-          // end
+          // END
           // await SharedPr.setCurrentSaleSessionId(currentSaleSessionId: posSession);
         }
       } else if (checkDeviceId.data is Token &&
@@ -124,9 +124,10 @@ class AuthenticationController extends GetxController {
         await saveUserDataLocally(authResult: result);
         // to save user info
         await SharedPr.setUserObj(userObj: result);
-        // TODO: open commit after session featcher
+        // TODO : ADD AFTER SESSTION
         // SessionService sessionService = SessionService.getInstance();
         // await sessionService.getLastItemPosSessions();
+        // END
         loginPinLoading.value = false;
         return ResponseResult(status: true, data: result);
       } else {
