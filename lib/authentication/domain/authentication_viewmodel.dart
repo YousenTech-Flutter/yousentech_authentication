@@ -12,6 +12,7 @@ import 'package:shared_widgets/utils/mac_address_helper.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_service.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
+import 'package:yousentech_pos_session/pos_session/src/domain/session_service.dart';
 import 'package:yousentech_pos_token/token_settings/domain/token_viewmodel.dart';
 import '../utils/verification_code_helper.dart';
 
@@ -61,11 +62,9 @@ class AuthenticationController extends GetxController {
           await countUsernameFailureAttempt(reset: true);
           authResult.data.accountLock = 0;
           await SharedPr.setUserObj(userObj: authResult.data);
-          // TODO : ADD AFTER SESSTION
-          // SessionService sessionService = SessionService.getInstance();
-          // await sessionService.getLastItemPosSessions();
-          // END
-          // await SharedPr.setCurrentSaleSessionId(currentSaleSessionId: posSession);
+          SessionService sessionService = SessionService.getInstance();
+          await sessionService.getLastItemPosSessions();
+
         }
       } else if (checkDeviceId.data is Token &&
           ((checkDeviceId.data as Token).macAddress !=
@@ -124,10 +123,8 @@ class AuthenticationController extends GetxController {
         await saveUserDataLocally(authResult: result);
         // to save user info
         await SharedPr.setUserObj(userObj: result);
-        // TODO : ADD AFTER SESSTION
-        // SessionService sessionService = SessionService.getInstance();
-        // await sessionService.getLastItemPosSessions();
-        // END
+        SessionService sessionService = SessionService.getInstance();
+        await sessionService.getLastItemPosSessions();
         loginPinLoading.value = false;
         return ResponseResult(status: true, data: result);
       } else {
