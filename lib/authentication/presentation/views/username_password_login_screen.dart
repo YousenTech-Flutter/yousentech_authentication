@@ -661,8 +661,7 @@ class _UsernameAndPasswordLoginScreenState
                 password: passwordController.text));
         // print("responseResult.message  ${responseResult.message }");
         if (responseResult.status && responseResult.data.accountLock < 3) {
-          // TODO: open commit after dashboard featcher
-          // Get.to(() => const HomePage());
+          Get.to(() => const HomePage());
 
           // Get.to(() => const DashboardScreen());
           appSnackBar(
