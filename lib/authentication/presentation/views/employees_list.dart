@@ -415,12 +415,12 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                       selected: _selectedIndex == index,
                                       leading: Icon(
                                         Icons.person_outline_rounded,
-                                        size: 10.r,
+                                        size: 15.r,
                                         color: AppColor.charcoal,
                                       ),
                                       trailing: Icon(
                                         Icons.arrow_forward,
-                                        size: 10.r,
+                                        size: 15.r,
                                         color: AppColor.charcoal,
                                       ),
                                     ),
