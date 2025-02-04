@@ -15,7 +15,7 @@ import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/change_password_screen.dart';
-import 'package:yousentech_pos_dashboard/yousentech_pos_dashboard.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
 import '../../domain/authentication_viewmodel.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
@@ -660,7 +660,6 @@ class _UsernameAndPasswordLoginScreenState
             .authenticateUsingUsernameAndPassword(LoginInfo(
                 userName: usernameController.text,
                 password: passwordController.text));
-        // print("responseResult.message  ${responseResult.message }");
         if (responseResult.status && responseResult.data.accountLock < 3) {
           Get.to(() => const HomePage());
 

@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
-import 'package:yousentech_pos_dashboard/yousentech_pos_dashboard.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
 
 void subMitPIN(
     {required AuthenticationController authenticationController}) async {

@@ -8,8 +8,7 @@ class OdooProjectOwnerConnectionHelper {
   static bool sessionClosed = false;
 
   static Future instantiateOdooConnection(
-      {required String username, required String password}) async {
-    // change
+      {required String username, required String password}) async {    
     try {
       odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
       odooSession = await odooClient.authenticate(
