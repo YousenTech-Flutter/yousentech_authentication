@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:pos_localbackup/local_backup/config/app_enum.dart';
+import 'package:pos_localbackup/local_backup/utils/local_backup_prompt.dart';
 import 'package:pos_shared_preferences/models/authentication_data/login_info.dart';
 import 'package:pos_shared_preferences/models/notification_helper_model.dart';
 import 'package:remote_database_setting/remote_database_setting/domain/remote_database_setting_viewmodel.dart';
@@ -669,12 +671,11 @@ class _UsernameAndPasswordLoginScreenState
             messageType: MessageTypes.success,
             message: responseResult.message,
           );
-          // TODO: open commit after LocalBackup featcher
-          // if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
-          //     SharedPr.localBackUpSettingObj!.selectedOption ==
-          //         BackUpOptions.backup_on_login.name) {
-          //   await showLocalBackupPrompt();
-          // }
+          if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
+              SharedPr.localBackUpSettingObj!.selectedOption ==
+                  BackUpOptions.backup_on_login.name) {
+            await showLocalBackupPrompt();
+          }
         } else {
           if (responseResult.message == "un_trusted_device".tr) {
             appSnackBar(
