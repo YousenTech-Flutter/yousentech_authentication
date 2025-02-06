@@ -624,6 +624,7 @@ class _UsernameAndPasswordLoginScreenState
           await SharedPr.setForgetPass(flage: false, otp: '');
           // // TODO AMAL : Change to what user choose
           // await SharedPr.setCurrentPOS(posId: 1);
+          //
           changePasswordDialog();
         } else {
           if (responseResult.message == "un_trusted_device".tr) {
