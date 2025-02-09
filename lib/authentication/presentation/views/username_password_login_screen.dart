@@ -139,7 +139,7 @@ class _UsernameAndPasswordLoginScreenState
                                 // ),
                                 ContainerTextField(
                                   width: ScreenUtil().screenWidth,
-                                  height: 30.h,
+                                  height: 0.05.sh,
                                   controller: usernameController,
                                   prefixIcon: Padding(
                                     padding: EdgeInsets.all(8.0.r),
@@ -199,7 +199,7 @@ class _UsernameAndPasswordLoginScreenState
                                         ? 'otp_password'.tr
                                         : 'password'.tr,
                                     width: ScreenUtil().screenWidth,
-                                    height: 30.h,
+                                    height: 0.05.sh,
                                     controller: passwordController,
 
                                     iconcolor: AppColor.silverGray,
@@ -555,7 +555,7 @@ class _UsernameAndPasswordLoginScreenState
                                 return InkWell(
                                   onTap: onPressed,
                                   child: Container(
-                                    height: 30.h,
+                                    height: 0.05.sh,
                                     width: ScreenUtil().screenWidth,
                                     alignment: Alignment.center,
                                     margin:
