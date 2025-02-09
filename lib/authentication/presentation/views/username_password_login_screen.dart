@@ -70,7 +70,7 @@ class _UsernameAndPasswordLoginScreenState
               },
               child: SizedBox(
                 width: double.infinity,
-                height: 600.h,
+                height: 0.8.sh,
                 child: Stack(
                   children: [
                     CardLogin(
