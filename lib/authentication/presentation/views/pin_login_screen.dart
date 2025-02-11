@@ -93,7 +93,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                           AppColor.lavenderGray,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',
+                                                      package: 'yousentech_authentication',),
                                                 ),
                                                 TextSpan(
                                                   text:
@@ -103,7 +104,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                       color: AppColor.cyanTeal,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',
+                                                      package: 'yousentech_authentication',),
                                                 ),
                                                 TextSpan(
                                                   text: 'enter_pin'.tr,
@@ -113,7 +115,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                           AppColor.lavenderGray,
                                                       fontWeight:
                                                           FontWeight.w400,
-                                                      fontFamily: 'Tajawal'),
+                                                      fontFamily: 'Tajawal',
+                                                      package: 'yousentech_authentication',),
                                                 )
                                               ],
                                             ),

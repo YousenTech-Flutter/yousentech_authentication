@@ -103,7 +103,8 @@ class _UsernameAndPasswordLoginScreenState
                                               fontSize: 9.r,
                                               color: AppColor.lavenderGray,
                                               fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal'),
+                                              fontFamily: 'Tajawal',
+                                              package: 'yousentech_authentication',),
                                         ),
                                         TextSpan(
                                           text:
@@ -112,7 +113,8 @@ class _UsernameAndPasswordLoginScreenState
                                               fontSize: 9.r,
                                               color: AppColor.cyanTeal,
                                               fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal'),
+                                              fontFamily: 'Tajawal',
+                                              package: 'yousentech_authentication',),
                                         ),
                                         TextSpan(
                                           text:
@@ -121,7 +123,8 @@ class _UsernameAndPasswordLoginScreenState
                                               fontSize: 9.r,
                                               color: AppColor.lavenderGray,
                                               fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal'),
+                                              fontFamily: 'Tajawal',
+                                              package: 'yousentech_authentication',),
                                         ),
                                       ],
                                     ),
