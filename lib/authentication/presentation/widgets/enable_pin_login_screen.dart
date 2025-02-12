@@ -341,6 +341,9 @@ activatePINLogin({bool enable = true}) async {
                         // SizedBox(
                         //   height: 10.r,
                         // ),
+                        SizedBox(
+                            height: 5.r,
+                          ),
                         StatefulBuilder(
                             builder: (BuildContext context, setState) {
                           return ContainerTextField(

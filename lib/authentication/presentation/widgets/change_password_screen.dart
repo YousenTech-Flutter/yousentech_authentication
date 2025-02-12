@@ -337,6 +337,10 @@ changePasswordDialog() {
                           },
                         );
                       }),
+                      
+                      SizedBox(
+                            height: 5.r,
+                          ),
                       StatefulBuilder(
                           builder: (BuildContext context, setState) {
                         return ContainerTextField(
