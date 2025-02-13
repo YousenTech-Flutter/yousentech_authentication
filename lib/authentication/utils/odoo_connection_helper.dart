@@ -11,6 +11,8 @@ class OdooProjectOwnerConnectionHelper {
       {required String username, required String password}) async {    
     try {
       print("instantiateOdooConnection username $username password $password");
+      print("odooSession befor username ${odooSession?.userName}");
+      print("odooSession befor username ${odooSession?.userId}");
       odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
       odooSession = await odooClient.authenticate(
           SharedPr.subscriptionDetailsObj!.db!, username, password);
