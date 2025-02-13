@@ -10,9 +10,11 @@ class OdooProjectOwnerConnectionHelper {
   static Future instantiateOdooConnection(
       {required String username, required String password}) async {    
     try {
+      print("instantiateOdooConnection username $username password $password");
       odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
       odooSession = await odooClient.authenticate(
           SharedPr.subscriptionDetailsObj!.db!, username, password);
+      print("odooSession instantiateOdooConnection username ${odooSession?.userName}");
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
     } on OdooException {
       return 'login_information_incorrect'.tr;
