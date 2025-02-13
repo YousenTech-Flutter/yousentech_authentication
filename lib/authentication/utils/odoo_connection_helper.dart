@@ -15,6 +15,7 @@ class OdooProjectOwnerConnectionHelper {
       odooSession = await odooClient.authenticate(
           SharedPr.subscriptionDetailsObj!.db!, username, password);
       print("odooSession instantiateOdooConnection username ${odooSession?.userName}");
+      print("odooSession instantiateOdooConnection username ${odooSession?.userId}");
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
     } on OdooException {
       return 'login_information_incorrect'.tr;
