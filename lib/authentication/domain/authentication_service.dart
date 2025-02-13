@@ -9,10 +9,10 @@ import 'package:pos_shared_preferences/models/authentication_data/user.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_odoo_models.dart';
 import 'package:shared_widgets/config/app_urls.dart';
+import 'package:shared_widgets/shared_widgets/odoo_connection_helper.dart';
 import 'package:shared_widgets/utils/file_management.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
 import '../utils/handle_exception_helper.dart';
-import '../utils/odoo_connection_helper.dart';
 import 'authentication_repository.dart';
 
 class AuthenticationService implements AuthenticationRepository {
