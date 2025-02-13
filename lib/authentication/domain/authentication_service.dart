@@ -184,11 +184,6 @@ class AuthenticationService implements AuthenticationRepository {
     } on SocketException catch (e) {
       return 'no_connection'.tr;
     } catch (e) {
-      //OdooProjectOwnerConnectionHelper.sessionClosed = true;
-
-      // if (kDebugMode) {
-      //   print('authenticateUsingUsernameAndPassword exception : $e');
-      // }
       FileManagement.writeData(
           "authenticateUsingUsernameAndPassword Exception : $e");
 
