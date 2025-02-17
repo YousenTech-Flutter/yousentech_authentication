@@ -74,6 +74,7 @@ class _UsernameAndPasswordLoginScreenState
                 child: Stack(
                   children: [
                     CardLogin(
+                      heightCard: 0.4.sh,
                       children: [
                         Expanded(
                           child: Form(
@@ -100,31 +101,37 @@ class _UsernameAndPasswordLoginScreenState
                                         TextSpan(
                                           text: 'hi'.tr,
                                           style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.lavenderGray,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
+                                            fontSize: 9.r,
+                                            color: AppColor.lavenderGray,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Tajawal',
+                                            package:
+                                                'yousentech_authentication',
+                                          ),
                                         ),
                                         TextSpan(
                                           text:
                                               ' ${SharedPr.chosenUserObj!.name}  ',
                                           style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.cyanTeal,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
+                                            fontSize: 9.r,
+                                            color: AppColor.cyanTeal,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Tajawal',
+                                            package:
+                                                'yousentech_authentication',
+                                          ),
                                         ),
                                         TextSpan(
                                           text:
                                               'enter_username_and_password'.tr,
                                           style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.lavenderGray,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
+                                            fontSize: 9.r,
+                                            color: AppColor.lavenderGray,
+                                            fontWeight: FontWeight.w400,
+                                            fontFamily: 'Tajawal',
+                                            package:
+                                                'yousentech_authentication',
+                                          ),
                                         ),
                                       ],
                                     ),

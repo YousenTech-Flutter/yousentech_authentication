@@ -61,7 +61,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                         Focus(
                             focusNode: pinNumberFocus,
                             child: CardLogin(
-                              isPin: true,
+                              heightCard: 0.63.sh,
                               children: [
                                 Form(
                                     key: _formKey,
@@ -88,35 +88,38 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 TextSpan(
                                                   text: 'hi'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
-                                                      color:
-                                                          AppColor.lavenderGray,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                    fontSize: 9.r,
+                                                    color:
+                                                        AppColor.lavenderGray,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 ),
                                                 TextSpan(
                                                   text:
                                                       '  ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
-                                                      color: AppColor.cyanTeal,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                    fontSize: 9.r,
+                                                    color: AppColor.cyanTeal,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 ),
                                                 TextSpan(
                                                   text: 'enter_pin'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
-                                                      color:
-                                                          AppColor.lavenderGray,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                    fontSize: 9.r,
+                                                    color:
+                                                        AppColor.lavenderGray,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 )
                                               ],
                                             ),

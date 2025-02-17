@@ -83,7 +83,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CardLogin(children: [
+                        CardLogin(heightCard: 0.4.sh, children: [
                           Text(
                             'employee_list'.tr,
                             style: TextStyle(
