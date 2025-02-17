@@ -61,7 +61,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                         Focus(
                             focusNode: pinNumberFocus,
                             child: CardLogin(
-                              heightCard: 0.63.sh,
+                              heightCard: 0.55.sh,
                               children: [
                                 Form(
                                     key: _formKey,
