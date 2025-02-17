@@ -199,7 +199,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                   return Column(
                                                     children: [
                                                       SizedBox(
-                                                        height: 0.01.sh,
+                                                        height: 10.r,
                                                       ),
                                                       TextButton(
                                                           onPressed: () async {
