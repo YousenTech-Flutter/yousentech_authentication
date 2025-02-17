@@ -125,7 +125,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 10.r,
+                                            height: 5.r,
                                           ),
                                           ContainerTextField(
                                             width: 0.15.sw,
@@ -183,7 +183,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             labelText: '',
                                           ),
                                           SizedBox(
-                                            height: 10.r,
+                                            height: 5.r,
                                           ),
                                           NumbericItems(
                                             authenticationController:
