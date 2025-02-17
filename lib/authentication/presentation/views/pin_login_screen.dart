@@ -198,9 +198,9 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 builder: (context) {
                                                   return Column(
                                                     children: [
-                                                      SizedBox(
-                                                        height: 10.r,
-                                                      ),
+                                                      // SizedBox(
+                                                      //   height: 10.r,
+                                                      // ),
                                                       TextButton(
                                                           onPressed: () async {
                                                             authenticationController
