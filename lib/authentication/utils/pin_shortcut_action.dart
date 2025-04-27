@@ -21,3 +21,4 @@ Map<Type, Action<Intent>> pinShortcutAction(
     }),
   };
 }
+

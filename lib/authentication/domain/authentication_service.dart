@@ -1,6 +1,5 @@
 // ignore_for_file: unused_catch_clause
 
-import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
@@ -9,13 +8,15 @@ import 'package:pos_shared_preferences/models/authentication_data/user.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_odoo_models.dart';
 import 'package:shared_widgets/config/app_urls.dart';
+import 'package:shared_widgets/config/socket_connectivity_checker.dart';
+import 'package:shared_widgets/shared_widgets/handle_exception_helper.dart';
 import 'package:shared_widgets/shared_widgets/odoo_connection_helper.dart';
 import 'package:shared_widgets/utils/file_management.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
-import '../utils/handle_exception_helper.dart';
 import 'authentication_repository.dart';
 
 class AuthenticationService implements AuthenticationRepository {
+
   static AuthenticationService? _authenticationServiceInstance;
 
   AuthenticationService._();
@@ -44,7 +45,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result;
     } catch (e) {
-      return handleException(
+      return await handleException(
           exception: e, navigation: true, methodName: "activatePinLogin");
     }
   }
@@ -110,10 +111,7 @@ class AuthenticationService implements AuthenticationRepository {
 
       return result.isEmpty ? null : User.fromJson(result.first);
     } catch (e) {
-      // if (kDebugMode) {
-      //   print("authenticateUsingPIN Exception : $e");
-      // }
-      return handleException(
+      return await handleException(
           exception: e, navigation: false, methodName: "authenticateUsingPIN");
     }
   }
@@ -181,9 +179,14 @@ class AuthenticationService implements AuthenticationRepository {
     } on OdooException catch (e) {
       FileManagement.writeData('${'failed_connect_server'.tr} - $e');
       return 'failed_connect_server'.tr;
-    } on SocketException catch (e) {
+    } on SocketConnectivityChecker catch (e) {
       return 'no_connection'.tr;
     } catch (e) {
+      //OdooProjectOwnerConnectionHelper.sessionClosed = true;
+
+      // if (kDebugMode) {
+      //   print('authenticateUsingUsernameAndPassword exception : $e');
+      // }
       FileManagement.writeData(
           "authenticateUsingUsernameAndPassword Exception : $e");
 
@@ -236,20 +239,9 @@ class AuthenticationService implements AuthenticationRepository {
         ],
         'kwargs': {},
       });
-
-      // if (kDebugMode) {
-      //   print("result : $result");
-      //   print("SharedPr.userObj!.password : ${SharedPr.userObj!.password}");
-      //   print("password : $password");
-      // }
-
-      // OdooProjectOwnerConnectionHelper.odooSession = null;
       return result;
     } catch (e) {
-      // if (kDebugMode) {
-      //   print("changePassword catch : $e");
-      // }
-      return handleException(
+      return await handleException(
           exception: e, navigation: true, methodName: "changePassword");
     }
   }
@@ -271,12 +263,9 @@ class AuthenticationService implements AuthenticationRepository {
         ],
         'kwargs': {},
       });
-
-      // print("countPINFailureAttempt result : $result");
-      // print("countPINFailureAttempt result : $result");
       return result;
     } catch (e) {
-      return handleException(
+      return await handleException(
           exception: e,
           navigation: false,
           methodName: "countPINFailureAttempt");
@@ -319,7 +308,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result;
     } catch (e) {
-      return handleException(
+      return await handleException(
           exception: e,
           navigation: false,
           methodName: "countUsernameFailureAttempt");
@@ -347,7 +336,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result;
     } catch (e) {
-      return handleException(
+      return  await handleException(
           exception: e, navigation: true, methodName: "forgetPassword");
     }
   }
@@ -374,7 +363,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result;
     } catch (e) {
-      return handleException(
+      return await handleException(
           exception: e,
           navigation: false,
           methodName: "sendTicketToEliminateAccountLock");
@@ -406,7 +395,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result.isEmpty ? [] : SupportTicket.fromJson(result.first);
     } catch (e) {
-      return handleException(
+      return await handleException(
           exception: e,
           navigation: false,
           methodName: "getUserAccountLockTicket");
@@ -435,7 +424,7 @@ class AuthenticationService implements AuthenticationRepository {
 
       return result;
     } catch (e) {
-      return handleException(
+      return  await handleException(
           exception: e,
           navigation: false,
           methodName: "updateUserAccountLockStatusTicket");

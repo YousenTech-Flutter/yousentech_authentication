@@ -9,22 +9,22 @@ import 'package:pos_shared_preferences/models/authentication_data/login_info.dar
 import 'package:pos_shared_preferences/models/notification_helper_model.dart';
 import 'package:remote_database_setting/remote_database_setting/domain/remote_database_setting_viewmodel.dart';
 import 'package:remote_database_setting/remote_database_setting/presentation/create_support_ticket.dart';
-import 'package:shared_widgets/config/app_enum.dart';
+import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_lists.dart';
+import 'package:shared_widgets/config/app_shared_pr.dart';
+import 'package:shared_widgets/config/app_styles.dart';
+import 'package:shared_widgets/shared_widgets/app_button.dart';
+import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
+import 'package:shared_widgets/shared_widgets/card_login.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/change_password_screen.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
 import '../../domain/authentication_viewmodel.dart';
-import 'package:pos_shared_preferences/pos_shared_preferences.dart';
-import 'package:shared_widgets/config/app_colors.dart';
-import 'package:shared_widgets/config/app_styles.dart';
-import 'package:shared_widgets/shared_widgets/app_button.dart';
-import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
-import 'package:shared_widgets/shared_widgets/card_login.dart';
 
 class UsernameAndPasswordLoginScreen extends StatefulWidget {
   const UsernameAndPasswordLoginScreen({super.key});
@@ -70,7 +70,7 @@ class _UsernameAndPasswordLoginScreenState
               },
               child: SizedBox(
                 width: double.infinity,
-                height: 0.8.sh,
+                height: 600.h,
                 child: Stack(
                   children: [
                     CardLogin(
@@ -78,472 +78,412 @@ class _UsernameAndPasswordLoginScreenState
                         Expanded(
                           child: Form(
                             key: _formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                  child: Text(
-                                    'login'.tr,
-                                    style: TextStyle(
-                                        fontSize: 12.r,
-                                        color: AppColor.charcoal,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 0.01.sh,
-                                ),
-                                Center(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                          text: 'hi'.tr,
-                                          style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.lavenderGray,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                              ' ${SharedPr.chosenUserObj!.name}  ',
-                                          style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.cyanTeal,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
-                                        ),
-                                        TextSpan(
-                                          text:
-                                              'enter_username_and_password'.tr,
-                                          style: TextStyle(
-                                              fontSize: 9.r,
-                                              color: AppColor.lavenderGray,
-                                              fontWeight: FontWeight.w400,
-                                              fontFamily: 'Tajawal',
-                                              package: 'yousentech_authentication',),
-                                        ),
-                                      ],
+                            child: AutofillGroup(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'login'.tr,
+                                      style: TextStyle(
+                                          fontSize: 12.r,
+                                          color: AppColor.charcoal,
+                                          fontWeight: FontWeight.w700),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 0.02.sh,
-                                ),
-                                // Text(
-                                //   'username'.tr,
-                                //   style: TextStyle(
-                                //       fontSize: 7.r,
-                                //       color: AppColor.charcoal,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
-                                ContainerTextField(
-                                  width: ScreenUtil().screenWidth,
-                                  height: 0.05.sh,
-                                  controller: usernameController,
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.all(8.0.r),
-                                    child: SvgPicture.asset(
-                                      'assets/image/user-1.svg',
-                                      fit: BoxFit.scaleDown,
-                                      package: 'yousentech_authentication',
-                                      color: AppColor.silverGray,
-                                    ),
+                                  SizedBox(
+                                    height: 0.01.sh,
                                   ),
-                                  iconcolor: AppColor.silverGray,
-                                  focusNode: userNameFocusNode,
-                                  borderRadius: 5.r,
-                                  fontSize: 9.r,
-                                  showLable: true,
-                                  labelText: 'username'.tr,
-                                  isAddOrEdit: true,
-                                  hintcolor: AppColor.silverGray,
-                                  borderColor: AppColor.silverGray,
-                                  hintText: 'username'.tr,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      errorMessage = 'required_message'
-                                          .trParams(
-                                              {'field_name': 'username'.tr});
-                                      countErrors++;
-                                      return "";
-                                    }
-                                    if (value !=
-                                        SharedPr.chosenUserObj!.userName) {
-                                      errorMessage = 'user_does_not_match'
-                                          .trParams(
-                                              {'field_name': 'username'.tr});
-                                      countErrors++;
-                                      return "";
-                                    }
-                                    return null;
-                                  },
-                                ),
-                                SizedBox(
-                                  height: 0.01.sh,
-                                ),
-                                // Text(
-                                //   SharedPr.isForgetPass!
-                                //       ? 'otp_password'.tr
-                                //       : 'password'.tr,
-                                //   style: TextStyle(
-                                //       fontSize: 7.r,
-                                //       color: AppColor.charcoal,
-                                //       fontWeight: FontWeight.w400),
-                                // ),
-                                GetBuilder<AuthenticationController>(
-                                    builder: (context) {
-                                  return ContainerTextField(
-                                    showLable: true,
-                                    labelText: SharedPr.isForgetPass!
-                                        ? 'otp_password'.tr
-                                        : 'password'.tr,
-                                    width: ScreenUtil().screenWidth,
-                                    height: 0.05.sh,
-                                    controller: passwordController,
-
-                                    iconcolor: AppColor.silverGray,
-                                    isAddOrEdit: true,
-                                    borderRadius: 5.r,
-                                    fontSize: 9.r,
-                                    hintcolor: AppColor.silverGray,
-                                    borderColor: AppColor.silverGray,
-                                    hintText: SharedPr.isForgetPass!
-                                        ? 'otp_password'.tr
-                                        : 'password'.tr,
-                                    // labelText: 'key_number'.tr,
-                                    prefixIcon: Padding(
-                                      padding: EdgeInsets.all(8.0.r),
-                                      child: SvgPicture.asset(
-                                        'assets/image/lock_on.svg',
-                                        package: 'yousentech_authentication',
-                                        fit: BoxFit
-                                            .scaleDown, // Adjust this to control scaling
-                                      ),
-                                    ),
-                                    suffixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10.0, right: 10),
-                                      child: IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              flag = !flag;
-                                            });
-                                          },
-                                          icon: flag
-                                              ? SvgPicture.asset(
-                                                  'assets/image/eye-open.svg',
-                                                  fit: BoxFit.scaleDown,
-                                                  package:
-                                                      'yousentech_authentication',
-                                                  color: AppColor.silverGray,
-                                                  // Adjust this to control scaling
-                                                )
-                                              : SvgPicture.asset(
-                                                  'assets/image/eye-closed.svg',
-                                                  package:
-                                                      'yousentech_authentication',
-                                                  fit: BoxFit
-                                                      .scaleDown, // Adjust this to control scaling
-                                                )),
-                                    ),
-                                    obscureText: flag ? false : true,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        errorMessage = 'required_message_f'
-                                            .trParams({
-                                          'field_name': SharedPr.isForgetPass!
-                                              ? 'otp_password'.tr
-                                              : 'password'.tr
-                                        });
-                                        return "";
-                                      }
-                                      // if (value.isNotEmpty) {
-                                      //   var message = ValidatorHelper.passWordValidation(value: value);
-                                      //   if (message == "") {
-                                      //     return null;
-                                      //   }
-                                      //   errorMessage = message;
-                                      //   return "";
-                                      // }
-                                      return null;
-                                    },
-                                  );
-                                }),
-                                SizedBox(
-                                  height: 0.01.sh,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (SharedPr.chosenUserObj!.pinCodeLock! <
-                                        3)
-                                      GetBuilder<AuthenticationController>(
-                                          id: "choosePin",
-                                          builder: (context) {
-                                            return TextButton(
-                                                onPressed: () async {
-                                                  authenticationController
-                                                      .setChoosePin();
-                                                },
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12),
-                                                  ),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        'assets/image/login_icon.svg',
-                                                        clipBehavior:
-                                                            Clip.antiAlias,
-                                                        package:
-                                                            'yousentech_authentication',
-                                                        fit: BoxFit.fill,
-                                                        width: 10.r,
-                                                        height: 10.r,
-                                                      ),
-                                                      // FaIcon(
-                                                      //   FontAwesomeIcons
-                                                      //       .arrowRightFromBracket,
-                                                      //   color: AppColor.amber,
-                                                      //   size: 3.sp,
-                                                      // ),
-                                                      SizedBox(
-                                                        width: 7.r,
-                                                      ),
-                                                      Center(
-                                                        child: Text(
-                                                          !authenticationController
-                                                                  .choosePin
-                                                              ? "switch_to_pin_login"
-                                                                  .tr
-                                                              : "switch_to_username_login"
-                                                                  .tr,
-                                                          style: TextStyle(
-                                                              fontSize: 9.r,
-                                                              color: AppColor
-                                                                  .charcoal,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ));
-                                          }),
-                                    TextButton(
-                                        onPressed: () async {
-                                          // CustomDialog.getInstance().dialog2(
-                                          //   title: "confirm_reset_password".tr,
-                                          //   dialogType: MessageTypes.warning,
-                                          //   primaryButtonText:"confirm_reset_password".tr,
-                                          //   onPressed: () async {
-                                          //     ResponseResult responseResult =await authenticationController.forgetPassword();
-                                          //     if (responseResult.status) {
-                                          //       Get.back();
-                                          //       appSnackBar(
-                                          //           message:
-                                          //               responseResult.message,
-                                          //           messageType:
-                                          //               MessageTypes.success);
-                                          //     } else {
-                                          //       Get.back();
-
-                                          //       showPassWordErrorDialog(
-                                          //           message:
-                                          //               responseResult.message);
-                                          //     }
-                                          //   },
-                                          //   context: context,
-                                          // );
-                                          CustomDialog.getInstance()
-                                              .dialogcontent(
-                                            barrierDismissible: true,
-                                            content: Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border(
-                                                      top: BorderSide(
-                                                          color: messageTypesIcon2[
-                                                                  MessageTypes
-                                                                      .warning]!
-                                                              .last as Color,
-                                                          width: 10.r)),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.r)),
-                                              padding: EdgeInsets.all(10.0.r),
-                                              height: 0.3.sh,
-                                              width: 0.3.sw,
-                                              child: Obx(() => IgnorePointer(
-                                                  ignoring:
-                                                      authenticationController
-                                                          .loading.value,
-                                                  child: Stack(
-                                                    children: [
-                                                      Column(
-                                                        children: [
-                                                          Expanded(
-                                                            child: Column(
-                                                              children: [
-                                                                if (messageTypesIcon2[
-                                                                            MessageTypes.warning]!
-                                                                        .first !=
-                                                                    "") ...[
-                                                                  SizedBox(
-                                                                    height:
-                                                                        20.r,
-                                                                  ),
-                                                                  SvgPicture
-                                                                      .asset(
-                                                                    messageTypesIcon2[MessageTypes.warning]!
-                                                                            .first
-                                                                        as String,
-                                                                    clipBehavior:
-                                                                        Clip.antiAlias,
-                                                                    fit: BoxFit
-                                                                        .fill,
-                                                                    width: 50.r,
-                                                                    height:
-                                                                        50.r,
-                                                                  ),
-                                                                  SizedBox(
-                                                                    height: 5.r,
-                                                                  ),
-                                                                  Text(
-                                                                    "confirm_reset_password"
-                                                                        .tr,
-                                                                    style: AppStyle.textStyle(
-                                                                        fontSize: 10
-                                                                            .r,
-                                                                        fontWeight:
-                                                                            FontWeight.bold),
-                                                                  )
-                                                                ],
-                                                                SizedBox(
-                                                                  height: 10.r,
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceEvenly,
-                                                            children: [
-                                                              ButtonElevated(
-                                                                  text:
-                                                                      "confirm_reset_password"
-                                                                          .tr,
-                                                                  width:
-                                                                      0.13.sw,
-                                                                  backgroundColor:
-                                                                      messageTypesIcon2[MessageTypes.warning]!
-                                                                              .last
-                                                                          as Color,
-                                                                  textStyle: AppStyle.textStyle(
-                                                                      color: AppColor
-                                                                          .white,
-                                                                      fontSize:
-                                                                          10.r,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    ResponseResult
-                                                                        responseResult =
-                                                                        await authenticationController
-                                                                            .forgetPassword();
-                                                                    if (responseResult
-                                                                        .status) {
-                                                                      Get.back();
-                                                                      appSnackBar(
-                                                                          message: responseResult
-                                                                              .message,
-                                                                          messageType:
-                                                                              MessageTypes.success);
-                                                                    } else {
-                                                                      Get.back();
-                                                                      showPassWordErrorDialog(
-                                                                          message:
-                                                                              responseResult.message);
-                                                                    }
-                                                                  }),
-                                                              SizedBox(
-                                                                width: 10.r,
-                                                              ),
-                                                              ButtonElevated(
-                                                                  text: 'cancel'
-                                                                      .tr,
-                                                                  width:
-                                                                      0.13.sw,
-                                                                  borderColor:
-                                                                      AppColor
-                                                                          .paleAqua,
-                                                                  textStyle: AppStyle.textStyle(
-                                                                      color: AppColor
-                                                                          .slateGray,
-                                                                      fontSize:
-                                                                          10.r,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    Get.back();
-                                                                  }),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      ),
-                                                      authenticationController
-                                                              .loading.value
-                                                          ? const LoadingWidget()
-                                                          : Container(),
-                                                    ],
-                                                  ))),
-                                            ),
-                                            context: context,
-                                          );
-                                        },
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          child: Text(
-                                            "forget_password".tr,
+                                  Center(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'hi'.tr,
+                                            style: TextStyle(
+                                                fontSize: 9.r,
+                                                color: AppColor.lavenderGray,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' ${SharedPr.chosenUserObj!.name}  ',
                                             style: TextStyle(
                                                 fontSize: 9.r,
                                                 color: AppColor.cyanTeal,
-                                                fontWeight: FontWeight.w400),
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                           ),
-                                        )),
-                                  ],
-                                )
-                              ],
+                                          TextSpan(
+                                            text:
+                                                'enter_username_and_password'.tr,
+                                            style: TextStyle(
+                                                fontSize: 9.r,
+                                                color: AppColor.lavenderGray,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 0.02.sh,
+                                  ),
+                                  ContainerTextField(
+                                    width: ScreenUtil().screenWidth,
+                                    height: 30.h,
+                                    controller: usernameController,
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(8.0.r),
+                                      child: SvgPicture.asset(
+                                        'assets/image/user-1.svg',
+                                        package: 'yousentech_authentication',
+                                        fit: BoxFit.scaleDown,
+                                        color: AppColor.silverGray,
+                                      ),
+                                    ),
+                                    iconcolor: AppColor.silverGray,
+                                    focusNode: userNameFocusNode,
+                                    borderRadius: 5.r,
+                                    fontSize: 9.r,
+                                    showLable: true,
+                                    labelText: 'username'.tr,
+                                    autofillHints: const [AutofillHints.email],
+                                    keyboardType: TextInputType.emailAddress,
+                                    isAddOrEdit: true,
+                                    hintcolor: AppColor.silverGray,
+                                    borderColor: AppColor.silverGray,
+                                    hintText: 'username'.tr,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        errorMessage = 'required_message'
+                                            .trParams(
+                                                {'field_name': 'username'.tr});
+                                        countErrors++;
+                                        return "";
+                                      }
+                                      if (value !=
+                                          SharedPr.chosenUserObj!.userName) {
+                                        errorMessage = 'user_does_not_match'
+                                            .trParams(
+                                                {'field_name': 'username'.tr});
+                                        countErrors++;
+                                        return "";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 0.01.sh,
+                                  ),
+                                  GetBuilder<AuthenticationController>(
+                                      builder: (context) {
+                                    return ContainerTextField(
+                                      showLable: true,
+                                      labelText: SharedPr.isForgetPass!
+                                          ? 'otp_password'.tr
+                                          : 'password'.tr,
+                                      autofillHints: const [AutofillHints.password],
+                                      width: ScreenUtil().screenWidth,
+                                      height: 30.h,
+                                      controller: passwordController,
+                                      
+                                      iconcolor: AppColor.silverGray,
+                                      isAddOrEdit: true,
+                                      borderRadius: 5.r,
+                                      fontSize: 9.r,
+                                      hintcolor: AppColor.silverGray,
+                                      borderColor: AppColor.silverGray,
+                                      hintText: SharedPr.isForgetPass!
+                                          ? 'otp_password'.tr
+                                          : 'password'.tr,
+                                      // labelText: 'key_number'.tr,
+                                      prefixIcon: Padding(
+                                        padding: EdgeInsets.all(8.0.r),
+                                        child: SvgPicture.asset(
+                                          'assets/image/lock_on.svg',
+                                          package: 'yousentech_authentication',
+                                          fit: BoxFit
+                                              .scaleDown, // Adjust this to control scaling
+                                        ),
+                                      ),
+                                      suffixIcon: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10.0, right: 10),
+                                        child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                flag = !flag;
+                                              });
+                                            },
+                                            icon: flag
+                                                ? SvgPicture.asset(
+                                                    'assets/image/eye-open.svg',
+                                                    package: 'yousentech_authentication',
+                                                    fit: BoxFit.scaleDown,
+                                                    color: AppColor.silverGray,
+                                                    // Adjust this to control scaling
+                                                  )
+                                                : SvgPicture.asset(
+                                                    'assets/image/eye-closed.svg',
+                                                    package: 'yousentech_authentication',
+                                                    fit: BoxFit
+                                                        .scaleDown, // Adjust this to control scaling
+                                                  )),
+                                      ),
+                                      obscureText: flag ? false : true,
+                                      onFieldSubmitted: (value) {
+                                        TextInput.finishAutofillContext();
+                                      },
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          errorMessage = 'required_message_f'
+                                              .trParams({
+                                            'field_name': SharedPr.isForgetPass!
+                                                ? 'otp_password'.tr
+                                                : 'password'.tr
+                                          });
+                                          return "";
+                                        }
+                                      
+                                        return null;
+                                      },
+                                    );
+                                  }),
+                                  SizedBox(
+                                    height: 0.01.sh,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (SharedPr.chosenUserObj!.pinCodeLock! <
+                                          3)
+                                        GetBuilder<AuthenticationController>(
+                                            id: "choosePin",
+                                            builder: (context) {
+                                              return TextButton(
+                                                  onPressed: () async {
+                                                    authenticationController
+                                                        .setChoosePin();
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                          'assets/image/login_icon.svg',
+                                                          package: 'yousentech_authentication',
+                                                          clipBehavior:
+                                                              Clip.antiAlias,
+                                                          fit: BoxFit.fill,
+                                                          width: 10.r,
+                                                          height: 10.r,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 7.r,
+                                                        ),
+                                                        Center(
+                                                          child: Text(
+                                                            !authenticationController
+                                                                    .choosePin
+                                                                ? "switch_to_pin_login"
+                                                                    .tr
+                                                                : "switch_to_username_login"
+                                                                    .tr,
+                                                            style: TextStyle(
+                                                                fontSize: 9.r,
+                                                                color: AppColor
+                                                                    .charcoal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ));
+                                            }),
+                                      TextButton(
+                                          onPressed: () async {
+                                            CustomDialog.getInstance()
+                                                .dialogcontent(
+                                              barrierDismissible: true,
+                                              content: Container(
+                                                decoration: BoxDecoration(
+                                                    border: Border(
+                                                        top: BorderSide(
+                                                            color: messageTypesIcon2[
+                                                                    MessageTypes
+                                                                        .warning]!
+                                                                .last as Color,
+                                                            width: 10.r)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r)),
+                                                padding: EdgeInsets.all(10.0.r),
+                                                height: 0.3.sh,
+                                                width: 0.3.sw,
+                                                child: Obx(() => IgnorePointer(
+                                                    ignoring:
+                                                        authenticationController
+                                                            .loading.value,
+                                                    child: Stack(
+                                                      children: [
+                                                        Column(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
+                                                                children: [
+                                                                  if (messageTypesIcon2[
+                                                                              MessageTypes.warning]!
+                                                                          .first !=
+                                                                      "") ...[
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20.r,
+                                                                    ),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                      messageTypesIcon2[MessageTypes.warning]!
+                                                                              .first
+                                                                          as String,
+                                                                      clipBehavior:
+                                                                          Clip.antiAlias,
+                                                                      fit: BoxFit
+                                                                          .fill,
+                                                                      width: 50.r,
+                                                                      height:
+                                                                          50.r,
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height: 5.r,
+                                                                    ),
+                                                                    Text(
+                                                                      "confirm_reset_password"
+                                                                          .tr,
+                                                                      style: AppStyle.textStyle(
+                                                                          fontSize: 10
+                                                                              .r,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    )
+                                                                  ],
+                                                                  SizedBox(
+                                                                    height: 10.r,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                ButtonElevated(
+                                                                    text:
+                                                                        "confirm_reset_password"
+                                                                            .tr,
+                                                                    width:
+                                                                        0.13.sw,
+                                                                    backgroundColor:
+                                                                        messageTypesIcon2[MessageTypes.warning]!
+                                                                                .last
+                                                                            as Color,
+                                                                    textStyle: AppStyle.textStyle(
+                                                                        color: AppColor
+                                                                            .white,
+                                                                        fontSize:
+                                                                            10.r,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold),
+                                                                    onPressed:
+                                                                        () async {
+                                                                      ResponseResult
+                                                                          responseResult =
+                                                                          await authenticationController
+                                                                              .forgetPassword();
+                                                                      if (responseResult
+                                                                          .status) {
+                                                                        Get.back();
+                                                                        appSnackBar(
+                                                                            message: responseResult
+                                                                                .message,
+                                                                            messageType:
+                                                                                MessageTypes.success);
+                                                                      } else {
+                                                                        Get.back();
+                                                                        showPassWordErrorDialog(
+                                                                            message:
+                                                                                responseResult.message);
+                                                                      }
+                                                                    }),
+                                                                SizedBox(
+                                                                  width: 10.r,
+                                                                ),
+                                                                ButtonElevated(
+                                                                    text: 'cancel'
+                                                                        .tr,
+                                                                    width:
+                                                                        0.13.sw,
+                                                                    borderColor:
+                                                                        AppColor
+                                                                            .paleAqua,
+                                                                    textStyle: AppStyle.textStyle(
+                                                                        color: AppColor
+                                                                            .slateGray,
+                                                                        fontSize:
+                                                                            10.r,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold),
+                                                                    onPressed:
+                                                                        () async {
+                                                                      Get.back();
+                                                                    }),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                        authenticationController
+                                                                .loading.value
+                                                            ? const LoadingWidget()
+                                                            : Container(),
+                                                      ],
+                                                    ))),
+                                              ),
+                                              context: context,
+                                            );
+                                          },
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              "forget_password".tr,
+                                              style: TextStyle(
+                                                  fontSize: 9.r,
+                                                  color: AppColor.cyanTeal,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          )),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
-
-                        // Obx(() {
-                        //   if (authenticationController.loading.value) {
-                        //     return CircularProgressIndicator(
-                        //       color: AppColor.white,
-                        //       backgroundColor: AppColor.black,
-                        //     );
-                        //   } else {
-                        //     return
-
                         KeyboardListener(
                           focusNode: _buttonFocusNode,
                           autofocus: true,
@@ -558,7 +498,7 @@ class _UsernameAndPasswordLoginScreenState
                                 return InkWell(
                                   onTap: onPressed,
                                   child: Container(
-                                    height: 0.05.sh,
+                                    height: 30.h,
                                     width: ScreenUtil().screenWidth,
                                     alignment: Alignment.center,
                                     margin:
@@ -604,19 +544,9 @@ class _UsernameAndPasswordLoginScreenState
   }
 
   onPressed() async {
-    // if (usernameController.text != SharedPr.chosenUserObj!.userName) {
-
-    // appSnackBar(
-    //     message:
-    //         'user_does_not_match'.trParams({'field_name': 'username'.tr}));
-    // return;
-    // }
-
     countErrors = 0;
     if (_formKey.currentState!.validate()) {
-      // print("validate true");
       if (SharedPr.isForgetPass!) {
-        // print("SharedPr.isForgetPass!");
         ResponseResult responseResult = await authenticationController
             .authenticateUsingUsernameAndPassword(LoginInfo(
                 userName: usernameController.text,
@@ -627,9 +557,6 @@ class _UsernameAndPasswordLoginScreenState
           responseResult.data.accountLock = 0;
           await SharedPr.setUserObj(userObj: responseResult.data);
           await SharedPr.setForgetPass(flage: false, otp: '');
-          // // TODO AMAL : Change to what user choose
-          // await SharedPr.setCurrentPOS(posId: 1);
-          //
           changePasswordDialog();
         } else {
           if (responseResult.message == "un_trusted_device".tr) {
@@ -668,12 +595,11 @@ class _UsernameAndPasswordLoginScreenState
                 password: passwordController.text));
         if (responseResult.status && responseResult.data.accountLock < 3) {
           Get.to(() => const HomePage());
-
-          // Get.to(() => const DashboardScreen());
           appSnackBar(
             messageType: MessageTypes.success,
             message: responseResult.message,
           );
+
           if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
               SharedPr.localBackUpSettingObj!.selectedOption ==
                   BackUpOptions.backup_on_login.name) {
@@ -711,7 +637,6 @@ class _UsernameAndPasswordLoginScreenState
         }
       }
     } else {
-      // print("countErrors $countErrors");
       appSnackBar(
         message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage!,
       );
@@ -720,33 +645,6 @@ class _UsernameAndPasswordLoginScreenState
 }
 
 void showAccountLockDialog() {
-  // CustomDialog.getInstance().dialog(
-  //     title: 'account_unlock_request'.tr,
-  //     buttonheight: 0.04.sh,
-  //     contentPadding: 20.r,
-  //     buttonwidth: 77.w,
-  //     fontSizetext: 9.r,
-  //     fontSizetital: 10.r,
-  //     message: '${'account_locked'.tr}\n${'account_unlock_request_message'.tr}',
-  //     primaryButtonText: 'yes'.tr,
-  //     icon: Icons.lock_person,
-  //     onPressed: () async {
-  //       var result =
-  //           await authenticationController.sendTicketToEliminateAccountLock();
-  //       if (result.status) {
-  //         SharedPr.setNotificationObj(
-  //             notificationHelperObj: NotificationHelper(accountLock: true));
-  //         Get.back();
-  //         appSnackBar(
-  //             messageType: MessageTypes.success,
-  //             message: 'success_send_ticket'.tr);
-  //       } else {
-  //         Get.back();
-  //         appSnackBar(
-  //             messageType: MessageTypes.error,
-  //             message: 'send_ticket_already'.tr);
-  //       }
-  //     });
   onPressed() async {
     var result =
         await authenticationController.sendTicketToEliminateAccountLock();
@@ -863,37 +761,6 @@ void showPassWordErrorDialog({required String message}) {
       Get.isRegistered<DatabaseSettingController>()
           ? Get.find<DatabaseSettingController>()
           : Get.put(DatabaseSettingController.getInstance());
-  // CustomDialog.getInstance().dialog(
-  //     title: 'support_ticket'.tr,
-  //     buttonheight: 0.04.sh,
-  //     contentPadding: 20.r,
-  //     message: "${'technical_support_ticket'.tr}\n\n$message",
-  //     primaryButtonText: 'yes'.tr,
-  //     buttonwidth: 77.w,
-  //     fontSizetext: 9.r,
-  //     fontSizetital: 10.r,
-  //     icon: Icons.contact_support_rounded,
-  //     onPressed: () async {
-  //       await databaseSettingController
-  //           .sendTicket(
-  //               subscriptionId:
-  //                   SharedPr.subscriptionDetailsObj!.subscriptionId.toString(),
-  //               message: message)
-  //           .then((value) {
-  //         if (value.status) {
-  //           SharedPr.setNotificationObj(
-  //               notificationHelperObj: NotificationHelper(sendTicket: true));
-  //           Get.back();
-  //           appSnackBar(
-  //               message: 'success_send_ticket'.tr,
-  //               messageType: MessageTypes.success);
-  //         } else {
-  //           appSnackBar(
-  //             message: value.message!,
-  //           );
-  //         }
-  //       });
-  //     });
   supportTicketDialog(
       context: Get.context!,
       message: message,

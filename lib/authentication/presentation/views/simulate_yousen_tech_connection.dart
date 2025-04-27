@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:remote_database_setting/remote_database_setting/domain/remote_database_setting_service.dart';
-import 'package:shared_widgets/config/app_enum.dart';
+import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
-import 'package:shared_widgets/config/app_colors.dart';
 
 TextEditingController database = TextEditingController();
 TextEditingController url = TextEditingController();
@@ -25,9 +25,7 @@ simulateConnectionDialog() {
     title: 'main_connection_info'.tr,
     content: Center(
       child: Container(
-        // width: Get.width * 0.4,
         width: 100.w,
-        // height: Get.height * 0.5,
         padding: const EdgeInsets.all(8),
         child: Form(
           key: _formKey,
@@ -44,18 +42,13 @@ simulateConnectionDialog() {
                 isAddOrEdit: true,
                 borderRadius: 5.r,
                 controller: database,
-                // prefixIcon: Icon(
-                //   Icons.key,
-                //   size: 4.sp,
-                //   color: AppColor.black,
-                // ),
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: SvgPicture.asset(
                     'assets/image/user-1.svg',
+                    package: 'yousentech_authentication',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
-                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'database'.tr,
@@ -70,6 +63,7 @@ simulateConnectionDialog() {
                   return null;
                 },
               ),
+              
               ContainerTextField(
                 width: 100.w,
                 height: 40.h,
@@ -79,18 +73,13 @@ simulateConnectionDialog() {
                 isAddOrEdit: true,
                 borderRadius: 5.r,
                 controller: url,
-                // prefixIcon: Icon(
-                //   Icons.key,
-                //   size: 4.sp,
-                //   color: AppColor.black,
-                // ),
                 prefixIcon: Padding(
                   padding: EdgeInsets.all(8.0.r),
                   child: SvgPicture.asset(
                     'assets/image/user-1.svg',
+                    package: 'yousentech_authentication',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
-                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'url'.tr,
@@ -105,6 +94,7 @@ simulateConnectionDialog() {
                   return null;
                 },
               ),
+              
               ContainerTextField(
                 width: 100.w,
                 height: 40.h,
@@ -123,9 +113,9 @@ simulateConnectionDialog() {
                   padding: EdgeInsets.all(8.0.r),
                   child: SvgPicture.asset(
                     'assets/image/user-1.svg',
+                    package: 'yousentech_authentication',
                     fit: BoxFit.scaleDown,
                     color: AppColor.silverGray,
-                    package: 'yousentech_authentication',
                   ),
                 ),
                 hintText: 'username'.tr,
@@ -140,6 +130,7 @@ simulateConnectionDialog() {
                   return null;
                 },
               ),
+              
               StatefulBuilder(builder: (BuildContext context, setState) {
                 return ContainerTextField(
                   width: 100.w,
@@ -150,40 +141,17 @@ simulateConnectionDialog() {
                   isAddOrEdit: true,
                   borderRadius: 5.r,
                   controller: password,
-                  // prefixIcon: Icon(
-                  //   Icons.key,
-                  //   size: 4.sp,
-                  //   color: AppColor.black,
-                  // ),
                   prefixIcon: Padding(
                     padding: EdgeInsets.all(8.0.r),
                     child: SvgPicture.asset(
                       'assets/image/user-1.svg',
+                      package: 'yousentech_authentication',
                       fit: BoxFit.scaleDown,
                       color: AppColor.silverGray,
-                      package: 'yousentech_authentication',
                     ),
                   ),
                   hintText: 'password'.tr,
                   labelText: 'password'.tr,
-                  // suffixIcon: Padding(
-                  //   padding: const EdgeInsets.only(left: 10.0, right: 10),
-                  //   child: IconButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           flag = !flag;
-                  //         });
-                  //       },
-                  //       icon: flag
-                  //           ? Icon(
-                  //               Icons.visibility,
-                  //               color: AppColor.black,
-                  //             )
-                  //           : Icon(
-                  //               Icons.visibility_off,
-                  //               color: AppColor.black,
-                  //             )),
-                  // ),
                   suffixIcon: Padding(
                     padding: const EdgeInsets.only(left: 10.0, right: 10),
                     child: IconButton(
@@ -195,9 +163,9 @@ simulateConnectionDialog() {
                         icon: flag
                             ? SvgPicture.asset(
                                 'assets/image/eye-open.svg',
+                                package: 'yousentech_authentication',
                                 fit: BoxFit.scaleDown,
                                 color: AppColor.silverGray,
-                                package: 'yousentech_authentication',
                                 // Adjust this to control scaling
                               )
                             : SvgPicture.asset(

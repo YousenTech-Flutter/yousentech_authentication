@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:shared_widgets/shared_widgets/app_loading.dart';
-import 'package:shared_widgets/shared_widgets/app_text_field.dart';
-import 'package:yousentech_authentication/authentication/presentation/widgets/numberic_item.dart';
-import 'package:yousentech_authentication/authentication/utils/pin_shortcut_action.dart';
-import 'package:yousentech_authentication/authentication/utils/shortcut_pin_numbers.dart';
-
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
+import 'package:shared_widgets/shared_widgets/app_loading.dart';
+import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/shared_widgets/card_login.dart';
-
-import '../../domain/authentication_viewmodel.dart';
+import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
+import 'package:yousentech_authentication/authentication/presentation/widgets/numberic_item.dart';
+import 'package:yousentech_authentication/authentication/utils/pin_shortcut_action.dart';
+import 'package:yousentech_authentication/authentication/utils/shortcut_pin_numbers.dart';
 
 class PINLoginScreen extends StatefulWidget {
   const PINLoginScreen({super.key});
@@ -66,15 +64,14 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                 Form(
                                     key: _formKey,
                                     child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Center(
                                             child: Text(
                                               'login'.tr,
                                               style: TextStyle(
-                                                  fontSize: 12.r,
+                                                  fontSize: 10.r,
                                                   color: AppColor.charcoal,
                                                   fontWeight: FontWeight.w700),
                                             ),
@@ -88,35 +85,27 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 TextSpan(
                                                   text: 'hi'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
-                                                      color:
-                                                          AppColor.lavenderGray,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                      fontSize: 6.5.r,
+                                                      color: AppColor.lavenderGray,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                                 ),
                                                 TextSpan(
                                                   text:
                                                       '  ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
+                                                      fontSize: 6.5.r,
                                                       color: AppColor.cyanTeal,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                      fontWeight: FontWeight.w400,
+                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                                 ),
                                                 TextSpan(
                                                   text: 'enter_pin'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 9.r,
-                                                      color:
-                                                          AppColor.lavenderGray,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontFamily: 'Tajawal',
-                                                      package: 'yousentech_authentication',),
+                                                      fontSize: 6.5.r,
+                                                      color: AppColor.lavenderGray,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                                 )
                                               ],
                                             ),
@@ -127,8 +116,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           ContainerTextField(
                                             width: 0.15.sw,
                                             height: 30.h,
-                                            controller: authenticationController
-                                                .pinKeyController,
+                                            controller:
+                                                authenticationController.pinKeyController,
                                             iconcolor: AppColor.silverGray,
                                             borderRadius: 5.r,
                                             fontSize: 9.r,
@@ -139,40 +128,28 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             borderColor: AppColor.silverGray,
                                             hintText: 'pin_number'.tr,
                                             obscureText: flag ? false : true,
-                                            suffixIcon: Padding(
-                                              padding: EdgeInsets.all(8.0.r),
-                                              child: IconButton(
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      flag = !flag;
-                                                    });
-                                                  },
-                                                  icon: flag
-                                                      ? SvgPicture.asset(
-                                                          'assets/image/eye-open.svg',
-                                                          fit: BoxFit.scaleDown,
-                                                          color: AppColor
-                                                              .silverGray,
-                                                          package:
-                                                              'yousentech_authentication',
-                                                          // Adjust this to control scaling
-                                                        )
-                                                      : SvgPicture.asset(
-                                                          'assets/image/eye-closed.svg',
-                                                          package:
-                                                              'yousentech_authentication',
-                                                          fit: BoxFit
-                                                              .scaleDown, // Adjust this to control scaling
-                                                        )),
-                                            ),
+                                            suffixIcon: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    flag = !flag;
+                                                  });
+                                                },
+                                                icon: flag
+                                                    ? Icon(
+                                                        Icons.visibility,
+                                                        color: AppColor.silverGray,
+                                                        size: 4.sp,
+                                                      )
+                                                    : Icon(
+                                                        Icons.visibility_off,
+                                                        size: 4.sp,
+                                                        color: AppColor.silverGray,
+                                                      )),
                                             validator: (value) {
-                                              if (value == null ||
-                                                  value.isEmpty) {
-                                                errorMessage =
-                                                    'required_message'
-                                                        .trParams({
-                                                  'field_name': 'pin_number'.tr
-                                                });
+                                              if (value == null || value.isEmpty) {
+                                                errorMessage = 'required_message'
+                                                    .trParams(
+                                                        {'field_name': 'pin_number'.tr});
                                                 return "";
                                               }
                                               return null;
@@ -186,11 +163,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             authenticationController:
                                                 authenticationController,
                                           ),
-                                          if (SharedPr
-                                                  .chosenUserObj!.pinCodeLock! <
-                                              3)
-                                            GetBuilder<
-                                                    AuthenticationController>(
+                                          if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
+                                            GetBuilder<AuthenticationController>(
                                                 id: "choosePin",
                                                 builder: (context) {
                                                   return Column(
@@ -205,20 +179,16 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                           },
                                                           child: Row(
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
+                                                                MainAxisAlignment.center,
                                                             mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
+                                                                MainAxisSize.min,
                                                             children: [
                                                               SvgPicture.asset(
                                                                 'assets/image/login_icon.svg',
-                                                                clipBehavior: Clip
-                                                                    .antiAlias,
-                                                                package:
-                                                                    'yousentech_authentication',
-                                                                fit:
-                                                                    BoxFit.fill,
+                                                                package: 'yousentech_authentication',
+                                                                clipBehavior:
+                                                                    Clip.antiAlias,
+                                                                fit: BoxFit.fill,
                                                                 width: 10.r,
                                                                 height: 10.r,
                                                               ),
@@ -239,13 +209,11 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                                     : "switch_to_username_login"
                                                                         .tr,
                                                                 style: TextStyle(
-                                                                    fontSize:
-                                                                        9.r,
-                                                                    color: AppColor
-                                                                        .charcoal,
+                                                                    fontSize: 7.r,
+                                                                    color:
+                                                                        AppColor.charcoal,
                                                                     fontWeight:
-                                                                        FontWeight
-                                                                            .w400),
+                                                                        FontWeight.w400),
                                                               ),
                                                             ],
                                                           )),
@@ -257,15 +225,20 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           ),
                                         ]))
                               ],
-                            )),
+                            )
+                            
+                            ),
+
                         authenticationController.loading.value
-                            ? LoadingWidget(
-                                height: 600.h,
-                              )
-                            : Container(),
+                        ? LoadingWidget(
+                            height: 600.h,
+                          )
+                        : Container(),
                       ],
                     ))),
           ),
-        ));
+        )
+      
+    );
   }
 }

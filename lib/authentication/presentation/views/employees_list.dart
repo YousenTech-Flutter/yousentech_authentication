@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_styles.dart';
@@ -11,7 +10,6 @@ import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
 import 'package:shared_widgets/shared_widgets/card_login.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
 import 'package:yousentech_pos_token/token_settings/domain/token_viewmodel.dart';
-
 import '../../domain/authentication_viewmodel.dart';
 
 class EmployeesListScreen extends StatefulWidget {
@@ -23,10 +21,10 @@ class EmployeesListScreen extends StatefulWidget {
 
 class _EmployeesListScreenState extends State<EmployeesListScreen> {
   final TokenController tokenController =
-      Get.put(TokenController.getInstance());
+  Get.put(TokenController.getInstance());
   final AuthenticationController authenticationController =
-      Get.put(AuthenticationController.getInstance());
-  late FocusNode _focusNode;
+  Get.put(AuthenticationController.getInstance());
+  late FocusNode _focusNode; 
   int _selectedIndex = 0;
   final ScrollController _scrollController = ScrollController();
   // final GlobalKey _listKey = GlobalKey();
@@ -39,18 +37,12 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
       // tokenController.employeesList.value.requestFocus();
       tokenController.isLoading.value = true;
       _focusNode.requestFocus();
+      //tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
       tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
-      // if (_listKey.currentContext != null) {
-      //   final renderBox = _listKey.currentContext!.findRenderObject() as RenderBox;
-      //   setState(() {
-      //     itemHeight = renderBox.size.height;
-      //   });
-      // }
     });
-    //_data();
     flutterWindowCloseshow(context);
   }
-
+  
   @override
   void didUpdateWidget(covariant EmployeesListScreen oldWidget) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -58,6 +50,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
     });
     super.didUpdateWidget(oldWidget);
   }
+
 
   @override
   void dispose() {
@@ -76,94 +69,83 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
               appBar: customAppBar(),
               backgroundColor: AppColor.white,
               body: Obx(() {
-                if (tokenController.isLoading.value ||
-                    tokenController.result == null) {
-                  return SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CardLogin(children: [
-                          Text(
-                            'employee_list'.tr,
-                            style: TextStyle(
-                                fontSize: 12.r,
-                                color: AppColor.charcoal,
-                                fontWeight: FontWeight.w700),
-                          ),
-                          SizedBox(
-                            height: 0.01.sh,
-                          ),
-                          RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: 'welcomeBack'.tr,
-                                  style: TextStyle(
-                                      fontSize: 8.r,
-                                      color: AppColor.lavenderGray,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Tajawal',
-                                      package: 'yousentech_authentication',
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: ' ${'to'.tr}  ',
-                                  style: TextStyle(
-                                      fontSize: 8.r,
-                                      color: AppColor.lavenderGray,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Tajawal',
-                                      package: 'yousentech_authentication',
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: '${'qimam'.tr}  ',
-                                  style: TextStyle(
-                                      fontSize: 8.r,
-                                      color: AppColor.cyanTeal,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Tajawal',
-                                      package: 'yousentech_authentication',
-                                      ),
-                                ),
-                                TextSpan(
-                                  text: 'choose_your_account'.tr,
-                                  style: TextStyle(
-                                      fontSize: 8.r,
-                                      color: AppColor.lavenderGray,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: 'Tajawal',
-                                      package: 'yousentech_authentication',
-                                      ),
-                                ),
-                              ],
-                            ),
-                            softWrap: true,
-                            overflow: TextOverflow.visible,
-                          ),
-                          SizedBox(
-                            height: 0.02.sh,
-                          ),
-                          Center(
-                            child: CircularProgressIndicator(
-                              color: AppColor.cyanTeal,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 0.01.sh,
-                          ),
-                          Text(
-                            'loading'.tr,
-                            style: TextStyle(
-                                fontSize: 10.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ]),
-                      ],
+                if (tokenController.isLoading.value || tokenController.result == null) {
+                  return CardLogin(children: [
+                    Text(
+                      'employee_list'.tr,
+                      style: TextStyle(
+                          fontSize: 12.r,
+                          color: AppColor.charcoal,
+                          fontWeight: FontWeight.w700),
                     ),
-                  );
+                    SizedBox(
+                      height: 0.01.sh,
+                    ),
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'welcomeBack'.tr,
+                            style: TextStyle(
+                                fontSize: 8.r,
+                                color: AppColor.lavenderGray,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Tajawal',
+                                package: 'yousentech_authentication',
+                                ),
+                          ),
+                          TextSpan(
+                            text: ' ${'to'.tr}  ',
+                            style: TextStyle(
+                                fontSize: 8.r,
+                                color: AppColor.lavenderGray,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Tajawal',
+                                package: 'yousentech_authentication',
+                                ),
+                          ),
+                          TextSpan(
+                            text: '${'qimam'.tr}  ',
+                            style: TextStyle(
+                                fontSize: 8.r,
+                                color: AppColor.cyanTeal,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Tajawal',
+                                package: 'yousentech_authentication',),
+                          ),
+                          TextSpan(
+                            text: 'choose_your_account'.tr,
+                            style: TextStyle(
+                                fontSize: 8.r,
+                                color: AppColor.lavenderGray,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                          ),
+                        ],
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.visible,
+                    ),
+                    SizedBox(
+                      height: 0.02.sh,
+                    ),
+                    Center(
+                      child: CircularProgressIndicator(
+                        color: AppColor.cyanTeal,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 0.01.sh,
+                    ),
+                    Text(
+                      'loading'.tr,
+                      style: TextStyle(
+                          fontSize: 10.r,
+                          color: AppColor.lavenderGray,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ]);
                 } else if (!tokenController.result.status) {
                   return CardLogin(children: [
                     Expanded(
@@ -208,10 +190,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                         ),
                         onPressed: () {
                           tokenController.isLoading.value = true;
-                          tokenController.loadEmployeesBasedOnToken(
-                              token: SharedPr.token!);
-                          // tokenController.onInit();
-                          // print("object");
+                          tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
                         },
                       ),
                     ),
@@ -239,8 +218,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                   fontSize: 8.r,
                                   color: AppColor.lavenderGray,
                                   fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',
-                                  package: 'yousentech_authentication',),
+                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                             ),
                             TextSpan(
                               text: ' ${'to'.tr}  ',
@@ -248,8 +226,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                   fontSize: 8.r,
                                   color: AppColor.lavenderGray,
                                   fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',
-                                  package: 'yousentech_authentication',),
+                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                             ),
                             TextSpan(
                               text: '${'qimam'.tr}  ',
@@ -257,13 +234,12 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                   fontSize: 8.r,
                                   color: AppColor.cyanTeal,
                                   fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',
-                                  package: 'yousentech_authentication',),
+                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                             ),
                           ],
                         ),
                         softWrap:
-                            true, // Allows text to wrap into the next line if needed
+                        true, // Allows text to wrap into the next line if needed
                         overflow: TextOverflow
                             .visible, // Ensures text wraps and doesn't overflow
                       ),
@@ -290,19 +266,17 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                         onKeyEvent: (KeyEvent event) {
                           if (event is KeyDownEvent) {
                             if (_focusNode.hasFocus) {
+                              
                               // if (event is KeyDownEvent) {
-                              if (event.logicalKey ==
-                                  LogicalKeyboardKey.arrowDown) {
+                              if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
                                 setState(() {
-                                  if (_selectedIndex <
-                                      tokenController.finalResult.length - 1) {
+                                  if (_selectedIndex < tokenController.finalResult.length - 1) {
                                     _selectedIndex++;
                                     _scrollToIndex();
                                     // _scrollToIndex(_selectedIndex);
                                   }
                                 });
-                              } else if (event.logicalKey ==
-                                  LogicalKeyboardKey.arrowUp) {
+                              } else if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
                                 setState(() {
                                   if (_selectedIndex > 0) {
                                     _selectedIndex--;
@@ -310,8 +284,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                     // _scrollToIndex(_selectedIndex);
                                   }
                                 });
-                              } else if (event.logicalKey ==
-                                  LogicalKeyboardKey.enter) {
+                              } else if (event.logicalKey == LogicalKeyboardKey.enter) {
                                 if (tokenController.finalResult.isNotEmpty) {
                                   // print('LogicalKeyboardKey.enter');
                                   // final selectedEmp = tokenController.finalResult[_selectedIndex];
@@ -345,8 +318,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                         fontSize: 8.r,
                                         color: AppColor.lavenderGray,
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',
-                                        package: 'yousentech_authentication',),
+                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                   ),
                                   TextSpan(
                                     text: ' ${'to'.tr}  ',
@@ -354,8 +326,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                         fontSize: 8.r,
                                         color: AppColor.lavenderGray,
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',
-                                        package: 'yousentech_authentication',),
+                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                   ),
                                   TextSpan(
                                     text: '${'qimam'.tr}  ',
@@ -363,8 +334,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                         fontSize: 8.r,
                                         color: AppColor.cyanTeal,
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',
-                                        package: 'yousentech_authentication',),
+                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                   ),
                                   TextSpan(
                                     text: 'choose_your_account'.tr,
@@ -372,8 +342,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                         fontSize: 8.r,
                                         color: AppColor.lavenderGray,
                                         fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',
-                                        package: 'yousentech_authentication',),
+                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
                                   ),
                                 ],
                               ),
@@ -388,7 +357,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                 shrinkWrap: true,
                                 // key: _listKey,
                                 controller: _scrollController,
-                                itemBuilder: (BuildContext context, int index) {
+                                itemBuilder:
+                                    (BuildContext context, int index) {
                                   bool isSelected = _selectedIndex == index;
                                   // print(
                                   //     "selectedEmployeeIndex ${index == tokenController.selectedEmployeeIndex}");
@@ -400,9 +370,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                     //     : null,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
-                                      color: isSelected
-                                          ? AppColor.cyanTeal.withOpacity(0.15)
-                                          : null,
+                                      color: isSelected ? AppColor.cyanTeal.withOpacity(0.15) : null,
                                     ),
                                     child: ListTile(
                                       // selected: index ==
@@ -424,18 +392,16 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             color: AppColor.lavenderGray,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      tileColor: _selectedIndex == index
-                                          ? Colors.blue[100]
-                                          : null,
+                                      tileColor: _selectedIndex == index ? Colors.blue[100] : null,
                                       selected: _selectedIndex == index,
                                       leading: Icon(
                                         Icons.person_outline_rounded,
-                                        size: 15.r,
+                                        size: 10.r,
                                         color: AppColor.charcoal,
                                       ),
                                       trailing: Icon(
                                         Icons.arrow_forward,
-                                        size: 15.r,
+                                        size: 10.r,
                                         color: AppColor.charcoal,
                                       ),
                                     ),
@@ -479,4 +445,5 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
       );
     }
   }
+
 }

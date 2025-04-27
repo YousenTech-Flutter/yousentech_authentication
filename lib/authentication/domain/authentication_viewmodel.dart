@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/models/authentication_data/login_info.dart';
@@ -36,7 +37,16 @@ class AuthenticationController extends GetxController {
     return _instance!;
   }
 
-  // ========================================== [ AUTHENTICATE USING USERNAME & PASSWORD ] =============================================
+// ========================================== [ AUTHENTICATE USING USERNAME & PASSWORD ] =============================================
+  // Functionality:
+  //   - Authenticates the user using provided credentials via the authentication service.
+  //   - Verifies that the device used matches the trusted MAC address.
+  //   - If authenticated and the device is trusted, saves user data locally and resets failure attempts.
+  //   - If the device is untrusted or an error occurs, returns an appropriate message.
+  // Input:
+  //   - loginInfo: Contains username and password for authentication.
+  // Returns:
+  //   - ResponseResult: Contains the authentication status, message, and user data if successful.
   Future<ResponseResult> authenticateUsingUsernameAndPassword(
       LoginInfo loginInfo) async {
     loading.value = true;
@@ -45,11 +55,6 @@ class AuthenticationController extends GetxController {
             username: loginInfo.userName!, password: loginInfo.password!);
     if (authResult is User) {
       var checkDeviceId = await _tokenController.getDeviceIdRelatedToPos();
-      // print("authResult ${authResult.allowPrintSessionReportsForOtherUsers}");
-
-      // if (kDebugMode) {
-      //   print(MacAddressHelper.macAddress);
-      // }
       if (checkDeviceId.data is Token &&
           ((checkDeviceId.data as Token).macAddress ==
               MacAddressHelper.macAddress)) {
@@ -64,14 +69,10 @@ class AuthenticationController extends GetxController {
           await SharedPr.setUserObj(userObj: authResult.data);
           SessionService sessionService = SessionService.getInstance();
           await sessionService.getLastItemPosSessions();
-
         }
       } else if (checkDeviceId.data is Token &&
           ((checkDeviceId.data as Token).macAddress !=
               MacAddressHelper.macAddress)) {
-        // if (kDebugMode) {
-        //   print("un_trusted_device".tr);
-        // }
         authResult = ResponseResult(message: "un_trusted_device".tr);
       } else {
         authResult = ResponseResult(message: checkDeviceId.message);
@@ -83,8 +84,18 @@ class AuthenticationController extends GetxController {
     loading.value = false;
     return authResult;
   }
+// ========================================== [ AUTHENTICATE USING USERNAME & PASSWORD ] =============================================
 
-  //  HELPER FUNCTION
+// ===================================================== [Save User Data Locally] =====================================================
+  // Functionality:
+  //   - Initializes the local database instance for the User model.
+  //   - Creates the user table if it doesn't already exist.
+  //   - Prepares a user object containing essential fields (username, pincode, optional password).
+  //   - Checks if a user record already exists in the local DB and either updates or inserts accordingly.
+  // Input:
+  //   - authResult: A User object .
+  // Returns:
+  //   - Update user Table in DB
   Future<void> saveUserDataLocally({required User authResult}) async {
     _generalLocalDBinstance =
         GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
@@ -96,8 +107,6 @@ class AuthenticationController extends GetxController {
     };
     objToCreate.addIf(
         authResult.password != null, 'password', authResult.password);
-
-    // print(objToCreate);
     bool userExist = await _generalLocalDBinstance!
         .checkRowExists(val: authResult.userName, whereKey: 'username');
     if (userExist) {
@@ -107,10 +116,18 @@ class AuthenticationController extends GetxController {
       await _generalLocalDBinstance!.create(obj: objToCreate);
     }
   }
+// ===================================================== [Save User Data Locally] =====================================================
 
-  // ========================================== [ AUTHENTICATE USING USERNAME & PASSWORD ] =============================================
-
-  // ========================================== [ authenticate Using PIN ] =============================================
+// ===================================================== [Authenticate Using PIN Code] =====================================================
+  // Functionality:
+  //   - Authenticates a user using their PIN code via the authentication service.
+  //   - Verifies that the device used matches the trusted MAC address.
+  //   - On success: saves user data locally, sets session data, and update or save User Obj  in shared preferences.
+  //   - Handles different failure scenarios like user not found, no connection, or general error.
+  // Input:
+  //   - pinCode (required).
+  // Returns:
+  //   - ResponseResult: Contains authentication status, user data if successful, or an error message.
   Future<ResponseResult> authenticateUsingPIN({required String pinCode}) async {
     loginPinLoading.value = true;
     var result =
@@ -136,6 +153,16 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: "user_not_found".tr);
     } else if (result is SocketException) {
       loginPinLoading.value = false;
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        return ResponseResult(message: "no_connection".tr);
+      }
+      if (result.toString().contains("timeout period has expired") ||
+          result
+              .toString()
+              .contains("The remote computer refused the network connection")) {
+        return ResponseResult(message: 'failed_connect_server'.tr);
+      }
       return ResponseResult(message: "no_connection".tr);
     } else {
       loginPinLoading.value = false;
@@ -144,18 +171,28 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: result);
     }
   }
+// ===================================================== [Authenticate Using PIN Code] =====================================================
 
-  // ========================================== [ authenticate Using PIN] =============================================
-
-  // ========================================== [ restart Erro rAuthentication] =============================================
+// ===================================================== [Restart Error Authentication State] =====================================================
+  // Functionality:
+  //   - Clears any stored error authentication flags from shared preferences.
+  //   - Triggers a UI update to reflect the reset authentication state.
   void restartErrorAuthentication() {
     SharedPr.removeErrorAuthentication();
     update();
   }
+// ===================================================== [Restart Error Authentication State] =====================================================
 
-  // ========================================== [ restart Erro rAuthentication] =============================================
-
-  // ========================================== [forget Password] =============================================
+// ===================================================== [Forget Password] =====================================================
+  // Functionality:
+  //   - Generates a verification code (OTP) for password recovery.
+  //   - Sends the OTP to the server using the authenticated user ID.
+  //   - On success, stores the OTP and forget-password flag in shared preferences.
+  //   - Triggers a UI update and resets the loading state.
+  // Input:
+  //   - None (uses the currently chosen user from shared preferences)
+  // Returns:
+  //   - ResponseResult: Status and message indicating success or failure.
   Future<ResponseResult> forgetPassword() async {
     loading.value = true;
     String code = VerificationCodeGeneratorHelper.generateCode();
@@ -172,11 +209,17 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: result["message"]);
     }
   }
+// ===================================================== [Forget Password] =====================================================
 
-  // ========================================== [ forget Password] =============================================
-  // ===========================================================================================================
-
-  // ========================================== [ CHANGE PASSWORD ] =============================================
+// ===================================================== [Change User Password] =====================================================
+  // Functionality:
+  //   - Sends a request to update the user's password via the authentication service.
+  //   - Updates the loading state during the request lifecycle.
+  //   - Returns a success message if the password was changed successfully, otherwise returns the error message.
+  // Input:
+  //   - password (required): The new password to be set.
+  // Returns:
+  //   - ResponseResult: Indicates whether the password change was successful or not.
   Future<ResponseResult> changePassword({required String password}) async {
     loading.value = true;
     var authResult =
@@ -189,21 +232,25 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: authResult);
     }
   }
+// ========================================== [Change User Password] ] =============================================
 
-  // ========================================== [ CHANGE PASSWORD ] =============================================
-
-  // ========================================== [ ACTIVATE PIN LOGIN ] =============================================
+// ===================================================== [Activate PIN Login] =====================================================
+  // Functionality:
+  //   - Activates PIN login by sending the provided PIN code to the authentication service.
+  //   - If successful, updates the local user data with the new PIN code.
+  //   - Clears any forget-password state from shared preferences.
+  //   - Updates the UI state.
+  // Input:
+  //   - pinCode (required): The new PIN code to be activated for login.
+  // Returns:
+  //   - ResponseResult: Indicates success or provides an error message.
   Future<ResponseResult> activatePinLogin({required String pinCode}) async {
     loading.value = true;
     var authResult =
         await authenticateService.activatePinLogin(pinCode: pinCode);
     loading.value = false;
-
-    // print(authResult);
     if (authResult is bool && authResult == true) {
-      await UpdateUserDataLocally(pinCode);
-      // TODO : DID YOU NEED IT HERE ?????
-      //  await _generalLocalDBinstance!.index();
+      await updateUserDataLocally(pinCode);
       SharedPr.setForgetPass(flage: false, otp: '');
       update();
       return ResponseResult(status: true, message: "Successful".tr);
@@ -211,8 +258,17 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: authResult);
     }
   }
+// ===================================================== [Activate PIN Login] =====================================================
 
-  Future<void> UpdateUserDataLocally(String pincode) async {
+// ===================================================== [Update User Data Locally] =====================================================
+  // Functionality:
+  //   - Updates the user's PIN code in the local database.
+  //   - The user is identified by their username, which is stored in shared preferences.
+  // Input:
+  //   - pincode (required): The new PIN code to be updated for the user.
+  // Returns:
+  //   - Future<void>: This method does not return any value but performs an update operation in the local DB.
+  Future<void> updateUserDataLocally(String pincode) async {
     _generalLocalDBinstance =
         GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
 
@@ -223,10 +279,18 @@ class AuthenticationController extends GetxController {
         },
         whereField: 'username');
   }
+// ===================================================== [Update User Data Locally] =====================================================
 
-// ========================================== [ ACTIVATE PIN LOGIN ] =============================================
-
-  // ========================================== [ Set PIN Key] =============================================
+// ===================================================== [Set PIN Key] =====================================================
+  // Functionality:
+  //   - Handles the input or clearing of the PIN key based on the provided flag.
+  //   - If `isClear` is true, the method clears or removes the last character of the PIN key based on the 'data'.
+  //   - If `isClear` is false, the method appends the provided data to the PIN key.
+  // Input:
+  //   - isClear (optional, default false): Flag to indicate whether to clear or modify the PIN.
+  //   - data (required): The key data (e.g., a number or "Backspace") to be added or removed from the PIN.
+  // Returns:
+  //   - Updates the `pinKeyController` text and triggers a UI update.
   void setPinKey({isClear = false, required String data}) {
     if (isClear) {
       if (data == "Backspace" && pinKeyController.text.isNotEmpty) {
@@ -242,10 +306,16 @@ class AuthenticationController extends GetxController {
       update();
     }
   }
-
 // ========================================== [ Set PIN Key] =============================================
-//
-// ========================================== [ Count Username Failure Attempt] =============================================
+
+// ===================================================== [Count Username Failure Attempt] =====================================================
+  // Functionality:
+  //   - Counts the number of failed username login attempts or resets the counter based on the provided flag.
+  //   - The reset flag determines whether to reset the failure count or just retrieve it.
+  // Input:
+  //   - reset (optional, default false): Flag to reset the failure count. If true, resets the count; otherwise, just retrieves the count.
+  // Returns:
+  //   - ResponseResult: Indicates whether the operation was successful or not with a message in case of failure.
   Future<ResponseResult> countUsernameFailureAttempt(
       {bool reset = false}) async {
     loading.value = true;
@@ -259,10 +329,16 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: countResult);
     }
   }
+// ===================================================== [Count Username Failure Attempt] =====================================================
 
-// ========================================== [ Count Username Failure Attempt] =============================================
-
-// ========================================== [ Count PIN Failure Attempt] =============================================
+// ===================================================== [Send Ticket to Eliminate Account Lock] =====================================================
+  // Functionality:
+  //   - Sends a request to the authentication service to eliminate the account lock.
+  //   - The service responds with a result that indicates success or failure.
+  // Input:
+  //   - None
+  // Returns:
+  //   - ResponseResult: Returns a status indicating success or failure with an appropriate message.
   Future<ResponseResult> sendTicketToEliminateAccountLock() async {
     loading.value = true;
     var ticketResult =
@@ -275,11 +351,17 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: ticketResult);
     }
   }
+// ===================================================== [Send Ticket to Eliminate Account Lock] =====================================================
 
-// ========================================== [ Set PIN Key] =============================================
+// ===================================================== [Count PIN Failure Attempt] =====================================================
+  // Functionality:
+  //   - Counts the number of failed PIN login attempts or resets the counter based on the provided flag.
+  //   - The reset flag determines whether to reset the failure count or just retrieve it.
+  // Input:
+  //   - reset (optional, default false): Flag to reset the failure count. If true, resets the count; otherwise, just retrieves the count.
+  // Returns:
+  //   - ResponseResult: Indicates whether the operation was successful or not with a message in case of failure.
   Future<ResponseResult> countPINFailureAttempt({bool reset = false}) async {
-    // final loading = false.obs;
-    // loading.value = true;
     loginPinLoading.value = true;
     var countResult = await authenticateService.countPINFailureAttempt();
     loginPinLoading.value = false;
@@ -291,18 +373,32 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: countResult);
     }
   }
+// ===================================================== [Count PIN Failure Attempt] =====================================================
 
-// ========================================== [ Set PIN Key] =============================================
-
+// ===================================================== [Set Choose PIN] =====================================================
+  // Functionality:
+  //   - Toggles the state of the 'choosePin' flag and updates the UI accordingly.
+  //   - The flag is used to indicate whether the user has switch to  (pin or username) login.
+  // Input
+  //   - None
+  // Returns:
+  //   - void: This method updates the state and triggers a UI update.
   void setChoosePin() {
     choosePin = !choosePin;
     update(["choosePin"]);
   }
+// ===================================================== [Set Choose PIN] =====================================================
 
+// ===================================================== [Get User Account Lock Ticket] =====================================================
+  // Functionality:
+  //   - Retrieves the support ticket related to the user's account lock.
+  //   - The method checks whether the response is a valid support ticket or a list of tickets and returns accordingly.
+  // Input:
+  //   - None
+  // Returns:
+  //   - ResponseResult: Contains the status of the operation along with the ticket data or an error message if the request fails.
   Future<ResponseResult> getUserAccountLockTicket() async {
-    // loading.value = true;
     var ticketResult = await authenticateService.getUserAccountLockTicket();
-    // loading.value = false;
     if (ticketResult is SupportTicket) {
       return ResponseResult(status: true, data: ticketResult);
     }
@@ -312,17 +408,25 @@ class AuthenticationController extends GetxController {
       return ResponseResult(message: ticketResult);
     }
   }
+// ===================================================== [Get User Account Lock Ticket] =====================================================
 
+// ===================================================== [Update User Account Lock Status Ticket] =====================================================
+  // Functionality:
+  //   - Updates the status of a user account lock to (`true` locked accout) based on the provided ticket ID.
+  //   - The method communicates with the authentication service to update the lock status and returns the result.
+  // Input:
+  //   - id (required): The ID of the support ticket associated with the account lock.
+  // Returns:
+  //   - ResponseResult: Contains the status of the operation, either success or failure, along with a message or data.
   Future<ResponseResult> updateUserAccountLockStatusTicket(
       {required int id}) async {
-    // loading.value = true;
     var ticketResult =
         await authenticateService.updateUserAccountLockStatusTicket(id: id);
-    // loading.value = false;
     if (ticketResult is bool && ticketResult) {
       return ResponseResult(status: true, data: ticketResult);
     } else {
       return ResponseResult(message: ticketResult);
     }
   }
+// ===================================================== [Update User Account Lock Status Ticket] =====================================================
 }
