@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
-import 'package:shared_widgets/config/app_shared_pr.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 
 class OdooProjectOwnerConnectionHelper {
 
