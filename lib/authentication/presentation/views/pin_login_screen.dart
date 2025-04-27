@@ -59,6 +59,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                         Focus(
                             focusNode: pinNumberFocus,
                             child: CardLogin(
+                              // heightCard: 0.5.sh,
                               isPin: true,
                               children: [
                                 Form(
@@ -111,7 +112,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 0.01.sh,
+                                            height: 5.r,
                                           ),
                                           ContainerTextField(
                                             width: 0.15.sw,
@@ -157,7 +158,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             labelText: '',
                                           ),
                                           SizedBox(
-                                            height: 0.01.sh,
+                                            height: 5.r,
                                           ),
                                           NumbericItems(
                                             authenticationController:
@@ -169,9 +170,9 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 builder: (context) {
                                                   return Column(
                                                     children: [
-                                                      SizedBox(
-                                                        height: 0.01.sh,
-                                                      ),
+                                                      // SizedBox(
+                                                      //   height: 10.r,
+                                                      // ),
                                                       TextButton(
                                                           onPressed: () async {
                                                             authenticationController
