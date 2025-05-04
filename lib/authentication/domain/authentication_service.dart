@@ -117,15 +117,15 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
   @override
-  Future authenticateUsingUsernameAndPassword(
-      {required String username, required String password}) async {
+  Future authenticateUsingUsernameAndPassword({required String username, required String password}) async {
     try {
       OdooProjectOwnerConnectionHelper.odooSession = null;
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
-            username: username, password: password);
-
+        var  odooConnectionResult =  await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username, password: password);
+        if(odooConnectionResult is String){
+          return odooConnectionResult;
+        }
         List userFields = [
           'id',
           'name',
@@ -142,17 +142,18 @@ class AuthenticationService implements AuthenticationRepository {
           'edit_invoice_and_process_it_on_closing',
           'show_pos_app_settings',
           'allow_print_session_reports_for_other_users',
-          'is_allowed_to_edit_price_limit',
+          // 'is_allowed_to_edit_price_limit',
           'is_allowed_to_view_price_limit',
           'show_final_report_for_all_session',
           'is_allowed_to_restore_local_db',
         ];
-
-        if (SharedPr.currentPosObject!.isDiscountActivated ?? false) {
+        if (SharedPr.currentPosObject?.isDiscountActivated ?? false) {
           userFields.addAll(
               ['discount_value', 'discount_control', 'priority_user_discount']);
         }
-
+        if(OdooProjectOwnerConnectionHelper.odooSession == null){
+          return 'session_expired'.tr;
+        }
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
           'model': OdooModels.resUsers,
           'method': 'search_read',
@@ -165,33 +166,23 @@ class AuthenticationService implements AuthenticationRepository {
             'fields': userFields,
           },
         });
-
         return User.fromJson(result.first);
       } else {
         return 'no_connection'.tr;
       }
-    } on OdooSessionExpiredException {
-      // OdooProjectOwnerConnectionHelper.sessionClosed = true;
-      // if (kDebugMode) {
-      //   print("session_expired");
-      // }
-      return 'session_expired'.tr;
-    } on OdooException catch (e) {
-      FileManagement.writeData('${'failed_connect_server'.tr} - $e');
-      return 'failed_connect_server'.tr;
-    } on SocketConnectivityChecker catch (e) {
-      return 'no_connection'.tr;
-    } catch (e) {
-      //OdooProjectOwnerConnectionHelper.sessionClosed = true;
-
-      // if (kDebugMode) {
-      //   print('authenticateUsingUsernameAndPassword exception : $e');
-      // }
-      FileManagement.writeData(
-          "authenticateUsingUsernameAndPassword Exception : $e");
-
-      // return "exception".tr;
-      return e.toString().replaceFirst('Exception: ', '');
+    } 
+    
+    // on OdooSessionExpiredException {
+    //   return 'session_expired'.tr;
+    // } on OdooException catch (e) {
+    //   FileManagement.writeData('${'failed_connect_server'.tr} - $e');
+    //   return 'failed_connect_server'.tr;
+    // } on SocketConnectivityChecker catch (e) {
+    //   return 'no_connection'.tr;
+    // } 
+    
+    catch (e) {
+    return await handleException(exception: e, navigation: false, methodName: "authenticateUsingUsernameAndPassword");
     }
   }
 
