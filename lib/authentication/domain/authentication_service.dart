@@ -1,6 +1,7 @@
 // ignore_for_file: unused_catch_clause
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:odoo_rpc/odoo_rpc.dart';
 import 'package:pos_shared_preferences/models/authentication_data/support_ticket.dart';
@@ -9,10 +10,10 @@ import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_odoo_models.dart';
 import 'package:shared_widgets/config/app_urls.dart';
 import 'package:shared_widgets/config/socket_connectivity_checker.dart';
-import 'package:shared_widgets/shared_widgets/handle_exception_helper.dart';
-import 'package:shared_widgets/shared_widgets/odoo_connection_helper.dart';
 import 'package:shared_widgets/utils/file_management.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
+import '../utils/handle_exception_helper.dart';
+import '../utils/odoo_connection_helper.dart';
 import 'authentication_repository.dart';
 
 class AuthenticationService implements AuthenticationRepository {
@@ -439,4 +440,63 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
 // ========================================== [ DROP USER TABLE ] =============================================
+
+
+  Future getUserInformation() async {
+    try {
+      var connectivityResult = await (Connectivity().checkConnectivity());
+      if (!connectivityResult.contains(ConnectivityResult.none)) {
+        List userFields = [
+          'id',
+          'name',
+          'login',
+          'image_1920',
+          'pin_code',
+          'pin_code_lock',
+          'account_lock',
+          'prevent_selling_with_negative_quantity',
+          'maximum_increase_allowed_unit_price',
+          'maximum_decrease_allowed_unit_price',
+          'edit_invoice_and_process_it_on_closing',
+          'show_pos_app_settings',
+          'allow_print_session_reports_for_other_users',
+          'is_allowed_to_view_price_limit',
+          'show_final_report_for_all_session',
+          'is_allowed_to_restore_local_db',
+        ];
+        if (SharedPr.currentPosObject?.isDiscountActivated ?? false) {
+          userFields.addAll(
+              ['discount_value', 'discount_control', 'priority_user_discount']);
+        }
+        if(OdooProjectOwnerConnectionHelper.odooSession == null){
+          return 'session_expired'.tr;
+        }
+        List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
+          'model': OdooModels.resUsers,
+          'method': 'search_read',
+          'args': [],
+          'kwargs': {
+            'domain': [
+              ['id', '=', OdooProjectOwnerConnectionHelper.odooSession!.userId]
+            ],
+            'fields': userFields,
+          },
+        });
+        return User.fromJson(result.first);
+      } else {
+        return 'no_connection'.tr;
+      }
+    } on OdooSessionExpiredException {
+      return 'session_expired'.tr;
+    } on OdooException catch (e) {
+      FileManagement.writeData('${'failed_connect_server'.tr} - $e');
+      return 'failed_connect_server'.tr;
+    } on SocketConnectivityChecker catch (e) {
+      return 'no_connection'.tr;
+    } catch (e) {
+      FileManagement.writeData("authenticateUsingUsernameAndPassword Exception : $e");
+      return e.toString().replaceFirst('Exception: ', '');
+    }
+  }
+
 }

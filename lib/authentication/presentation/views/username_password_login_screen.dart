@@ -546,31 +546,32 @@ class _UsernameAndPasswordLoginScreenState
   onPressed() async {
     countErrors = 0;
     if (_formKey.currentState!.validate()) {
-      if (SharedPr.isForgetPass!) {
         ResponseResult responseResult = await authenticationController
             .authenticateUsingUsernameAndPassword(LoginInfo(
                 userName: usernameController.text,
                 password: passwordController.text));
         if (responseResult.status && responseResult.data.accountLock < 3) {
-          await authenticationController.countUsernameFailureAttempt(
-              reset: true);
-          responseResult.data.accountLock = 0;
-          await SharedPr.setUserObj(userObj: responseResult.data);
-          await SharedPr.setForgetPass(flage: false, otp: '');
-          changePasswordDialog();
+          if(SharedPr.isForgetPass!){
+            await authenticationController.countUsernameFailureAttempt(reset: true);
+            responseResult.data.accountLock = 0;
+            await SharedPr.setUserObj(userObj: responseResult.data);
+            await SharedPr.setForgetPass(flage: false, otp: '');
+            changePasswordDialog();
+          }
+          else{
+            if (SharedPr.localBackUpSettingObj?.backupSavePth != null && SharedPr.localBackUpSettingObj!.selectedOption == BackUpOptions.backup_on_login.name) {
+              await showLocalBackupPrompt();
+            }
+            Get.to(() => const HomePage());
+            appSnackBar(
+              messageType: MessageTypes.success,
+              message: responseResult.message,
+            );
+            
+          }
+          
         } else {
-          if (responseResult.message == "un_trusted_device".tr) {
-            appSnackBar(
-              message: responseResult.message,
-            );
-            return;
-          } else if (responseResult.message == "no_connection".tr) {
-            appSnackBar(
-              message: responseResult.message,
-            );
-            authenticationController.loading.value = false;
-            return;
-          } else {
+          if(responseResult.message == 'login_information_incorrect'.tr) {
             if (SharedPr.chosenUserObj!.accountLock! < 3) {
               await SharedPr.updateAccountLockCountLocally();
               await authenticationController.countUsernameFailureAttempt();
@@ -587,55 +588,12 @@ class _UsernameAndPasswordLoginScreenState
               showAccountLockDialog();
             }
           }
-        }
-      } else {
-        ResponseResult responseResult = await authenticationController
-            .authenticateUsingUsernameAndPassword(LoginInfo(
-                userName: usernameController.text,
-                password: passwordController.text));
-        if (responseResult.status && responseResult.data.accountLock < 3) {
-          Get.to(() => const HomePage());
-          appSnackBar(
-            messageType: MessageTypes.success,
-            message: responseResult.message,
-          );
-
-          if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
-              SharedPr.localBackUpSettingObj!.selectedOption ==
-                  BackUpOptions.backup_on_login.name) {
-            await showLocalBackupPrompt();
-          }
-        } else {
-          if (responseResult.message == "un_trusted_device".tr) {
-            appSnackBar(
-              message: responseResult.message,
-            );
-            return;
-          } else if (responseResult.message == "no_connection".tr) {
-            appSnackBar(
-              message: responseResult.message,
-            );
+          else{
+            appSnackBar(message: responseResult.message);
             authenticationController.loading.value = false;
             return;
-          } else {
-            if (SharedPr.chosenUserObj!.accountLock! < 3) {
-              await SharedPr.updateAccountLockCountLocally();
-              await authenticationController.countUsernameFailureAttempt();
-              if (SharedPr.chosenUserObj!.accountLock! < 3) {
-                appSnackBar(
-                    message: 'unsuccessful_login'.trParams({
-                  "field_name":
-                      "${(3 - SharedPr.chosenUserObj!.accountLock!) == 0 ? 'account_locked'.tr : 3 - SharedPr.chosenUserObj!.accountLock!}"
-                }));
-              } else {
-                showAccountLockDialog();
-              }
-            } else {
-              showAccountLockDialog();
-            }
           }
         }
-      }
     } else {
       appSnackBar(
         message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage!,
