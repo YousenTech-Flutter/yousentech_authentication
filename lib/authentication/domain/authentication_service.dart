@@ -17,7 +17,6 @@ import '../utils/odoo_connection_helper.dart';
 import 'authentication_repository.dart';
 
 class AuthenticationService implements AuthenticationRepository {
-
   static AuthenticationService? _authenticationServiceInstance;
 
   AuthenticationService._();
@@ -118,13 +117,16 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
   @override
-  Future authenticateUsingUsernameAndPassword({required String username, required String password}) async {
+  Future authenticateUsingUsernameAndPassword(
+      {required String username, required String password}) async {
     try {
       OdooProjectOwnerConnectionHelper.odooSession = null;
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        var  odooConnectionResult =  await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username, password: password);
-        if(odooConnectionResult is String){
+        var odooConnectionResult =
+            await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
+                username: username, password: password);
+        if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
         List userFields = [
@@ -152,7 +154,7 @@ class AuthenticationService implements AuthenticationRepository {
           userFields.addAll(
               ['discount_value', 'discount_control', 'priority_user_discount']);
         }
-        if(OdooProjectOwnerConnectionHelper.odooSession == null){
+        if (OdooProjectOwnerConnectionHelper.odooSession == null) {
           return 'session_expired'.tr;
         }
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
@@ -171,8 +173,8 @@ class AuthenticationService implements AuthenticationRepository {
       } else {
         return 'no_connection'.tr;
       }
-    } 
-    
+    }
+
     // on OdooSessionExpiredException {
     //   return 'session_expired'.tr;
     // } on OdooException catch (e) {
@@ -180,10 +182,13 @@ class AuthenticationService implements AuthenticationRepository {
     //   return 'failed_connect_server'.tr;
     // } on SocketConnectivityChecker catch (e) {
     //   return 'no_connection'.tr;
-    // } 
-    
+    // }
+
     catch (e) {
-    return await handleException(exception: e, navigation: false, methodName: "authenticateUsingUsernameAndPassword");
+      return await handleException(
+          exception: e,
+          navigation: false,
+          methodName: "authenticateUsingUsernameAndPassword");
     }
   }
 
@@ -328,7 +333,7 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result;
     } catch (e) {
-      return  await handleException(
+      return await handleException(
           exception: e, navigation: true, methodName: "forgetPassword");
     }
   }
@@ -387,6 +392,9 @@ class AuthenticationService implements AuthenticationRepository {
       });
       return result.isEmpty ? [] : SupportTicket.fromJson(result.first);
     } catch (e) {
+      if (e.toString().contains("Null check operator used on a null value")) {
+        return e.toString();
+      }
       return await handleException(
           exception: e,
           navigation: false,
@@ -416,7 +424,7 @@ class AuthenticationService implements AuthenticationRepository {
 
       return result;
     } catch (e) {
-      return  await handleException(
+      return await handleException(
           exception: e,
           navigation: false,
           methodName: "updateUserAccountLockStatusTicket");
@@ -440,7 +448,6 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
 // ========================================== [ DROP USER TABLE ] =============================================
-
 
   Future getUserInformation() async {
     try {
@@ -468,7 +475,7 @@ class AuthenticationService implements AuthenticationRepository {
           userFields.addAll(
               ['discount_value', 'discount_control', 'priority_user_discount']);
         }
-        if(OdooProjectOwnerConnectionHelper.odooSession == null){
+        if (OdooProjectOwnerConnectionHelper.odooSession == null) {
           return 'session_expired'.tr;
         }
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
@@ -494,9 +501,9 @@ class AuthenticationService implements AuthenticationRepository {
     } on SocketConnectivityChecker catch (e) {
       return 'no_connection'.tr;
     } catch (e) {
-      FileManagement.writeData("authenticateUsingUsernameAndPassword Exception : $e");
+      FileManagement.writeData(
+          "authenticateUsingUsernameAndPassword Exception : $e");
       return e.toString().replaceFirst('Exception: ', '');
     }
   }
-
 }
