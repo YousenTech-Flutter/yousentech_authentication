@@ -318,7 +318,7 @@ class _UsernameAndPasswordLoginScreenState
                                                                 : "switch_to_username_login"
                                                                     .tr,
                                                             style: TextStyle(
-                                                                fontSize: 9.r,
+                                                                fontSize: 8.r,
                                                                 color: AppColor
                                                                     .charcoal,
                                                                 fontWeight:
@@ -489,7 +489,7 @@ class _UsernameAndPasswordLoginScreenState
                                             child: Text(
                                               "forget_password".tr,
                                               style: TextStyle(
-                                                  fontSize: 9.r,
+                                                  fontSize: 8.r,
                                                   color: AppColor.cyanTeal,
                                                   fontWeight: FontWeight.w400),
                                             ),
