@@ -74,7 +74,7 @@ class _UsernameAndPasswordLoginScreenState
                 child: Stack(
                   children: [
                     CardLogin(
-                      height: 0.45.sh,
+                      height: 0.47.sh,
                       children: [
                         Expanded(
                           child: Form(
@@ -267,7 +267,7 @@ class _UsernameAndPasswordLoginScreenState
                                     );
                                   }),
                                   SizedBox(
-                                    height: 10.r,
+                                    height: 0.01.sh,
                                   ),
                                   Row(
                                     mainAxisAlignment:
