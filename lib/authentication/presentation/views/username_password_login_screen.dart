@@ -278,8 +278,8 @@ class _UsernameAndPasswordLoginScreenState
                                         GetBuilder<AuthenticationController>(
                                             id: "choosePin",
                                             builder: (context) {
-                                              return TextButton(
-                                                  onPressed: () async {
+                                              return InkWell(
+                                                  onTap: () async {
                                                     authenticationController
                                                         .setChoosePin();
                                                   },
@@ -330,8 +330,8 @@ class _UsernameAndPasswordLoginScreenState
                                                     ),
                                                   ));
                                             }),
-                                      TextButton(
-                                          onPressed: () async {
+                                      InkWell(
+                                          onTap: () async {
                                             CustomDialog.getInstance()
                                                 .dialogcontent(
                                               barrierDismissible: true,
