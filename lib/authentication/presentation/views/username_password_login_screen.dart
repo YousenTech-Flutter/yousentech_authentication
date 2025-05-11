@@ -74,6 +74,7 @@ class _UsernameAndPasswordLoginScreenState
                 child: Stack(
                   children: [
                     CardLogin(
+                      height: 0.5.sh,
                       children: [
                         Expanded(
                           child: Form(
@@ -101,28 +102,37 @@ class _UsernameAndPasswordLoginScreenState
                                           TextSpan(
                                             text: 'hi'.tr,
                                             style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.lavenderGray,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                              fontSize: 9.r,
+                                              color: AppColor.lavenderGray,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
                                           ),
                                           TextSpan(
                                             text:
                                                 ' ${SharedPr.chosenUserObj!.name}  ',
                                             style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.cyanTeal,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                              fontSize: 9.r,
+                                              color: AppColor.cyanTeal,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
                                           ),
                                           TextSpan(
-                                            text:
-                                                'enter_username_and_password'.tr,
+                                            text: 'enter_username_and_password'
+                                                .tr,
                                             style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.lavenderGray,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                              fontSize: 9.r,
+                                              color: AppColor.lavenderGray,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -185,11 +195,13 @@ class _UsernameAndPasswordLoginScreenState
                                       labelText: SharedPr.isForgetPass!
                                           ? 'otp_password'.tr
                                           : 'password'.tr,
-                                      autofillHints: const [AutofillHints.password],
+                                      autofillHints: const [
+                                        AutofillHints.password
+                                      ],
                                       width: ScreenUtil().screenWidth,
                                       height: 30.h,
                                       controller: passwordController,
-                                      
+
                                       iconcolor: AppColor.silverGray,
                                       isAddOrEdit: true,
                                       borderRadius: 5.r,
@@ -221,14 +233,16 @@ class _UsernameAndPasswordLoginScreenState
                                             icon: flag
                                                 ? SvgPicture.asset(
                                                     'assets/image/eye-open.svg',
-                                                    package: 'yousentech_authentication',
+                                                    package:
+                                                        'yousentech_authentication',
                                                     fit: BoxFit.scaleDown,
                                                     color: AppColor.silverGray,
                                                     // Adjust this to control scaling
                                                   )
                                                 : SvgPicture.asset(
                                                     'assets/image/eye-closed.svg',
-                                                    package: 'yousentech_authentication',
+                                                    package:
+                                                        'yousentech_authentication',
                                                     fit: BoxFit
                                                         .scaleDown, // Adjust this to control scaling
                                                   )),
@@ -247,7 +261,7 @@ class _UsernameAndPasswordLoginScreenState
                                           });
                                           return "";
                                         }
-                                      
+
                                         return null;
                                       },
                                     );
@@ -284,7 +298,8 @@ class _UsernameAndPasswordLoginScreenState
                                                       children: [
                                                         SvgPicture.asset(
                                                           'assets/image/login_icon.svg',
-                                                          package: 'yousentech_authentication',
+                                                          package:
+                                                              'yousentech_authentication',
                                                           clipBehavior:
                                                               Clip.antiAlias,
                                                           fit: BoxFit.fill,
@@ -363,12 +378,14 @@ class _UsernameAndPasswordLoginScreenState
                                                                           Clip.antiAlias,
                                                                       fit: BoxFit
                                                                           .fill,
-                                                                      width: 50.r,
+                                                                      width:
+                                                                          50.r,
                                                                       height:
                                                                           50.r,
                                                                     ),
                                                                     SizedBox(
-                                                                      height: 5.r,
+                                                                      height:
+                                                                          5.r,
                                                                     ),
                                                                     Text(
                                                                       "confirm_reset_password"
@@ -381,7 +398,8 @@ class _UsernameAndPasswordLoginScreenState
                                                                     )
                                                                   ],
                                                                   SizedBox(
-                                                                    height: 10.r,
+                                                                    height:
+                                                                        10.r,
                                                                   ),
                                                                 ],
                                                               ),
@@ -398,14 +416,13 @@ class _UsernameAndPasswordLoginScreenState
                                                                     width:
                                                                         0.13.sw,
                                                                     backgroundColor:
-                                                                        messageTypesIcon2[MessageTypes.warning]!
-                                                                                .last
+                                                                        messageTypesIcon2[MessageTypes.warning]!.last
                                                                             as Color,
                                                                     textStyle: AppStyle.textStyle(
                                                                         color: AppColor
                                                                             .white,
-                                                                        fontSize:
-                                                                            10.r,
+                                                                        fontSize: 10
+                                                                            .r,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .bold),
@@ -419,10 +436,9 @@ class _UsernameAndPasswordLoginScreenState
                                                                           .status) {
                                                                         Get.back();
                                                                         appSnackBar(
-                                                                            message: responseResult
-                                                                                .message,
-                                                                            messageType:
-                                                                                MessageTypes.success);
+                                                                            message:
+                                                                                responseResult.message,
+                                                                            messageType: MessageTypes.success);
                                                                       } else {
                                                                         Get.back();
                                                                         showPassWordErrorDialog(
@@ -434,8 +450,9 @@ class _UsernameAndPasswordLoginScreenState
                                                                   width: 10.r,
                                                                 ),
                                                                 ButtonElevated(
-                                                                    text: 'cancel'
-                                                                        .tr,
+                                                                    text:
+                                                                        'cancel'
+                                                                            .tr,
                                                                     width:
                                                                         0.13.sw,
                                                                     borderColor:
@@ -444,8 +461,8 @@ class _UsernameAndPasswordLoginScreenState
                                                                     textStyle: AppStyle.textStyle(
                                                                         color: AppColor
                                                                             .slateGray,
-                                                                        fontSize:
-                                                                            10.r,
+                                                                        fontSize: 10
+                                                                            .r,
                                                                         fontWeight:
                                                                             FontWeight
                                                                                 .bold),
@@ -546,54 +563,53 @@ class _UsernameAndPasswordLoginScreenState
   onPressed() async {
     countErrors = 0;
     if (_formKey.currentState!.validate()) {
-        ResponseResult responseResult = await authenticationController
-            .authenticateUsingUsernameAndPassword(LoginInfo(
-                userName: usernameController.text,
-                password: passwordController.text));
-        if (responseResult.status && responseResult.data.accountLock < 3) {
-          if(SharedPr.isForgetPass!){
-            await authenticationController.countUsernameFailureAttempt(reset: true);
-            responseResult.data.accountLock = 0;
-            await SharedPr.setUserObj(userObj: responseResult.data);
-            await SharedPr.setForgetPass(flage: false, otp: '');
-            changePasswordDialog();
-          }
-          else{
-            if (SharedPr.localBackUpSettingObj?.backupSavePth != null && SharedPr.localBackUpSettingObj!.selectedOption == BackUpOptions.backup_on_login.name) {
-              await showLocalBackupPrompt();
-            }
-            Get.to(() => const HomePage());
-            appSnackBar(
-              messageType: MessageTypes.success,
-              message: responseResult.message,
-            );
-            
-          }
-          
+      ResponseResult responseResult = await authenticationController
+          .authenticateUsingUsernameAndPassword(LoginInfo(
+              userName: usernameController.text,
+              password: passwordController.text));
+      if (responseResult.status && responseResult.data.accountLock < 3) {
+        if (SharedPr.isForgetPass!) {
+          await authenticationController.countUsernameFailureAttempt(
+              reset: true);
+          responseResult.data.accountLock = 0;
+          await SharedPr.setUserObj(userObj: responseResult.data);
+          await SharedPr.setForgetPass(flage: false, otp: '');
+          changePasswordDialog();
         } else {
-          if(responseResult.message == 'login_information_incorrect'.tr) {
+          if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
+              SharedPr.localBackUpSettingObj!.selectedOption ==
+                  BackUpOptions.backup_on_login.name) {
+            await showLocalBackupPrompt();
+          }
+          Get.to(() => const HomePage());
+          appSnackBar(
+            messageType: MessageTypes.success,
+            message: responseResult.message,
+          );
+        }
+      } else {
+        if (responseResult.message == 'login_information_incorrect'.tr) {
+          if (SharedPr.chosenUserObj!.accountLock! < 3) {
+            await SharedPr.updateAccountLockCountLocally();
+            await authenticationController.countUsernameFailureAttempt();
             if (SharedPr.chosenUserObj!.accountLock! < 3) {
-              await SharedPr.updateAccountLockCountLocally();
-              await authenticationController.countUsernameFailureAttempt();
-              if (SharedPr.chosenUserObj!.accountLock! < 3) {
-                appSnackBar(
-                    message: 'unsuccessful_login'.trParams({
-                  "field_name":
-                      "${(3 - SharedPr.chosenUserObj!.accountLock!) == 0 ? 'account_locked'.tr : 3 - SharedPr.chosenUserObj!.accountLock!}"
-                }));
-              } else {
-                showAccountLockDialog();
-              }
+              appSnackBar(
+                  message: 'unsuccessful_login'.trParams({
+                "field_name":
+                    "${(3 - SharedPr.chosenUserObj!.accountLock!) == 0 ? 'account_locked'.tr : 3 - SharedPr.chosenUserObj!.accountLock!}"
+              }));
             } else {
               showAccountLockDialog();
             }
+          } else {
+            showAccountLockDialog();
           }
-          else{
-            appSnackBar(message: responseResult.message);
-            authenticationController.loading.value = false;
-            return;
-          }
+        } else {
+          appSnackBar(message: responseResult.message);
+          authenticationController.loading.value = false;
+          return;
         }
+      }
     } else {
       appSnackBar(
         message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage!,
