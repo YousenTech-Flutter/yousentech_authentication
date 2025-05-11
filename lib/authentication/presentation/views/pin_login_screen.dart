@@ -65,7 +65,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                 Form(
                                     key: _formKey,
                                     child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Center(
@@ -86,27 +87,38 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 TextSpan(
                                                   text: 'hi'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
-                                                      color: AppColor.lavenderGray,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                                    fontSize: 6.5.r,
+                                                    color:
+                                                        AppColor.lavenderGray,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 ),
                                                 TextSpan(
                                                   text:
                                                       '  ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
-                                                      color: AppColor.cyanTeal,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                                    fontSize: 6.5.r,
+                                                    color: AppColor.cyanTeal,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 ),
                                                 TextSpan(
                                                   text: 'enter_pin'.tr,
                                                   style: TextStyle(
-                                                      fontSize: 6.5.r,
-                                                      color: AppColor.lavenderGray,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontFamily: 'Tajawal',package: 'yousentech_authentication',),
+                                                    fontSize: 6.5.r,
+                                                    color:
+                                                        AppColor.lavenderGray,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontFamily: 'Tajawal',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                  ),
                                                 )
                                               ],
                                             ),
@@ -117,8 +129,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           ContainerTextField(
                                             width: 0.15.sw,
                                             height: 30.h,
-                                            controller:
-                                                authenticationController.pinKeyController,
+                                            controller: authenticationController
+                                                .pinKeyController,
                                             iconcolor: AppColor.silverGray,
                                             borderRadius: 5.r,
                                             fontSize: 9.r,
@@ -138,19 +150,24 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 icon: flag
                                                     ? Icon(
                                                         Icons.visibility,
-                                                        color: AppColor.silverGray,
+                                                        color:
+                                                            AppColor.silverGray,
                                                         size: 4.sp,
                                                       )
                                                     : Icon(
                                                         Icons.visibility_off,
                                                         size: 4.sp,
-                                                        color: AppColor.silverGray,
+                                                        color:
+                                                            AppColor.silverGray,
                                                       )),
                                             validator: (value) {
-                                              if (value == null || value.isEmpty) {
-                                                errorMessage = 'required_message'
-                                                    .trParams(
-                                                        {'field_name': 'pin_number'.tr});
+                                              if (value == null ||
+                                                  value.isEmpty) {
+                                                errorMessage =
+                                                    'required_message'
+                                                        .trParams({
+                                                  'field_name': 'pin_number'.tr
+                                                });
                                                 return "";
                                               }
                                               return null;
@@ -164,8 +181,11 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                             authenticationController:
                                                 authenticationController,
                                           ),
-                                          if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
-                                            GetBuilder<AuthenticationController>(
+                                          if (SharedPr
+                                                  .chosenUserObj!.pinCodeLock! <
+                                              3)
+                                            GetBuilder<
+                                                    AuthenticationController>(
                                                 id: "choosePin",
                                                 builder: (context) {
                                                   return Column(
@@ -180,16 +200,20 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                           },
                                                           child: Row(
                                                             mainAxisAlignment:
-                                                                MainAxisAlignment.center,
+                                                                MainAxisAlignment
+                                                                    .center,
                                                             mainAxisSize:
-                                                                MainAxisSize.min,
+                                                                MainAxisSize
+                                                                    .min,
                                                             children: [
                                                               SvgPicture.asset(
                                                                 'assets/image/login_icon.svg',
-                                                                package: 'yousentech_authentication',
-                                                                clipBehavior:
-                                                                    Clip.antiAlias,
-                                                                fit: BoxFit.fill,
+                                                                package:
+                                                                    'yousentech_authentication',
+                                                                clipBehavior: Clip
+                                                                    .antiAlias,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                                 width: 10.r,
                                                                 height: 10.r,
                                                               ),
@@ -210,11 +234,13 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                                     : "switch_to_username_login"
                                                                         .tr,
                                                                 style: TextStyle(
-                                                                    fontSize: 7.r,
-                                                                    color:
-                                                                        AppColor.charcoal,
+                                                                    fontSize:
+                                                                        7.r,
+                                                                    color: AppColor
+                                                                        .charcoal,
                                                                     fontWeight:
-                                                                        FontWeight.w400),
+                                                                        FontWeight
+                                                                            .w400),
                                                               ),
                                                             ],
                                                           )),
@@ -226,20 +252,15 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           ),
                                         ]))
                               ],
-                            )
-                            
-                            ),
-
+                            )),
                         authenticationController.loading.value
-                        ? LoadingWidget(
-                            height: 600.h,
-                          )
-                        : Container(),
+                            ? LoadingWidget(
+                                height: 600.h,
+                              )
+                            : Container(),
                       ],
                     ))),
           ),
-        )
-      
-    );
+        ));
   }
 }
