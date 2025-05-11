@@ -19,21 +19,22 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    SafeArea(
+    return SafeArea(
       child: Scaffold(
         appBar: customAppBar(),
         backgroundColor: AppColor.white,
         body: GetBuilder<AuthenticationController>(
             id: "choosePin",
             builder: (context) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  (!authenticationController.choosePin)
-                      ? const UsernameAndPasswordLoginScreen()
-                      : const PINLoginScreen(),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    (!authenticationController.choosePin)
+                        ? const UsernameAndPasswordLoginScreen()
+                        : const PINLoginScreen(),
+                  ],
+                ),
               );
             }),
       ),

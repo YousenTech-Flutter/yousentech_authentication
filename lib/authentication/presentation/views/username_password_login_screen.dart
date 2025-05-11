@@ -68,483 +68,491 @@ class _UsernameAndPasswordLoginScreenState
                   onInvoke: (ActivateIntent intent) => onPressed(),
                 ),
               },
-              child: SingleChildScrollView(
-                child: SizedBox(
-                  width: double.infinity,
-                  height: 600.h,
-                  child: Stack(
-                    children: [
-                      CardLogin(
-                        height: 0.45.sh,
-                        children: [
-                          Expanded(
-                            child: Form(
-                              key: _formKey,
-                              child: AutofillGroup(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Center(
-                                      child: Text(
-                                        'login'.tr,
-                                        style: TextStyle(
-                                            fontSize: 12.r,
-                                            color: AppColor.charcoal,
-                                            fontWeight: FontWeight.w700),
+              child: SizedBox(
+                width: double.infinity,
+                height: 600.h,
+                child: Stack(
+                  children: [
+                    CardLogin(
+                      height: 0.45.sh,
+                      children: [
+                        Expanded(
+                          child: Form(
+                            key: _formKey,
+                            child: AutofillGroup(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Center(
+                                    child: Text(
+                                      'login'.tr,
+                                      style: TextStyle(
+                                          fontSize: 12.r,
+                                          color: AppColor.charcoal,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 0.01.sh,
+                                  ),
+                                  Center(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: 'hi'.tr,
+                                            style: TextStyle(
+                                              fontSize: 9.r,
+                                              color: AppColor.lavenderGray,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text:
+                                                ' ${SharedPr.chosenUserObj!.name}  ',
+                                            style: TextStyle(
+                                              fontSize: 9.r,
+                                              color: AppColor.cyanTeal,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
+                                          ),
+                                          TextSpan(
+                                            text: 'enter_username_and_password'
+                                                .tr,
+                                            style: TextStyle(
+                                              fontSize: 9.r,
+                                              color: AppColor.lavenderGray,
+                                              fontWeight: FontWeight.w400,
+                                              fontFamily: 'Tajawal',
+                                              package:
+                                                  'yousentech_authentication',
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 0.01.sh,
-                                    ),
-                                    Center(
-                                      child: RichText(
-                                        text: TextSpan(
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text: 'hi'.tr,
-                                              style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.lavenderGray,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',
-                                                package:
-                                                    'yousentech_authentication',
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  ' ${SharedPr.chosenUserObj!.name}  ',
-                                              style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.cyanTeal,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',
-                                                package:
-                                                    'yousentech_authentication',
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                                  'enter_username_and_password'
-                                                      .tr,
-                                              style: TextStyle(
-                                                fontSize: 9.r,
-                                                color: AppColor.lavenderGray,
-                                                fontWeight: FontWeight.w400,
-                                                fontFamily: 'Tajawal',
-                                                package:
-                                                    'yousentech_authentication',
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                  ),
+                                  SizedBox(
+                                    height: 0.02.sh,
+                                  ),
+                                  ContainerTextField(
+                                    width: ScreenUtil().screenWidth,
+                                    height: 30.h,
+                                    controller: usernameController,
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.all(8.0.r),
+                                      child: SvgPicture.asset(
+                                        'assets/image/user-1.svg',
+                                        package: 'yousentech_authentication',
+                                        fit: BoxFit.scaleDown,
+                                        color: AppColor.silverGray,
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 0.02.sh,
-                                    ),
-                                    ContainerTextField(
+                                    iconcolor: AppColor.silverGray,
+                                    focusNode: userNameFocusNode,
+                                    borderRadius: 5.r,
+                                    fontSize: 9.r,
+                                    showLable: true,
+                                    labelText: 'username'.tr,
+                                    autofillHints: const [AutofillHints.email],
+                                    keyboardType: TextInputType.emailAddress,
+                                    isAddOrEdit: true,
+                                    hintcolor: AppColor.silverGray,
+                                    borderColor: AppColor.silverGray,
+                                    hintText: 'username'.tr,
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        errorMessage = 'required_message'
+                                            .trParams(
+                                                {'field_name': 'username'.tr});
+                                        countErrors++;
+                                        return "";
+                                      }
+                                      if (value !=
+                                          SharedPr.chosenUserObj!.userName) {
+                                        errorMessage = 'user_does_not_match'
+                                            .trParams(
+                                                {'field_name': 'username'.tr});
+                                        countErrors++;
+                                        return "";
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 0.01.sh,
+                                  ),
+                                  GetBuilder<AuthenticationController>(
+                                      builder: (context) {
+                                    return ContainerTextField(
+                                      showLable: true,
+                                      labelText: SharedPr.isForgetPass!
+                                          ? 'otp_password'.tr
+                                          : 'password'.tr,
+                                      autofillHints: const [
+                                        AutofillHints.password
+                                      ],
                                       width: ScreenUtil().screenWidth,
                                       height: 30.h,
-                                      controller: usernameController,
+                                      controller: passwordController,
+
+                                      iconcolor: AppColor.silverGray,
+                                      isAddOrEdit: true,
+                                      borderRadius: 5.r,
+                                      fontSize: 9.r,
+                                      hintcolor: AppColor.silverGray,
+                                      borderColor: AppColor.silverGray,
+                                      hintText: SharedPr.isForgetPass!
+                                          ? 'otp_password'.tr
+                                          : 'password'.tr,
+                                      // labelText: 'key_number'.tr,
                                       prefixIcon: Padding(
                                         padding: EdgeInsets.all(8.0.r),
                                         child: SvgPicture.asset(
-                                          'assets/image/user-1.svg',
+                                          'assets/image/lock_on.svg',
                                           package: 'yousentech_authentication',
-                                          fit: BoxFit.scaleDown,
-                                          color: AppColor.silverGray,
+                                          fit: BoxFit
+                                              .scaleDown, // Adjust this to control scaling
                                         ),
                                       ),
-                                      iconcolor: AppColor.silverGray,
-                                      focusNode: userNameFocusNode,
-                                      borderRadius: 5.r,
-                                      fontSize: 9.r,
-                                      showLable: true,
-                                      labelText: 'username'.tr,
-                                      autofillHints: const [
-                                        AutofillHints.email
-                                      ],
-                                      keyboardType: TextInputType.emailAddress,
-                                      isAddOrEdit: true,
-                                      hintcolor: AppColor.silverGray,
-                                      borderColor: AppColor.silverGray,
-                                      hintText: 'username'.tr,
+                                      suffixIcon: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10.0, right: 10),
+                                        child: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                flag = !flag;
+                                              });
+                                            },
+                                            icon: flag
+                                                ? SvgPicture.asset(
+                                                    'assets/image/eye-open.svg',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                    fit: BoxFit.scaleDown,
+                                                    color: AppColor.silverGray,
+                                                    // Adjust this to control scaling
+                                                  )
+                                                : SvgPicture.asset(
+                                                    'assets/image/eye-closed.svg',
+                                                    package:
+                                                        'yousentech_authentication',
+                                                    fit: BoxFit
+                                                        .scaleDown, // Adjust this to control scaling
+                                                  )),
+                                      ),
+                                      obscureText: flag ? false : true,
+                                      onFieldSubmitted: (value) {
+                                        TextInput.finishAutofillContext();
+                                      },
                                       validator: (value) {
                                         if (value == null || value.isEmpty) {
-                                          errorMessage = 'required_message'
+                                          errorMessage = 'required_message_f'
                                               .trParams({
-                                            'field_name': 'username'.tr
+                                            'field_name': SharedPr.isForgetPass!
+                                                ? 'otp_password'.tr
+                                                : 'password'.tr
                                           });
-                                          countErrors++;
                                           return "";
                                         }
-                                        if (value !=
-                                            SharedPr.chosenUserObj!.userName) {
-                                          errorMessage = 'user_does_not_match'
-                                              .trParams({
-                                            'field_name': 'username'.tr
-                                          });
-                                          countErrors++;
-                                          return "";
-                                        }
+
                                         return null;
                                       },
-                                    ),
-                                    SizedBox(
-                                      height: 0.01.sh,
-                                    ),
-                                    GetBuilder<AuthenticationController>(
-                                        builder: (context) {
-                                      return ContainerTextField(
-                                        showLable: true,
-                                        labelText: SharedPr.isForgetPass!
-                                            ? 'otp_password'.tr
-                                            : 'password'.tr,
-                                        autofillHints: const [
-                                          AutofillHints.password
-                                        ],
-                                        width: ScreenUtil().screenWidth,
-                                        height: 30.h,
-                                        controller: passwordController,
-
-                                        iconcolor: AppColor.silverGray,
-                                        isAddOrEdit: true,
-                                        borderRadius: 5.r,
-                                        fontSize: 9.r,
-                                        hintcolor: AppColor.silverGray,
-                                        borderColor: AppColor.silverGray,
-                                        hintText: SharedPr.isForgetPass!
-                                            ? 'otp_password'.tr
-                                            : 'password'.tr,
-                                        // labelText: 'key_number'.tr,
-                                        prefixIcon: Padding(
-                                          padding: EdgeInsets.all(8.0.r),
-                                          child: SvgPicture.asset(
-                                            'assets/image/lock_on.svg',
-                                            package:
-                                                'yousentech_authentication',
-                                            fit: BoxFit
-                                                .scaleDown, // Adjust this to control scaling
-                                          ),
-                                        ),
-                                        suffixIcon: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10.0, right: 10),
-                                          child: IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  flag = !flag;
-                                                });
-                                              },
-                                              icon: flag
-                                                  ? SvgPicture.asset(
-                                                      'assets/image/eye-open.svg',
-                                                      package:
-                                                          'yousentech_authentication',
-                                                      fit: BoxFit.scaleDown,
-                                                      color:
-                                                          AppColor.silverGray,
-                                                      // Adjust this to control scaling
-                                                    )
-                                                  : SvgPicture.asset(
-                                                      'assets/image/eye-closed.svg',
-                                                      package:
-                                                          'yousentech_authentication',
-                                                      fit: BoxFit
-                                                          .scaleDown, // Adjust this to control scaling
-                                                    )),
-                                        ),
-                                        obscureText: flag ? false : true,
-                                        onFieldSubmitted: (value) {
-                                          TextInput.finishAutofillContext();
-                                        },
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            errorMessage = 'required_message_f'
-                                                .trParams({
-                                              'field_name':
-                                                  SharedPr.isForgetPass!
-                                                      ? 'otp_password'.tr
-                                                      : 'password'.tr
-                                            });
-                                            return "";
-                                          }
-
-                                          return null;
-                                        },
-                                      );
-                                    }),
-                                    SizedBox(
-                                      height: 0.02.sh,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        if (SharedPr
-                                                .chosenUserObj!.pinCodeLock! <
-                                            3)
-                                          GetBuilder<AuthenticationController>(
-                                              id: "choosePin",
-                                              builder: (context) {
-                                                return InkWell(
-                                                    onTap: () async {
-                                                      authenticationController
-                                                          .setChoosePin();
-                                                    },
-                                                    child: Container(
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(12),
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          SvgPicture.asset(
-                                                            'assets/image/login_icon.svg',
-                                                            package:
-                                                                'yousentech_authentication',
-                                                            clipBehavior:
-                                                                Clip.antiAlias,
-                                                            fit: BoxFit.fill,
-                                                            width: 10.r,
-                                                            height: 10.r,
-                                                          ),
-                                                          SizedBox(
-                                                            width: 7.r,
-                                                          ),
-                                                          Center(
-                                                            child: Text(
-                                                              !authenticationController
-                                                                      .choosePin
-                                                                  ? "switch_to_pin_login"
-                                                                      .tr
-                                                                  : "switch_to_username_login"
-                                                                      .tr,
-                                                              style: TextStyle(
-                                                                  fontSize: 8.r,
-                                                                  color: AppColor
-                                                                      .charcoal,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ));
-                                              }),
-                                        InkWell(
-                                            onTap: () async {
-                                              CustomDialog.getInstance()
-                                                  .dialogcontent(
-                                                barrierDismissible: true,
-                                                content: Container(
-                                                  decoration: BoxDecoration(
-                                                      border: Border(
-                                                          top: BorderSide(
-                                                              color: messageTypesIcon2[
-                                                                          MessageTypes
-                                                                              .warning]!
-                                                                      .last
-                                                                  as Color,
-                                                              width: 10.r)),
+                                    );
+                                  }),
+                                  SizedBox(
+                                    height: 0.02.sh,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (SharedPr.chosenUserObj!.pinCodeLock! <
+                                          3)
+                                        GetBuilder<AuthenticationController>(
+                                            id: "choosePin",
+                                            builder: (context) {
+                                              return InkWell(
+                                                  onTap: () async {
+                                                    authenticationController
+                                                        .setChoosePin();
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              15.r)),
-                                                  padding:
-                                                      EdgeInsets.all(10.0.r),
-                                                  height: 0.3.sh,
-                                                  width: 0.3.sw,
-                                                  child: Obx(() =>
-                                                      IgnorePointer(
-                                                          ignoring:
-                                                              authenticationController
-                                                                  .loading
-                                                                  .value,
-                                                          child: Stack(
-                                                            children: [
-                                                              Column(
+                                                              12),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        SvgPicture.asset(
+                                                          'assets/image/login_icon.svg',
+                                                          package:
+                                                              'yousentech_authentication',
+                                                          clipBehavior:
+                                                              Clip.antiAlias,
+                                                          fit: BoxFit.fill,
+                                                          width: 10.r,
+                                                          height: 10.r,
+                                                        ),
+                                                        SizedBox(
+                                                          width: 7.r,
+                                                        ),
+                                                        Center(
+                                                          child: Text(
+                                                            !authenticationController
+                                                                    .choosePin
+                                                                ? "switch_to_pin_login"
+                                                                    .tr
+                                                                : "switch_to_username_login"
+                                                                    .tr,
+                                                            style: TextStyle(
+                                                                fontSize: 8.r,
+                                                                color: AppColor
+                                                                    .charcoal,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ));
+                                            }),
+                                      InkWell(
+                                          onTap: () async {
+                                            CustomDialog.getInstance()
+                                                .dialogcontent(
+                                              barrierDismissible: true,
+                                              content: Container(
+                                                decoration: BoxDecoration(
+                                                    border: Border(
+                                                        top: BorderSide(
+                                                            color: messageTypesIcon2[
+                                                                    MessageTypes
+                                                                        .warning]!
+                                                                .last as Color,
+                                                            width: 10.r)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.r)),
+                                                padding: EdgeInsets.all(10.0.r),
+                                                height: 0.3.sh,
+                                                width: 0.3.sw,
+                                                child: Obx(() => IgnorePointer(
+                                                    ignoring:
+                                                        authenticationController
+                                                            .loading.value,
+                                                    child: Stack(
+                                                      children: [
+                                                        Column(
+                                                          children: [
+                                                            Expanded(
+                                                              child: Column(
                                                                 children: [
-                                                                  Expanded(
-                                                                    child:
-                                                                        Column(
-                                                                      children: [
-                                                                        if (messageTypesIcon2[MessageTypes.warning]!.first !=
-                                                                            "") ...[
-                                                                          SizedBox(
-                                                                            height:
-                                                                                20.r,
-                                                                          ),
-                                                                          SvgPicture
-                                                                              .asset(
-                                                                            messageTypesIcon2[MessageTypes.warning]!.first
-                                                                                as String,
-                                                                            clipBehavior:
-                                                                                Clip.antiAlias,
-                                                                            fit:
-                                                                                BoxFit.fill,
-                                                                            width:
-                                                                                50.r,
-                                                                            height:
-                                                                                50.r,
-                                                                          ),
-                                                                          SizedBox(
-                                                                            height:
-                                                                                5.r,
-                                                                          ),
-                                                                          Text(
-                                                                            "confirm_reset_password".tr,
-                                                                            style:
-                                                                                AppStyle.textStyle(fontSize: 10.r, fontWeight: FontWeight.bold),
-                                                                          )
-                                                                        ],
-                                                                        SizedBox(
-                                                                          height:
-                                                                              10.r,
-                                                                        ),
-                                                                      ],
+                                                                  if (messageTypesIcon2[
+                                                                              MessageTypes.warning]!
+                                                                          .first !=
+                                                                      "") ...[
+                                                                    SizedBox(
+                                                                      height:
+                                                                          20.r,
                                                                     ),
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                      messageTypesIcon2[MessageTypes.warning]!
+                                                                              .first
+                                                                          as String,
+                                                                      clipBehavior:
+                                                                          Clip.antiAlias,
+                                                                      fit: BoxFit
+                                                                          .fill,
+                                                                      width:
+                                                                          50.r,
+                                                                      height:
+                                                                          50.r,
+                                                                    ),
+                                                                    SizedBox(
+                                                                      height:
+                                                                          5.r,
+                                                                    ),
+                                                                    Text(
+                                                                      "confirm_reset_password"
+                                                                          .tr,
+                                                                      style: AppStyle.textStyle(
+                                                                          fontSize: 10
+                                                                              .r,
+                                                                          fontWeight:
+                                                                              FontWeight.bold),
+                                                                    )
+                                                                  ],
+                                                                  SizedBox(
+                                                                    height:
+                                                                        10.r,
                                                                   ),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    children: [
-                                                                      ButtonElevated(
-                                                                          text: "confirm_reset_password"
-                                                                              .tr,
-                                                                          width: 0.13
-                                                                              .sw,
-                                                                          backgroundColor: messageTypesIcon2[MessageTypes.warning]!.last
-                                                                              as Color,
-                                                                          textStyle: AppStyle.textStyle(
-                                                                              color: AppColor.white,
-                                                                              fontSize: 10.r,
-                                                                              fontWeight: FontWeight.bold),
-                                                                          onPressed: () async {
-                                                                            ResponseResult
-                                                                                responseResult =
-                                                                                await authenticationController.forgetPassword();
-                                                                            if (responseResult.status) {
-                                                                              Get.back();
-                                                                              appSnackBar(message: responseResult.message, messageType: MessageTypes.success);
-                                                                            } else {
-                                                                              Get.back();
-                                                                              showPassWordErrorDialog(message: responseResult.message);
-                                                                            }
-                                                                          }),
-                                                                      SizedBox(
-                                                                        width:
-                                                                            10.r,
-                                                                      ),
-                                                                      ButtonElevated(
-                                                                          text: 'cancel'
-                                                                              .tr,
-                                                                          width: 0.13
-                                                                              .sw,
-                                                                          borderColor: AppColor
-                                                                              .paleAqua,
-                                                                          textStyle: AppStyle.textStyle(
-                                                                              color: AppColor.slateGray,
-                                                                              fontSize: 10.r,
-                                                                              fontWeight: FontWeight.bold),
-                                                                          onPressed: () async {
-                                                                            Get.back();
-                                                                          }),
-                                                                    ],
-                                                                  )
                                                                 ],
                                                               ),
-                                                              authenticationController
-                                                                      .loading
-                                                                      .value
-                                                                  ? const LoadingWidget()
-                                                                  : Container(),
-                                                            ],
-                                                          ))),
-                                                ),
-                                                context: context,
-                                              );
-                                            },
-                                            child: FittedBox(
-                                              fit: BoxFit.scaleDown,
-                                              child: Text(
-                                                "forget_password".tr,
-                                                style: TextStyle(
-                                                    fontSize: 8.r,
-                                                    color: AppColor.cyanTeal,
-                                                    fontWeight:
-                                                        FontWeight.w400),
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                ButtonElevated(
+                                                                    text:
+                                                                        "confirm_reset_password"
+                                                                            .tr,
+                                                                    width:
+                                                                        0.13.sw,
+                                                                    backgroundColor:
+                                                                        messageTypesIcon2[MessageTypes.warning]!.last
+                                                                            as Color,
+                                                                    textStyle: AppStyle.textStyle(
+                                                                        color: AppColor
+                                                                            .white,
+                                                                        fontSize: 10
+                                                                            .r,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold),
+                                                                    onPressed:
+                                                                        () async {
+                                                                      ResponseResult
+                                                                          responseResult =
+                                                                          await authenticationController
+                                                                              .forgetPassword();
+                                                                      if (responseResult
+                                                                          .status) {
+                                                                        Get.back();
+                                                                        appSnackBar(
+                                                                            message:
+                                                                                responseResult.message,
+                                                                            messageType: MessageTypes.success);
+                                                                      } else {
+                                                                        Get.back();
+                                                                        showPassWordErrorDialog(
+                                                                            message:
+                                                                                responseResult.message);
+                                                                      }
+                                                                    }),
+                                                                SizedBox(
+                                                                  width: 10.r,
+                                                                ),
+                                                                ButtonElevated(
+                                                                    text:
+                                                                        'cancel'
+                                                                            .tr,
+                                                                    width:
+                                                                        0.13.sw,
+                                                                    borderColor:
+                                                                        AppColor
+                                                                            .paleAqua,
+                                                                    textStyle: AppStyle.textStyle(
+                                                                        color: AppColor
+                                                                            .slateGray,
+                                                                        fontSize: 10
+                                                                            .r,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .bold),
+                                                                    onPressed:
+                                                                        () async {
+                                                                      Get.back();
+                                                                    }),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                        authenticationController
+                                                                .loading.value
+                                                            ? const LoadingWidget()
+                                                            : Container(),
+                                                      ],
+                                                    ))),
                                               ),
-                                            )),
-                                      ],
-                                    )
-                                  ],
-                                ),
+                                              context: context,
+                                            );
+                                          },
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Text(
+                                              "forget_password".tr,
+                                              style: TextStyle(
+                                                  fontSize: 8.r,
+                                                  color: AppColor.cyanTeal,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          )),
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
                           ),
-                          KeyboardListener(
-                            focusNode: _buttonFocusNode,
-                            autofocus: true,
-                            onKeyEvent: (event) {
-                              if (event.logicalKey ==
-                                  LogicalKeyboardKey.enter) {
-                                onPressed();
-                              }
-                            },
-                            child: Focus(
-                                autofocus: true,
-                                child: Builder(builder: (context) {
-                                  return InkWell(
-                                    onTap: onPressed,
-                                    child: Container(
-                                      height: 30.h,
-                                      width: ScreenUtil().screenWidth,
-                                      alignment: Alignment.center,
-                                      margin: const EdgeInsets.symmetric(
-                                              vertical: 5)
-                                          .r,
-                                      decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: AppColor.aqua,
-                                                blurRadius: 30,
-                                                offset: const Offset(0, 4),
-                                                spreadRadius: 0)
-                                          ],
-                                          color: AppColor.cyanTeal,
-                                          borderRadius:
-                                              BorderRadius.circular(5.r)),
-                                      child: Text(
-                                        'login'.tr,
-                                        style: TextStyle(
-                                            fontSize: 9.r,
-                                            color: AppColor.white,
-                                            fontWeight: FontWeight.w700),
-                                      ),
+                        ),
+                        KeyboardListener(
+                          focusNode: _buttonFocusNode,
+                          autofocus: true,
+                          onKeyEvent: (event) {
+                            if (event.logicalKey == LogicalKeyboardKey.enter) {
+                              onPressed();
+                            }
+                          },
+                          child: Focus(
+                              autofocus: true,
+                              child: Builder(builder: (context) {
+                                return InkWell(
+                                  onTap: onPressed,
+                                  child: Container(
+                                    height: 30.h,
+                                    width: ScreenUtil().screenWidth,
+                                    alignment: Alignment.center,
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 5)
+                                            .r,
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: AppColor.aqua,
+                                              blurRadius: 30,
+                                              offset: const Offset(0, 4),
+                                              spreadRadius: 0)
+                                        ],
+                                        color: AppColor.cyanTeal,
+                                        borderRadius:
+                                            BorderRadius.circular(5.r)),
+                                    child: Text(
+                                      'login'.tr,
+                                      style: TextStyle(
+                                          fontSize: 9.r,
+                                          color: AppColor.white,
+                                          fontWeight: FontWeight.w700),
                                     ),
-                                  );
-                                })),
-                          ),
-                          // }
-                          // }),
-                        ],
-                      ),
-                      authenticationController.loading.value
-                          ? LoadingWidget(
-                              height: 600.h,
-                            )
-                          : Container(),
-                    ],
-                  ),
+                                  ),
+                                );
+                              })),
+                        ),
+                        // }
+                        // }),
+                      ],
+                    ),
+                    authenticationController.loading.value
+                        ? LoadingWidget(
+                            height: 600.h,
+                          )
+                        : Container(),
+                  ],
                 ),
               ),
             ),
