@@ -337,10 +337,10 @@ changePasswordDialog() {
                           },
                         );
                       }),
-                      
+
                       SizedBox(
-                            height: 5.r,
-                          ),
+                        height: 5.r,
+                      ),
                       StatefulBuilder(
                           builder: (BuildContext context, setState) {
                         return ContainerTextField(
@@ -423,8 +423,8 @@ changePasswordDialog() {
                           ButtonElevated(
                               text: "change_password".tr,
                               // width: Get.width / 7,
-                              height: 0.04.sh,
-                              width: 77.w,
+                              width: 100.w,
+                              height: 30.h,
                               borderRadius: 9,
                               backgroundColor: AppColor.cyanTeal,
                               showBoxShadow: true,
@@ -462,8 +462,8 @@ changePasswordDialog() {
                           ),
                           ButtonElevated(
                               text: 'cancel'.tr,
-                              width: 77.w,
-                              height: 0.04.sh,
+                              width: 100.w,
+                              height: 30.h,
                               borderRadius: 9,
                               borderColor: AppColor.paleAqua,
                               textStyle: AppStyle.textStyle(
