@@ -342,8 +342,8 @@ activatePINLogin({bool enable = true}) async {
                         //   height: 10.r,
                         // ),
                         SizedBox(
-                            height: 5.r,
-                          ),
+                          height: 5.r,
+                        ),
                         StatefulBuilder(
                             builder: (BuildContext context, setState) {
                           return ContainerTextField(
@@ -413,8 +413,8 @@ activatePINLogin({bool enable = true}) async {
                           children: [
                             ButtonElevated(
                               text: 'activate'.tr,
-                              height: 0.04.sh,
-                              width: 77.w,
+                              height: 40.h,
+                              width: 100.w,
                               borderRadius: 9,
                               backgroundColor: AppColor.cyanTeal,
                               showBoxShadow: true,
@@ -429,8 +429,8 @@ activatePINLogin({bool enable = true}) async {
                             ),
                             ButtonElevated(
                                 text: 'cancel'.tr,
-                                width: 77.w,
-                                height: 0.04.sh,
+                                width: 100.w,
+                                height: 40.h,
                                 borderRadius: 9,
                                 borderColor: AppColor.paleAqua,
                                 textStyle: AppStyle.textStyle(
