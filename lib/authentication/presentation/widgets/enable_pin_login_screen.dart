@@ -239,16 +239,16 @@ activatePINLogin({bool enable = true}) async {
       },
       child: Obx(() => IgnorePointer(
           ignoring: authenticationController.loading.value,
-          child: SizedBox(
-            width: 80.w,
-            height: 320.h,
-            child: Stack(
-              children: [
-                Form(
-                  key: _formKey,
-                  child: Padding(
-                    padding: EdgeInsets.all(20.r),
-                    child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: SizedBox(
+              width: 80.w,
+              height: 320.h,
+              child: Stack(
+                children: [
+                  Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding: EdgeInsets.all(20.r),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.min,
@@ -447,11 +447,11 @@ activatePINLogin({bool enable = true}) async {
                       ),
                     ),
                   ),
-                ),
-                authenticationController.loading.value
-                    ? const LoadingWidget()
-                    : Container(),
-              ],
+                  authenticationController.loading.value
+                      ? const LoadingWidget()
+                      : Container(),
+                ],
+              ),
             ),
           ))),
     ),
