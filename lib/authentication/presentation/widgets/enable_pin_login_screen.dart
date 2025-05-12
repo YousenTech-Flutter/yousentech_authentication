@@ -413,7 +413,7 @@ activatePINLogin({bool enable = true}) async {
                           children: [
                             ButtonElevated(
                               text: 'activate'.tr,
-                              height: 40.h,
+                              height: 20.h,
                               width: 100.w,
                               borderRadius: 9,
                               backgroundColor: AppColor.cyanTeal,
@@ -430,7 +430,7 @@ activatePINLogin({bool enable = true}) async {
                             ButtonElevated(
                                 text: 'cancel'.tr,
                                 width: 100.w,
-                                height: 40.h,
+                                height: 20.h,
                                 borderRadius: 9,
                                 borderColor: AppColor.paleAqua,
                                 textStyle: AppStyle.textStyle(
