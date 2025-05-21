@@ -23,6 +23,7 @@ import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/shared_widgets/card_login.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/change_password_screen.dart';
+import 'package:yousentech_authentication/authentication/utils/login_helper.dart';
 import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
 import '../../domain/authentication_viewmodel.dart';
 
@@ -428,23 +429,7 @@ class _UsernameAndPasswordLoginScreenState
                                                                                 .bold),
                                                                     onPressed:
                                                                         () async {
-                                                                      ResponseResult
-                                                                          responseResult =
-                                                                          await authenticationController
-                                                                              .forgetPassword();
-                                                                      if (responseResult
-                                                                          .status) {
-                                                                        Get.back();
-                                                                        appSnackBar(
-                                                                            message:
-                                                                                responseResult.message,
-                                                                            messageType: MessageTypes.success);
-                                                                      } else {
-                                                                        Get.back();
-                                                                        showPassWordErrorDialog(
-                                                                            message:
-                                                                                responseResult.message);
-                                                                      }
+                                                                      LoginHelper.forgetPassword(authenticationController: authenticationController);
                                                                     }),
                                                                 SizedBox(
                                                                   width: 10.r,
@@ -562,77 +547,13 @@ class _UsernameAndPasswordLoginScreenState
 
   onPressed() async {
     countErrors = 0;
-    if (_formKey.currentState!.validate()) {
-      ResponseResult responseResult = await authenticationController
-          .authenticateUsingUsernameAndPassword(LoginInfo(
-              userName: usernameController.text,
-              password: passwordController.text));
-      if (responseResult.status && responseResult.data.accountLock < 3) {
-        if (SharedPr.isForgetPass!) {
-          await authenticationController.countUsernameFailureAttempt(
-              reset: true);
-          responseResult.data.accountLock = 0;
-          await SharedPr.setUserObj(userObj: responseResult.data);
-          await SharedPr.setForgetPass(flage: false, otp: '');
-          changePasswordDialog();
-        } else {
-          if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
-              SharedPr.localBackUpSettingObj!.selectedOption ==
-                  BackUpOptions.backup_on_login.name) {
-            await showLocalBackupPrompt();
-          }
-          Get.to(() => const HomePage());
-          appSnackBar(
-            messageType: MessageTypes.success,
-            message: responseResult.message,
-          );
-        }
-      } else {
-        if (responseResult.message == 'login_information_incorrect'.tr) {
-          if (SharedPr.chosenUserObj!.accountLock! < 3) {
-            await SharedPr.updateAccountLockCountLocally();
-            await authenticationController.countUsernameFailureAttempt();
-            if (SharedPr.chosenUserObj!.accountLock! < 3) {
-              appSnackBar(
-                  message: 'unsuccessful_login'.trParams({
-                "field_name":
-                    "${(3 - SharedPr.chosenUserObj!.accountLock!) == 0 ? 'account_locked'.tr : 3 - SharedPr.chosenUserObj!.accountLock!}"
-              }));
-            } else {
-              showAccountLockDialog();
-            }
-          } else {
-            showAccountLockDialog();
-          }
-        } else {
-          appSnackBar(message: responseResult.message);
-          authenticationController.loading.value = false;
-          return;
-        }
-      }
-    } else {
-      appSnackBar(
-        message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage!,
-      );
-    }
+    LoginHelper.authenticateUsingUsernameAndPassword(formKey: _formKey, countErrors: countErrors,errorMessage: errorMessage ,authenticationController: authenticationController, usernameController: usernameController, passwordController: passwordController);
   }
 }
 
 void showAccountLockDialog() {
   onPressed() async {
-    var result =
-        await authenticationController.sendTicketToEliminateAccountLock();
-    if (result.status) {
-      SharedPr.setNotificationObj(
-          notificationHelperObj: NotificationHelper(accountLock: true));
-      Get.back();
-      appSnackBar(
-          messageType: MessageTypes.success, message: 'success_send_ticket'.tr);
-    } else {
-      Get.back();
-      appSnackBar(
-          messageType: MessageTypes.error, message: 'send_ticket_already'.tr);
-    }
+  LoginHelper.sendTicketToEliminateAccountLock(authenticationController: authenticationController);
   }
 
   CustomDialog.getInstance().dialogcontent(
@@ -740,24 +661,6 @@ void showPassWordErrorDialog({required String message}) {
       message: message,
       icon: Icons.contact_support_rounded,
       onPressed: () async {
-        await databaseSettingController
-            .sendTicket(
-                subscriptionId:
-                    SharedPr.subscriptionDetailsObj!.subscriptionId.toString(),
-                message: message)
-            .then((value) {
-          if (value.status) {
-            SharedPr.setNotificationObj(
-                notificationHelperObj: NotificationHelper(sendTicket: true));
-            Get.back();
-            appSnackBar(
-                message: 'success_send_ticket'.tr,
-                messageType: MessageTypes.success);
-          } else {
-            appSnackBar(
-              message: value.message!,
-            );
-          }
-        });
+      LoginHelper.sendTicket(databaseSettingController: databaseSettingController, message: message);
       });
 }

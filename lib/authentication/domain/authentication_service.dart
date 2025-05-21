@@ -26,6 +26,27 @@ class AuthenticationService implements AuthenticationRepository {
         _authenticationServiceInstance ?? AuthenticationService._();
     return _authenticationServiceInstance!;
   }
+  List userFields = [
+        'id',
+        'name',
+        'login',
+        'image_1920',
+        'pin_code',
+        'pin_code_lock',
+        'account_lock',
+        // 'pos_config_ids',
+        // 'allowed_to_exceed_item_stock_quantity',
+        'prevent_selling_with_negative_quantity',
+        'maximum_increase_allowed_unit_price',
+        'maximum_decrease_allowed_unit_price',
+        'edit_invoice_and_process_it_on_closing',
+        'show_pos_app_settings',
+        'allow_print_session_reports_for_other_users',
+        'is_allowed_to_edit_price_limit',
+        'is_allowed_to_view_price_limit',
+        'show_final_report_for_all_session',
+        'is_allowed_to_restore_local_db',
+      ];
   // ========================================== [ CHANGE PASSWORD ] =============================================
 
   // ========================================== [ ACTIVATE PIN LOGIN ] =============================================
@@ -68,29 +89,6 @@ class AuthenticationService implements AuthenticationRepository {
       await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
           username: SharedPr.chosenUserObj!.userName!,
           password: userFromLocal.password!);
-
-      List userFields = [
-        'id',
-        'name',
-        'login',
-        'image_1920',
-        'pin_code',
-        'pin_code_lock',
-        'account_lock',
-        // 'pos_config_ids',
-        // 'allowed_to_exceed_item_stock_quantity',
-        'prevent_selling_with_negative_quantity',
-        'maximum_increase_allowed_unit_price',
-        'maximum_decrease_allowed_unit_price',
-        'edit_invoice_and_process_it_on_closing',
-        'show_pos_app_settings',
-        'allow_print_session_reports_for_other_users',
-        'is_allowed_to_edit_price_limit',
-        'is_allowed_to_view_price_limit',
-        'show_final_report_for_all_session',
-        'is_allowed_to_restore_local_db',
-      ];
-
       if (SharedPr.currentPosObject!.isDiscountActivated ?? false) {
         userFields.addAll(
             ['discount_value', 'discount_control', 'priority_user_discount']);
@@ -129,27 +127,6 @@ class AuthenticationService implements AuthenticationRepository {
         if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
-        List userFields = [
-          'id',
-          'name',
-          'login',
-          'image_1920',
-          'pin_code',
-          'pin_code_lock',
-          'account_lock',
-          // 'pos_config_ids',
-          // 'allowed_to_exceed_item_stock_quantity',
-          'prevent_selling_with_negative_quantity',
-          'maximum_increase_allowed_unit_price',
-          'maximum_decrease_allowed_unit_price',
-          'edit_invoice_and_process_it_on_closing',
-          'show_pos_app_settings',
-          'allow_print_session_reports_for_other_users',
-          // 'is_allowed_to_edit_price_limit',
-          'is_allowed_to_view_price_limit',
-          'show_final_report_for_all_session',
-          'is_allowed_to_restore_local_db',
-        ];
         if (SharedPr.currentPosObject?.isDiscountActivated ?? false) {
           userFields.addAll(
               ['discount_value', 'discount_control', 'priority_user_discount']);
@@ -174,16 +151,6 @@ class AuthenticationService implements AuthenticationRepository {
         return 'no_connection'.tr;
       }
     }
-
-    // on OdooSessionExpiredException {
-    //   return 'session_expired'.tr;
-    // } on OdooException catch (e) {
-    //   FileManagement.writeData('${'failed_connect_server'.tr} - $e');
-    //   return 'failed_connect_server'.tr;
-    // } on SocketConnectivityChecker catch (e) {
-    //   return 'no_connection'.tr;
-    // }
-
     catch (e) {
       return await handleException(
           exception: e,
@@ -191,36 +158,6 @@ class AuthenticationService implements AuthenticationRepository {
           methodName: "authenticateUsingUsernameAndPassword");
     }
   }
-
-  // ========================================== [ CHANGE PASSWORD ] =============================================
-  // @override
-  // Future changePassword({required String password}) async {
-  //   try {
-  //     bool result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
-  //       'model': OdooModels.resUsers,
-  //       'method': 'write',
-  //       'args': [
-  //         SharedPr.userObj!.id,
-  //         {
-  //           'password': password,
-  //         },
-  //       ],
-  //       'kwargs': {},
-  //     });
-  //     if(kDebugMode){
-  //       print("result : $result");
-  //       print("SharedPr.userObj!.id : ${SharedPr.userObj!.id}");
-  //     }
-
-  //     return result;
-  //   } catch (e) {
-  //     if(kDebugMode){
-  //       print("catch : $e");
-  //     }
-  //     handleException(
-  //         exception: e, navigation: true, methodName: "changePassword");
-  //   }
-  // }
   @override
   Future changePassword({required String password}) async {
     try {
@@ -453,24 +390,6 @@ class AuthenticationService implements AuthenticationRepository {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        List userFields = [
-          'id',
-          'name',
-          'login',
-          'image_1920',
-          'pin_code',
-          'pin_code_lock',
-          'account_lock',
-          'prevent_selling_with_negative_quantity',
-          'maximum_increase_allowed_unit_price',
-          'maximum_decrease_allowed_unit_price',
-          'edit_invoice_and_process_it_on_closing',
-          'show_pos_app_settings',
-          'allow_print_session_reports_for_other_users',
-          'is_allowed_to_view_price_limit',
-          'show_final_report_for_all_session',
-          'is_allowed_to_restore_local_db',
-        ];
         if (SharedPr.currentPosObject?.isDiscountActivated ?? false) {
           userFields.addAll(
               ['discount_value', 'discount_control', 'priority_user_discount']);
@@ -493,17 +412,9 @@ class AuthenticationService implements AuthenticationRepository {
       } else {
         return 'no_connection'.tr;
       }
-    } on OdooSessionExpiredException {
-      return 'session_expired'.tr;
-    } on OdooException catch (e) {
-      FileManagement.writeData('${'failed_connect_server'.tr} - $e');
-      return 'failed_connect_server'.tr;
-    } on SocketConnectivityChecker catch (e) {
-      return 'no_connection'.tr;
-    } catch (e) {
-      FileManagement.writeData(
-          "authenticateUsingUsernameAndPassword Exception : $e");
-      return e.toString().replaceFirst('Exception: ', '');
+    } 
+    catch (e) {
+      return await handleException(exception: e,navigation: false,methodName: "getUserInformation");
     }
   }
 }

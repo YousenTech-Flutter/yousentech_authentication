@@ -59,7 +59,6 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                         Focus(
                             focusNode: pinNumberFocus,
                             child: CardLogin(
-                              // heightCard: 0.5.sh,
                               isPin: true,
                               children: [
                                 Form(
@@ -190,9 +189,6 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 builder: (context) {
                                                   return Column(
                                                     children: [
-                                                      // SizedBox(
-                                                      //   height: 10.r,
-                                                      // ),
                                                       TextButton(
                                                           onPressed: () async {
                                                             authenticationController
@@ -217,12 +213,6 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                                 width: 10.r,
                                                                 height: 10.r,
                                                               ),
-                                                              // FaIcon(
-                                                              //   FontAwesomeIcons
-                                                              //       .arrowRightFromBracket,
-                                                              //   color: AppColor.amber,
-                                                              //   size: 3.sp,
-                                                              // ),
                                                               SizedBox(
                                                                 width: 10.r,
                                                               ),

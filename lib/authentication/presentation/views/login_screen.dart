@@ -13,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  // bool choosePin = false;
   AuthenticationController authenticationController =
       Get.put(AuthenticationController.getInstance());
 

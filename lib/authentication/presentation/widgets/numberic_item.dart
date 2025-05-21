@@ -87,8 +87,6 @@ class _NumbericItemsState extends State<NumbericItems> {
               ),
             )
           : InkWell(
-              // heroTag: "btn$counter",
-              // backgroundColor: AppColor.gainsboro,
               onTap: () {
                 widget.authenticationController.setPinKey(data: data);
               },

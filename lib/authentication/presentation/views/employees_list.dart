@@ -27,17 +27,14 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
   late FocusNode _focusNode; 
   int _selectedIndex = 0;
   final ScrollController _scrollController = ScrollController();
-  // final GlobalKey _listKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      // tokenController.employeesList.value.requestFocus();
       tokenController.isLoading.value = true;
       _focusNode.requestFocus();
-      //tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
       tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
     });
     flutterWindowCloseshow(context);
@@ -54,7 +51,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
 
   @override
   void dispose() {
-    // tokenController.employeesList.value.dispose();
     _focusNode.dispose();
     _focusNode.unfocus();
     _scrollController.dispose();
@@ -266,14 +262,11 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                         onKeyEvent: (KeyEvent event) {
                           if (event is KeyDownEvent) {
                             if (_focusNode.hasFocus) {
-                              
-                              // if (event is KeyDownEvent) {
                               if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
                                 setState(() {
                                   if (_selectedIndex < tokenController.finalResult.length - 1) {
                                     _selectedIndex++;
                                     _scrollToIndex();
-                                    // _scrollToIndex(_selectedIndex);
                                   }
                                 });
                               } else if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
@@ -281,13 +274,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                   if (_selectedIndex > 0) {
                                     _selectedIndex--;
                                     _scrollToIndex();
-                                    // _scrollToIndex(_selectedIndex);
                                   }
                                 });
                               } else if (event.logicalKey == LogicalKeyboardKey.enter) {
                                 if (tokenController.finalResult.isNotEmpty) {
-                                  // print('LogicalKeyboardKey.enter');
-                                  // final selectedEmp = tokenController.finalResult[_selectedIndex];
                                   tokenController.onSelectEmployee(
                                       _selectedIndex, authenticationController);
                                   _focusNode.requestFocus();
@@ -360,27 +350,13 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                 itemBuilder:
                                     (BuildContext context, int index) {
                                   bool isSelected = _selectedIndex == index;
-                                  // print(
-                                  //     "selectedEmployeeIndex ${index == tokenController.selectedEmployeeIndex}");
                                   return Container(
-                                    // color: index ==
-                                    //         tokenController
-                                    //             .selectedEmployeeIndex
-                                    //     ? AppColor.cyanTeal.withOpacity(0.1)
-                                    //     : null,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8.0),
                                       color: isSelected ? AppColor.cyanTeal.withOpacity(0.15) : null,
                                     ),
                                     child: ListTile(
-                                      // selected: index ==
-                                      //     tokenController
-                                      //         .selectedEmployeeIndex,
                                       onTap: () async {
-                                        // if (kDebugMode) {
-                                        //   print(
-                                        //       "chosenUserObj ${tokenController.finalResult![index].toJson()}");
-                                        // }
                                         tokenController.onSelectEmployee(
                                             index, authenticationController);
                                       },

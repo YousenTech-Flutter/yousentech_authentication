@@ -40,6 +40,4 @@ Map<ShortcutActivator, Intent> shortcutPINNumbers = {
 Map<ShortcutActivator, Intent> arrowKeys = {
   LogicalKeySet(LogicalKeyboardKey.arrowUp): Up(),
   LogicalKeySet(LogicalKeyboardKey.arrowDown): Down(),
-  // LogicalKeySet(LogicalKeyboardKey.arrowLeft): Left(),
-  // LogicalKeySet(LogicalKeyboardKey.arrowRight): Right(),
 };

@@ -151,22 +151,11 @@ class AuthenticationController extends GetxController {
     } else if (result == null) {
       loginPinLoading.value = false;
       return ResponseResult(message: "user_not_found".tr);
-    } else if (result is SocketException) {
-      loginPinLoading.value = false;
-      var connectivityResult = await (Connectivity().checkConnectivity());
-      if (connectivityResult.contains(ConnectivityResult.none)) {
-        return ResponseResult(message: "no_connection".tr);
-      }
-      if (result.toString().contains("timeout period has expired") ||
-          result
-              .toString()
-              .contains("The remote computer refused the network connection")) {
-        return ResponseResult(message: 'failed_connect_server'.tr);
-      }
-      return ResponseResult(message: "no_connection".tr);
     } else {
       loginPinLoading.value = false;
-      SharedPr.setErrorAuthentication();
+      if(result is String && (result != "no_connection".tr || result != 'failed_connect_server'.tr)){
+        SharedPr.setErrorAuthentication();
+      }
       update();
       return ResponseResult(message: result);
     }
