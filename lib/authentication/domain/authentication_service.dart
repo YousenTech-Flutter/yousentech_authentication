@@ -1,16 +1,10 @@
-// ignore_for_file: unused_catch_clause
-
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:odoo_rpc/odoo_rpc.dart';
 import 'package:pos_shared_preferences/models/authentication_data/support_ticket.dart';
 import 'package:pos_shared_preferences/models/authentication_data/user.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_odoo_models.dart';
 import 'package:shared_widgets/config/app_urls.dart';
-import 'package:shared_widgets/config/socket_connectivity_checker.dart';
-import 'package:shared_widgets/utils/file_management.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
 import '../utils/handle_exception_helper.dart';
 import '../utils/odoo_connection_helper.dart';
@@ -42,7 +36,7 @@ class AuthenticationService implements AuthenticationRepository {
         'edit_invoice_and_process_it_on_closing',
         'show_pos_app_settings',
         'allow_print_session_reports_for_other_users',
-        'is_allowed_to_edit_price_limit',
+        // 'is_allowed_to_edit_price_limit',
         'is_allowed_to_view_price_limit',
         'show_final_report_for_all_session',
         'is_allowed_to_restore_local_db',
