@@ -6,7 +6,6 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
-// import 'package:shared_widgets/shared_widgets.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/validator_helper.dart';
@@ -50,9 +49,6 @@ changePasswordDialog() {
                                 color: AppColor.black,
                                 fontSize: 10.r,
                                 fontWeight: FontWeight.bold)),
-                        // SizedBox(
-                        //   height: 10.r,
-                        // ),
                         Icon(
                           Icons.password_rounded,
                           color: AppColor.amberLight,
@@ -217,10 +213,6 @@ changePasswordDialog() {
                           height: 10.r,
                         ),
                         Column(
-                          // mainAxisAlignment: addCancelButton
-                          //     ? MainAxisAlignment.spaceEvenly
-                          //     : MainAxisAlignment.center,
-
                           children: [
                             ButtonElevated(
                                 text: "change_password".tr,
@@ -236,28 +228,7 @@ changePasswordDialog() {
                                     fontWeight: FontWeight.normal),
                                 onPressed: () async {
                                   countErrors = 0;
-                                  if (_formKey.currentState!.validate()) {
-                                    ResponseResult responseResult =
-                                        await authenticationController
-                                            .changePassword(
-                                                password:
-                                                    passwordController.text);
-                                    if (responseResult.status) {
-                                      Get.offAll(() => const LoginScreen());
-                                      await SharedPr.removeUserObj();
-                                    }
-
-                                    appSnackBar(
-                                      messageType: MessageTypes.success,
-                                      message: responseResult.message,
-                                    );
-                                  } else {
-                                    appSnackBar(
-                                      message: countErrors > 1
-                                          ? 'enter_required_info'.tr
-                                          : errorMessage!,
-                                    );
-                                  }
+                                  LoginHelper.changePassword(authenticationController: authenticationController, formKey: _formKey, errorMessage: errorMessage, countErrors: countErrors);
                                 }),
                             SizedBox(
                               height: 10.r,
