@@ -20,27 +20,34 @@ class AuthenticationService implements AuthenticationRepository {
         _authenticationServiceInstance ?? AuthenticationService._();
     return _authenticationServiceInstance!;
   }
-  List userFields = [
-        'id',
-        'name',
-        'login',
-        'image_1920',
-        'pin_code',
-        'pin_code_lock',
-        'account_lock',
-        // 'pos_config_ids',
-        // 'allowed_to_exceed_item_stock_quantity',
-        'prevent_selling_with_negative_quantity',
-        // 'maximum_increase_allowed_unit_price',
-        // 'maximum_decrease_allowed_unit_price',
-        'edit_invoice_and_process_it_on_closing',
-        'show_pos_app_settings',
-        'allow_print_session_reports_for_other_users',
-        // 'is_allowed_to_edit_price_limit',
-        // 'is_allowed_to_view_price_limit',
-        'show_final_report_for_all_session',
-        'is_allowed_to_restore_local_db',
-      ];
+List userFields = [
+    'id',
+    'name',
+    'login',
+    'image_1920',
+    'pin_code',
+    'pin_code_lock',
+    'account_lock',
+    // 'pos_config_ids',
+    // 'allowed_to_exceed_item_stock_quantity',
+    'prevent_selling_with_negative_quantity',
+    // 'maximum_increase_allowed_unit_price',
+    // 'maximum_decrease_allowed_unit_price',
+    'edit_invoice_and_process_it_on_closing',
+    'show_pos_app_settings',
+    'allow_print_session_reports_for_other_users',
+    // 'is_allowed_to_edit_price_limit',
+    // 'is_allowed_to_view_price_limit',
+    'show_final_report_for_all_session',
+    'is_allowed_to_restore_local_db',
+    // 'user_selling_prices_priority',
+    // 'product_price_readonly',
+    // 'from_product_cost',
+    // 'pro_cost_incrse_percentage',
+    // 'sale_price_ids',
+    'is_module_installed',
+    'is_price_control_module_installed'
+  ];
   // ========================================== [ CHANGE PASSWORD ] =============================================
 
   // ========================================== [ ACTIVATE PIN LOGIN ] =============================================
