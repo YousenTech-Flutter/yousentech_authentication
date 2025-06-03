@@ -37,7 +37,7 @@ class AuthenticationService implements AuthenticationRepository {
         'show_pos_app_settings',
         'allow_print_session_reports_for_other_users',
         // 'is_allowed_to_edit_price_limit',
-        'is_allowed_to_view_price_limit',
+        // 'is_allowed_to_view_price_limit',
         'show_final_report_for_all_session',
         'is_allowed_to_restore_local_db',
       ];
