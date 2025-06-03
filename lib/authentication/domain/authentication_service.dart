@@ -31,7 +31,7 @@ class AuthenticationService implements AuthenticationRepository {
         // 'pos_config_ids',
         // 'allowed_to_exceed_item_stock_quantity',
         'prevent_selling_with_negative_quantity',
-        'maximum_increase_allowed_unit_price',
+        // 'maximum_increase_allowed_unit_price',
         'maximum_decrease_allowed_unit_price',
         'edit_invoice_and_process_it_on_closing',
         'show_pos_app_settings',
