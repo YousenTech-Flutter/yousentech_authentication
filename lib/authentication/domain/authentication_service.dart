@@ -20,7 +20,7 @@ class AuthenticationService implements AuthenticationRepository {
         _authenticationServiceInstance ?? AuthenticationService._();
     return _authenticationServiceInstance!;
   }
-  List userFields = [
+List userFields = [
     'id',
     'name',
     'login',
@@ -40,7 +40,6 @@ class AuthenticationService implements AuthenticationRepository {
     // 'is_allowed_to_view_price_limit',
     'show_final_report_for_all_session',
     'is_allowed_to_restore_local_db',
-
     // 'user_selling_prices_priority',
     // 'product_price_readonly',
     // 'from_product_cost',
