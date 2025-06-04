@@ -75,7 +75,7 @@ class _UsernameAndPasswordLoginScreenState
                 child: Stack(
                   children: [
                     CardLogin(
-                      height: 0.45.sh,
+                      height: 0.7.sh,
                       children: [
                         Expanded(
                           child: Form(
