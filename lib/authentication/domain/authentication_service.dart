@@ -46,7 +46,8 @@ List userFields = [
     // 'pro_cost_incrse_percentage',
     // 'sale_price_ids',
     'is_module_installed',
-    'is_price_control_module_installed'
+    'is_price_control_module_installed',
+    'is_discount_module_installed'
   ];
   // ========================================== [ CHANGE PASSWORD ] =============================================
 
@@ -411,7 +412,7 @@ List userFields = [
   }
 
     addDiscountAndPriceControlFields() {
-    if (SharedPr.currentPosObject?.isDiscountActivated ?? false) {
+    if (SharedPr.chosenUserObj!.isDiscountModuleInstalled!) {
       userFields.addAll(
           ['discount_value', 'discount_control', 'priority_user_discount']);
     }
