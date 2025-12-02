@@ -1,7 +1,6 @@
-import 'package:flutter/widgets.dart';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pos_localbackup/local_backup/config/app_enum.dart';
-import 'package:pos_localbackup/local_backup/utils/local_backup_prompt.dart';
 import 'package:pos_shared_preferences/models/authentication_data/login_info.dart';
 import 'package:pos_shared_preferences/models/notification_helper_model.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
@@ -13,7 +12,6 @@ import 'package:yousentech_authentication/authentication/domain/authentication_v
 import 'package:yousentech_authentication/authentication/presentation/views/login_screen.dart';
 import 'package:yousentech_authentication/authentication/presentation/views/username_password_login_screen.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/change_password_screen.dart';
-import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
 
 class LoginHelper {
   static Future forgetPassword({required AuthenticationController authenticationController}) async {
@@ -33,6 +31,7 @@ class LoginHelper {
       required GlobalKey<FormState> formKey,
       required String? errorMessage,
       required int countErrors,
+      required String password
       }) async {
     if (!formKey.currentState!.validate()) {
       appSnackBar(
@@ -41,7 +40,7 @@ class LoginHelper {
       return;
     }
     ResponseResult responseResult = await authenticationController
-        .changePassword(password: passwordController.text);
+        .changePassword(password: password);
     if (responseResult.status) {
       Get.offAll(() => const LoginScreen());
       await SharedPr.removeUserObj();
@@ -60,6 +59,7 @@ class LoginHelper {
     required AuthenticationController authenticationController,
     required TextEditingController usernameController,
     required TextEditingController passwordController,
+    required BuildContext context,
   }) async {
     if (!formKey.currentState!.validate()) {
       appSnackBar(
@@ -77,15 +77,17 @@ class LoginHelper {
         responseResult.data.accountLock = 0;
         await SharedPr.setUserObj(userObj: responseResult.data);
         await SharedPr.setForgetPass(flage: false, otp: '');
-        changePasswordDialog();
+        // ignore: use_build_context_synchronously
+        changePasswordDialog(context:context );
         return;
       }
-      if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
-          SharedPr.localBackUpSettingObj!.selectedOption ==
-              BackUpOptions.backup_on_login.name) {
-        await showLocalBackupPrompt();
-      }
-      Get.to(() => const HomePage());
+      // if (SharedPr.localBackUpSettingObj?.backupSavePth != null &&
+      //     SharedPr.localBackUpSettingObj!.selectedOption ==
+      //         BackUpOptions.backup_on_login.name) {
+      //   await showLocalBackupPrompt();
+      // }
+      Get.off(() => Home());
+      // Get.off(() => const DashboardScreen());
       appSnackBar(
         messageType: MessageTypes.success,
         message: responseResult.message,
@@ -104,7 +106,8 @@ class LoginHelper {
             return;
           }
         }
-        showAccountLockDialog();
+        // ignore: use_build_context_synchronously
+        showAccountLockDialog(authenticationController: authenticationController, context: context);
         return;
       }
       appSnackBar(message: responseResult.message);
@@ -183,4 +186,64 @@ class LoginHelper {
       return;
     }
   }
+
+
+
+  static  void subMitPIN({required AuthenticationController authenticationController}) async {
+  if (authenticationController.pinKeyController.text.isEmpty) {
+    appSnackBar(
+      message: 'required_message'.trParams({'field_name': 'pin_number'.tr}),
+    );
+    return;
+  }
+
+  if (SharedPr.chosenUserObj!.pinCodeLock! >= 3) {
+    authenticationController.setChoosePin();
+    appSnackBar(
+      message: 'pin_code_locked'.tr,
+    );
+    return;
+  } else if (SharedPr.chosenUserObj!.accountLock! == 3) {
+    appSnackBar(
+      message: 'account_locked'.tr,
+    );
+    return;
+  }
+  authenticationController.loading.value = true;
+  await authenticationController
+      .authenticateUsingPIN(
+          pinCode: authenticationController.pinKeyController.text)
+      .then((value) async {
+    if (value.status) {
+      if (SharedPr.chosenUserObj!.accountLock! < 3) {
+        await SharedPr.updateAccountLockCountLocally(reset: true);
+      }
+      await SharedPr.updatePinCodeLockCountLocally(reset: true);
+      await authenticationController.countPINFailureAttempt(reset: true);
+      authenticationController.pinKeyController.clear();
+      authenticationController.loading.value = false;
+      Get.to(() =>  InvoiceHome());
+    } else {
+      if (value.message != "user_not_found".tr) {
+        appSnackBar(
+          message: value.message,
+        );
+        authenticationController.loading.value = false;
+        return;
+      }
+      if (SharedPr.chosenUserObj!.pinCodeLock! < 3) {
+        await SharedPr.updatePinCodeLockCountLocally();
+        await authenticationController.countPINFailureAttempt();
+      }
+      appSnackBar(
+        message: SharedPr.chosenUserObj!.pinCodeLock! < 3
+            ? 'unsuccessful_login'.trParams(
+                {"field_name": "${3 - SharedPr.chosenUserObj!.pinCodeLock!}"})
+            : 'pin_code_locked'.tr,
+      );
+      authenticationController.loading.value = false;
+    }
+  });
+}
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
@@ -13,29 +14,38 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  AuthenticationController authenticationController =
-      Get.put(AuthenticationController.getInstance());
+  AuthenticationController authenticationController = Get.put(
+    AuthenticationController.getInstance(),
+  );
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: customAppBar(),
-        backgroundColor: AppColor.white,
+        appBar: customAppBar(
+          context: context,
+          onDarkModeChanged: () {
+            setState(() {});
+          },
+        ),
+        backgroundColor: !SharedPr.isDarkMode!? Color(0xFFDDDDDD) :AppColor.darkModeBackgroundColor,
         body: GetBuilder<AuthenticationController>(
-            id: "choosePin",
-            builder: (context) {
-              return SingleChildScrollView(
+          id: "choosePin",
+          builder: (context) {
+            return Center(
+              child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     (!authenticationController.choosePin)
-                        ? const UsernameAndPasswordLoginScreen()
-                        : const PINLoginScreen(),
+                        ?  UsernameAndPasswordLoginScreen()
+                        : PINLoginScreen(),
                   ],
                 ),
-              );
-            }),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
-import 'package:shared_widgets/config/app_styles.dart';
+import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
-import 'package:shared_widgets/shared_widgets/card_login.dart';
+import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/custom_app_bar.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
+import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
+
+import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_pos_token/token_settings/domain/token_viewmodel.dart';
-import '../../domain/authentication_viewmodel.dart';
 
 class EmployeesListScreen extends StatefulWidget {
   const EmployeesListScreen({super.key});
@@ -20,26 +22,28 @@ class EmployeesListScreen extends StatefulWidget {
 }
 
 class _EmployeesListScreenState extends State<EmployeesListScreen> {
-  final TokenController tokenController =
-  Get.put(TokenController.getInstance());
-  final AuthenticationController authenticationController =
-  Get.put(AuthenticationController.getInstance());
-  late FocusNode _focusNode; 
-  int _selectedIndex = 0;
+  final TokenController tokenController = Get.put(
+    TokenController.getInstance(),
+  );
+  final AuthenticationController authenticationController = Get.put(
+    AuthenticationController.getInstance(),
+  );
+  late FocusNode _focusNode;
   final ScrollController _scrollController = ScrollController();
-
+  bool lightMode = true;
   @override
   void initState() {
     super.initState();
     _focusNode = FocusNode();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      tokenController.isLoading.value = true;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      flutterWindowCloseshow(context);
       _focusNode.requestFocus();
-      tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
+      await tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
+      tokenController.update(["update_employees"]);
+      
     });
-    flutterWindowCloseshow(context);
   }
-  
+
   @override
   void didUpdateWidget(covariant EmployeesListScreen oldWidget) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -47,7 +51,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
     });
     super.didUpdateWidget(oldWidget);
   }
-
 
   @override
   void dispose() {
@@ -59,367 +62,443 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<TokenController>(builder: (contextx) {
-      return SafeArea(
-          child: Scaffold(
-              appBar: customAppBar(),
-              backgroundColor: AppColor.white,
-              body: Obx(() {
-                if (tokenController.isLoading.value || tokenController.result == null) {
-                  return CardLogin(children: [
-                    Text(
-                      'employee_list'.tr,
-                      style: TextStyle(
-                          fontSize: 12.r,
-                          color: AppColor.charcoal,
-                          fontWeight: FontWeight.w700),
-                    ),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'welcomeBack'.tr,
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal',
-                                package: 'yousentech_authentication',
-                                ),
-                          ),
-                          TextSpan(
-                            text: ' ${'to'.tr}  ',
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal',
-                                package: 'yousentech_authentication',
-                                ),
-                          ),
-                          TextSpan(
-                            text: '${'qimam'.tr}  ',
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.cyanTeal,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal',
-                                package: 'yousentech_authentication',),
-                          ),
-                          TextSpan(
-                            text: 'choose_your_account'.tr,
-                            style: TextStyle(
-                                fontSize: 8.r,
-                                color: AppColor.lavenderGray,
-                                fontWeight: FontWeight.w400,
-                                fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                          ),
-                        ],
-                      ),
-                      softWrap: true,
-                      overflow: TextOverflow.visible,
-                    ),
-                    SizedBox(
-                      height: 0.02.sh,
-                    ),
-                    Center(
-                      child: CircularProgressIndicator(
-                        color: AppColor.cyanTeal,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 0.01.sh,
-                    ),
-                    Text(
-                      'loading'.tr,
-                      style: TextStyle(
-                          fontSize: 10.r,
-                          color: AppColor.lavenderGray,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ]);
-                } else if (!tokenController.result.status) {
-                  return CardLogin(children: [
-                    Expanded(
+    return IgnorePointer(
+      ignoring: tokenController.isLoading.value,
+      child: Stack(
+        children: [
+          GetBuilder<TokenController>(
+            id: "update_employees",
+            builder: (contextx) {
+              return SafeArea(
+                child: Scaffold(
+                  appBar: customAppBar(
+                    context: context,
+                    onDarkModeChanged: () {
+                      setState(() {});
+                    },
+                  ),
+                  backgroundColor:
+                      !SharedPr.isDarkMode!
+                          ? Color(0xFFDDDDDD)
+                          :AppColor.darkModeBackgroundColor,
+                  body: Center(
+                    child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          Icon(
-                            Icons.error_outline,
-                            color: Colors.red[400],
-                            size: 50.r,
-                          ),
-                          SizedBox(
-                            height: 0.01.sh,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(8.0.r),
-                            child: Text(
-                              tokenController.result.message ?? '',
-                              textAlign: TextAlign.center,
-                              style: AppStyle.textStyle(
-                                fontSize: 12.r,
-                                fontWeight: FontWeight.w500,
-                                color: AppColor.blackwithopacity,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 0.01.sh,
+                          Builder(
+                            builder: (context) {
+                              return SizeProvider(
+                                baseSize: Size(
+                                  context.setWidth(454.48),
+                                  context.setHeight(470),
+                                ),
+                                width: context.setWidth(454.48),
+                                height: context.setHeight(470),
+                                child: Container(
+                                  width: context.setWidth(454.48),
+                                  height: context.setHeight(470),
+                                  decoration: ShapeDecoration(
+                                    color:
+                                        !SharedPr.isDarkMode!
+                                            ? Colors.white
+                                            : Colors.white.withValues(
+                                              alpha: 0.01,
+                                            ),
+
+                                    shape: RoundedRectangleBorder(
+                                      side: BorderSide(
+                                        width: 1,
+                                        color: Colors.white.withValues(
+                                          alpha: 0.50,
+                                        ),
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                        context.setMinSize(33),
+                                      ),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: context.setHeight(39.38),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          'employee_list'.tr,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color:
+                                                SharedPr.isDarkMode!
+                                                    ? Colors.white
+                                                    : Color(0xFF2E2E2E),
+                                            fontSize: context.setSp(20.03),
+                                            fontFamily: 'Tajawal',
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: context.setHeight(16)),
+                                      Center(
+                                        child: Text.rich(
+                                          TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text:
+                                                    "${'welcomeBack'.tr} ${'to'.tr} ",
+                                              ),
+                                              TextSpan(
+                                                text: '${'qimam'.tr}  ',
+                                                style: TextStyle(
+                                                  color: const Color(
+                                                    0xFF16A6B7,
+                                                  ),
+                                                  fontSize: context.setSp(16),
+                                                  fontFamily: 'Tajawal',
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                              TextSpan(
+                                                text: 'choose_your_account'.tr,
+                                              ),
+                                            ],
+                                          ),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color:
+                                                SharedPr.isDarkMode!
+                                                    ? Color(0xFFB1B3BC)
+                                                    : Color(0xFF9F9FA5),
+                                            fontSize: context.setSp(14.42),
+                                            fontFamily: 'Tajawal',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: context.setHeight(35)),
+                                      if (tokenController.isLoading.value ||
+                                          tokenController.result == null) ...[
+                                        SizedBox(height: context.setHeight(40)),
+                                        Center(
+                                          child: CircularProgressIndicator(
+                                            color: AppColor.cyanTeal,
+                                          ),
+                                        ),
+                                        SizedBox(height: context.setHeight(10)),
+                                        Center(
+                                          child: Text(
+                                            'loading'.tr,
+                                            style: TextStyle(
+                                              color:
+                                                  SharedPr.isDarkMode!
+                                                      ? Color(0xFFB1B3BC)
+                                                      : Color(0xFF9F9FA5),
+                                              fontSize: context.setSp(14.42),
+                                              fontFamily: 'Tajawal',
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                      ] else if (!tokenController
+                                          .result
+                                          .status) ...[
+                                        Center(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: context.setHeight(20),
+                                            ),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: context.setHeight(40),
+                                                ),
+                                                Icon(
+                                                  Icons.error_outline,
+                                                  color: Colors.red[400],
+                                                  size: context.setWidth(50),
+                                                ),
+                                                SizedBox(
+                                                  height: context.setHeight(10),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.all(
+                                                    context.setMinSize(8),
+                                                  ),
+                                                  child: Text(
+                                                    tokenController
+                                                            .result
+                                                            .message ??
+                                                        '',
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      color:
+                                                          SharedPr.isDarkMode!
+                                                              ? Color(
+                                                                0xFFB1B3BC,
+                                                              )
+                                                              : Color(
+                                                                0xFF9F9FA5,
+                                                              ),
+                                                      fontSize: context.setSp(
+                                                        14.42,
+                                                      ),
+                                                      fontFamily: 'Tajawal',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: context.setHeight(10),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.all(
+                                                    context.setMinSize(8),
+                                                  ),
+                                                  child: ButtonElevated(
+                                                    text: "Update_page".tr,
+                                                    width: context.screenWidth,
+                                                    backgroundColor:
+                                                        Colors.red[400],
+                                                    textStyle: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: context.setSp(
+                                                        14.42,
+                                                      ),
+                                                      fontFamily: 'Tajawal',
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    onPressed: () async {
+                                                      tokenController
+                                                          .isLoading
+                                                          .value = true;
+                                                      await tokenController
+                                                          .loadEmployeesBasedOnToken(
+                                                            token:
+                                                                SharedPr.token!,
+                                                          );
+                                                      tokenController.update([
+                                                        "update_employees",
+                                                      ]);
+                                                      tokenController
+                                                          .isLoading
+                                                          .value = false;
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ] else ...[
+                                        if (tokenController
+                                            .finalResult
+                                            .isEmpty) ...[
+                                          Center(
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: context.setHeight(40),
+                                                ),
+                                                Icon(
+                                                  Icons.no_accounts_outlined,
+                                                  color: AppColor.cyanTeal,
+                                                  size: context.setWidth(50),
+                                                ),
+                                                Text(
+                                                  'empty_list'.tr,
+                                                  style: TextStyle(
+                                                    color:
+                                                        SharedPr.isDarkMode!
+                                                            ? Color(0xFFB1B3BC)
+                                                            : Color(0xFF9F9FA5),
+                                                    fontSize: context.setSp(
+                                                      14.42,
+                                                    ),
+                                                    fontFamily: 'Tajawal',
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ] else ...[
+                                          Expanded(
+                                            child: GridView.extent(
+                                              maxCrossAxisExtent: context
+                                                  .setWidth(106),
+                                              childAspectRatio:
+                                                  context.setWidth(106) /
+                                                  context.setHeight(118),
+                                              crossAxisSpacing: context.setWidth(
+                                                19,
+                                              ), // المسافة الأفقية بين العناصر
+                                              mainAxisSpacing: context.setHeight(
+                                                19,
+                                              ), // المسافة العمودية بين العناصر
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal: context.setWidth(
+                                                  50.2,
+                                                ),
+                                              ), // المسافة من الحواف
+                                              children: List.generate(
+                                                tokenController
+                                                    .finalResult
+                                                    .length,
+                                                (index) {
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      final TokenController
+                                                      tokenUpdateController =
+                                                          Get.put(
+                                                            TokenController.getInstance(),
+                                                          );
+                                                      tokenUpdateController
+                                                          .onSelectEmployee(
+                                                            index,
+                                                            authenticationController,
+                                                          );
+                                                    },
+                                                    child: Builder(
+                                                      builder: (context) {
+                                                        return SizeProvider(
+                                                          baseSize: Size(
+                                                            context.setWidth(
+                                                              106,
+                                                            ),
+                                                            context.setHeight(
+                                                              118,
+                                                            ),
+                                                          ),
+                                                          width: context
+                                                              .setWidth(106),
+                                                          height: context
+                                                              .setHeight(118),
+                                                          child: Container(
+                                                            decoration: ShapeDecoration(
+                                                              color:
+                                                                  SharedPr.isDarkMode!
+                                                                      ? const Color(
+                                                                        0x2B555555,
+                                                                      )
+                                                                      : const Color(
+                                                                        0xFFF6F6F6,
+                                                                      ),
+                                                              shape: RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius.circular(
+                                                                      context
+                                                                          .setMinSize(
+                                                                            16,
+                                                                          ),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              spacing: 12,
+                                                              children: [
+                                                                SvgPicture.asset(
+                                                                  AppImages.person,
+                                                                  package: 'shared_widgets',
+                                                                  fit:
+                                                                      BoxFit
+                                                                          .cover,
+                                                                  width: context
+                                                                      .setWidth(
+                                                                        40,
+                                                                      ),
+                                                                  height: context
+                                                                      .setHeight(
+                                                                        45,
+                                                                      ),
+                                                                  color:
+                                                                      SharedPr.isDarkMode!
+                                                                          ? null
+                                                                          : const Color(
+                                                                            0xFF18BBCD,
+                                                                          ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsets.symmetric(
+                                                                    horizontal:
+                                                                        context
+                                                                            .setWidth(
+                                                                              16,
+                                                                            ),
+                                                                  ),
+                                                                  child: Text(
+                                                                    '${tokenController.finalResult[index].name}',
+                                                                    style: TextStyle(
+                                                                      color:
+                                                                          SharedPr.isDarkMode!
+                                                                              ? const Color(
+                                                                                0xFFBABABA,
+                                                                              )
+                                                                              : const Color(
+                                                                                0xFF6B6868,
+                                                                              ),
+
+                                                                      fontSize: context
+                                                                          .setSp(
+                                                                            14,
+                                                                          ),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                      fontFamily:
+                                                                          'Tajawal',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ],
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0.r),
-                      child: ButtonElevated(
-                        text: "Update_page".tr,
-                        width: ScreenUtil().screenWidth,
-                        backgroundColor: Colors.red[400],
-                        textStyle: AppStyle.textStyle(
-                          color: Colors.white,
-                          fontSize: 10.r,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        onPressed: () {
-                          tokenController.isLoading.value = true;
-                          tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
-                        },
-                      ),
-                    ),
-                  ]);
-                } else {
-                  if (tokenController.finalResult.isEmpty) {
-                    return CardLogin(children: [
-                      Text(
-                        'employee_list'.tr,
-                        style: TextStyle(
-                            fontSize: 12.r,
-                            color: AppColor.charcoal,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        height: 0.01.sh,
-                      ),
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'welcomeBack'.tr,
-                              style: TextStyle(
-                                  fontSize: 8.r,
-                                  color: AppColor.lavenderGray,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                            ),
-                            TextSpan(
-                              text: ' ${'to'.tr}  ',
-                              style: TextStyle(
-                                  fontSize: 8.r,
-                                  color: AppColor.lavenderGray,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                            ),
-                            TextSpan(
-                              text: '${'qimam'.tr}  ',
-                              style: TextStyle(
-                                  fontSize: 8.r,
-                                  color: AppColor.cyanTeal,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                            ),
-                          ],
-                        ),
-                        softWrap:
-                        true, // Allows text to wrap into the next line if needed
-                        overflow: TextOverflow
-                            .visible, // Ensures text wraps and doesn't overflow
-                      ),
-                      SizedBox(
-                        height: 0.01.sh,
-                      ),
-                      Icon(
-                        Icons.no_accounts_outlined,
-                        color: AppColor.cyanTeal,
-                        size: 50.r,
-                      ),
-                      Text(
-                        'empty_list'.tr,
-                        style: TextStyle(
-                            fontSize: 9.r,
-                            color: AppColor.lavenderGray,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ]);
-                  } else {
-                    _focusNode.requestFocus();
-                    return KeyboardListener(
-                        focusNode: _focusNode,
-                        onKeyEvent: (KeyEvent event) {
-                          if (event is KeyDownEvent) {
-                            if (_focusNode.hasFocus) {
-                              if (event.logicalKey == LogicalKeyboardKey.arrowDown) {
-                                setState(() {
-                                  if (_selectedIndex < tokenController.finalResult.length - 1) {
-                                    _selectedIndex++;
-                                    _scrollToIndex();
-                                  }
-                                });
-                              } else if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
-                                setState(() {
-                                  if (_selectedIndex > 0) {
-                                    _selectedIndex--;
-                                    _scrollToIndex();
-                                  }
-                                });
-                              } else if (event.logicalKey == LogicalKeyboardKey.enter) {
-                                if (tokenController.finalResult.isNotEmpty) {
-                                  tokenController.onSelectEmployee(
-                                      _selectedIndex, authenticationController);
-                                  _focusNode.requestFocus();
-                                }
-                              }
-                            }
-                          }
-                        },
-                        child: Builder(builder: (context) {
-                          return CardLogin(children: [
-                            Text(
-                              'employee_list'.tr,
-                              style: TextStyle(
-                                  fontSize: 12.r,
-                                  color: AppColor.charcoal,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            SizedBox(
-                              height: 0.01.sh,
-                            ),
-                            RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: 'welcomeBack'.tr,
-                                    style: TextStyle(
-                                        fontSize: 8.r,
-                                        color: AppColor.lavenderGray,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                                  ),
-                                  TextSpan(
-                                    text: ' ${'to'.tr}  ',
-                                    style: TextStyle(
-                                        fontSize: 8.r,
-                                        color: AppColor.lavenderGray,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                                  ),
-                                  TextSpan(
-                                    text: '${'qimam'.tr}  ',
-                                    style: TextStyle(
-                                        fontSize: 8.r,
-                                        color: AppColor.cyanTeal,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                                  ),
-                                  TextSpan(
-                                    text: 'choose_your_account'.tr,
-                                    style: TextStyle(
-                                        fontSize: 8.r,
-                                        color: AppColor.lavenderGray,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: 'Tajawal',package: 'yousentech_authentication',),
-                                  ),
-                                ],
-                              ),
-                              softWrap: true,
-                              overflow: TextOverflow.visible,
-                            ),
-                            SizedBox(
-                              height: 0.01.sh,
-                            ),
-                            Expanded(
-                              child: ListView.separated(
-                                shrinkWrap: true,
-                                // key: _listKey,
-                                controller: _scrollController,
-                                itemBuilder:
-                                    (BuildContext context, int index) {
-                                  bool isSelected = _selectedIndex == index;
-                                  return Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      color: isSelected ? AppColor.cyanTeal.withOpacity(0.15) : null,
-                                    ),
-                                    child: ListTile(
-                                      onTap: () async {
-                                        tokenController.onSelectEmployee(
-                                            index, authenticationController);
-                                      },
-                                      title: Text(
-                                        tokenController
-                                            .finalResult[index].name!,
-                                        style: TextStyle(
-                                            fontSize: 10.r,
-                                            color: AppColor.lavenderGray,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      tileColor: _selectedIndex == index ? Colors.blue[100] : null,
-                                      selected: _selectedIndex == index,
-                                      leading: Icon(
-                                        Icons.person_outline_rounded,
-                                        size: 10.r,
-                                        color: AppColor.charcoal,
-                                      ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward,
-                                        size: 10.r,
-                                        color: AppColor.charcoal,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                separatorBuilder: (context, index) {
-                                  return Divider(
-                                    height: 10.h,
-                                    color: AppColor.roseQuartz,
-                                  );
-                                },
-                                itemCount: tokenController.finalResult.length,
-                              ),
-                            ),
-                          ]);
-                        }));
-                  }
-                }
-              })));
-    });
+                  ),
+                ),
+              );
+            },
+          ),
+          Obx(
+            () =>
+                tokenController.isLoading.value
+                    ? const LoadingWidget()
+                    : Container(),
+          ),
+        ],
+      ),
+    );
   }
-
-  void _scrollToIndex() {
-    const itemHeight = 65.0;
-    final scrollOffset = _scrollController.offset;
-    final viewportHeight = _scrollController.position.viewportDimension;
-    final itemTop = _selectedIndex * itemHeight;
-    final itemBottom = itemTop + itemHeight;
-
-    if (itemTop < scrollOffset) {
-      _scrollController.animateTo(
-        itemTop,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-      );
-    } else if (itemBottom > scrollOffset + viewportHeight) {
-      _scrollController.animateTo(
-        itemBottom - viewportHeight,
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-      );
-    }
-  }
-
 }
