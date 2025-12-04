@@ -12,6 +12,7 @@ import 'package:yousentech_authentication/authentication/domain/authentication_v
 import 'package:yousentech_authentication/authentication/presentation/views/login_screen.dart';
 import 'package:yousentech_authentication/authentication/presentation/views/username_password_login_screen.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/change_password_screen.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home.dart';
 
 class LoginHelper {
   static Future forgetPassword({required AuthenticationController authenticationController}) async {
@@ -222,7 +223,7 @@ class LoginHelper {
       await authenticationController.countPINFailureAttempt(reset: true);
       authenticationController.pinKeyController.clear();
       authenticationController.loading.value = false;
-      Get.to(() =>  InvoiceHome());
+      Get.to(() =>  Home());
     } else {
       if (value.message != "user_not_found".tr) {
         appSnackBar(

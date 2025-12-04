@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
-import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home_page.dart';
+import 'package:yousentech_pos_dashboard/dashboard/src/presentation/views/home.dart';
 
 void subMitPIN({required AuthenticationController authenticationController}) async {
   if (authenticationController.pinKeyController.text.isEmpty) {
@@ -37,7 +37,7 @@ void subMitPIN({required AuthenticationController authenticationController}) asy
       await authenticationController.countPINFailureAttempt(reset: true);
       authenticationController.pinKeyController.clear();
       authenticationController.loading.value = false;
-      Get.to(() => const HomePage());
+      Get.to(() => const Home());
     } else {
       // if (value.message == "un_trusted_device".tr || value.message =="sign_in_using_username_at_least_one_time".tr || value.message =="no_connection".tr  || value.message == 'failed_connect_server'.tr) {
       //   appSnackBar(
