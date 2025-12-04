@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:remote_database_setting/remote_database_setting/domain/remote_database_setting_viewmodel.dart';
+import 'package:remote_database_setting/remote_database_setting/presentation/create_support_ticket.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
@@ -13,12 +14,10 @@ import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
-import 'package:shared_widgets/shared_widgets/create_support_ticket.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/utils/login_helper.dart';
-import 'package:yousentech_authentication/authentication/utils/login_helper_old.dart';
 
 class UsernameAndPasswordLoginScreen extends StatefulWidget {
   const UsernameAndPasswordLoginScreen({super.key});
