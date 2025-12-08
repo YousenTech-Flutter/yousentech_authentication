@@ -61,9 +61,9 @@ class _UsernameAndPasswordLoginScreenState
               ),
             },
             child: Padding(
-              padding:  EdgeInsets.symmetric(vertical: context.setHeight(83)),
+              padding: EdgeInsets.symmetric(vertical: context.setHeight(83)),
               child: Stack(
-                alignment : AlignmentDirectional.center,
+                alignment: AlignmentDirectional.center,
                 children: [
                   Center(
                     child: Column(
@@ -90,14 +90,14 @@ class _UsernameAndPasswordLoginScreenState
                                 width: context.setWidth(454.48),
                                 height: context.setHeight(470),
                                 decoration: ShapeDecoration(
-                                  color:
-                                      !SharedPr.isDarkMode!
-                                          ? Colors.white
-                                          : Colors.white.withValues(alpha: 0.01),
+                                  color: !SharedPr.isDarkMode!
+                                      ? Colors.white
+                                      : Colors.white.withValues(alpha: 0.01),
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1,
-                                      color: Colors.white.withValues(alpha: 0.50),
+                                      color:
+                                          Colors.white.withValues(alpha: 0.50),
                                     ),
                                     borderRadius: BorderRadius.circular(
                                       context.setMinSize(33),
@@ -107,33 +107,37 @@ class _UsernameAndPasswordLoginScreenState
                                 child: Form(
                                   key: _formKey,
                                   child: Padding(
-                                    padding:  EdgeInsets.symmetric(horizontal: context.setWidth(48.87)),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: context.setWidth(48.87)),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        SizedBox(height: context.setHeight(39.38)),
+                                        SizedBox(
+                                            height: context.setHeight(39.38)),
                                         Center(
                                           child: Text(
                                             'login'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color:
-                                                  SharedPr.isDarkMode!
-                                                      ? Colors.white
-                                                      : const Color(0xFF2E2E2E),
+                                              color: SharedPr.isDarkMode!
+                                                  ? Colors.white
+                                                  : const Color(0xFF2E2E2E),
                                               fontSize: context.setSp(20.03),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
                                         ),
-                                    
+
                                         SizedBox(height: context.setHeight(16)),
                                         Center(
                                           child: RichText(
                                             text: TextSpan(
                                               style: TextStyle(
-                                                color:SharedPr.isDarkMode! ? Color(0xFFB1B3BC) :  const Color(0xFF9F9FA5),
+                                                color: SharedPr.isDarkMode!
+                                                    ? Color(0xFFB1B3BC)
+                                                    : const Color(0xFF9F9FA5),
                                                 fontSize: context.setSp(14.42),
                                                 fontFamily: 'Tajawal',
                                                 fontWeight: FontWeight.w400,
@@ -144,7 +148,8 @@ class _UsernameAndPasswordLoginScreenState
                                                   text:
                                                       ' ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                    color: const Color(0xFF16A6B7),
+                                                    color:
+                                                        const Color(0xFF16A6B7),
                                                     fontSize: context.setSp(16),
                                                     fontFamily: 'Tajawal',
                                                     fontWeight: FontWeight.w500,
@@ -159,20 +164,21 @@ class _UsernameAndPasswordLoginScreenState
                                             ),
                                           ),
                                         ),
-                                        
+
                                         SizedBox(height: context.setHeight(35)),
-                                    
+
                                         // email
                                         Padding(
-                                          padding: EdgeInsets.symmetric(horizontal:context.setWidth(10.42) ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  context.setWidth(10.42)),
                                           child: Text(
                                             'email'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color:
-                                                  !SharedPr.isDarkMode!
-                                                      ? Color(0xFF585858)
-                                                      : Color(0xFFB1B3BC),
+                                              color: !SharedPr.isDarkMode!
+                                                  ? Color(0xFF585858)
+                                                  : Color(0xFFB1B3BC),
                                               fontSize: context.setSp(12.82),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
@@ -184,7 +190,7 @@ class _UsernameAndPasswordLoginScreenState
                                             return SizeProvider(
                                               baseSize: Size(
                                                 // context.setWidth(357.33),
-                                                 context.screenWidth,
+                                                context.screenWidth,
                                                 context.setHeight(51.28),
                                               ),
                                               width: context.screenWidth,
@@ -201,120 +207,163 @@ class _UsernameAndPasswordLoginScreenState
                                                               51.28,
                                                             ),
                                                           ),
-                                                          width: context.screenWidth,
-                                                          height: context.setHeight(
+                                                          width: context
+                                                              .screenWidth,
+                                                          height:
+                                                              context.setHeight(
                                                             51.28,
                                                           ),
-                                                          child: ContainerTextField(
+                                                          child:
+                                                              ContainerTextField(
                                                             focusNode:
                                                                 userNameFocusNode,
                                                             controller:
                                                                 usernameController,
-                                                            labelText: 'email'.tr,
+                                                            labelText:
+                                                                'email'.tr,
                                                             keyboardType:
-                                                                TextInputType.text,
-                                    
-                                                            width: context.screenWidth,
+                                                                TextInputType
+                                                                    .text,
+                                                            inputFormatters: [
+                                                              TextInputFormatter
+                                                                  .withFunction(
+                                                                      (oldValue,
+                                                                          newValue) {
+                                                                final text =
+                                                                    newValue
+                                                                        .text;
+
+                                                                // لا يسمح إلا بحروف + أرقام + @ + .
+                                                                final allowed =
+                                                                    RegExp(
+                                                                        r'^[a-zA-Z0-9@.]*$');
+                                                                if (!allowed
+                                                                    .hasMatch(
+                                                                        text)) {
+                                                                  return oldValue; // منع الإدخال
+                                                                }
+
+                                                                // منع تكرار @
+                                                                if (text
+                                                                        .split(
+                                                                            '@')
+                                                                        .length >
+                                                                    2) {
+                                                                  return oldValue;
+                                                                }
+
+                                                                return newValue;
+                                                              }),
+                                                            ],
+                                                            width: context
+                                                                .screenWidth,
                                                             height: context
-                                                                .setHeight(51.28),
-                                                            fontSize: context.setSp(
+                                                                .setHeight(
+                                                                    51.28),
+                                                            fontSize:
+                                                                context.setSp(
                                                               14,
                                                             ),
                                                             contentPadding:
-                                                                EdgeInsets.fromLTRB(
-                                                                  context.setWidth(
-                                                                    14.82,
-                                                                  ),
-                                                                  context.setHeight(
-                                                                    15.22,
-                                                                  ),
-                                                                  context.setWidth(
-                                                                    14.82,
-                                                                  ),
-                                                                  context.setHeight(
-                                                                    15.22,
-                                                                  ),
-                                                                ),
+                                                                EdgeInsets
+                                                                    .fromLTRB(
+                                                              context.setWidth(
+                                                                14.82,
+                                                              ),
+                                                              context.setHeight(
+                                                                15.22,
+                                                              ),
+                                                              context.setWidth(
+                                                                14.82,
+                                                              ),
+                                                              context.setHeight(
+                                                                15.22,
+                                                              ),
+                                                            ),
                                                             showLable: false,
-                                                            iconcolor: const Color(
+                                                            iconcolor:
+                                                                const Color(
                                                               0xFF16A6B7,
                                                             ),
-                                                            borderColor:
-                                                                !SharedPr
-                                                                        .isDarkMode!
-                                                                    ? Color(
-                                                                      0xFFC2C3CB,
-                                                                    )
-                                                                    : null,
-                                                            fillColor:
-                                                                !SharedPr
-                                                                        .isDarkMode!
-                                                                    ? Colors.white
-                                                                        .withValues(
-                                                                          alpha:
-                                                                              0.43,
-                                                                        )
-                                                                    : const Color(
-                                                                      0xFF2B2B2B,
-                                                                    ),
-                                                            hintcolor:
-                                                                !SharedPr
-                                                                        .isDarkMode!
-                                                                    ? Color(
-                                                                      0xFFC2C3CB,
-                                                                    )
-                                                                    : const Color(
-                                                                      0xFFC2C3CB,
-                                                                    ),
-                                                            color:
-                                                                !SharedPr
-                                                                        .isDarkMode!
-                                                                    ? Color(
-                                                                      0xFFC2C3CB,
-                                                                    )
-                                                                    : const Color(
-                                                                      0xFFC2C3CB,
-                                                                    ),
-                                                            isAddOrEdit: true,
-                                                            borderRadius: context
-                                                                .setMinSize(8.01),
-                                                            hintText: 'email'.tr,
-                                                            prefixIcon: Padding(
-                                                              padding:
-                                                                  EdgeInsets.symmetric(
-                                                                    horizontal:
-                                                                        context
-                                                                            .setWidth(
-                                                                              14,
-                                                                            ),
+                                                            borderColor: !SharedPr
+                                                                    .isDarkMode!
+                                                                ? Color(
+                                                                    0xFFC2C3CB,
+                                                                  )
+                                                                : null,
+                                                            fillColor: !SharedPr
+                                                                    .isDarkMode!
+                                                                ? Colors.white
+                                                                    .withValues(
+                                                                    alpha: 0.43,
+                                                                  )
+                                                                : const Color(
+                                                                    0xFF2B2B2B,
                                                                   ),
-                                                              child: SvgPicture.asset(
-                                                                AppImages.emaill,
-                                                                package: 'shared_widgets',
-                                                                color: const Color(
+                                                            hintcolor: !SharedPr
+                                                                    .isDarkMode!
+                                                                ? Color(
+                                                                    0xFFC2C3CB,
+                                                                  )
+                                                                : const Color(
+                                                                    0xFFC2C3CB,
+                                                                  ),
+                                                            color: !SharedPr
+                                                                    .isDarkMode!
+                                                                ? Color(
+                                                                    0xFFC2C3CB,
+                                                                  )
+                                                                : const Color(
+                                                                    0xFFC2C3CB,
+                                                                  ),
+                                                            isAddOrEdit: true,
+                                                            borderRadius:
+                                                                context
+                                                                    .setMinSize(
+                                                                        8.01),
+                                                            hintText:
+                                                                'email'.tr,
+                                                            prefixIcon: Padding(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                horizontal:
+                                                                    context
+                                                                        .setWidth(
+                                                                  14,
+                                                                ),
+                                                              ),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                AppImages
+                                                                    .emaill,
+                                                                package:
+                                                                    'shared_widgets',
+                                                                color:
+                                                                    const Color(
                                                                   0xFF16A6B7,
                                                                 ),
                                                                 width: context
                                                                     .setWidth(
-                                                                      21.63,
-                                                                    ),
+                                                                  21.63,
+                                                                ),
                                                                 height: context
                                                                     .setHeight(
-                                                                      21.63,
-                                                                    ),
+                                                                  21.63,
+                                                                ),
                                                               ),
                                                             ),
-                                    
                                                             validator: (value) {
-                                                              if (value == null ||
-                                                                  value.isEmpty) {
+                                                              if (value ==
+                                                                      null ||
+                                                                  value
+                                                                      .isEmpty) {
                                                                 errorMessage =
                                                                     'required_message'
                                                                         .trParams({
-                                                                          'field_name':
-                                                                              'email'
-                                                                                  .tr,
-                                                                        });
+                                                                  'field_name':
+                                                                      'email'
+                                                                          .tr,
+                                                                });
                                                                 countErrors++;
                                                                 return "";
                                                               }
@@ -325,10 +374,10 @@ class _UsernameAndPasswordLoginScreenState
                                                                 errorMessage =
                                                                     'user_does_not_match'
                                                                         .trParams({
-                                                                          'field_name':
-                                                                              'email'
-                                                                                  .tr,
-                                                                        });
+                                                                  'field_name':
+                                                                      'email'
+                                                                          .tr,
+                                                                });
                                                                 countErrors++;
                                                                 return "";
                                                               }
@@ -344,238 +393,266 @@ class _UsernameAndPasswordLoginScreenState
                                             );
                                           },
                                         ),
-                                    
+
                                         // password
                                         SizedBox(height: context.setHeight(16)),
                                         Padding(
-                                          padding: EdgeInsets.symmetric(horizontal:context.setWidth(10.42) ),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  context.setWidth(10.42)),
                                           child: Text(
                                             SharedPr.isForgetPass!
                                                 ? 'otp_password'.tr
                                                 : 'password'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color:
-                                                  !SharedPr.isDarkMode!
-                                                      ? Color(0xFF585858)
-                                                      : Color(0xFFB1B3BC),
+                                              color: !SharedPr.isDarkMode!
+                                                  ? Color(0xFF585858)
+                                                  : Color(0xFFB1B3BC),
                                               fontSize: context.setSp(12.82),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                         ),
-                                        
-                                        
+
                                         GetBuilder<AuthenticationController>(
-                                        builder: (_) {
-                                      return Builder(
-                                              builder: (context) {
-                                                return SizeProvider(
-                                                  baseSize: Size(
-                                                    context.setWidth(357.33),
+                                          builder: (_) {
+                                            return Builder(builder: (context) {
+                                              return SizeProvider(
+                                                baseSize: Size(
+                                                  context.setWidth(357.33),
+                                                  context.setHeight(51.28),
+                                                ),
+                                                width: context.setWidth(357.33),
+                                                height:
                                                     context.setHeight(51.28),
-                                                  ),
-                                                  width: context.setWidth(357.33),
-                                                  height: context.setHeight(51.28),
-                                                  child: Column(
-                                                    children: [
-                                                      Center(
-                                                        child: 
-                                                        
-                                                        Builder(
-                                                          builder: (context) {
-                                                            return SizeProvider(
-                                                              baseSize: Size(
-                                                                // context.setWidth(
-                                                                //   357.33,
-                                                                // ),
-                                                                context.screenWidth,
-                                                                context.setHeight(
-                                                                  51.28,
-                                                                ),
-                                                              ),
-                                                              width: context.screenWidth,
-                                                              height: context.setHeight(
+                                                child: Column(
+                                                  children: [
+                                                    Center(
+                                                      child: Builder(
+                                                        builder: (context) {
+                                                          return SizeProvider(
+                                                            baseSize: Size(
+                                                              // context.setWidth(
+                                                              //   357.33,
+                                                              // ),
+                                                              context
+                                                                  .screenWidth,
+                                                              context.setHeight(
                                                                 51.28,
                                                               ),
-                                                              child: ContainerTextField(
-                                                                controller:
-                                                                    passwordController,
-                                                                labelText:
-                                                                    SharedPr.isForgetPass!
-                                                                        ? 'otp_password'
-                                                                            .tr
-                                                                        : 'password'.tr,
-                                                                keyboardType:
-                                                                    TextInputType
-                                                                        .text,
-                                                
-                                                                width: context.screenWidth,
-                                                                height: context
-                                                                    .setHeight(51.28),
-                                                                fontSize: context.setSp(
-                                                                  14,
+                                                            ),
+                                                            width: context
+                                                                .screenWidth,
+                                                            height: context
+                                                                .setHeight(
+                                                              51.28,
+                                                            ),
+                                                            child:
+                                                                ContainerTextField(
+                                                              controller:
+                                                                  passwordController,
+                                                              labelText: SharedPr
+                                                                      .isForgetPass!
+                                                                  ? 'otp_password'
+                                                                      .tr
+                                                                  : 'password'
+                                                                      .tr,
+                                                              keyboardType:
+                                                                  TextInputType
+                                                                      .text,
+                                                              width: context
+                                                                  .screenWidth,
+                                                              height: context
+                                                                  .setHeight(
+                                                                      51.28),
+                                                              fontSize:
+                                                                  context.setSp(
+                                                                14,
+                                                              ),
+                                                              contentPadding:
+                                                                  EdgeInsets
+                                                                      .fromLTRB(
+                                                                context
+                                                                    .setWidth(
+                                                                  14.82,
                                                                 ),
-                                                                contentPadding:
-                                                                    EdgeInsets.fromLTRB(
-                                                                      context.setWidth(
-                                                                        14.82,
-                                                                      ),
-                                                                      context.setHeight(
-                                                                        15.22,
-                                                                      ),
-                                                                      context.setWidth(
-                                                                        14.82,
-                                                                      ),
-                                                                      context.setHeight(
-                                                                        15.22,
-                                                                      ),
-                                                                    ),
-                                                                showLable: false,
-                                                                iconcolor: const Color(
-                                                                  0xFF16A6B7,
+                                                                context
+                                                                    .setHeight(
+                                                                  15.22,
                                                                 ),
-                                                                borderColor:
-                                                                    !SharedPr
-                                                                            .isDarkMode!
-                                                                        ? Color(
-                                                                          0xFFC2C3CB,
-                                                                        )
-                                                                        : null,
-                                                                fillColor:
-                                                                    !SharedPr
-                                                                            .isDarkMode!
-                                                                        ? Colors.white
-                                                                            .withValues(
-                                                                              alpha:
-                                                                                  0.43,
-                                                                            )
-                                                                        : const Color(
-                                                                          0xFF2B2B2B,
-                                                                        ),
-                                                                hintcolor:
-                                                                    !SharedPr
-                                                                            .isDarkMode!
-                                                                        ? Color(
-                                                                          0xFFC2C3CB,
-                                                                        )
-                                                                        : const Color(
-                                                                          0xFFC2C3CB,
-                                                                        ),
-                                                                color:
-                                                                    !SharedPr
-                                                                            .isDarkMode!
-                                                                        ? Color(
-                                                                          0xFFC2C3CB,
-                                                                        )
-                                                                        : const Color(
-                                                                          0xFFC2C3CB,
-                                                                        ),
-                                                                isAddOrEdit: true,
-                                                                borderRadius: context
-                                                                    .setMinSize(8.01),
-                                                                hintText:
-                                                                    SharedPr.isForgetPass!
-                                                                        ? 'otp_password'
-                                                                            .tr
-                                                                        : 'password'.tr,
-                                                                prefixIcon: Padding(
-                                                                  padding:
-                                                                      EdgeInsets.symmetric(
-                                                                        horizontal:
-                                                                            context
-                                                                                .setWidth(
-                                                                                  14,
-                                                                                ),
-                                                                      ),
-                                                                  child: SvgPicture.asset(
-                                                                    AppImages.lockOn,
-                                                                    package: 'shared_widgets',
-                                                                    color: const Color(
-                                                                      0xFF16A6B7,
+                                                                context
+                                                                    .setWidth(
+                                                                  14.82,
+                                                                ),
+                                                                context
+                                                                    .setHeight(
+                                                                  15.22,
+                                                                ),
+                                                              ),
+                                                              showLable: false,
+                                                              iconcolor:
+                                                                  const Color(
+                                                                0xFF16A6B7,
+                                                              ),
+                                                              borderColor: !SharedPr
+                                                                      .isDarkMode!
+                                                                  ? Color(
+                                                                      0xFFC2C3CB,
+                                                                    )
+                                                                  : null,
+                                                              fillColor: !SharedPr
+                                                                      .isDarkMode!
+                                                                  ? Colors.white
+                                                                      .withValues(
+                                                                      alpha:
+                                                                          0.43,
+                                                                    )
+                                                                  : const Color(
+                                                                      0xFF2B2B2B,
                                                                     ),
-                                                                    width: context
-                                                                        .setWidth(
-                                                                          21.63,
-                                                                        ),
-                                                                    height: context
-                                                                        .setHeight(
-                                                                          21.63,
-                                                                        ),
+                                                              hintcolor: !SharedPr
+                                                                      .isDarkMode!
+                                                                  ? Color(
+                                                                      0xFFC2C3CB,
+                                                                    )
+                                                                  : const Color(
+                                                                      0xFFC2C3CB,
+                                                                    ),
+                                                              color: !SharedPr
+                                                                      .isDarkMode!
+                                                                  ? Color(
+                                                                      0xFFC2C3CB,
+                                                                    )
+                                                                  : const Color(
+                                                                      0xFFC2C3CB,
+                                                                    ),
+                                                              isAddOrEdit: true,
+                                                              borderRadius:
+                                                                  context
+                                                                      .setMinSize(
+                                                                          8.01),
+                                                              hintText: SharedPr
+                                                                      .isForgetPass!
+                                                                  ? 'otp_password'
+                                                                      .tr
+                                                                  : 'password'
+                                                                      .tr,
+                                                              prefixIcon:
+                                                                  Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                  horizontal:
+                                                                      context
+                                                                          .setWidth(
+                                                                    14,
                                                                   ),
                                                                 ),
-                                                                suffixIcon: IconButton(
-                                                                  onPressed: () {
-                                                                    setState(() {
-                                                                      flag = !flag;
-                                                                    });
-                                                                  },
-                                                                  icon:
-                                                                      flag
-                                                                          ? SvgPicture.asset(
-                                                                            AppImages.eyeOpen,
-                                                                            
-                                                                            package: 'shared_widgets',
-                                                                            width: context
-                                                                                .setWidth(
-                                                                                  21.63,
-                                                                                ),
-                                                                            height: context
-                                                                                .setHeight(
-                                                                                  21.63,
-                                                                                ),
-                                                                            color: const Color(
-                                                                              0xFF16A6B7,
-                                                                            ),
-                                                                          )
-                                                                          : SvgPicture.asset(
-                                                                            AppImages.eyeClosed,
-                                                                            
-                                                                            package: 'shared_widgets',
-                                                                            width: context
-                                                                                .setWidth(
-                                                                                  21.63,
-                                                                                ),
-                                                                            height: context
-                                                                                .setHeight(
-                                                                                  21.63,
-                                                                                ),
-                                                                            color: const Color(
-                                                                              0xFF16A6B7,
-                                                                            ),
-                                                                          ),
+                                                                child:
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                  AppImages
+                                                                      .lockOn,
+                                                                  package:
+                                                                      'shared_widgets',
+                                                                  color:
+                                                                      const Color(
+                                                                    0xFF16A6B7,
+                                                                  ),
+                                                                  width: context
+                                                                      .setWidth(
+                                                                    21.63,
+                                                                  ),
+                                                                  height: context
+                                                                      .setHeight(
+                                                                    21.63,
+                                                                  ),
                                                                 ),
-                                                                obscureText:
-                                                                    flag ? false : true,
-                                                                validator: (value) {
-                                                                  if (value == null ||
-                                                                      value.isEmpty) {
-                                                                    errorMessage = 'required_message_f'.trParams({
-                                                                      'field_name':
-                                                                          SharedPr.isForgetPass!
-                                                                              ? 'otp_password'
-                                                                                  .tr
-                                                                              : 'password'
-                                                                                  .tr,
-                                                                    });
-                                                                    return "";
-                                                                  }
-                                                                  return null;
-                                                                },
                                                               ),
-                                                            );
-                                                          },
-                                                        ),
+                                                              suffixIcon:
+                                                                  IconButton(
+                                                                onPressed: () {
+                                                                  setState(() {
+                                                                    flag =
+                                                                        !flag;
+                                                                  });
+                                                                },
+                                                                icon: flag
+                                                                    ? SvgPicture
+                                                                        .asset(
+                                                                        AppImages
+                                                                            .eyeOpen,
+                                                                        package:
+                                                                            'shared_widgets',
+                                                                        width: context
+                                                                            .setWidth(
+                                                                          21.63,
+                                                                        ),
+                                                                        height:
+                                                                            context.setHeight(
+                                                                          21.63,
+                                                                        ),
+                                                                        color:
+                                                                            const Color(
+                                                                          0xFF16A6B7,
+                                                                        ),
+                                                                      )
+                                                                    : SvgPicture
+                                                                        .asset(
+                                                                        AppImages
+                                                                            .eyeClosed,
+                                                                        package:
+                                                                            'shared_widgets',
+                                                                        width: context
+                                                                            .setWidth(
+                                                                          21.63,
+                                                                        ),
+                                                                        height:
+                                                                            context.setHeight(
+                                                                          21.63,
+                                                                        ),
+                                                                        color:
+                                                                            const Color(
+                                                                          0xFF16A6B7,
+                                                                        ),
+                                                                      ),
+                                                              ),
+                                                              obscureText: flag
+                                                                  ? false
+                                                                  : true,
+                                                              validator:
+                                                                  (value) {
+                                                                if (value ==
+                                                                        null ||
+                                                                    value
+                                                                        .isEmpty) {
+                                                                  errorMessage =
+                                                                      'required_message_f'
+                                                                          .trParams({
+                                                                    'field_name': SharedPr
+                                                                            .isForgetPass!
+                                                                        ? 'otp_password'
+                                                                            .tr
+                                                                        : 'password'
+                                                                            .tr,
+                                                                  });
+                                                                  return "";
+                                                                }
+                                                                return null;
+                                                              },
+                                                            ),
+                                                          );
+                                                        },
                                                       ),
-                                                    ],
-                                                  ),
-                                                );
-                                              }
-                                            );
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            });
                                           },
                                         ),
-                                    
+
                                         SizedBox(height: context.setHeight(35)),
                                         // for forgetPass
                                         SizedBox(
@@ -585,47 +662,63 @@ class _UsernameAndPasswordLoginScreenState
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                          GetBuilder<AuthenticationController>(
-                                            id: "choosePin",
-                                            builder: (_) {
-                                              return GestureDetector(
-                                                onTap:SharedPr.chosenUserObj!.pinCodeLock! <
-                                                  3  ? (){
-                                                    authenticationController.setChoosePin();
-                                                    } :null,
-                                                    child: 
-                                                    Row(
-                                                      spacing: context.setWidth(6.41),
-                                                      children: [
-                                                        SvgPicture.asset(
-                                                          AppImages.signOut,
-                                                          package: 'shared_widgets',
-                                                          fit: BoxFit.cover,
-                                                          width: context.setWidth(
-                                                            19.23,
-                                                          ),
-                                                          height: context.setHeight(
-                                                            19.23,
-                                                          ),
-                                                        ),
-                                                    
-                                                        Text(
-                                                          "switch_to_pin_login".tr,
-                                                          style: TextStyle(
-                                                            color: SharedPr.isDarkMode! ? const Color(0xFFB0B4C3) : const Color(0xFF2E2E2E),
-                                                            fontSize: context.setSp(
-                                                              12.82,
+                                              GetBuilder<
+                                                      AuthenticationController>(
+                                                  id: "choosePin",
+                                                  builder: (_) {
+                                                    return GestureDetector(
+                                                      onTap: SharedPr
+                                                                  .chosenUserObj!
+                                                                  .pinCodeLock! <
+                                                              3
+                                                          ? () {
+                                                              authenticationController
+                                                                  .setChoosePin();
+                                                            }
+                                                          : null,
+                                                      child: Row(
+                                                        spacing: context
+                                                            .setWidth(6.41),
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            AppImages.signOut,
+                                                            package:
+                                                                'shared_widgets',
+                                                            fit: BoxFit.cover,
+                                                            width: context
+                                                                .setWidth(
+                                                              19.23,
                                                             ),
-                                                            fontFamily: 'Tajawal',
-                                                            fontWeight: FontWeight.w400,
+                                                            height: context
+                                                                .setHeight(
+                                                              19.23,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                }
-                                              ),
-                                                                            
+                                                          Text(
+                                                            "switch_to_pin_login"
+                                                                .tr,
+                                                            style: TextStyle(
+                                                              color: SharedPr
+                                                                      .isDarkMode!
+                                                                  ? const Color(
+                                                                      0xFFB0B4C3)
+                                                                  : const Color(
+                                                                      0xFF2E2E2E),
+                                                              fontSize:
+                                                                  context.setSp(
+                                                                12.82,
+                                                              ),
+                                                              fontFamily:
+                                                                  'Tajawal',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    );
+                                                  }),
                                               GestureDetector(
                                                 onTap: () {
                                                   forgetPasswordDialog(
@@ -651,8 +744,9 @@ class _UsernameAndPasswordLoginScreenState
                                             ],
                                           ),
                                         ),
-                                        SizedBox(height: context.setHeight(35.0)),
-                                    
+                                        SizedBox(
+                                            height: context.setHeight(35.0)),
+
                                         // log In
                                         Center(
                                           child: Focus(
@@ -671,33 +765,39 @@ class _UsernameAndPasswordLoginScreenState
                                                       color: const Color(
                                                         0xFF16A6B7,
                                                       ),
-                                                      shape: RoundedRectangleBorder(
+                                                      shape:
+                                                          RoundedRectangleBorder(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                              context.setMinSize(
-                                                                7.21,
-                                                              ),
-                                                            ),
+                                                            BorderRadius
+                                                                .circular(
+                                                          context.setMinSize(
+                                                            7.21,
+                                                          ),
+                                                        ),
                                                       ),
                                                       shadows: [
                                                         BoxShadow(
-                                                          color: Color(0x4C16A6B7),
+                                                          color:
+                                                              Color(0x4C16A6B7),
                                                           blurRadius: 24.04,
-                                                          offset: Offset(0, 3.20),
+                                                          offset:
+                                                              Offset(0, 3.20),
                                                           spreadRadius: 0,
                                                         ),
                                                       ],
                                                     ),
                                                     child: Text(
                                                       'login'.tr,
-                                                      textAlign: TextAlign.center,
+                                                      textAlign:
+                                                          TextAlign.center,
                                                       style: TextStyle(
                                                         fontSize: context.setSp(
                                                           14.42,
                                                         ),
                                                         color: AppColor.white,
                                                         fontFamily: 'Tajawal',
-                                                        fontWeight: FontWeight.w700,
+                                                        fontWeight:
+                                                            FontWeight.w700,
                                                       ),
                                                     ),
                                                   ),
@@ -717,8 +817,6 @@ class _UsernameAndPasswordLoginScreenState
                       ],
                     ),
                   ),
-                  
-                  
                   authenticationController.loading.value
                       ? const LoadingWidget()
                       : Container(),
@@ -734,20 +832,23 @@ class _UsernameAndPasswordLoginScreenState
   onPressed() async {
     countErrors = 0;
     LoginHelper.authenticateUsingUsernameAndPassword(
-      formKey: _formKey,
-      countErrors: countErrors,
-      errorMessage: errorMessage,
-      authenticationController: authenticationController,
-      usernameController: usernameController,
-      passwordController: passwordController,
-      context: context
-    );
+        formKey: _formKey,
+        countErrors: countErrors,
+        errorMessage: errorMessage,
+        authenticationController: authenticationController,
+        usernameController: usernameController,
+        passwordController: passwordController,
+        context: context);
   }
 }
 
-void showAccountLockDialog({required  AuthenticationController authenticationController , required BuildContext context,}) {
+void showAccountLockDialog({
+  required AuthenticationController authenticationController,
+  required BuildContext context,
+}) {
   onPressed() async {
-    LoginHelper.sendTicketToEliminateAccountLock(authenticationController: authenticationController);
+    LoginHelper.sendTicketToEliminateAccountLock(
+        authenticationController: authenticationController);
   }
 
   dialogcontent(
@@ -779,7 +880,7 @@ void showAccountLockDialog({required  AuthenticationController authenticationCon
                         "account_unlock_request".tr,
                         style: TextStyle(
                             color: AppColor.black,
-                            fontSize:context.setSp(10),
+                            fontSize: context.setSp(10),
                             fontWeight: FontWeight.bold),
                       ),
                       Icon(
@@ -794,7 +895,7 @@ void showAccountLockDialog({required  AuthenticationController authenticationCon
                           '${'account_locked'.tr}\n${'account_unlock_request_message'.tr}',
                           textAlign: TextAlign.center,
                           style: AppStyle.textStyle(
-                              fontSize:context.setSp(9),
+                              fontSize: context.setSp(9),
                               fontWeight: FontWeight.w500,
                               color: AppColor.lavenderGray)),
                       SizedBox(
@@ -804,14 +905,14 @@ void showAccountLockDialog({required  AuthenticationController authenticationCon
                         children: [
                           ButtonElevated(
                               text: 'yes'.tr,
-                              height:context.setHeight(200),
-                              width:context.setWidth(77),
+                              height: context.setHeight(200),
+                              width: context.setWidth(77),
                               borderRadius: 9,
                               backgroundColor: AppColor.cyanTeal,
                               showBoxShadow: true,
                               textStyle: AppStyle.textStyle(
                                   color: Colors.white,
-                                  fontSize:context.setSp(3),
+                                  fontSize: context.setSp(3),
                                   fontWeight: FontWeight.normal),
                               onPressed: onPressed),
                           SizedBox(
@@ -819,13 +920,13 @@ void showAccountLockDialog({required  AuthenticationController authenticationCon
                           ),
                           ButtonElevated(
                               text: 'cancel'.tr,
-                              width:context.setWidth(77),
-                              height:context.setHeight(200),
+                              width: context.setWidth(77),
+                              height: context.setHeight(200),
                               borderRadius: 9,
                               borderColor: AppColor.paleAqua,
                               textStyle: AppStyle.textStyle(
                                   color: AppColor.slateGray,
-                                  fontSize:context.setSp(3),
+                                  fontSize: context.setSp(3),
                                   fontWeight: FontWeight.normal),
                               onPressed: () async {
                                 Get.back();
@@ -856,7 +957,9 @@ void showPassWordErrorDialog({required String message}) {
       message: message,
       icon: Icons.contact_support_rounded,
       onPressed: () async {
-      LoginHelper.sendTicket(databaseSettingController: databaseSettingController, message: message);
+        LoginHelper.sendTicket(
+            databaseSettingController: databaseSettingController,
+            message: message);
       });
 }
 
@@ -891,37 +994,38 @@ forgetPasswordDialog({
                   children: [
                     Column(
                       children: [
-                        if (messageTypesIcon2[MessageTypes.warning]!
-                                    .first !=
-                                "") ...[
-                              SizedBox(height: context.setHeight(10)),
-                              SvgPicture.asset(
-                                messageTypesIcon2[MessageTypes.warning]!.first
-                                    as String,
-                                package:"shared_widgets" ,
-                                clipBehavior: Clip.antiAlias,
-                                fit: BoxFit.fill,
-                                width: context.setWidth(50),
-                                height: context.setHeight(50),
-                              ),
-                              SizedBox(height: context.setHeight(10)),
-                              Text(
-                                "confirm_reset_password".tr,
-                                style: TextStyle(
-                                  color:SharedPr.isDarkMode! ? Color(0xFFB1B3BC) :  const Color(0xFF9F9FA5),
-                                  fontSize: context.setSp(14.42),
-                                  fontFamily: 'Tajawal',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
+                        if (messageTypesIcon2[MessageTypes.warning]!.first !=
+                            "") ...[
+                          SizedBox(height: context.setHeight(10)),
+                          SvgPicture.asset(
+                            messageTypesIcon2[MessageTypes.warning]!.first
+                                as String,
+                            package: "shared_widgets",
+                            clipBehavior: Clip.antiAlias,
+                            fit: BoxFit.fill,
+                            width: context.setWidth(50),
+                            height: context.setHeight(50),
+                          ),
+                          SizedBox(height: context.setHeight(10)),
+                          Text(
+                            "confirm_reset_password".tr,
+                            style: TextStyle(
+                              color: SharedPr.isDarkMode!
+                                  ? Color(0xFFB1B3BC)
+                                  : const Color(0xFF9F9FA5),
+                              fontSize: context.setSp(14.42),
+                              fontFamily: 'Tajawal',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                         SizedBox(height: context.setHeight(30)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ButtonElevated(
                               text: "confirm_reset_password".tr,
-                              width: context.setWidth(200) ,
+                              width: context.setWidth(200),
                               borderRadius: context.setMinSize(9),
                               backgroundColor:
                                   messageTypesIcon2[MessageTypes.warning]!.last
@@ -942,7 +1046,7 @@ forgetPasswordDialog({
                             SizedBox(width: context.setHeight(10)),
                             ButtonElevated(
                               text: 'cancel'.tr,
-                              width: context.setWidth(200) ,
+                              width: context.setWidth(200),
                               borderRadius: context.setMinSize(9),
                               borderColor: AppColor.paleAqua,
                               textStyle: AppStyle.textStyle(
