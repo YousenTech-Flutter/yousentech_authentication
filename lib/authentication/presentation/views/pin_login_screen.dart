@@ -306,7 +306,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                               padding: EdgeInsets.only(
                                                   bottom:
                                                       context.setHeight(15)),
-                                              child: GestureDetector(
+                                              child: InkWell(
                                                 onTap: SharedPr.chosenUserObj!
                                                             .pinCodeLock! <
                                                         3

@@ -666,7 +666,7 @@ class _UsernameAndPasswordLoginScreenState
                                                       AuthenticationController>(
                                                   id: "choosePin",
                                                   builder: (_) {
-                                                    return GestureDetector(
+                                                    return InkWell(
                                                       onTap: SharedPr
                                                                   .chosenUserObj!
                                                                   .pinCodeLock! <
@@ -719,7 +719,7 @@ class _UsernameAndPasswordLoginScreenState
                                                       ),
                                                     );
                                                   }),
-                                              GestureDetector(
+                                              InkWell(
                                                 onTap: () {
                                                   forgetPasswordDialog(
                                                     context: context,

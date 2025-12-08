@@ -350,7 +350,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                   tokenController
                                                       .finalResult.length,
                                                   (index) {
-                                                    return GestureDetector(
+                                                    return InkWell(
                                                       onTap: () {
                                                         final TokenController
                                                             tokenUpdateController =
