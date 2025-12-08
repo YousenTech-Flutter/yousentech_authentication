@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
+import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
@@ -164,7 +165,8 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                         context.setMinSize(8),
                                       ),
                                       child: SvgPicture.asset(
-                                        'assets/image/lock_on.svg',
+                                        AppImages.lockOn,
+                                        package: 'shared_widgets',
                                         fit:
                                             BoxFit
                                                 .scaleDown, // Adjust this to control scaling
@@ -189,13 +191,15 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                         icon:
                                             flagPin
                                                 ? SvgPicture.asset(
-                                                  'assets/image/eye-open.svg',
+                                                  AppImages.eyeOpen,
+                                                  package: 'shared_widgets',
                                                   fit: BoxFit.scaleDown,
                                                   color: AppColor.silverGray,
                                                   // Adjust this to control scaling
                                                 )
                                                 : SvgPicture.asset(
-                                                  'assets/image/eye-closed.svg',
+                                                  AppImages.eyeClosed,
+                                                  package: 'shared_widgets',
                                                   fit:
                                                       BoxFit
                                                           .scaleDown, // Adjust this to control scaling
@@ -256,7 +260,8 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                         context.setMinSize(8),
                                       ),
                                       child: SvgPicture.asset(
-                                        'assets/image/lock_on.svg',
+                                        AppImages.lockOn,
+                                        package: 'shared_widgets',
                                         fit:
                                             BoxFit
                                                 .scaleDown, // Adjust this to control scaling
@@ -281,13 +286,15 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                         icon:
                                             flagConfirm
                                                 ? SvgPicture.asset(
-                                                  'assets/image/eye-open.svg',
+                                                  AppImages.eyeOpen,
+                                                  package: 'shared_widgets',
                                                   fit: BoxFit.scaleDown,
                                                   color: AppColor.silverGray,
                                                   // Adjust this to control scaling
                                                 )
                                                 : SvgPicture.asset(
-                                                  'assets/image/eye-closed.svg',
+                                                  AppImages.eyeClosed,
+                                                  package: 'shared_widgets',
                                                   fit:
                                                       BoxFit
                                                           .scaleDown, // Adjust this to control scaling
