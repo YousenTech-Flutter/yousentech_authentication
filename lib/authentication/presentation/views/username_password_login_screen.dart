@@ -998,8 +998,7 @@ forgetPasswordDialog({
                             "") ...[
                           SizedBox(height: context.setHeight(10)),
                           SvgPicture.asset(
-                            messageTypesIcon2[MessageTypes.warning]!.first
-                                as String,
+                            AppImages.information,
                             package: "shared_widgets",
                             clipBehavior: Clip.antiAlias,
                             fit: BoxFit.fill,
