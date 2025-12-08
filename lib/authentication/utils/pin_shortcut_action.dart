@@ -3,9 +3,10 @@ import 'package:yousentech_authentication/authentication/domain/authentication_v
 import 'package:yousentech_authentication/authentication/utils/shortcut_pin_numbers.dart';
 import 'package:yousentech_authentication/authentication/utils/submit_pin.dart';
 
-Map<Type, Action<Intent>> pinShortcutAction(
-    {required AuthenticationController authenticationController}) {
+Map<Type, Action<Intent>> pinShortcutAction({required AuthenticationController authenticationController}) {
+  print("pinShortcutAction==============");
   return {
+    
     Digit: CallbackAction<Digit>(onInvoke: (intent) {
       if (intent.actionKey == "Backspace") {
         return authenticationController.setPinKey(

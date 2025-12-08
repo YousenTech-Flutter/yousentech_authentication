@@ -49,7 +49,6 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
         ignoring: authenticationController.loading.value,
         child: Focus(
           focusNode: FocusNode(),
-
           child: Shortcuts(
             shortcuts: shortcutPINNumbers,
             child: Actions(
