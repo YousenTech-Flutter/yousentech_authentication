@@ -437,30 +437,33 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                                               16,
                                                                             ),
                                                                   ),
-                                                                  child: Text(
-                                                                    '${tokenController.finalResult[index].name}',
-                                                                    style: TextStyle(
-                                                                      color:
-                                                                          SharedPr.isDarkMode!
-                                                                              ? const Color(
-                                                                                0xFFBABABA,
-                                                                              )
-                                                                              : const Color(
-                                                                                0xFF6B6868,
-                                                                              ),
-
-                                                                      fontSize: context
-                                                                          .setSp(
-                                                                            14,
-                                                                          ),
-                                                                      overflow:
-                                                                          TextOverflow
-                                                                              .ellipsis,
-                                                                      fontFamily:
-                                                                          'Tajawal',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
+                                                                  child: Tooltip(
+                                                                    message:'${tokenController.finalResult[index].name}' ,
+                                                                    child: Text(
+                                                                      '${tokenController.finalResult[index].name}',
+                                                                      style: TextStyle(
+                                                                        color:
+                                                                            SharedPr.isDarkMode!
+                                                                                ? const Color(
+                                                                                  0xFFBABABA,
+                                                                                )
+                                                                                : const Color(
+                                                                                  0xFF6B6868,
+                                                                                ),
+                                                                    
+                                                                        fontSize: context
+                                                                            .setSp(
+                                                                              14,
+                                                                            ),
+                                                                        overflow:
+                                                                            TextOverflow
+                                                                                .ellipsis,
+                                                                        fontFamily:
+                                                                            'Tajawal',
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w700,
+                                                                      ),
                                                                     ),
                                                                   ),
                                                                 ),
