@@ -43,7 +43,7 @@ changePasswordDialog({required BuildContext context}) {
               ignoring: authenticationController.loading.value,
               child: SingleChildScrollView(
                 child: SizedBox(
-                  width: context.setWidth(80),
+                  width: context.setWidth(454.48),
                   height: context.setHeight(350),
                   child: Stack(
                     children: [
