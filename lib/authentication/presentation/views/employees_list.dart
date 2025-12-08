@@ -166,349 +166,351 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                             GetBuilder<TokenController>(
                                 id: "update_employees",
                                 builder: (contextx) {
-                                  return SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                            height: context.setHeight(35)),
-                                        if (tokenController
-                                                .isLoading.value ||
-                                            tokenController.result ==
-                                                null) ...[
+                                  return Expanded(
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
                                           SizedBox(
-                                              height:
-                                                  context.setHeight(40)),
-                                          Center(
-                                            child:
-                                                CircularProgressIndicator(
-                                              color: AppColor.cyanTeal,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                              height:
-                                                  context.setHeight(10)),
-                                          Center(
-                                            child: Text(
-                                              'loading'.tr,
-                                              style: TextStyle(
-                                                color: SharedPr.isDarkMode!
-                                                    ? Color(0xFFB1B3BC)
-                                                    : Color(0xFF9F9FA5),
-                                                fontSize:
-                                                    context.setSp(14.42),
-                                                fontFamily: 'Tajawal',
-                                                fontWeight: FontWeight.w400,
+                                              height: context.setHeight(35)),
+                                          if (tokenController
+                                                  .isLoading.value ||
+                                              tokenController.result ==
+                                                  null) ...[
+                                            SizedBox(
+                                                height:
+                                                    context.setHeight(40)),
+                                            Center(
+                                              child:
+                                                  CircularProgressIndicator(
+                                                color: AppColor.cyanTeal,
                                               ),
                                             ),
-                                          ),
-                                        ] else if (!tokenController
-                                            .result.status) ...[
-                                          Center(
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    context.setHeight(20),
+                                            SizedBox(
+                                                height:
+                                                    context.setHeight(10)),
+                                            Center(
+                                              child: Text(
+                                                'loading'.tr,
+                                                style: TextStyle(
+                                                  color: SharedPr.isDarkMode!
+                                                      ? Color(0xFFB1B3BC)
+                                                      : Color(0xFF9F9FA5),
+                                                  fontSize:
+                                                      context.setSp(14.42),
+                                                  fontFamily: 'Tajawal',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: context
-                                                        .setHeight(40),
-                                                  ),
-                                                  Icon(
-                                                    Icons.error_outline,
-                                                    color: Colors.red[400],
-                                                    size: context
-                                                        .setWidth(50),
-                                                  ),
-                                                  SizedBox(
-                                                    height: context
-                                                        .setHeight(10),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.all(
-                                                      context.setMinSize(8),
+                                            ),
+                                          ] else if (!tokenController
+                                              .result.status) ...[
+                                            Center(
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      context.setHeight(20),
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: context
+                                                          .setHeight(40),
                                                     ),
-                                                    child: Text(
-                                                      tokenController.result
-                                                              .message ??
-                                                          '',
-                                                      textAlign:
-                                                          TextAlign.center,
+                                                    Icon(
+                                                      Icons.error_outline,
+                                                      color: Colors.red[400],
+                                                      size: context
+                                                          .setWidth(50),
+                                                    ),
+                                                    SizedBox(
+                                                      height: context
+                                                          .setHeight(10),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.all(
+                                                        context.setMinSize(8),
+                                                      ),
+                                                      child: Text(
+                                                        tokenController.result
+                                                                .message ??
+                                                            '',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: SharedPr
+                                                                  .isDarkMode!
+                                                              ? Color(
+                                                                  0xFFB1B3BC,
+                                                                )
+                                                              : Color(
+                                                                  0xFF9F9FA5,
+                                                                ),
+                                                          fontSize:
+                                                              context.setSp(
+                                                            14.42,
+                                                          ),
+                                                          fontFamily:
+                                                              'Tajawal',
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: context
+                                                          .setHeight(10),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.all(
+                                                        context.setMinSize(8),
+                                                      ),
+                                                      child: ButtonElevated(
+                                                        text:
+                                                            "Update_page".tr,
+                                                        width: context
+                                                            .screenWidth,
+                                                        backgroundColor:
+                                                            Colors.red[400],
+                                                        textStyle: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize:
+                                                              context.setSp(
+                                                            14.42,
+                                                          ),
+                                                          fontFamily:
+                                                              'Tajawal',
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                        onPressed: () async {
+                                                          tokenController
+                                                              .isLoading
+                                                              .value = true;
+                                                          await tokenController
+                                                              .loadEmployeesBasedOnToken(
+                                                            token: SharedPr
+                                                                .token!,
+                                                          );
+                                                          tokenController
+                                                              .update([
+                                                            "update_employees",
+                                                          ]);
+                                                          tokenController
+                                                              .isLoading
+                                                              .value = false;
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ] else ...[
+                                            if (tokenController
+                                                .finalResult.isEmpty) ...[
+                                              Center(
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: context
+                                                          .setHeight(40),
+                                                    ),
+                                                    Icon(
+                                                      Icons
+                                                          .no_accounts_outlined,
+                                                      color:
+                                                          AppColor.cyanTeal,
+                                                      size: context
+                                                          .setWidth(50),
+                                                    ),
+                                                    Text(
+                                                      'empty_list'.tr,
                                                       style: TextStyle(
                                                         color: SharedPr
                                                                 .isDarkMode!
                                                             ? Color(
-                                                                0xFFB1B3BC,
-                                                              )
+                                                                0xFFB1B3BC)
                                                             : Color(
-                                                                0xFF9F9FA5,
-                                                              ),
+                                                                0xFF9F9FA5),
                                                         fontSize:
                                                             context.setSp(
                                                           14.42,
                                                         ),
-                                                        fontFamily:
-                                                            'Tajawal',
+                                                        fontFamily: 'Tajawal',
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: context
-                                                        .setHeight(10),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.all(
-                                                      context.setMinSize(8),
-                                                    ),
-                                                    child: ButtonElevated(
-                                                      text:
-                                                          "Update_page".tr,
-                                                      width: context
-                                                          .screenWidth,
-                                                      backgroundColor:
-                                                          Colors.red[400],
-                                                      textStyle: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize:
-                                                            context.setSp(
-                                                          14.42,
-                                                        ),
-                                                        fontFamily:
-                                                            'Tajawal',
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                      onPressed: () async {
-                                                        tokenController
-                                                            .isLoading
-                                                            .value = true;
-                                                        await tokenController
-                                                            .loadEmployeesBasedOnToken(
-                                                          token: SharedPr
-                                                              .token!,
-                                                        );
-                                                        tokenController
-                                                            .update([
-                                                          "update_employees",
-                                                        ]);
-                                                        tokenController
-                                                            .isLoading
-                                                            .value = false;
-                                                      },
-                                                    ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        ] else ...[
-                                          if (tokenController
-                                              .finalResult.isEmpty) ...[
-                                            Center(
-                                              child: Column(
-                                                children: [
-                                                  SizedBox(
-                                                    height: context
-                                                        .setHeight(40),
-                                                  ),
-                                                  Icon(
-                                                    Icons
-                                                        .no_accounts_outlined,
-                                                    color:
-                                                        AppColor.cyanTeal,
-                                                    size: context
-                                                        .setWidth(50),
-                                                  ),
-                                                  Text(
-                                                    'empty_list'.tr,
-                                                    style: TextStyle(
-                                                      color: SharedPr
-                                                              .isDarkMode!
-                                                          ? Color(
-                                                              0xFFB1B3BC)
-                                                          : Color(
-                                                              0xFF9F9FA5),
-                                                      fontSize:
-                                                          context.setSp(
-                                                        14.42,
-                                                      ),
-                                                      fontFamily: 'Tajawal',
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ] else ...[
-                                            Expanded(
-                                              child: GridView.extent(
-                                                maxCrossAxisExtent:
-                                                    context.setWidth(106),
-                                                childAspectRatio: context
-                                                        .setWidth(106) /
-                                                    context.setHeight(118),
-                                                crossAxisSpacing:
-                                                    context.setWidth(
-                                                  19,
-                                                ), // المسافة الأفقية بين العناصر
-                                                mainAxisSpacing:
-                                                    context.setHeight(
-                                                  19,
-                                                ), // المسافة العمودية بين العناصر
-                                                padding:
-                                                    EdgeInsets.symmetric(
-                                                  horizontal:
+                                            ] else ...[
+                                              Expanded(
+                                                child: GridView.extent(
+                                                  maxCrossAxisExtent:
+                                                      context.setWidth(106),
+                                                  childAspectRatio: context
+                                                          .setWidth(106) /
+                                                      context.setHeight(118),
+                                                  crossAxisSpacing:
                                                       context.setWidth(
-                                                    50.2,
-                                                  ),
-                                                ), // المسافة من الحواف
-                                                children: List.generate(
-                                                  tokenController
-                                                      .finalResult.length,
-                                                  (index) {
-                                                    return GestureDetector(
-                                                      onTap: () {
-                                                        final TokenController
-                                                            tokenUpdateController =
-                                                            Get.put(
-                                                          TokenController
-                                                              .getInstance(),
-                                                        );
-                                                        tokenUpdateController
-                                                            .onSelectEmployee(
-                                                          index,
-                                                          authenticationController,
-                                                        );
-                                                      },
-                                                      child: Builder(
-                                                        builder: (context) {
-                                                          return SizeProvider(
-                                                            baseSize: Size(
-                                                              context
-                                                                  .setWidth(
-                                                                106,
-                                                              ),
-                                                              context
-                                                                  .setHeight(
-                                                                118,
-                                                              ),
-                                                            ),
-                                                            width: context
-                                                                .setWidth(
-                                                                    106),
-                                                            height: context
-                                                                .setHeight(
-                                                                    118),
-                                                            child:
-                                                                Container(
-                                                              decoration:
-                                                                  ShapeDecoration(
-                                                                color: SharedPr
-                                                                        .isDarkMode!
-                                                                    ? const Color(
-                                                                        0x2B555555,
-                                                                      )
-                                                                    : const Color(
-                                                                        0xFFF6F6F6,
-                                                                      ),
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                    context
-                                                                        .setMinSize(
-                                                                      16,
-                                                                    ),
-                                                                  ),
+                                                    19,
+                                                  ), // المسافة الأفقية بين العناصر
+                                                  mainAxisSpacing:
+                                                      context.setHeight(
+                                                    19,
+                                                  ), // المسافة العمودية بين العناصر
+                                                  padding:
+                                                      EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        context.setWidth(
+                                                      50.2,
+                                                    ),
+                                                  ), // المسافة من الحواف
+                                                  children: List.generate(
+                                                    tokenController
+                                                        .finalResult.length,
+                                                    (index) {
+                                                      return GestureDetector(
+                                                        onTap: () {
+                                                          final TokenController
+                                                              tokenUpdateController =
+                                                              Get.put(
+                                                            TokenController
+                                                                .getInstance(),
+                                                          );
+                                                          tokenUpdateController
+                                                              .onSelectEmployee(
+                                                            index,
+                                                            authenticationController,
+                                                          );
+                                                        },
+                                                        child: Builder(
+                                                          builder: (context) {
+                                                            return SizeProvider(
+                                                              baseSize: Size(
+                                                                context
+                                                                    .setWidth(
+                                                                  106,
+                                                                ),
+                                                                context
+                                                                    .setHeight(
+                                                                  118,
                                                                 ),
                                                               ),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                spacing: 12,
-                                                                children: [
-                                                                  SvgPicture
-                                                                      .asset(
-                                                                    AppImages
-                                                                        .person,
-                                                                    package:
-                                                                        'shared_widgets',
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    width: context
-                                                                        .setWidth(
-                                                                      40,
-                                                                    ),
-                                                                    height:
-                                                                        context.setHeight(
-                                                                      45,
-                                                                    ),
-                                                                    color: SharedPr.isDarkMode!
-                                                                        ? null
-                                                                        : const Color(
-                                                                            0xFF18BBCD,
-                                                                          ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        EdgeInsets.symmetric(
-                                                                      horizontal:
-                                                                          context.setWidth(
+                                                              width: context
+                                                                  .setWidth(
+                                                                      106),
+                                                              height: context
+                                                                  .setHeight(
+                                                                      118),
+                                                              child:
+                                                                  Container(
+                                                                decoration:
+                                                                    ShapeDecoration(
+                                                                  color: SharedPr
+                                                                          .isDarkMode!
+                                                                      ? const Color(
+                                                                          0x2B555555,
+                                                                        )
+                                                                      : const Color(
+                                                                          0xFFF6F6F6,
+                                                                        ),
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(
+                                                                      context
+                                                                          .setMinSize(
                                                                         16,
                                                                       ),
                                                                     ),
-                                                                    child:
-                                                                        Tooltip(
-                                                                      message:
-                                                                          '${tokenController.finalResult[index].name}',
+                                                                  ),
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .center,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .center,
+                                                                  spacing: 12,
+                                                                  children: [
+                                                                    SvgPicture
+                                                                        .asset(
+                                                                      AppImages
+                                                                          .person,
+                                                                      package:
+                                                                          'shared_widgets',
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                      width: context
+                                                                          .setWidth(
+                                                                        40,
+                                                                      ),
+                                                                      height:
+                                                                          context.setHeight(
+                                                                        45,
+                                                                      ),
+                                                                      color: SharedPr.isDarkMode!
+                                                                          ? null
+                                                                          : const Color(
+                                                                              0xFF18BBCD,
+                                                                            ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding:
+                                                                          EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            context.setWidth(
+                                                                          16,
+                                                                        ),
+                                                                      ),
                                                                       child:
-                                                                          Text(
-                                                                        '${tokenController.finalResult[index].name}',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color: SharedPr.isDarkMode!
-                                                                              ? const Color(
-                                                                                  0xFFBABABA,
-                                                                                )
-                                                                              : const Color(
-                                                                                  0xFF6B6868,
-                                                                                ),
-                                                                          fontSize: context.setSp(
-                                                                            14,
+                                                                          Tooltip(
+                                                                        message:
+                                                                            '${tokenController.finalResult[index].name}',
+                                                                        child:
+                                                                            Text(
+                                                                          '${tokenController.finalResult[index].name}',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color: SharedPr.isDarkMode!
+                                                                                ? const Color(
+                                                                                    0xFFBABABA,
+                                                                                  )
+                                                                                : const Color(
+                                                                                    0xFF6B6868,
+                                                                                  ),
+                                                                            fontSize: context.setSp(
+                                                                              14,
+                                                                            ),
+                                                                            overflow: TextOverflow.ellipsis,
+                                                                            fontFamily: 'Tajawal',
+                                                                            fontWeight: FontWeight.w700,
                                                                           ),
-                                                                          overflow: TextOverflow.ellipsis,
-                                                                          fontFamily: 'Tajawal',
-                                                                          fontWeight: FontWeight.w700,
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    );
-                                                  },
+                                                            );
+                                                          },
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               ),
-                                            ),
+                                            ],
                                           ],
                                         ],
-                                      ],
+                                      ),
                                     ),
                                   );
                                 }),
