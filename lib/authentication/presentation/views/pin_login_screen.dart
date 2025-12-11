@@ -274,23 +274,12 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                       SizedBox(
                                         height: context.setHeight(10),
                                       ),
-                                      Builder(builder: (context) {
-                                        return SizeProvider(
-                                          baseSize: Size(
-                                            context.screenWidth,
-                                            context.setHeight(393.62),
-                                          ),
-                                          width: context.screenWidth,
-                                          height: context.setHeight(
-                                            393.62,
-                                          ),
-                                          child: NumbericItems(
-                                            contextApp: context,
-                                            authenticationController:
-                                                authenticationController,
-                                          ),
-                                        );
-                                      }),
+                                       NumbericItems(
+                                          contextApp: context,
+                                          authenticationController:
+                                              authenticationController,
+                                        ),
+                                      
                                       // NumbericItems(
                                       //         authenticationController:
                                       //             authenticationController,
