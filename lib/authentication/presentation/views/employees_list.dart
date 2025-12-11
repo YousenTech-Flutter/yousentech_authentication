@@ -364,125 +364,108 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                           authenticationController,
                                                         );
                                                       },
-                                                      child: Builder(
-                                                        builder: (context) {
-                                                          return SizeProvider(
-                                                            baseSize: Size(
-                                                              context.setWidth(
-                                                                106,
-                                                              ),
-                                                              context.setHeight(
-                                                                118,
-                                                              ),
-                                                            ),
-                                                            width: context
-                                                                .setWidth(106),
-                                                            height: context
-                                                                .setHeight(118),
-                                                            child: Container(
-                                                              decoration:
-                                                                  ShapeDecoration(
-                                                                color: SharedPr
-                                                                        .isDarkMode!
-                                                                    ? const Color(
-                                                                        0x2B555555,
-                                                                      )
-                                                                    : const Color(
-                                                                        0xFFF6F6F6,
-                                                                      ),
-                                                                shape:
-                                                                    RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                    context
-                                                                        .setMinSize(
-                                                                      16,
+                                                      child:  Container(
+                                                            decoration:
+                                                                ShapeDecoration(
+                                                              color: SharedPr
+                                                                      .isDarkMode!
+                                                                  ? const Color(
+                                                                      0x2B555555,
+                                                                    )
+                                                                  : const Color(
+                                                                      0xFFF6F6F6,
                                                                     ),
+                                                              shape:
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                  context
+                                                                      .setMinSize(
+                                                                    16,
                                                                   ),
                                                                 ),
                                                               ),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .center,
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .center,
-                                                                spacing: 12,
-                                                                children: [
-                                                                  SvgPicture
-                                                                      .asset(
-                                                                    AppImages
-                                                                        .person,
-                                                                    package:
-                                                                        'shared_widgets',
-                                                                    fit: BoxFit
-                                                                        .cover,
-                                                                    width: context
-                                                                        .setWidth(
-                                                                      40,
-                                                                    ),
-                                                                    height: context
-                                                                        .setHeight(
-                                                                      45,
-                                                                    ),
-                                                                    color: SharedPr
-                                                                            .isDarkMode!
-                                                                        ? null
-                                                                        : const Color(
-                                                                            0xFF18BBCD,
-                                                                          ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .symmetric(
-                                                                      horizontal:
-                                                                          context
-                                                                              .setWidth(
-                                                                        16,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Tooltip(
-                                                                      message:
-                                                                          '${tokenController.finalResult[index].name}',
-                                                                      child:
-                                                                          Text(
-                                                                        '${tokenController.finalResult[index].name}',
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color: SharedPr.isDarkMode!
-                                                                              ? const Color(
-                                                                                  0xFFBABABA,
-                                                                                )
-                                                                              : const Color(
-                                                                                  0xFF6B6868,
-                                                                                ),
-                                                                          fontSize:
-                                                                              context.setSp(
-                                                                            12,
-                                                                          ),
-                                                                          overflow:
-                                                                              TextOverflow.ellipsis,
-                                                                          fontFamily:
-                                                                              'Tajawal',
-                                                                          fontWeight:
-                                                                              FontWeight.w700,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
                                                             ),
-                                                          );
-                                                        },
-                                                      ),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              spacing: 12,
+                                                              children: [
+                                                                SvgPicture
+                                                                    .asset(
+                                                                  AppImages
+                                                                      .person,
+                                                                  package:
+                                                                      'shared_widgets',
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  width: context
+                                                                      .setWidth(
+                                                                    40,
+                                                                  ),
+                                                                  height: context
+                                                                      .setHeight(
+                                                                    45,
+                                                                  ),
+                                                                  color: SharedPr
+                                                                          .isDarkMode!
+                                                                      ? null
+                                                                      : const Color(
+                                                                          0xFF18BBCD,
+                                                                        ),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .symmetric(
+                                                                    horizontal:
+                                                                        context
+                                                                            .setWidth(
+                                                                      16,
+                                                                    ),
+                                                                  ),
+                                                                  child:
+                                                                      Tooltip(
+                                                                    message:
+                                                                        '${tokenController.finalResult[index].name}',
+                                                                    child:
+                                                                        Text(
+                                                                      '${tokenController.finalResult[index].name}',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: SharedPr.isDarkMode!
+                                                                            ? const Color(
+                                                                                0xFFBABABA,
+                                                                              )
+                                                                            : const Color(
+                                                                                0xFF6B6868,
+                                                                              ),
+                                                                        fontSize:
+                                                                            context.setSp(
+                                                                          12,
+                                                                        ),
+                                                                        overflow:
+                                                                            TextOverflow.ellipsis,
+                                                                        fontFamily:
+                                                                            'Tajawal',
+                                                                        fontWeight:
+                                                                            FontWeight.w700,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          )
+                                                        
                                                     );
                                                   },
                                                 ),
