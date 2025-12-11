@@ -24,7 +24,7 @@ class _NumbericItemsState extends State<NumbericItems> {
     return LayoutBuilder(
         builder: (context, constraints) {
         double width =  (constraints.maxWidth - (context.setWidth(14) * 2)) / 3;
-        double height =  (constraints.maxHeight - (context.setWidth(20) * 3)) / 4;
+        double height =  (constraints.maxHeight - (context.setHeight(20) * 3)) / 4;
         return Directionality(
           textDirection: TextDirection.ltr,
           child: Column(
