@@ -264,17 +264,19 @@ class _UsernameAndPasswordLoginScreenState
                                           borderRadius:
                                               context.setMinSize(8.01),
                                           hintText: 'email'.tr,
-                                          prefixIcon: SvgPicture.asset(
-                                            AppImages.emaill,
-                                            package: 'shared_widgets',
-                                            color: const Color(
-                                              0xFF16A6B7,
-                                            ),
-                                            width: context.setWidth(
-                                              21.63,
-                                            ),
-                                            height: context.setHeight(
-                                              21.63,
+                                          prefixIcon: Center(
+                                            child: SvgPicture.asset(
+                                              AppImages.emaill,
+                                              package: 'shared_widgets',
+                                              color: const Color(
+                                                0xFF16A6B7,
+                                              ),
+                                              width: context.setWidth(
+                                                21.63,
+                                              ),
+                                              height: context.setHeight(
+                                                21.63,
+                                              ),
                                             ),
                                           ),
                                           validator: (value) {
