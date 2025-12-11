@@ -264,24 +264,17 @@ class _UsernameAndPasswordLoginScreenState
                                           borderRadius:
                                               context.setMinSize(8.01),
                                           hintText: 'email'.tr,
-                                          prefixIcon: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: context.setWidth(
-                                                14,
-                                              ),
+                                          prefixIcon: SvgPicture.asset(
+                                            AppImages.emaill,
+                                            package: 'shared_widgets',
+                                            color: const Color(
+                                              0xFF16A6B7,
                                             ),
-                                            child: SvgPicture.asset(
-                                              AppImages.emaill,
-                                              package: 'shared_widgets',
-                                              color: const Color(
-                                                0xFF16A6B7,
-                                              ),
-                                              width: context.setWidth(
-                                                21.63,
-                                              ),
-                                              height: context.setHeight(
-                                                21.63,
-                                              ),
+                                            width: context.setWidth(
+                                              21.63,
+                                            ),
+                                            height: context.setHeight(
+                                              21.63,
                                             ),
                                           ),
                                           validator: (value) {
