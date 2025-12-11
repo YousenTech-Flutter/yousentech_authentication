@@ -87,7 +87,7 @@ changePasswordDialog({required BuildContext context}) {
                               ),
                               SizedBox(height: context.setHeight(10)),
                               StatefulBuilder(
-                                builder: (BuildContext context, setState) {
+                                builder: (BuildContext statefulBuilderContext, setState) {
                                   return ContainerTextField(
                                     controller: passwordController,
                                     width: context.screenWidth,
@@ -177,7 +177,7 @@ changePasswordDialog({required BuildContext context}) {
                               ),
                               SizedBox(height: context.setHeight(10)),
                               StatefulBuilder(
-                                builder: (BuildContext context, setState) {
+                                builder: (BuildContext statefulBuilderContext, setState) {
                                   return ContainerTextField(
                                     controller: confirmPasswordController,
                                     width: context.screenWidth,
