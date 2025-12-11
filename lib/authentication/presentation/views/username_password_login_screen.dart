@@ -277,20 +277,14 @@ class _UsernameAndPasswordLoginScreenState
                                                 0xFF16A6B7,
                                               ),
                                               width: context.setWidth(
-                                                23,
+                                                21.63,
                                               ),
                                               height: context.setHeight(
-                                                23,
+                                                21.63,
                                               ),
                                             ),
                                           ),
-                                          maxHeightprefixIcon:
-                                              context.setHeight(
-                                            23,
-                                          ),
-                                          maxWidthprefixIcon: context.setWidth(
-                                            23,
-                                          ),
+                                          
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty) {
