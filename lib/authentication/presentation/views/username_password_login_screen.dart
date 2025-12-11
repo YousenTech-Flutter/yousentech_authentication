@@ -264,22 +264,25 @@ class _UsernameAndPasswordLoginScreenState
                                           borderRadius:
                                               context.setMinSize(8.01),
                                           hintText: 'email'.tr,
-                                          prefixIcon: Builder(
-                                            builder: (context) {
-                                              return SvgPicture.asset(
-                                                AppImages.emaill,
-                                                package: 'shared_widgets',
-                                                color: const Color(
-                                                  0xFF16A6B7,
-                                                ),
-                                                width: context.setWidth(
-                                                  21.63,
-                                                ),
-                                                height: context.setHeight(
-                                                  21.63,
-                                                ),
-                                              );
-                                            }
+                                          prefixIcon: SvgPicture.asset(
+                                            AppImages.emaill,
+                                            package: 'shared_widgets',
+                                            color: const Color(
+                                              0xFF16A6B7,
+                                            ),
+                                            width: context.setWidth(
+                                              21.63,
+                                            ),
+                                            height: context.setHeight(
+                                              21.63,
+                                            ),
+                                          ),
+                                          maxHeightprefixIcon:
+                                              context.setHeight(
+                                            21.63,
+                                          ),
+                                          maxWidthprefixIcon: context.setWidth(
+                                            21.63,
                                           ),
                                           validator: (value) {
                                             if (value == null ||
@@ -568,58 +571,53 @@ class _UsernameAndPasswordLoginScreenState
                                         // log In
                                         Center(
                                           child: Focus(
-                                            autofocus: true,
-                                            child:  InkWell(
-                                                  onTap: onPressed,
-                                                  child: Container(
-                                                    width: context.screenWidth,
-                                                    height: context.setHeight(
-                                                      47.27,
+                                              autofocus: true,
+                                              child: InkWell(
+                                                onTap: onPressed,
+                                                child: Container(
+                                                  width: context.screenWidth,
+                                                  height: context.setHeight(
+                                                    47.27,
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  decoration: ShapeDecoration(
+                                                    color: const Color(
+                                                      0xFF16A6B7,
                                                     ),
-                                                    alignment: Alignment.center,
-                                                    decoration: ShapeDecoration(
-                                                      color: const Color(
-                                                        0xFF16A6B7,
-                                                      ),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(
-                                                          context.setMinSize(
-                                                            7.21,
-                                                          ),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        context.setMinSize(
+                                                          7.21,
                                                         ),
                                                       ),
-                                                      shadows: [
-                                                        BoxShadow(
-                                                          color:
-                                                              Color(0x4C16A6B7),
-                                                          blurRadius: 24.04,
-                                                          offset:
-                                                              Offset(0, 3.20),
-                                                          spreadRadius: 0,
-                                                        ),
-                                                      ],
                                                     ),
-                                                    child: Text(
-                                                      'login'.tr,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: TextStyle(
-                                                        fontSize: context.setSp(
-                                                          14.42,
-                                                        ),
-                                                        color: AppColor.white,
-                                                        fontFamily: 'Tajawal',
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                    shadows: [
+                                                      BoxShadow(
+                                                        color:
+                                                            Color(0x4C16A6B7),
+                                                        blurRadius: 24.04,
+                                                        offset: Offset(0, 3.20),
+                                                        spreadRadius: 0,
                                                       ),
+                                                    ],
+                                                  ),
+                                                  child: Text(
+                                                    'login'.tr,
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                      fontSize: context.setSp(
+                                                        14.42,
+                                                      ),
+                                                      color: AppColor.white,
+                                                      fontFamily: 'Tajawal',
+                                                      fontWeight:
+                                                          FontWeight.w700,
                                                     ),
                                                   ),
-                                                )
-                                              
-                                          ),
+                                                ),
+                                              )),
                                         ),
                                       ],
                                     ),
