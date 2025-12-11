@@ -418,170 +418,165 @@ class _UsernameAndPasswordLoginScreenState
 
                                         GetBuilder<AuthenticationController>(
                                           builder: (_) {
-                                            return Builder(builder: (context) {
-                                              return Column(
-                                                children: [
-                                                  Center(
-                                                      child: ContainerTextField(
-                                                    controller:
-                                                        passwordController,
-                                                    labelText:
-                                                        SharedPr.isForgetPass!
-                                                            ? 'otp_password'.tr
-                                                            : 'password'.tr,
-                                                    keyboardType:
-                                                        TextInputType.text,
-                                                    width: context.screenWidth,
-                                                    height: context
-                                                        .setHeight(51.28),
-                                                    fontSize: context.setSp(
-                                                      14,
-                                                    ),
-                                                    contentPadding:
-                                                        EdgeInsets.fromLTRB(
-                                                      context.setWidth(
-                                                        14.82,
-                                                      ),
-                                                      context.setHeight(
-                                                        15.22,
-                                                      ),
-                                                      context.setWidth(
-                                                        14.82,
-                                                      ),
-                                                      context.setHeight(
-                                                        15.22,
-                                                      ),
-                                                    ),
-                                                    showLable: false,
-                                                    iconcolor: const Color(
-                                                      0xFF16A6B7,
-                                                    ),
-                                                    borderColor:
-                                                        !SharedPr.isDarkMode!
-                                                            ? Color(
-                                                                0xFFC2C3CB,
-                                                              )
-                                                            : null,
-                                                    fillColor:
-                                                        !SharedPr.isDarkMode!
-                                                            ? Colors.white
-                                                                .withValues(
-                                                                alpha: 0.43,
-                                                              )
-                                                            : const Color(
-                                                                0xFF2B2B2B,
-                                                              ),
-                                                    hintcolor:
-                                                        !SharedPr.isDarkMode!
-                                                            ? Color(
-                                                                0xFFC2C3CB,
-                                                              )
-                                                            : const Color(
-                                                                0xFFC2C3CB,
-                                                              ),
-                                                    color: !SharedPr.isDarkMode!
-                                                        ? Color(
-                                                            0xFFC2C3CB,
-                                                          )
-                                                        : const Color(
-                                                            0xFFC2C3CB,
-                                                          ),
-                                                    isAddOrEdit: true,
-                                                    borderRadius: context
-                                                        .setMinSize(8.01),
-                                                    hintText:
-                                                        SharedPr.isForgetPass!
-                                                            ? 'otp_password'.tr
-                                                            : 'password'.tr,
-                                                    prefixIcon: Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal:
-                                                            context.setWidth(
-                                                          14,
+                                            return  Center(
+                                                child: ContainerTextField(
+                                              controller:
+                                                  passwordController,
+                                              labelText:
+                                                  SharedPr.isForgetPass!
+                                                      ? 'otp_password'.tr
+                                                      : 'password'.tr,
+                                              keyboardType:
+                                                  TextInputType.text,
+                                              width: context.screenWidth,
+                                              height: context
+                                                  .setHeight(51.28),
+                                              fontSize: context.setSp(
+                                                14,
+                                              ),
+                                              contentPadding:
+                                                  EdgeInsets.fromLTRB(
+                                                context.setWidth(
+                                                  14.82,
+                                                ),
+                                                context.setHeight(
+                                                  15.22,
+                                                ),
+                                                context.setWidth(
+                                                  14.82,
+                                                ),
+                                                context.setHeight(
+                                                  15.22,
+                                                ),
+                                              ),
+                                              showLable: false,
+                                              iconcolor: const Color(
+                                                0xFF16A6B7,
+                                              ),
+                                              borderColor:
+                                                  !SharedPr.isDarkMode!
+                                                      ? Color(
+                                                          0xFFC2C3CB,
+                                                        )
+                                                      : null,
+                                              fillColor:
+                                                  !SharedPr.isDarkMode!
+                                                      ? Colors.white
+                                                          .withValues(
+                                                          alpha: 0.43,
+                                                        )
+                                                      : const Color(
+                                                          0xFF2B2B2B,
                                                         ),
-                                                      ),
-                                                      child: SvgPicture.asset(
-                                                        AppImages.lockOn,
+                                              hintcolor:
+                                                  !SharedPr.isDarkMode!
+                                                      ? Color(
+                                                          0xFFC2C3CB,
+                                                        )
+                                                      : const Color(
+                                                          0xFFC2C3CB,
+                                                        ),
+                                              color: !SharedPr.isDarkMode!
+                                                  ? Color(
+                                                      0xFFC2C3CB,
+                                                    )
+                                                  : const Color(
+                                                      0xFFC2C3CB,
+                                                    ),
+                                              isAddOrEdit: true,
+                                              borderRadius: context
+                                                  .setMinSize(8.01),
+                                              hintText:
+                                                  SharedPr.isForgetPass!
+                                                      ? 'otp_password'.tr
+                                                      : 'password'.tr,
+                                              prefixIcon: Padding(
+                                                padding:
+                                                    EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      context.setWidth(
+                                                    14,
+                                                  ),
+                                                ),
+                                                child: SvgPicture.asset(
+                                                  AppImages.lockOn,
+                                                  package:
+                                                      'shared_widgets',
+                                                  color: const Color(
+                                                    0xFF16A6B7,
+                                                  ),
+                                                  width: context.setWidth(
+                                                    21.63,
+                                                  ),
+                                                  height:
+                                                      context.setHeight(
+                                                    21.63,
+                                                  ),
+                                                ),
+                                              ),
+                                              suffixIcon: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    flag = !flag;
+                                                  });
+                                                },
+                                                icon: flag
+                                                    ? SvgPicture.asset(
+                                                        AppImages.eyeOpen,
                                                         package:
                                                             'shared_widgets',
-                                                        color: const Color(
+                                                        width: context
+                                                            .setWidth(
+                                                          21.63,
+                                                        ),
+                                                        height: context
+                                                            .setHeight(
+                                                          21.63,
+                                                        ),
+                                                        color:
+                                                            const Color(
                                                           0xFF16A6B7,
                                                         ),
-                                                        width: context.setWidth(
+                                                      )
+                                                    : SvgPicture.asset(
+                                                        AppImages
+                                                            .eyeClosed,
+                                                        package:
+                                                            'shared_widgets',
+                                                        width: context
+                                                            .setWidth(
                                                           21.63,
                                                         ),
-                                                        height:
-                                                            context.setHeight(
+                                                        height: context
+                                                            .setHeight(
                                                           21.63,
+                                                        ),
+                                                        color:
+                                                            const Color(
+                                                          0xFF16A6B7,
                                                         ),
                                                       ),
-                                                    ),
-                                                    suffixIcon: IconButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          flag = !flag;
-                                                        });
-                                                      },
-                                                      icon: flag
-                                                          ? SvgPicture.asset(
-                                                              AppImages.eyeOpen,
-                                                              package:
-                                                                  'shared_widgets',
-                                                              width: context
-                                                                  .setWidth(
-                                                                21.63,
-                                                              ),
-                                                              height: context
-                                                                  .setHeight(
-                                                                21.63,
-                                                              ),
-                                                              color:
-                                                                  const Color(
-                                                                0xFF16A6B7,
-                                                              ),
-                                                            )
-                                                          : SvgPicture.asset(
-                                                              AppImages
-                                                                  .eyeClosed,
-                                                              package:
-                                                                  'shared_widgets',
-                                                              width: context
-                                                                  .setWidth(
-                                                                21.63,
-                                                              ),
-                                                              height: context
-                                                                  .setHeight(
-                                                                21.63,
-                                                              ),
-                                                              color:
-                                                                  const Color(
-                                                                0xFF16A6B7,
-                                                              ),
-                                                            ),
-                                                    ),
-                                                    obscureText:
-                                                        flag ? false : true,
-                                                    validator: (value) {
-                                                      if (value == null ||
-                                                          value.isEmpty) {
-                                                        errorMessage =
-                                                            'required_message_f'
-                                                                .trParams({
-                                                          'field_name': SharedPr
-                                                                  .isForgetPass!
-                                                              ? 'otp_password'
-                                                                  .tr
-                                                              : 'password'.tr,
-                                                        });
-                                                        return "";
-                                                      }
-                                                      return null;
-                                                    },
-                                                  )),
-                                                ],
-                                              );
-                                            });
+                                              ),
+                                              obscureText:
+                                                  flag ? false : true,
+                                              validator: (value) {
+                                                if (value == null ||
+                                                    value.isEmpty) {
+                                                  errorMessage =
+                                                      'required_message_f'
+                                                          .trParams({
+                                                    'field_name': SharedPr
+                                                            .isForgetPass!
+                                                        ? 'otp_password'
+                                                            .tr
+                                                        : 'password'.tr,
+                                                  });
+                                                  return "";
+                                                }
+                                                return null;
+                                              },
+                                            ));
+                                            
                                           },
                                         ),
 
