@@ -141,7 +141,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                         ),
                                       ),
 
-                                      SizedBox(height: context.setHeight(20)),
+                                      SizedBox(height: context.setHeight(15)),
                                       Center(
                                         child: ContainerTextField(
                                               focusNode: pinNumberFocus,
@@ -279,7 +279,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           builder: (_) {
                                             return Padding(
                                               padding: EdgeInsets.only(bottom:context.setHeight(15),
-                                              top: context.setHeight(10)
+                                              top: context.setHeight(13)
                                               ),
                                               child: InkWell(
                                                 onTap: SharedPr.chosenUserObj!
