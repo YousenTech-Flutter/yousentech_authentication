@@ -264,25 +264,32 @@ class _UsernameAndPasswordLoginScreenState
                                           borderRadius:
                                               context.setMinSize(8.01),
                                           hintText: 'email'.tr,
-                                          prefixIcon: SvgPicture.asset(
-                                            AppImages.emaill,
-                                            package: 'shared_widgets',
-                                            color: const Color(
-                                              0xFF16A6B7,
+                                          prefixIcon: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: context.setWidth(
+                                                14,
+                                              ),
                                             ),
-                                            width: context.setWidth(
-                                              21.63,
-                                            ),
-                                            height: context.setHeight(
-                                              21.63,
+                                            child: SvgPicture.asset(
+                                              AppImages.emaill,
+                                              package: 'shared_widgets',
+                                              color: const Color(
+                                                0xFF16A6B7,
+                                              ),
+                                              width: context.setWidth(
+                                                23,
+                                              ),
+                                              height: context.setHeight(
+                                                23,
+                                              ),
                                             ),
                                           ),
                                           maxHeightprefixIcon:
                                               context.setHeight(
-                                            21.63,
+                                            23,
                                           ),
                                           maxWidthprefixIcon: context.setWidth(
-                                            21.63,
+                                            23,
                                           ),
                                           validator: (value) {
                                             if (value == null ||
