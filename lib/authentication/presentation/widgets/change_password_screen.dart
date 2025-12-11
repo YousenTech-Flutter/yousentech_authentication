@@ -271,7 +271,7 @@ changePasswordDialog({required BuildContext context}) {
                                   );
                                 },
                               ),
-                              Spacer(),
+                              // Spacer(),
                               Row(
                                 spacing: context.setWidth(10),
                                 children: [
