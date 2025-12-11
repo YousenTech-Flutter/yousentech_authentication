@@ -465,7 +465,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                                                 ),
                                                                           fontSize:
                                                                               context.setSp(
-                                                                            14,
+                                                                            12,
                                                                           ),
                                                                           overflow:
                                                                               TextOverflow.ellipsis,
