@@ -141,7 +141,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                         ),
                                       ),
 
-                                      SizedBox(height: context.setHeight(25)),
+                                      SizedBox(height: context.setHeight(20)),
                                       Center(
                                         child: ContainerTextField(
                                               focusNode: pinNumberFocus,
