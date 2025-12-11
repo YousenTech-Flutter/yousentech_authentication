@@ -572,9 +572,7 @@ class _UsernameAndPasswordLoginScreenState
                                         Center(
                                           child: Focus(
                                             autofocus: true,
-                                            child: Builder(
-                                              builder: (context) {
-                                                return InkWell(
+                                            child:  InkWell(
                                                   onTap: onPressed,
                                                   child: Container(
                                                     width: context.screenWidth,
@@ -622,9 +620,8 @@ class _UsernameAndPasswordLoginScreenState
                                                       ),
                                                     ),
                                                   ),
-                                                );
-                                              },
-                                            ),
+                                                )
+                                              
                                           ),
                                         ),
                                       ],
