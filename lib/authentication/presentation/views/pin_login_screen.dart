@@ -274,27 +274,28 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                       SizedBox(
                                         height: context.setHeight(10),
                                       ),
-                                       NumbericItems(
-                                          contextApp: context,
-                                          authenticationController:
-                                              authenticationController,
-                                        ),
+                                      Expanded(
+                                        child: NumbericItems(
+                                            contextApp: context,
+                                            authenticationController:
+                                                authenticationController,
+                                          ),
+                                      ),
                                       
                                       // NumbericItems(
                                       //         authenticationController:
                                       //             authenticationController,
                                       //       ),
 
-                                      Spacer(),
-                                      if (SharedPr.chosenUserObj!.pinCodeLock! <
-                                          3)
+                                      
+                                      if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
                                         GetBuilder<AuthenticationController>(
                                           id: "choosePin",
                                           builder: (_) {
                                             return Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom:
-                                                      context.setHeight(15)),
+                                              padding: EdgeInsets.only(bottom:context.setHeight(15),
+                                              top: context.setHeight(10)
+                                              ),
                                               child: InkWell(
                                                 onTap: SharedPr.chosenUserObj!
                                                             .pinCodeLock! <

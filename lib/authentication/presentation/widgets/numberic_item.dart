@@ -21,57 +21,63 @@ class _NumbericItemsState extends State<NumbericItems> {
   int counter = 1;
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Column(
-        spacing: context.setHeight(20),
-        children: [
-          Row(
-            spacing: context.setWidth(14),
-            mainAxisAlignment: MainAxisAlignment.center,
+    return LayoutBuilder(
+        builder: (context, constraints) {
+        double width =  (constraints.maxWidth - (context.setWidth(14) * 2)) / 3;
+        double height =  (constraints.maxHeight - (context.setWidth(20) * 3)) / 4;
+        return Directionality(
+          textDirection: TextDirection.ltr,
+          child: Column(
+            spacing: context.setHeight(20),
             children: [
-              itemNumber(data: "1"),
-              itemNumber(data: "2"),
-              itemNumber(data: "3"),
+              Row(
+                spacing: context.setWidth(14),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  itemNumber(data: "1" , width:width , height: height  ),
+                  itemNumber(data: "2", width:width , height: height ),
+                  itemNumber(data: "3", width:width , height: height ),
+                ],
+              ),
+              Row(
+                spacing: context.setWidth(14),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  itemNumber(data: "4", width:width , height: height ),
+                  itemNumber(data: "5", width:width , height: height ),
+                  itemNumber(data: "6", width:width , height: height ),
+                ],
+              ),
+              Row(
+                spacing: context.setWidth(14),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  itemNumber(data: "7", width:width , height: height ),
+                  itemNumber(data: "8", width:width , height: height ),
+                  itemNumber(data: "9", width:width , height: height ),
+                ],
+              ),
+              Row(
+                spacing: context.setWidth(14),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  itemNumber(data: "Backspace", iconData: Icons.backspace_rounded , width:width , height: height ),
+                  itemNumber(data: "0" , width:width , height: height ),
+                  enterButton(width:width , height: height ),
+                ],
+              ),
             ],
           ),
-          Row(
-            spacing: context.setWidth(14),
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              itemNumber(data: "4"),
-              itemNumber(data: "5"),
-              itemNumber(data: "6"),
-            ],
-          ),
-          Row(
-            spacing: context.setWidth(14),
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              itemNumber(data: "7"),
-              itemNumber(data: "8"),
-              itemNumber(data: "9"),
-            ],
-          ),
-          Row(
-            spacing: context.setWidth(14),
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              itemNumber(data: "Backspace", iconData: Icons.backspace_rounded),
-              itemNumber(data: "0"),
-              enterButton(),
-            ],
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 
-  itemNumber({required dynamic data, IconData? iconData}) {
+  itemNumber({required dynamic data, IconData? iconData ,double? width , double? height }) {
     counter++;
     return Container(
-      width: context.setWidth(95.76),
-      height: context.setHeight(66),
+      width: width ?? context.setWidth(95.76),
+      height:height?? context.setHeight(66),
       decoration: ShapeDecoration(
         color: SharedPr.isDarkMode!
             ? Colors.white.withValues(alpha: 0.01)
@@ -148,7 +154,7 @@ class _NumbericItemsState extends State<NumbericItems> {
     );
   }
 
-  enterButton() {
+  enterButton({double? width , double? height}) {
     return InkWell(
       onTap: () {
         LoginHelper.subMitPIN(
@@ -156,8 +162,8 @@ class _NumbericItemsState extends State<NumbericItems> {
         );
       },
       child: Container(
-        width: context.setWidth(95.76),
-        height: context.setHeight(66),
+        width:height ?? context.setWidth(95.76),
+        height:width?? context.setHeight(66),
         decoration: ShapeDecoration(
           color: SharedPr.isDarkMode!
               ? Colors.white.withValues(alpha: 0.01)
