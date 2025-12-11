@@ -282,7 +282,7 @@ changePasswordDialog({required BuildContext context}) {
                                     showBoxShadow: true,
                                     textStyle: AppStyle.textStyle(
                                       color: Colors.white,
-                                      fontSize: context.setSp(14),
+                                      fontSize: context.setSp(14.42),
                                       fontWeight: FontWeight.normal,
                                     ),
                                     onPressed: () async {
@@ -315,7 +315,7 @@ changePasswordDialog({required BuildContext context}) {
                                     borderColor: AppColor.paleAqua,
                                     textStyle: AppStyle.textStyle(
                                       color: AppColor.slateGray,
-                                      fontSize: context.setSp(14),
+                                      fontSize: context.setSp(14.42),
                                       fontWeight: FontWeight.normal,
                                     ),
                                     onPressed: () async {
