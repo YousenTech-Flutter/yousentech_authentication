@@ -134,7 +134,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                 height: context.setHeight(10),
                               ),
                               StatefulBuilder(
-                                builder: (BuildContext context, setState) {
+                                builder: (BuildContext statefulBuilderContext, setState) {
                                   return ContainerTextField(
                                     controller: pinCodeController,
                                     width: context.screenWidth,
@@ -229,7 +229,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                               ),
                              
                               StatefulBuilder(
-                                builder: (BuildContext context, setState) {
+                                builder: (BuildContext statefulBuilderContext, setState) {
                                   return ContainerTextField(
                                     controller: confirmPinCodeController,
                                     width: context.screenWidth,
@@ -334,7 +334,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       showBoxShadow: true,
                                       textStyle: AppStyle.textStyle(
                                         color: Colors.white,
-                                        fontSize: context.setSp(12),
+                                        fontSize: context.setSp(14),
                                         fontWeight: FontWeight.normal,
                                       ),
                                       onPressed: onPressed,
@@ -349,7 +349,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       borderColor: AppColor.paleAqua,
                                       textStyle: AppStyle.textStyle(
                                         color: AppColor.slateGray,
-                                        fontSize: context.setSp(12),
+                                        fontSize: context.setSp(14),
                                         fontWeight: FontWeight.normal,
                                       ),
                                       onPressed: () async {
