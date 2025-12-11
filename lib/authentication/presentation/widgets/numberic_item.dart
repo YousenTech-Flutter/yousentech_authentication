@@ -162,8 +162,8 @@ class _NumbericItemsState extends State<NumbericItems> {
         );
       },
       child: Container(
-        width:height ?? context.setWidth(95.76),
-        height:width?? context.setHeight(66),
+        width:width ?? context.setWidth(95.76),
+        height:height?? context.setHeight(66),
         decoration: ShapeDecoration(
           color: SharedPr.isDarkMode!
               ? Colors.white.withValues(alpha: 0.01)
