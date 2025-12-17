@@ -133,7 +133,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                     borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
                                     fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
                                     hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    color:Theme.of(context).colorScheme.onPrimary,
+                                    color:Theme.of(context).colorScheme.onSurface,
                                     isAddOrEdit: true,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
@@ -215,7 +215,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                     borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
                                     fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
                                     hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    color:Theme.of(context).colorScheme.onPrimary,
+                                    color:Theme.of(context).colorScheme.onSurface,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
                                     prefixIcon: Padding(

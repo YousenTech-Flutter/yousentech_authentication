@@ -225,7 +225,7 @@ class _UsernameAndPasswordLoginScreenState
                                           borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
                                           fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
                                           hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          color: Theme.of(context).colorScheme.onPrimary,
+                                          color: Theme.of(context).colorScheme.onSurface,
                                           isAddOrEdit: true,
                                           borderRadius:
                                               context.setMinSize(8.01),
@@ -332,7 +332,7 @@ class _UsernameAndPasswordLoginScreenState
                                               borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
                                           fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
                                           hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          color: Theme.of(context).colorScheme.onPrimary,
+                                          color: Theme.of(context).colorScheme.onSurface,
                                               isAddOrEdit: true,
                                               borderRadius:
                                                   context.setMinSize(8.01),
