@@ -119,9 +119,7 @@ class _UsernameAndPasswordLoginScreenState
                                             'login'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: Theme.of(context).colorScheme.onPrimary,
                                               fontSize: context.setSp(20.03),
-                                              fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
