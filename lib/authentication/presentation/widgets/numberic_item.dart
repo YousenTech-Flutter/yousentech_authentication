@@ -139,7 +139,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                   data,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: context.setSp(16),
+                    fontSize: context.setSp(14),
                     fontWeight: FontWeight.w700,
                     height: 1,
                   ),
