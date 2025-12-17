@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
-import 'package:yousentech_authentication/authentication/utils/submit_pin.dart'
-    as LoginHelper;
+import 'package:yousentech_authentication/authentication/utils/submit_pin.dart';
+import 'package:yousentech_authentication/authentication/utils/submit_pin.dart' as LoginHelper;
 
 class NumbericItems extends StatefulWidget {
   const NumbericItems(
@@ -79,9 +80,7 @@ class _NumbericItemsState extends State<NumbericItems> {
       width: width ?? context.setWidth(95.76),
       height:height?? context.setHeight(66),
       decoration: ShapeDecoration(
-        color: SharedPr.isDarkMode!
-            ? Colors.white.withValues(alpha: 0.01)
-            : const Color(0xFFF6F6F6),
+        color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
@@ -140,11 +139,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                   data,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: SharedPr.isDarkMode!
-                        ? Colors.white.withValues(alpha: 0.66)
-                        : const Color(0xFF2E2E2E),
                     fontSize: context.setSp(16),
-                    fontFamily: 'Tajawal',
                     fontWeight: FontWeight.w700,
                     height: 1,
                   ),
@@ -165,9 +160,7 @@ class _NumbericItemsState extends State<NumbericItems> {
         width:width ?? context.setWidth(95.76),
         height:height?? context.setHeight(66),
         decoration: ShapeDecoration(
-          color: SharedPr.isDarkMode!
-              ? Colors.white.withValues(alpha: 0.01)
-              : const Color(0xFFF6F6F6),
+          color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
@@ -181,11 +174,7 @@ class _NumbericItemsState extends State<NumbericItems> {
             "enter".tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: SharedPr.isDarkMode!
-                  ? Colors.white.withValues(alpha: 0.66)
-                  : const Color(0xFF2E2E2E),
               fontSize: context.setSp(16),
-              fontFamily: 'Tajawal',
               fontWeight: FontWeight.w700,
               height: 1,
             ),

@@ -25,10 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
         appBar: customAppBar(
           context: context,
           onDarkModeChanged: () {
-            setState(() {});
+            // setState(() {});
           },
         ),
-        backgroundColor: !SharedPr.isDarkMode!? Color(0xFFDDDDDD) :AppColor.darkModeBackgroundColor,
         body: GetBuilder<AuthenticationController>(
           id: "choosePin",
           builder: (context) {

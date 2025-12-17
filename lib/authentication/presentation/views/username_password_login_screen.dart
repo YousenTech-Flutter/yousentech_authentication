@@ -10,6 +10,7 @@ import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_lists.dart';
 import 'package:shared_widgets/config/app_styles.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -90,9 +91,7 @@ class _UsernameAndPasswordLoginScreenState
                                 width: context.setWidth(454.48),
                                 height: context.setHeight(470),
                                 decoration: ShapeDecoration(
-                                  color: !SharedPr.isDarkMode!
-                                      ? Colors.white
-                                      : Colors.white.withValues(alpha: 0.01),
+                                  color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1,
@@ -120,9 +119,7 @@ class _UsernameAndPasswordLoginScreenState
                                             'login'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: SharedPr.isDarkMode!
-                                                  ? Colors.white
-                                                  : const Color(0xFF2E2E2E),
+                                              color: Theme.of(context).colorScheme.onPrimary,
                                               fontSize: context.setSp(20.03),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w700,
@@ -135,11 +132,8 @@ class _UsernameAndPasswordLoginScreenState
                                           child: RichText(
                                             text: TextSpan(
                                               style: TextStyle(
-                                                color: SharedPr.isDarkMode!
-                                                    ? Color(0xFFB1B3BC)
-                                                    : const Color(0xFF9F9FA5),
+                                              color: Theme.of(context).textTheme.labelSmall!.color,
                                                 fontSize: context.setSp(14.42),
-                                                fontFamily: 'Tajawal',
                                                 fontWeight: FontWeight.w400,
                                               ),
                                               children: <TextSpan>[
@@ -151,7 +145,6 @@ class _UsernameAndPasswordLoginScreenState
                                                     color:
                                                         const Color(0xFF16A6B7),
                                                     fontSize: context.setSp(16),
-                                                    fontFamily: 'Tajawal',
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
@@ -176,11 +169,8 @@ class _UsernameAndPasswordLoginScreenState
                                             'email'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: !SharedPr.isDarkMode!
-                                                  ? Color(0xFF585858)
-                                                  : Color(0xFFB1B3BC),
+                                              color: Theme.of(context).textTheme.labelSmall!.color,
                                               fontSize: context.setSp(12.82),
-                                              fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
@@ -234,32 +224,10 @@ class _UsernameAndPasswordLoginScreenState
                                           iconcolor: const Color(
                                             0xFF16A6B7,
                                           ),
-                                          borderColor: !SharedPr.isDarkMode!
-                                              ? Color(
-                                                  0xFFC2C3CB,
-                                                )
-                                              : null,
-                                          fillColor: !SharedPr.isDarkMode!
-                                              ? Colors.white.withValues(
-                                                  alpha: 0.43,
-                                                )
-                                              : const Color(
-                                                  0xFF2B2B2B,
-                                                ),
-                                          hintcolor: !SharedPr.isDarkMode!
-                                              ? Color(
-                                                  0xFFC2C3CB,
-                                                )
-                                              : const Color(
-                                                  0xFFC2C3CB,
-                                                ),
-                                          color: !SharedPr.isDarkMode!
-                                              ? Color(
-                                                  0xFFC2C3CB,
-                                                )
-                                              : const Color(
-                                                  0xFFC2C3CB,
-                                                ),
+                                          borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                          fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
+                                          hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                          color: Theme.of(context).colorScheme.onPrimary,
                                           isAddOrEdit: true,
                                           borderRadius:
                                               context.setMinSize(8.01),
@@ -322,9 +290,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 : 'password'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: !SharedPr.isDarkMode!
-                                                  ? Color(0xFF585858)
-                                                  : Color(0xFFB1B3BC),
+                                              color: Theme.of(context).textTheme.labelSmall!.color,
                                               fontSize: context.setSp(12.82),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
@@ -365,32 +331,10 @@ class _UsernameAndPasswordLoginScreenState
                                               iconcolor: const Color(
                                                 0xFF16A6B7,
                                               ),
-                                              borderColor: !SharedPr.isDarkMode!
-                                                  ? Color(
-                                                      0xFFC2C3CB,
-                                                    )
-                                                  : null,
-                                              fillColor: !SharedPr.isDarkMode!
-                                                  ? Colors.white.withValues(
-                                                      alpha: 0.43,
-                                                    )
-                                                  : const Color(
-                                                      0xFF2B2B2B,
-                                                    ),
-                                              hintcolor: !SharedPr.isDarkMode!
-                                                  ? Color(
-                                                      0xFFC2C3CB,
-                                                    )
-                                                  : const Color(
-                                                      0xFFC2C3CB,
-                                                    ),
-                                              color: !SharedPr.isDarkMode!
-                                                  ? Color(
-                                                      0xFFC2C3CB,
-                                                    )
-                                                  : const Color(
-                                                      0xFFC2C3CB,
-                                                    ),
+                                              borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                          fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
+                                          hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                          color: Theme.of(context).colorScheme.onPrimary,
                                               isAddOrEdit: true,
                                               borderRadius:
                                                   context.setMinSize(8.01),
@@ -520,18 +464,11 @@ class _UsernameAndPasswordLoginScreenState
                                                             "switch_to_pin_login"
                                                                 .tr,
                                                             style: TextStyle(
-                                                              color: SharedPr
-                                                                      .isDarkMode!
-                                                                  ? const Color(
-                                                                      0xFFB0B4C3)
-                                                                  : const Color(
-                                                                      0xFF2E2E2E),
+                                                              color:  Theme.of(context).textTheme.labelSmall!.color,
                                                               fontSize:
                                                                   context.setSp(
                                                                 12.82,
                                                               ),
-                                                              fontFamily:
-                                                                  'Tajawal',
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w400,
@@ -558,7 +495,6 @@ class _UsernameAndPasswordLoginScreenState
                                                     fontSize: context.setSp(
                                                       12.82,
                                                     ),
-                                                    fontFamily: 'Tajawal',
                                                     fontWeight: FontWeight.w400,
                                                   ),
                                                 ),
@@ -823,11 +759,8 @@ forgetPasswordDialog({
                           Text(
                             "confirm_reset_password".tr,
                             style: TextStyle(
-                              color: SharedPr.isDarkMode!
-                                  ? Color(0xFFB1B3BC)
-                                  : const Color(0xFF9F9FA5),
+                              color: Theme.of(context).textTheme.labelSmall!.color,
                               fontSize: context.setSp(14.42),
-                              fontFamily: 'Tajawal',
                               fontWeight: FontWeight.w400,
                             ),
                           ),

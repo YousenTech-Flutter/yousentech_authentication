@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
@@ -73,9 +74,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                               width: context.setWidth(454.48),
                               height: context.setHeight(550),
                               decoration: ShapeDecoration(
-                                color: !SharedPr.isDarkMode!
-                                    ? Colors.white
-                                    : Colors.white.withValues(alpha: 0.01),
+                                color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(
                                     width: 1,
@@ -100,11 +99,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           'login'.tr,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            color: SharedPr.isDarkMode!
-                                                ? Colors.white
-                                                : const Color(0xFF2E2E2E),
                                             fontSize: context.setSp(20.03),
-                                            fontFamily: 'Tajawal',
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
@@ -115,11 +110,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                         child: RichText(
                                           text: TextSpan(
                                             style: TextStyle(
-                                              color: SharedPr.isDarkMode!
-                                                  ? Color(0xFFB1B3BC)
-                                                  : const Color(0xFF9F9FA5),
+                                              color: Theme.of(context).textTheme.labelSmall!.color,
                                               fontSize: context.setSp(14.42),
-                                              fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
                                             ),
                                             children: <TextSpan>[
@@ -131,7 +123,6 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                   color:
                                                       const Color(0xFF16A6B7),
                                                   fontSize: context.setSp(16),
-                                                  fontFamily: 'Tajawal',
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
@@ -178,11 +169,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 ),
                                               ),
                                               fillColor: null,
-                                              hintcolor: !SharedPr.isDarkMode!
-                                                  ? Color(0xFFC2C3CB)
-                                                  : const Color(
-                                                      0xFFC2C3CB,
-                                                    ),
+                                              hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
                                               color: const Color(0xFF16A6B7),
                                               borderRadius:
                                                   context.setMinSize(8.01),
@@ -311,16 +298,8 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                       "switch_to_username_login"
                                                           .tr,
                                                       style: TextStyle(
-                                                        color:
-                                                            SharedPr.isDarkMode!
-                                                                ? const Color(
-                                                                    0xFFB0B4C3,
-                                                                  )
-                                                                : const Color(
-                                                                    0xFF646464),
-                                                        fontSize: context
-                                                            .setSp(12.82),
-                                                        fontFamily: 'Tajawal',
+                                                        color:Theme.of(context).textTheme.labelSmall!.color,
+                                                        fontSize: context.setSp(12.82),
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),

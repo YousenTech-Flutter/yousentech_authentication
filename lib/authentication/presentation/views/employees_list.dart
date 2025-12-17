@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -70,12 +71,9 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
               appBar: customAppBar(
                 context: context,
                 onDarkModeChanged: () {
-                  setState(() {});
+                  // setState(() {});
                 },
               ),
-              backgroundColor: !SharedPr.isDarkMode!
-                  ? Color(0xFFDDDDDD)
-                  : AppColor.darkModeBackgroundColor,
               body: Center(
                 child: SingleChildScrollView(
                   child: Column(
@@ -93,11 +91,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                               width: context.setWidth(454.48),
                               height: context.setHeight(470),
                               decoration: ShapeDecoration(
-                                color: !SharedPr.isDarkMode!
-                                    ? Colors.white
-                                    : Colors.white.withValues(
-                                        alpha: 0.01,
-                                      ),
+                                color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(
                                     width: 1,
@@ -125,11 +119,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             'employee_list'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: SharedPr.isDarkMode!
-                                                  ? Colors.white
-                                                  : Color(0xFF2E2E2E),
                                               fontSize: context.setSp(20.03),
-                                              fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
@@ -150,7 +140,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                       0xFF16A6B7,
                                                     ),
                                                     fontSize: context.setSp(16),
-                                                    fontFamily: 'Tajawal',
                                                     fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
@@ -162,11 +151,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             ),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: SharedPr.isDarkMode!
-                                                  ? Color(0xFFB1B3BC)
-                                                  : Color(0xFF9F9FA5),
+                                              color: Theme.of(context).textTheme.labelSmall!.color,
                                               fontSize: context.setSp(14.42),
-                                              fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
@@ -187,11 +173,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             child: Text(
                                               'loading'.tr,
                                               style: TextStyle(
-                                                color: SharedPr.isDarkMode!
-                                                    ? Color(0xFFB1B3BC)
-                                                    : Color(0xFF9F9FA5),
+                                                color: Theme.of(context).textTheme.labelSmall!.color,
                                                 fontSize: context.setSp(14.42),
-                                                fontFamily: 'Tajawal',
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
@@ -230,18 +213,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
-                                                        color:
-                                                            SharedPr.isDarkMode!
-                                                                ? Color(
-                                                                    0xFFB1B3BC,
-                                                                  )
-                                                                : Color(
-                                                                    0xFF9F9FA5,
-                                                                  ),
+                                                        color:Theme.of(context).textTheme.labelSmall!.color,
                                                         fontSize: context.setSp(
                                                           14.42,
                                                         ),
-                                                        fontFamily: 'Tajawal',
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),
@@ -266,7 +241,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                         fontSize: context.setSp(
                                                           14.42,
                                                         ),
-                                                        fontFamily: 'Tajawal',
                                                         fontWeight:
                                                             FontWeight.w400,
                                                       ),
@@ -310,14 +284,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                   Text(
                                                     'empty_list'.tr,
                                                     style: TextStyle(
-                                                      color: SharedPr
-                                                              .isDarkMode!
-                                                          ? Color(0xFFB1B3BC)
-                                                          : Color(0xFF9F9FA5),
+                                                      color: Theme.of(context).textTheme.labelSmall!.color,
                                                       fontSize: context.setSp(
                                                         14.42,
                                                       ),
-                                                      fontFamily: 'Tajawal',
                                                       fontWeight:
                                                           FontWeight.w400,
                                                     ),
@@ -367,14 +337,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                       child:  Container(
                                                             decoration:
                                                                 ShapeDecoration(
-                                                              color: SharedPr
-                                                                      .isDarkMode!
-                                                                  ? const Color(
-                                                                      0x2B555555,
-                                                                    )
-                                                                  : const Color(
-                                                                      0xFFF6F6F6,
-                                                                    ),
+                                                              color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
                                                               shape:
                                                                   RoundedRectangleBorder(
                                                                 borderRadius:
@@ -441,21 +404,12 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                                       '${tokenController.finalResult[index].name}',
                                                                       style:
                                                                           TextStyle(
-                                                                        color: SharedPr.isDarkMode!
-                                                                            ? const Color(
-                                                                                0xFFBABABA,
-                                                                              )
-                                                                            : const Color(
-                                                                                0xFF6B6868,
-                                                                              ),
                                                                         fontSize:
                                                                             context.setSp(
                                                                           12,
                                                                         ),
                                                                         overflow:
                                                                             TextOverflow.ellipsis,
-                                                                        fontFamily:
-                                                                            'Tajawal',
                                                                         fontWeight:
                                                                             FontWeight.w700,
                                                                       ),

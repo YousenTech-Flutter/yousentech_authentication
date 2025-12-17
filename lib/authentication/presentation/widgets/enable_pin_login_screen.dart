@@ -9,6 +9,7 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_styles.dart';
+import 'package:shared_widgets/config/app_theme.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -103,12 +104,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                 'enable_pin_login'.tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color:
-                                      SharedPr.isDarkMode!
-                                          ? Colors.white
-                                          : const Color(0xFF2E2E2E),
                                   fontSize: context.setSp(16),
-                                  fontFamily: 'Tajawal',
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -121,12 +117,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                 'enter_pin_code'.tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color:
-                                      SharedPr.isDarkMode!
-                                          ? Colors.white
-                                          : const Color(0xFF2E2E2E),
                                   fontSize: context.setSp(14),
-                                  fontFamily: 'Tajawal',
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
@@ -139,24 +130,10 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                     controller: pinCodeController,
                                     width: context.screenWidth,
                                     height: context.setHeight(51.28),
-                                    borderColor:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFFC2C3CB)
-                                            : null,
-                                    fillColor:
-                                        !SharedPr.isDarkMode!
-                                            ? Colors.white.withValues(
-                                              alpha: 0.43,
-                                            )
-                                            : const Color(0xFF2B2B2B),
-                                    hintcolor:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFF585858)
-                                            : const Color(0xFFC2C3CB),
-                                    color:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFF585858)
-                                            : const Color(0xFFC2C3CB),
+                                    borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                    fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
+                                    hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                    color:Theme.of(context).colorScheme.onPrimary,
                                     isAddOrEdit: true,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
@@ -235,24 +212,10 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                     width: context.screenWidth,
                                     height: context.setHeight(51.28),
                                     isAddOrEdit: true,
-                                      borderColor:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFFC2C3CB)
-                                            : null,
-                                    fillColor:
-                                        !SharedPr.isDarkMode!
-                                            ? Colors.white.withValues(
-                                              alpha: 0.43,
-                                            )
-                                            : const Color(0xFF2B2B2B),
-                                    hintcolor:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFF585858)
-                                            : const Color(0xFFC2C3CB),
-                                    color:
-                                        !SharedPr.isDarkMode!
-                                            ? Color(0xFF585858)
-                                            : const Color(0xFFC2C3CB),
+                                    borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                    fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
+                                    hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                    color:Theme.of(context).colorScheme.onPrimary,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
                                     prefixIcon: Padding(
