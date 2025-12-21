@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
-import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -68,6 +68,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
         children: [
           SafeArea(
             child: Scaffold(
+              backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor: const Color(0xFFDDDDDD),
               appBar: customAppBar(
                 context: context,
                 onDarkModeChanged: () {
@@ -91,7 +92,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                               width: context.setWidth(454.48),
                               height: context.setHeight(470),
                               decoration: ShapeDecoration(
-                                color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
+                                color:Get.find<ThemeController>().isDarkMode.value? AppColor.black.withValues(alpha: 0.17): AppColor.white,
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(
                                     width: 1,
@@ -117,8 +118,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                         Center(
                                           child: Text(
                                             'employee_list'.tr,
+                                            
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
+                                              color: Get.find<ThemeController>().isDarkMode.value ? Colors.white :Colors.black ,
                                               fontSize: context.setSp(20.03),
                                               fontWeight: FontWeight.w700,
                                             ),
@@ -151,7 +154,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             ),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              color: Theme.of(context).textTheme.labelSmall!.color,
+                                              color: Color(0xFF9F9FA5),
                                               fontSize: context.setSp(14.42),
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -173,7 +176,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                             child: Text(
                                               'loading'.tr,
                                               style: TextStyle(
-                                                color: Theme.of(context).textTheme.labelSmall!.color,
+                                                color: Color(0xFF9F9FA5),
                                                 fontSize: context.setSp(14.42),
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -213,7 +216,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
-                                                        color:Theme.of(context).textTheme.labelSmall!.color,
+                                                        color:Color(0xFF9F9FA5),
                                                         fontSize: context.setSp(
                                                           14.42,
                                                         ),
@@ -284,7 +287,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                   Text(
                                                     'empty_list'.tr,
                                                     style: TextStyle(
-                                                      color: Theme.of(context).textTheme.labelSmall!.color,
+                                                      color: Color(0xFF9F9FA5),
                                                       fontSize: context.setSp(
                                                         14.42,
                                                       ),
@@ -337,7 +340,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                       child:  Container(
                                                             decoration:
                                                                 ShapeDecoration(
-                                                              color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+                                                              color:Get.find<ThemeController>().isDarkMode.value ? const Color(0x2B555555) : const Color(0xFFF6F6F6,) ,
                                                               shape:
                                                                   RoundedRectangleBorder(
                                                                 borderRadius:
@@ -404,6 +407,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                                       '${tokenController.finalResult[index].name}',
                                                                       style:
                                                                           TextStyle(
+                                                                        color: Get.find<ThemeController>().isDarkMode.value ? Colors.white :Colors.black ,
                                                                         fontSize:
                                                                             context.setSp(
                                                                           12,

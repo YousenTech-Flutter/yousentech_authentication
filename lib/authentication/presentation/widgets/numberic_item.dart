@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/utils/submit_pin.dart';
@@ -80,7 +80,7 @@ class _NumbericItemsState extends State<NumbericItems> {
       width: width ?? context.setWidth(95.76),
       height:height?? context.setHeight(66),
       decoration: ShapeDecoration(
-        color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+        color: Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
         shape: RoundedRectangleBorder(
           side: BorderSide(
             width: 1,
@@ -139,6 +139,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                   data,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
                     fontSize: context.setSp(14),
                     fontWeight: FontWeight.w700,
                     height: 1,
@@ -160,7 +161,7 @@ class _NumbericItemsState extends State<NumbericItems> {
         width:width ?? context.setWidth(95.76),
         height:height?? context.setHeight(66),
         decoration: ShapeDecoration(
-          color: Theme.of(context).extension<CustomTheme>()!.cardEmplBackgroundColor,
+          color: Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
@@ -174,6 +175,7 @@ class _NumbericItemsState extends State<NumbericItems> {
             "enter".tr,
             textAlign: TextAlign.center,
             style: TextStyle(
+              color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
               fontSize: context.setSp(16),
               fontWeight: FontWeight.w700,
               height: 1,

@@ -10,6 +10,7 @@ import 'package:shared_widgets/config/app_enums.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -37,8 +38,8 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
   confirmPinCodeController.clear();
 
   if (!enable) {
-    ResponseResult responseResult = await authenticationController
-        .activatePinLogin(pinCode: '');
+    ResponseResult responseResult =
+        await authenticationController.activatePinLogin(pinCode: '');
     SharedPr.updatePinCodeValue(pinCode: null);
     appSnackBar(
       messageType: MessageTypes.success,
@@ -104,6 +105,11 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                 'enable_pin_login'.tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? AppColor.white
+                                      : AppColor.black,
                                   fontSize: context.setSp(16),
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -118,22 +124,36 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: context.setSp(14),
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? AppColor.white
+                                      : AppColor.black,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                               SizedBox(
+                              SizedBox(
                                 height: context.setHeight(10),
                               ),
                               StatefulBuilder(
-                                builder: (BuildContext statefulBuilderContext, setState) {
+                                builder: (BuildContext statefulBuilderContext,
+                                    setState) {
                                   return ContainerTextField(
                                     controller: pinCodeController,
                                     width: context.screenWidth,
                                     height: context.setHeight(51.28),
-                                    borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                    hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    color:Theme.of(context).colorScheme.onSurface,
+                                    borderColor: const Color(0xFFC2C3CB),
+                                    fillColor: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? const Color(0xFF2B2B2B)
+                                        : Colors.white.withValues(alpha: 0.43),
+                                    hintcolor: const Color(0xFFC2C3CB),
+                                    color: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     isAddOrEdit: true,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
@@ -144,9 +164,8 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       child: SvgPicture.asset(
                                         AppImages.lockOn,
                                         package: 'shared_widgets',
-                                        fit:
-                                            BoxFit
-                                                .scaleDown, // Adjust this to control scaling
+                                        fit: BoxFit
+                                            .scaleDown, // Adjust this to control scaling
                                       ),
                                     ),
                                     hintText: 'pin_code'.tr,
@@ -165,38 +184,35 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                             flagPin = !flagPin;
                                           });
                                         },
-                                        icon:
-                                            flagPin
-                                                ? SvgPicture.asset(
-                                                  AppImages.eyeOpen,
-                                                  package: 'shared_widgets',
-                                                  fit: BoxFit.scaleDown,
-                                                  color: AppColor.silverGray,
-                                                  // Adjust this to control scaling
-                                                )
-                                                : SvgPicture.asset(
-                                                  AppImages.eyeClosed,
-                                                  package: 'shared_widgets',
-                                                  fit:
-                                                      BoxFit
-                                                          .scaleDown, // Adjust this to control scaling
-                                                ),
+                                        icon: flagPin
+                                            ? SvgPicture.asset(
+                                                AppImages.eyeOpen,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit.scaleDown,
+                                                color: AppColor.silverGray,
+                                                // Adjust this to control scaling
+                                              )
+                                            : SvgPicture.asset(
+                                                AppImages.eyeClosed,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit
+                                                    .scaleDown, // Adjust this to control scaling
+                                              ),
                                       ),
                                     ),
                                     obscureText: flagPin ? false : true,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        errorMessage = 'required_message'
-                                            .trParams({
-                                              'field_name': 'pin_code'.tr,
-                                            });
+                                        errorMessage =
+                                            'required_message'.trParams({
+                                          'field_name': 'pin_code'.tr,
+                                        });
                                         countErrors++;
                                         return "";
                                       } else if (value.length < 4) {
-                                        errorMessage =
-                                            'length_error'.trParams({
-                                              'field_name': '4',
-                                            }).tr;
+                                        errorMessage = 'length_error'.trParams({
+                                          'field_name': '4',
+                                        }).tr;
                                         return "";
                                       }
                                       return null;
@@ -204,18 +220,26 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                   );
                                 },
                               ),
-                             
                               StatefulBuilder(
-                                builder: (BuildContext statefulBuilderContext, setState) {
+                                builder: (BuildContext statefulBuilderContext,
+                                    setState) {
                                   return ContainerTextField(
                                     controller: confirmPinCodeController,
                                     width: context.screenWidth,
                                     height: context.setHeight(51.28),
                                     isAddOrEdit: true,
-                                    borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                    hintcolor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                    color:Theme.of(context).colorScheme.onSurface,
+                                    borderColor: const Color(0xFFC2C3CB),
+                                    fillColor: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? const Color(0xFF2B2B2B)
+                                        : Colors.white.withValues(alpha: 0.43),
+                                    hintcolor: const Color(0xFFC2C3CB),
+                                    color: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? AppColor.white
+                                        : AppColor.black,
                                     borderRadius: context.setMinSize(5),
                                     fontSize: context.setSp(12),
                                     prefixIcon: Padding(
@@ -225,9 +249,8 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       child: SvgPicture.asset(
                                         AppImages.lockOn,
                                         package: 'shared_widgets',
-                                        fit:
-                                            BoxFit
-                                                .scaleDown, // Adjust this to control scaling
+                                        fit: BoxFit
+                                            .scaleDown, // Adjust this to control scaling
                                       ),
                                     ),
                                     hintText: 'confirm_pin_code'.tr,
@@ -246,32 +269,29 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                             flagConfirm = !flagConfirm;
                                           });
                                         },
-                                        icon:
-                                            flagConfirm
-                                                ? SvgPicture.asset(
-                                                  AppImages.eyeOpen,
-                                                  package: 'shared_widgets',
-                                                  fit: BoxFit.scaleDown,
-                                                  color: AppColor.silverGray,
-                                                  // Adjust this to control scaling
-                                                )
-                                                : SvgPicture.asset(
-                                                  AppImages.eyeClosed,
-                                                  package: 'shared_widgets',
-                                                  fit:
-                                                      BoxFit
-                                                          .scaleDown, // Adjust this to control scaling
-                                                ),
+                                        icon: flagConfirm
+                                            ? SvgPicture.asset(
+                                                AppImages.eyeOpen,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit.scaleDown,
+                                                color: AppColor.silverGray,
+                                                // Adjust this to control scaling
+                                              )
+                                            : SvgPicture.asset(
+                                                AppImages.eyeClosed,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit
+                                                    .scaleDown, // Adjust this to control scaling
+                                              ),
                                       ),
                                     ),
                                     obscureText: flagConfirm ? false : true,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        errorMessage = 'required_message_f'
-                                            .trParams({
-                                              'field_name':
-                                                  'confirm_pin_code'.tr,
-                                            });
+                                        errorMessage =
+                                            'required_message_f'.trParams({
+                                          'field_name': 'confirm_pin_code'.tr,
+                                        });
                                         countErrors++;
                                         return "";
                                       } else if (value !=
@@ -303,7 +323,6 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       onPressed: onPressed,
                                     ),
                                   ),
-                                  
                                   Expanded(
                                     child: ButtonElevated(
                                       text: 'cancel'.tr,

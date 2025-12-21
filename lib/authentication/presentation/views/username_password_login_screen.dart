@@ -11,6 +11,7 @@ import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_lists.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -91,7 +92,7 @@ class _UsernameAndPasswordLoginScreenState
                                 width: context.setWidth(454.48),
                                 height: context.setHeight(470),
                                 decoration: ShapeDecoration(
-                                  color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
+                                  color: Get.find<ThemeController>().isDarkMode.value ?AppColor.black.withValues(alpha: 0.17):AppColor.white ,
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1,
@@ -119,6 +120,7 @@ class _UsernameAndPasswordLoginScreenState
                                             'login'.tr,
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
+                                              color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
                                               fontSize: context.setSp(20.03),
                                               fontWeight: FontWeight.w700,
                                             ),
@@ -130,7 +132,7 @@ class _UsernameAndPasswordLoginScreenState
                                           child: RichText(
                                             text: TextSpan(
                                               style: TextStyle(
-                                              color: Theme.of(context).textTheme.labelSmall!.color,
+                                              color: Color(0xFFB1B3BC),
                                                 fontSize: context.setSp(14.42),
                                                 fontWeight: FontWeight.w400,
                                               ),
@@ -167,7 +169,7 @@ class _UsernameAndPasswordLoginScreenState
                                             'email'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: Theme.of(context).textTheme.labelSmall!.color,
+                                              color: Color(0xFFB1B3BC),
                                               fontSize: context.setSp(12.82),
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -222,10 +224,10 @@ class _UsernameAndPasswordLoginScreenState
                                           iconcolor: const Color(
                                             0xFF16A6B7,
                                           ),
-                                          borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                          hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          color: Theme.of(context).colorScheme.onSurface,
+                                          borderColor:const Color(0xFFC2C3CB),
+                                          fillColor:Get.find<ThemeController>().isDarkMode.value ? const Color(0xFF2B2B2B): Colors.white.withValues(alpha: 0.43),
+                                          hintcolor: const Color(0xFFC2C3CB),
+                                          color: Get.find<ThemeController>().isDarkMode.value ?AppColor.white :AppColor.black ,
                                           isAddOrEdit: true,
                                           borderRadius:
                                               context.setMinSize(8.01),
@@ -288,7 +290,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 : 'password'.tr,
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: Theme.of(context).textTheme.labelSmall!.color,
+                                              color: Color(0xFFB1B3BC),
                                               fontSize: context.setSp(12.82),
                                               fontFamily: 'Tajawal',
                                               fontWeight: FontWeight.w400,
@@ -329,10 +331,10 @@ class _UsernameAndPasswordLoginScreenState
                                               iconcolor: const Color(
                                                 0xFF16A6B7,
                                               ),
-                                              borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                          hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                          color: Theme.of(context).colorScheme.onSurface,
+                                          borderColor:const Color(0xFFC2C3CB),
+                                          fillColor:Get.find<ThemeController>().isDarkMode.value ? const Color(0xFF2B2B2B): Colors.white.withValues(alpha: 0.43),
+                                          hintcolor: const Color(0xFFC2C3CB),
+                                          color: Get.find<ThemeController>().isDarkMode.value ?AppColor.white :AppColor.black,
                                               isAddOrEdit: true,
                                               borderRadius:
                                                   context.setMinSize(8.01),
@@ -462,7 +464,7 @@ class _UsernameAndPasswordLoginScreenState
                                                             "switch_to_pin_login"
                                                                 .tr,
                                                             style: TextStyle(
-                                                              color:  Theme.of(context).textTheme.labelSmall!.color,
+                                                              color:  Color(0xFFB1B3BC),
                                                               fontSize:
                                                                   context.setSp(
                                                                 12.82,
@@ -757,7 +759,7 @@ forgetPasswordDialog({
                           Text(
                             "confirm_reset_password".tr,
                             style: TextStyle(
-                              color: Theme.of(context).textTheme.labelSmall!.color,
+                              color: Color(0xFFB1B3BC),
                               fontSize: context.setSp(14.42),
                               fontWeight: FontWeight.w400,
                             ),

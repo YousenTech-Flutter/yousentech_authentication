@@ -6,6 +6,7 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/app_styles.dart';
 import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_dialog.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
@@ -40,8 +41,8 @@ changePasswordDialog({required BuildContext context}) {
           width: context.setWidth(454.48),
           height: context.setHeight(400),
           child: SizedBox(
-          width: context.setWidth(454.48),
-          height: context.setHeight(400),
+            width: context.setWidth(454.48),
+            height: context.setHeight(400),
             child: Obx(
               () => IgnorePointer(
                 ignoring: authenticationController.loading.value,
@@ -60,7 +61,10 @@ changePasswordDialog({required BuildContext context}) {
                               "change_password".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color:
+                                    Get.find<ThemeController>().isDarkMode.value
+                                        ? AppColor.white
+                                        : AppColor.black,
                                 fontSize: context.setSp(16),
                                 fontWeight: FontWeight.w700,
                               ),
@@ -74,22 +78,34 @@ changePasswordDialog({required BuildContext context}) {
                               "enter_your_new_password".tr,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary,
+                                color:
+                                    Get.find<ThemeController>().isDarkMode.value
+                                        ? AppColor.white
+                                        : AppColor.black,
                                 fontSize: context.setSp(14),
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
                             SizedBox(height: context.setHeight(10)),
                             StatefulBuilder(
-                              builder: (BuildContext statefulBuilderContext, setState) {
+                              builder: (BuildContext statefulBuilderContext,
+                                  setState) {
                                 return ContainerTextField(
                                   controller: passwordController,
                                   width: context.screenWidth,
                                   height: context.setHeight(51.28),
-                                  borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                  fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                  hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  borderColor: const Color(0xFFC2C3CB),
+                                  fillColor: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? const Color(0xFF2B2B2B)
+                                      : Colors.white.withValues(alpha: 0.43),
+                                  hintcolor: const Color(0xFFC2C3CB),
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? AppColor.white
+                                      : AppColor.black,
                                   isAddOrEdit: true,
                                   borderRadius: context.setMinSize(5),
                                   fontSize: context.setSp(12),
@@ -121,14 +137,14 @@ changePasswordDialog({required BuildContext context}) {
                                           ? SvgPicture.asset(
                                               AppImages.eyeOpen,
                                               package: 'shared_widgets',
-                                              
+
                                               fit: BoxFit.scaleDown,
                                               color: AppColor.silverGray,
                                               // Adjust this to control scaling
                                             )
                                           : SvgPicture.asset(
-                                            AppImages.eyeClosed,
-                                            package: 'shared_widgets',
+                                              AppImages.eyeClosed,
+                                              package: 'shared_widgets',
                                               fit: BoxFit
                                                   .scaleDown, // Adjust this to control scaling
                                             ),
@@ -160,15 +176,24 @@ changePasswordDialog({required BuildContext context}) {
                               },
                             ),
                             StatefulBuilder(
-                              builder: (BuildContext statefulBuilderContext, setState) {
+                              builder: (BuildContext statefulBuilderContext,
+                                  setState) {
                                 return ContainerTextField(
                                   controller: confirmPasswordController,
                                   width: context.screenWidth,
                                   height: context.setHeight(51.28),
-                                  borderColor:Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                  fillColor:Theme.of(context).extension<CustomTheme>()!.fillColor,
-                                  hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
-                                  color: Theme.of(context).colorScheme.onSurface,
+                                  borderColor: const Color(0xFFC2C3CB),
+                                  fillColor: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? const Color(0xFF2B2B2B)
+                                      : Colors.white.withValues(alpha: 0.43),
+                                  hintcolor: const Color(0xFFC2C3CB),
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? AppColor.white
+                                      : AppColor.black,
                                   isAddOrEdit: true,
                                   borderRadius: context.setMinSize(5),
                                   fontSize: context.setSp(12),
@@ -200,16 +225,16 @@ changePasswordDialog({required BuildContext context}) {
                                           ? SvgPicture.asset(
                                               AppImages.eyeOpen,
                                               package: 'shared_widgets',
-                                              
+
                                               fit: BoxFit.scaleDown,
-                                              
+
                                               color: AppColor.silverGray,
                                               // Adjust this to control scaling
                                             )
                                           : SvgPicture.asset(
-                                            AppImages.eyeClosed,
-                                            package: 'shared_widgets',
-                                              
+                                              AppImages.eyeClosed,
+                                              package: 'shared_widgets',
+
                                               fit: BoxFit
                                                   .scaleDown, // Adjust this to control scaling
                                             ),
@@ -261,8 +286,7 @@ changePasswordDialog({required BuildContext context}) {
                                       fontWeight: FontWeight.normal,
                                     ),
                                     onPressed: () async {
-                                      if (!_formKey.currentState!
-                                          .validate()) {
+                                      if (!_formKey.currentState!.validate()) {
                                         appSnackBar(
                                           message: countErrors > 1
                                               ? 'enter_required_info'.tr

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
+import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
-import 'package:shared_widgets/config/app_theme.dart';
+import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
@@ -74,7 +75,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                               width: context.setWidth(454.48),
                               height: context.setHeight(550),
                               decoration: ShapeDecoration(
-                                color: Theme.of(context).extension<CustomTheme>()!.preferredSizeBackground,
+                                color:Get.find<ThemeController>().isDarkMode.value? AppColor.black.withValues(alpha: 0.17): AppColor.white,
                                 shape: RoundedRectangleBorder(
                                   side: BorderSide(
                                     width: 1,
@@ -99,6 +100,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                           'login'.tr,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
+                                            color: Get.find<ThemeController>().isDarkMode.value ? Colors.white :Colors.black ,
                                             fontSize: context.setSp(20.03),
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -110,7 +112,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                         child: RichText(
                                           text: TextSpan(
                                             style: TextStyle(
-                                              color: Theme.of(context).textTheme.labelSmall!.color,
+                                              color: Color(0xFF9F9FA5),
                                               fontSize: context.setSp(14.42),
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -169,7 +171,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                 ),
                                               ),
                                               fillColor: null,
-                                              hintcolor: Theme.of(context).extension<CustomTheme>()!.hintcolor,
+                                              hintcolor: const Color(0xFFC2C3CB),
                                               color: const Color(0xFF16A6B7),
                                               borderRadius:
                                                   context.setMinSize(8.01),
@@ -193,8 +195,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                             context.setHeight(
                                                           21.63,
                                                         ),
-                                                        color: SharedPr
-                                                                .isDarkMode!
+                                                        color:Get.find<ThemeController>().isDarkMode.value
                                                             ? Colors.white
                                                                 .withValues(
                                                                     alpha:
@@ -214,8 +215,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                             context.setHeight(
                                                           21.63,
                                                         ),
-                                                        color: SharedPr
-                                                                .isDarkMode!
+                                                        color: Get.find<ThemeController>().isDarkMode.value
                                                             ? Colors.white
                                                                 .withValues(
                                                                     alpha:
@@ -298,7 +298,7 @@ class _PINLoginScreenState extends State<PINLoginScreen> {
                                                       "switch_to_username_login"
                                                           .tr,
                                                       style: TextStyle(
-                                                        color:Theme.of(context).textTheme.labelSmall!.color,
+                                                        color:Color(0xFF9F9FA5),
                                                         fontSize: context.setSp(12.82),
                                                         fontWeight:
                                                             FontWeight.w400,
