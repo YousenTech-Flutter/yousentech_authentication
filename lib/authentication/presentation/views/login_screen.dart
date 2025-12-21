@@ -21,33 +21,36 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor: const Color(0xFFDDDDDD),
-        appBar: customAppBar(
-          context: context,
-          onDarkModeChanged: () {
-            // setState(() {});
-          },
-        ),
-        body: GetBuilder<AuthenticationController>(
-          id: "choosePin",
-          builder: (context) {
-            return Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    (!authenticationController.choosePin)
-                        ?  UsernameAndPasswordLoginScreen()
-                        : PINLoginScreen(),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      ),
+    return Obx(() {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor: const Color(0xFFDDDDDD),
+            appBar: customAppBar(
+              context: context,
+              onDarkModeChanged: () {
+                // setState(() {});
+              },
+            ),
+            body: GetBuilder<AuthenticationController>(
+              id: "choosePin",
+              builder: (context) {
+                return Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        (!authenticationController.choosePin)
+                            ?  UsernameAndPasswordLoginScreen()
+                            : PINLoginScreen(),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      }
     );
   }
 }
