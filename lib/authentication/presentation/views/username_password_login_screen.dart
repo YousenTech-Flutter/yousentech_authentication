@@ -49,8 +49,8 @@ class _UsernameAndPasswordLoginScreenState
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => IgnorePointer(
+    return 
+        IgnorePointer(
         ignoring: authenticationController.loading.value,
         child: Shortcuts(
           shortcuts: <LogicalKeySet, Intent>{
@@ -575,8 +575,8 @@ class _UsernameAndPasswordLoginScreenState
             ),
           ),
         ),
-      ),
-    );
+      );
+    
   }
 
   onPressed() async {
