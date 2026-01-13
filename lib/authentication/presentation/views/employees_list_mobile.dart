@@ -340,7 +340,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           ),
                                                         ),
                                                         child: Padding(
-                                                          padding: EdgeInsets.all(context.setMinSize(8)),
+                                                          padding: EdgeInsets.all(context.setMinSize(10)),
                                                           child: SvgPicture.asset(
                                                             AppImages.person,
                                                             package:
