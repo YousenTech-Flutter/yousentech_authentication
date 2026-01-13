@@ -325,8 +325,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         context.setWidth(12.69),
                                                     children: [
                                                       Container(
-                                                        width: context.setWidth(54.98),
-                                                        
+                                                        width: context.setWidth(60),
+                                                        height: context.setHeight(60),
                                                         decoration:
                                                             ShapeDecoration(
                                                           color:Get.find<
@@ -337,7 +337,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius: BorderRadius
-                                                                .circular(context.setMinSize(10)),
+                                                                .circular(context.setMinSize(16.92)),
                                                           ),
                                                         ),
                                                         child: Padding(
