@@ -325,7 +325,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         context.setWidth(12.69),
                                                     children: [
                                                       Container(
-                                                        width: context.setWidth(54.98),
+                                                        width: context.setWidth(53),
                                                         decoration:
                                                             ShapeDecoration(
                                                           color:Get.find<
