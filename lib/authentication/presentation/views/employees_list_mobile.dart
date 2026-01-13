@@ -83,11 +83,12 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                         return Padding(
                           padding:  EdgeInsets.all(context.setMinSize(16.92)),
                           child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              SizedBox(
-                                height: context.setHeight(39.38),
-                              ),
+                              // SizedBox(
+                              //   height: context.setHeight(39.38),
+                              // ),
                               Center(
                                 child: Text(
                                   'employee_list'.tr,
@@ -259,135 +260,135 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     ),
                                   ),
                                 ] else ...[
-                                  Expanded(
-                                    child: GridView.extent(
-                                      maxCrossAxisExtent:
-                                          context.setWidth(106),
-                                      childAspectRatio:
-                                          context.setWidth(106) /
-                                              context.setHeight(118),
-                                      crossAxisSpacing: context.setWidth(
-                                        19,
-                                      ), // المسافة الأفقية بين العناصر
-                                      mainAxisSpacing: context.setHeight(
-                                        19,
-                                      ), // المسافة العمودية بين العناصر
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: context.setWidth(
-                                          50.2,
-                                        ),
-                                      ), // المسافة من الحواف
-                                      children: List.generate(
-                                        tokenController.finalResult.length,
-                                        (index) {
-                                          return InkWell(
-                                              onTap: () {
-                                                final TokenController
-                                                    tokenUpdateController =
-                                                    Get.put(
-                                                  TokenController
-                                                      .getInstance(),
-                                                );
-                                                tokenUpdateController
-                                                    .onSelectEmployee(
-                                                  index,
-                                                  authenticationController,
-                                                );
-                                              },
-                                              child: Container(
-                                                decoration: ShapeDecoration(
-                                                  color: Get.find<
-                                                              ThemeController>()
-                                                          .isDarkMode
-                                                          .value
-                                                      ? const Color(
-                                                          0x2B555555)
-                                                      : const Color(
-                                                          0xFFF6F6F6,
-                                                        ),
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius
-                                                            .circular(
-                                                      context.setMinSize(
-                                                        16,
+                                  GridView.extent(
+                                    shrinkWrap: true, // 👈 مهم جدًا
+                                    physics: const NeverScrollableScrollPhysics(),
+                                    maxCrossAxisExtent:
+                                        context.setWidth(106),
+                                    childAspectRatio:
+                                        context.setWidth(106) /
+                                            context.setHeight(118),
+                                    crossAxisSpacing: context.setWidth(
+                                      19,
+                                    ), // المسافة الأفقية بين العناصر
+                                    mainAxisSpacing: context.setHeight(
+                                      19,
+                                    ), // المسافة العمودية بين العناصر
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: context.setWidth(
+                                        50.2,
+                                      ),
+                                    ), // المسافة من الحواف
+                                    children: List.generate(
+                                      tokenController.finalResult.length,
+                                      (index) {
+                                        return InkWell(
+                                            onTap: () {
+                                              final TokenController
+                                                  tokenUpdateController =
+                                                  Get.put(
+                                                TokenController
+                                                    .getInstance(),
+                                              );
+                                              tokenUpdateController
+                                                  .onSelectEmployee(
+                                                index,
+                                                authenticationController,
+                                              );
+                                            },
+                                            child: Container(
+                                              decoration: ShapeDecoration(
+                                                color: Get.find<
+                                                            ThemeController>()
+                                                        .isDarkMode
+                                                        .value
+                                                    ? const Color(
+                                                        0x2B555555)
+                                                    : const Color(
+                                                        0xFFF6F6F6,
                                                       ),
+                                                shape:
+                                                    RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius
+                                                          .circular(
+                                                    context.setMinSize(
+                                                      16,
                                                     ),
                                                   ),
                                                 ),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .center,
-                                                  spacing: 12,
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                      AppImages.person,
-                                                      package:
-                                                          'shared_widgets',
-                                                      fit: BoxFit.cover,
-                                                      width:
-                                                          context.setWidth(
-                                                        40,
-                                                      ),
-                                                      height:
-                                                          context.setHeight(
-                                                        45,
-                                                      ),
-                                                      color: SharedPr
-                                                              .isDarkMode!
-                                                          ? null
-                                                          :AppColor.appColor,
+                                              ),
+                                              child: Column(
+                                                mainAxisSize:
+                                                    MainAxisSize.min,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .center,
+                                                spacing: 12,
+                                                children: [
+                                                  SvgPicture.asset(
+                                                    AppImages.person,
+                                                    package:
+                                                        'shared_widgets',
+                                                    fit: BoxFit.cover,
+                                                    width:
+                                                        context.setWidth(
+                                                      40,
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets
-                                                          .symmetric(
-                                                        horizontal: context
-                                                            .setWidth(
-                                                          16,
-                                                        ),
+                                                    height:
+                                                        context.setHeight(
+                                                      45,
+                                                    ),
+                                                    color: SharedPr
+                                                            .isDarkMode!
+                                                        ? null
+                                                        :AppColor.appColor,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets
+                                                        .symmetric(
+                                                      horizontal: context
+                                                          .setWidth(
+                                                        16,
                                                       ),
-                                                      child: Tooltip(
-                                                        message:
-                                                            '${tokenController.finalResult[index].name}',
-                                                        child: Text(
+                                                    ),
+                                                    child: Tooltip(
+                                                      message:
                                                           '${tokenController.finalResult[index].name}',
-                                                          style: TextStyle(
-                                                            fontFamily: 'SansMedium',
-                                                            color: Get.find<
-                                                                        ThemeController>()
-                                                                    .isDarkMode
-                                                                    .value
-                                                                ? Colors
-                                                                    .white
-                                                                : Colors
-                                                                    .black,
-                                                            fontSize:
-                                                                context
-                                                                    .setSp(
-                                                              12,
-                                                            ),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700,
+                                                      child: Text(
+                                                        '${tokenController.finalResult[index].name}',
+                                                        style: TextStyle(
+                                                          fontFamily: 'SansMedium',
+                                                          color: Get.find<
+                                                                      ThemeController>()
+                                                                  .isDarkMode
+                                                                  .value
+                                                              ? Colors
+                                                                  .white
+                                                              : Colors
+                                                                  .black,
+                                                          fontSize:
+                                                              context
+                                                                  .setSp(
+                                                            12,
                                                           ),
+                                                          overflow:
+                                                              TextOverflow
+                                                                  .ellipsis,
+                                                          fontWeight:
+                                                              FontWeight
+                                                                  .w700,
                                                         ),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ));
-                                        },
-                                      ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ));
+                                      },
                                     ),
                                   ),
                                 ],
