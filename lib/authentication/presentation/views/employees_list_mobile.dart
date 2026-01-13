@@ -385,24 +385,24 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                                       .w700,
                                                             ),
                                                           ),
-                                                          Text(
-                                                            'No-${tokenController.finalResult[index].id}',
-                                                            style: TextStyle(
-                                                              color: AppColor.appColor,
-                                                              fontFamily:
-                                                                  'SansMedium',
-                                                              fontSize:
-                                                                  context.setSp(
-                                                                12,
-                                                              ),
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            ),
-                                                          )
+                                                          // Text(
+                                                          //   'No-${tokenController.finalResult[index].id}',
+                                                          //   style: TextStyle(
+                                                          //     color: AppColor.appColor,
+                                                          //     fontFamily:
+                                                          //         'SansMedium',
+                                                          //     fontSize:
+                                                          //         context.setSp(
+                                                          //       12,
+                                                          //     ),
+                                                          //     overflow:
+                                                          //         TextOverflow
+                                                          //             .ellipsis,
+                                                          //     fontWeight:
+                                                          //         FontWeight
+                                                          //             .w700,
+                                                          //   ),
+                                                          // )
                                                         ],
                                                       )
                                                     ],
