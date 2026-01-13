@@ -276,13 +276,13 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                             child: Padding(
                                               padding: EdgeInsets.only(
                                                   bottom:
-                                                      context.setHeight(6.34)),
+                                                      context.setHeight(10)),
                                               child: Container(
                                                   width: double.infinity,
                                                   height:
                                                       context.setHeight(60),
                                                   padding: EdgeInsets.all(
-                                                      context.setMinSize(10)),
+                                                      context.setMinSize(5)),
                                                   decoration: ShapeDecoration(
                                                     color: Get.find<
                                                                 ThemeController>()
