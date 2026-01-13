@@ -329,7 +329,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         
                                                         decoration:
                                                             ShapeDecoration(
-                                                          color: const Color(
+                                                          color:Get.find<
+                                                                    ThemeController>()
+                                                                .isDarkMode
+                                                                .value ?  const Color(0xFF292929):  const Color(
                                                               0xFFECEFF2),
                                                           shape:
                                                               RoundedRectangleBorder(
