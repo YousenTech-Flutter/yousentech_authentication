@@ -280,7 +280,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                               child: Container(
                                                   width: double.infinity,
                                                   height:
-                                                      context.setHeight(77.19),
+                                                      context.setHeight(60),
                                                   padding: EdgeInsets.all(
                                                       context.setMinSize(10)),
                                                   decoration: ShapeDecoration(
@@ -356,6 +356,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         ),
                                                       ),
                                                       Column(
+                                                        spacing: context.setHeight(5),
                                                         children: [
                                                           Text(
                                                             '${tokenController.finalResult[index].name}',
