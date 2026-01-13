@@ -282,8 +282,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                   height:
                                                       context.setHeight(77.19),
                                                   padding: EdgeInsets.all(
-                                                      context
-                                                          .setMinSize(23.94)),
+                                                      context.setMinSize(10)),
                                                   decoration: ShapeDecoration(
                                                     color: Get.find<
                                                                 ThemeController>()
@@ -326,11 +325,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         context.setWidth(12.69),
                                                     children: [
                                                       Container(
-                                                        width: context
-                                                            .setWidth(54.98),
-                                                        padding: EdgeInsets.all(
-                                                            context.setMinSize(
-                                                                10.57)),
+                                                        width: context.setWidth(54.98),
+                                                        
                                                         decoration:
                                                             ShapeDecoration(
                                                           color: const Color(
@@ -343,16 +339,18 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                                         16.92)),
                                                           ),
                                                         ),
-                                                        child: SvgPicture.asset(
-                                                          AppImages.person,
-                                                          package:
-                                                              'shared_widgets',
-                                                          fit: BoxFit.cover,
-                                                          color: SharedPr
-                                                                  .isDarkMode!
-                                                              ? null
-                                                              : AppColor
-                                                                  .appColor,
+                                                        child: Center(
+                                                          child: SvgPicture.asset(
+                                                            AppImages.person,
+                                                            package:
+                                                                'shared_widgets',
+                                                            fit: BoxFit.cover,
+                                                            color: SharedPr
+                                                                    .isDarkMode!
+                                                                ? null
+                                                                : AppColor
+                                                                    .appColor,
+                                                          ),
                                                         ),
                                                       ),
                                                       Column(
