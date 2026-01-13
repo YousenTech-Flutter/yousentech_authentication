@@ -85,9 +85,9 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // SizedBox(
-                              //   height: context.setHeight(39.38),
-                              // ),
+                              SizedBox(
+                                height: context.setHeight(39.38),
+                              ),
                               Center(
                                 child: Text(
                                   'employee_list'.tr,
