@@ -337,7 +337,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius: BorderRadius
-                                                                .circular(context.setMinSize(15)),
+                                                                .circular(context.setMinSize(10)),
                                                           ),
                                                         ),
                                                         child: Padding(
