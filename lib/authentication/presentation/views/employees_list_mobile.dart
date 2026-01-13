@@ -81,110 +81,170 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                       id: "update_employees",
                       builder: (contextx) {
                         return Padding(
-                          padding:  EdgeInsets.all(context.setMinSize(16.92)),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // SizedBox(
-                              //   height: context.setHeight(39.38),
-                              // ),
-                              Center(
-                                child: Text(
-                                  'employee_list'.tr,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'SansBold',
-                                    color: Get.find<ThemeController>()
-                                            .isDarkMode
-                                            .value
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: context.setSp(20.03),
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: context.setHeight(16)),
-                              Center(
-                                child: Text.rich(
-                                  TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text:
-                                            "${'welcomeBack'.tr} ${'to'.tr} ",
-                                      ),
-                                      TextSpan(
-                                        text: '${'qimam'.tr}  ',
-                                        style: TextStyle(
-                                          color:AppColor.appColor,
-                                          fontSize: context.setSp(16),
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      TextSpan(
-                                        text: 'choose_your_account'.tr,
-                                      ),
-                                    ],
-                                  ),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xFF9F9FA5),
-                                    fontFamily: 'SansRegular',
-                                    fontSize: context.setSp(14.42),
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: context.setHeight(35)),
-                              if (tokenController.isLoading.value ||
-                                  tokenController.result == null) ...[
-                                SizedBox(height: context.setHeight(40)),
-                                Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColor.cyanTeal,
-                                  ),
-                                ),
-                                SizedBox(height: context.setHeight(10)),
+                          padding: EdgeInsets.all(context.setMinSize(16.92)),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // SizedBox(
+                                //   height: context.setHeight(39.38),
+                                // ),
                                 Center(
                                   child: Text(
-                                    'loading'.tr,
+                                    'employee_list'.tr,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontFamily: 'SansBold',
+                                      color: Get.find<ThemeController>()
+                                              .isDarkMode
+                                              .value
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: context.setSp(20.03),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: context.setHeight(16)),
+                                Center(
+                                  child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        TextSpan(
+                                          text:
+                                              "${'welcomeBack'.tr} ${'to'.tr} ",
+                                        ),
+                                        TextSpan(
+                                          text: '${'qimam'.tr}  ',
+                                          style: TextStyle(
+                                            color: AppColor.appColor,
+                                            fontSize: context.setSp(16),
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: 'choose_your_account'.tr,
+                                        ),
+                                      ],
+                                    ),
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
+                                      fontFamily: 'SansRegular',
                                       fontSize: context.setSp(14.42),
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),
-                              ] else if (!tokenController
-                                  .result.status) ...[
-                                Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: context.setHeight(20),
+                                SizedBox(height: context.setHeight(35)),
+                                if (tokenController.isLoading.value ||
+                                    tokenController.result == null) ...[
+                                  SizedBox(height: context.setHeight(40)),
+                                  Center(
+                                    child: CircularProgressIndicator(
+                                      color: AppColor.cyanTeal,
                                     ),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: context.setHeight(40),
-                                        ),
-                                        Icon(
-                                          Icons.error_outline,
-                                          color: Colors.red[400],
-                                          size: context.setWidth(50),
-                                        ),
-                                        SizedBox(
-                                          height: context.setHeight(10),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(
-                                            context.setMinSize(8),
+                                  ),
+                                  SizedBox(height: context.setHeight(10)),
+                                  Center(
+                                    child: Text(
+                                      'loading'.tr,
+                                      style: TextStyle(
+                                        color: Color(0xFF9F9FA5),
+                                        fontSize: context.setSp(14.42),
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ),
+                                ] else if (!tokenController.result.status) ...[
+                                  Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: context.setHeight(20),
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: context.setHeight(40),
                                           ),
-                                          child: Text(
-                                            tokenController
-                                                    .result.message ??
-                                                '',
-                                            textAlign: TextAlign.center,
+                                          Icon(
+                                            Icons.error_outline,
+                                            color: Colors.red[400],
+                                            size: context.setWidth(50),
+                                          ),
+                                          SizedBox(
+                                            height: context.setHeight(10),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(
+                                              context.setMinSize(8),
+                                            ),
+                                            child: Text(
+                                              tokenController.result.message ??
+                                                  '',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Color(0xFF9F9FA5),
+                                                fontSize: context.setSp(
+                                                  14.42,
+                                                ),
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: context.setHeight(10),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(
+                                              context.setMinSize(8),
+                                            ),
+                                            child: ButtonElevated(
+                                              text: "Update_page".tr,
+                                              width: context.screenWidth,
+                                              backgroundColor: Colors.red[400],
+                                              textStyle: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: context.setSp(
+                                                  14.42,
+                                                ),
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              onPressed: () async {
+                                                tokenController
+                                                    .isLoading.value = true;
+                                                await tokenController
+                                                    .loadEmployeesBasedOnToken(
+                                                  token: SharedPr.token!,
+                                                );
+                                                tokenController.update([
+                                                  "update_employees",
+                                                ]);
+                                                tokenController
+                                                    .isLoading.value = false;
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ] else ...[
+                                  if (tokenController.finalResult.isEmpty) ...[
+                                    Center(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: context.setHeight(40),
+                                          ),
+                                          Icon(
+                                            Icons.no_accounts_outlined,
+                                            color: AppColor.cyanTeal,
+                                            size: context.setWidth(50),
+                                          ),
+                                          Text(
+                                            'empty_list'.tr,
                                             style: TextStyle(
                                               color: Color(0xFF9F9FA5),
                                               fontSize: context.setSp(
@@ -193,93 +253,11 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: context.setHeight(10),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(
-                                            context.setMinSize(8),
-                                          ),
-                                          child: ButtonElevated(
-                                            text: "Update_page".tr,
-                                            width: context.screenWidth,
-                                            backgroundColor:
-                                                Colors.red[400],
-                                            textStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: context.setSp(
-                                                14.42,
-                                              ),
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                            onPressed: () async {
-                                              tokenController
-                                                  .isLoading.value = true;
-                                              await tokenController
-                                                  .loadEmployeesBasedOnToken(
-                                                token: SharedPr.token!,
-                                              );
-                                              tokenController.update([
-                                                "update_employees",
-                                              ]);
-                                              tokenController
-                                                  .isLoading.value = false;
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ] else ...[
-                                if (tokenController
-                                    .finalResult.isEmpty) ...[
-                                  Center(
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: context.setHeight(40),
-                                        ),
-                                        Icon(
-                                          Icons.no_accounts_outlined,
-                                          color: AppColor.cyanTeal,
-                                          size: context.setWidth(50),
-                                        ),
-                                        Text(
-                                          'empty_list'.tr,
-                                          style: TextStyle(
-                                            color: Color(0xFF9F9FA5),
-                                            fontSize: context.setSp(
-                                              14.42,
-                                            ),
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ] else ...[
-                                  GridView.extent(
-                                    shrinkWrap: true, // 👈 مهم جدًا
-                                    physics: const NeverScrollableScrollPhysics(),
-                                    maxCrossAxisExtent:
-                                        context.setWidth(106),
-                                    childAspectRatio:
-                                        context.setWidth(106) /
-                                            context.setHeight(118),
-                                    crossAxisSpacing: context.setWidth(
-                                      19,
-                                    ), // المسافة الأفقية بين العناصر
-                                    mainAxisSpacing: context.setHeight(
-                                      19,
-                                    ), // المسافة العمودية بين العناصر
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: context.setWidth(
-                                        50.2,
+                                        ],
                                       ),
-                                    ), // المسافة من الحواف
-                                    children: List.generate(
+                                    ),
+                                  ] else ...[
+                                    ...List.generate(
                                       tokenController.finalResult.length,
                                       (index) {
                                         return InkWell(
@@ -287,8 +265,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                               final TokenController
                                                   tokenUpdateController =
                                                   Get.put(
-                                                TokenController
-                                                    .getInstance(),
+                                                TokenController.getInstance(),
                                               );
                                               tokenUpdateController
                                                   .onSelectEmployee(
@@ -296,104 +273,125 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                 authenticationController,
                                               );
                                             },
-                                            child: Container(
-                                              decoration: ShapeDecoration(
-                                                color: Get.find<
-                                                            ThemeController>()
-                                                        .isDarkMode
-                                                        .value
-                                                    ? const Color(
-                                                        0x2B555555)
-                                                    : const Color(
-                                                        0xFFF6F6F6,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom:
+                                                      context.setHeight(6.34)),
+                                              child: Container(
+                                                  width: double.infinity,
+                                                  height:
+                                                      context.setHeight(77.19),
+                                                  padding: EdgeInsets.all(
+                                                      context
+                                                          .setMinSize(23.94)),
+                                                  decoration: ShapeDecoration(
+                                                    color: Get.find<
+                                                                ThemeController>()
+                                                            .isDarkMode
+                                                            .value
+                                                        ? const Color(
+                                                            0xFF353535)
+                                                        : AppColor.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                        width: 1.06,
+                                                        color: Get.find<
+                                                                    ThemeController>()
+                                                                .isDarkMode
+                                                                .value
+                                                            ? const Color(
+                                                                0xFF353535)
+                                                            : const Color(
+                                                                0xFFE8E8E8),
                                                       ),
-                                                shape:
-                                                    RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius
-                                                          .circular(
-                                                    context.setMinSize(
-                                                      16,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              child: Column(
-                                                mainAxisSize:
-                                                    MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .center,
-                                                spacing: 12,
-                                                children: [
-                                                  SvgPicture.asset(
-                                                    AppImages.person,
-                                                    package:
-                                                        'shared_widgets',
-                                                    fit: BoxFit.cover,
-                                                    width:
-                                                        context.setWidth(
-                                                      40,
-                                                    ),
-                                                    height:
-                                                        context.setHeight(
-                                                      45,
-                                                    ),
-                                                    color: SharedPr
-                                                            .isDarkMode!
-                                                        ? null
-                                                        :AppColor.appColor,
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets
-                                                        .symmetric(
-                                                      horizontal: context
-                                                          .setWidth(
-                                                        16,
-                                                      ),
-                                                    ),
-                                                    child: Tooltip(
-                                                      message:
-                                                          '${tokenController.finalResult[index].name}',
-                                                      child: Text(
-                                                        '${tokenController.finalResult[index].name}',
-                                                        style: TextStyle(
-                                                          fontFamily: 'SansMedium',
-                                                          color: Get.find<
-                                                                      ThemeController>()
-                                                                  .isDarkMode
-                                                                  .value
-                                                              ? Colors
-                                                                  .white
-                                                              : Colors
-                                                                  .black,
-                                                          fontSize:
+                                                      borderRadius:
+                                                          BorderRadius.circular(
                                                               context
-                                                                  .setSp(
-                                                            12,
+                                                                  .setMinSize(
+                                                                      16.92)),
+                                                    ),
+                                                    shadows: [
+                                                      BoxShadow(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        blurRadius: 10.57,
+                                                        offset: Offset(0, 4.23),
+                                                        spreadRadius: 0,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  child: Row(
+                                                    spacing:
+                                                        context.setWidth(12.69),
+                                                    children: [
+                                                      Container(
+                                                        width: context
+                                                            .setWidth(54.98),
+                                                        padding: EdgeInsets.all(
+                                                            context.setMinSize(
+                                                                10.57)),
+                                                        decoration:
+                                                            ShapeDecoration(
+                                                          color: const Color(
+                                                              0xFFECEFF2),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius
+                                                                .circular(context
+                                                                    .setMinSize(
+                                                                        16.92)),
                                                           ),
-                                                          overflow:
-                                                              TextOverflow
-                                                                  .ellipsis,
-                                                          fontWeight:
-                                                              FontWeight
-                                                                  .w700,
+                                                        ),
+                                                        child: SvgPicture.asset(
+                                                          AppImages.person,
+                                                          package:
+                                                              'shared_widgets',
+                                                          fit: BoxFit.cover,
+                                                          color: SharedPr
+                                                                  .isDarkMode!
+                                                              ? null
+                                                              : AppColor
+                                                                  .appColor,
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                                                      Column(
+                                                        children: [
+                                                          Text(
+                                                            '${tokenController.finalResult[index].name}',
+                                                            style: TextStyle(
+                                                              color: Get.find<
+                                                                          ThemeController>()
+                                                                      .isDarkMode
+                                                                      .value
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black,
+                                                              fontFamily:
+                                                                  'SansMedium',
+                                                              fontSize:
+                                                                  context.setSp(
+                                                                12,
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      )
+                                                    ],
+                                                  )),
                                             ));
                                       },
                                     ),
-                                  ),
+                                  ],
                                 ],
                               ],
-                            ],
+                            ),
                           ),
                         );
                       }),
