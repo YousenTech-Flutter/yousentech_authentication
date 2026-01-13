@@ -308,7 +308,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           BorderRadius.circular(
                                                               context
                                                                   .setMinSize(
-                                                                      16.92)),
+                                                                      10)),
                                                     ),
                                                     shadows: [
                                                       BoxShadow(
@@ -325,8 +325,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         context.setWidth(12.69),
                                                     children: [
                                                       Container(
-                                                        width: context.setWidth(60),
-                                                        height: context.setHeight(60),
+                                                        width: context.setWidth(54.98),
                                                         decoration:
                                                             ShapeDecoration(
                                                           color:Get.find<
