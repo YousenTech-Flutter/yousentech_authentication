@@ -282,7 +282,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                   height:
                                                       context.setHeight(60),
                                                   padding: EdgeInsets.all(
-                                                      context.setMinSize(5)),
+                                                      context.setMinSize(6)),
                                                   decoration: ShapeDecoration(
                                                     color: Get.find<
                                                                 ThemeController>()
@@ -337,9 +337,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius: BorderRadius
-                                                                .circular(context
-                                                                    .setMinSize(
-                                                                        16.92)),
+                                                                .circular(context.setMinSize(15)),
                                                           ),
                                                         ),
                                                         child: Padding(
