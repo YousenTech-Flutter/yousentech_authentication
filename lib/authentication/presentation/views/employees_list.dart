@@ -140,9 +140,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                     TextSpan(
                                                       text: '${'qimam'.tr}  ',
                                                       style: TextStyle(
-                                                        color: const Color(
-                                                          0xFF16A6B7,
-                                                        ),
+                                                        color:AppColor.appColor,
                                                         fontSize: context.setSp(16),
                                                         fontWeight: FontWeight.w500,
                                                       ),
