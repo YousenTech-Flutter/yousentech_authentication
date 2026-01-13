@@ -339,17 +339,19 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                                         16.92)),
                                                           ),
                                                         ),
-                                                        child: Center(
+                                                        child: Padding(
+                                                          padding: EdgeInsets.all(context.setMinSize(5)),
                                                           child: SvgPicture.asset(
                                                             AppImages.person,
                                                             package:
                                                                 'shared_widgets',
                                                             fit: BoxFit.cover,
-                                                            color: SharedPr
-                                                                    .isDarkMode!
-                                                                ? null
-                                                                : AppColor
-                                                                    .appColor,
+                                                            color:Get.find<
+                                                                    ThemeController>()
+                                                                .isDarkMode
+                                                                .value
+                                                                ? AppColor.white
+                                                                : const Color(0xFFC2C3CB),
                                                           ),
                                                         ),
                                                       ),
@@ -365,6 +367,24 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                                   ? Colors.white
                                                                   : Colors
                                                                       .black,
+                                                              fontFamily:
+                                                                  'SansMedium',
+                                                              fontSize:
+                                                                  context.setSp(
+                                                                12,
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'No-${tokenController.finalResult[index].id}',
+                                                            style: TextStyle(
+                                                              color: AppColor.appColor,
                                                               fontFamily:
                                                                   'SansMedium',
                                                               fontSize:
