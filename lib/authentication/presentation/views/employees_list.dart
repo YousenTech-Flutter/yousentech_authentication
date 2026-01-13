@@ -385,9 +385,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
                                                                       color: SharedPr
                                                                               .isDarkMode!
                                                                           ? null
-                                                                          : const Color(
-                                                                              0xFF18BBCD,
-                                                                            ),
+                                                                          :AppColor.appColor,
                                                                     ),
                                                                     Padding(
                                                                       padding:
