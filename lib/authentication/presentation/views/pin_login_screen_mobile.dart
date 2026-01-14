@@ -214,7 +214,6 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                  
                                 ],
                               ),
-       
                               SizedBox(
                                 height: context.setHeight(20),
                               ),

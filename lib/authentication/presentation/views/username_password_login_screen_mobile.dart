@@ -363,47 +363,47 @@ class _UsernameAndPasswordLoginScreenState
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  // GetBuilder<AuthenticationController>(
-                                  //     id: "choosePin",
-                                  //     builder: (_) {
-                                  //       return InkWell(
-                                  //         onTap: SharedPr.chosenUserObj!
-                                  //                     .pinCodeLock! <
-                                  //                 3
-                                  //             ? () {
-                                  //                 authenticationController
-                                  //                     .setChoosePin();
-                                  //               }
-                                  //             : null,
-                                  //         child: Row(
-                                  //           spacing: context.setWidth(6.41),
-                                  //           children: [
-                                  //             SvgPicture.asset(
-                                  //               AppImages.signOut,
-                                  //               package: 'shared_widgets',
-                                  //               fit: BoxFit.cover,
-                                  //               width: context.setWidth(
-                                  //                 19.23,
-                                  //               ),
-                                  //               height: context.setHeight(
-                                  //                 19.23,
-                                  //               ),
-                                  //             ),
-                                  //             Text(
-                                  //               "switch_to_pin_login".tr,
-                                  //               style: TextStyle(
-                                  //                 color: Color(0xFFB1B3BC),
-                                  //                 fontFamily: "SansMedium",
-                                  //                 fontSize: context.setSp(
-                                  //                   12.82,
-                                  //                 ),
-                                  //                 fontWeight: FontWeight.w400,
-                                  //               ),
-                                  //             ),
-                                  //           ],
-                                  //         ),
-                                  //       );
-                                  //     }),
+                                  GetBuilder<AuthenticationController>(
+                                      id: "choosePin",
+                                      builder: (_) {
+                                        return InkWell(
+                                          onTap: SharedPr.chosenUserObj!
+                                                      .pinCodeLock! <
+                                                  3
+                                              ? () {
+                                                  authenticationController
+                                                      .setChoosePin();
+                                                }
+                                              : null,
+                                          child: Row(
+                                            spacing: context.setWidth(6.41),
+                                            children: [
+                                              SvgPicture.asset(
+                                                AppImages.signOut,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit.cover,
+                                                width: context.setWidth(
+                                                  19.23,
+                                                ),
+                                                height: context.setHeight(
+                                                  19.23,
+                                                ),
+                                              ),
+                                              Text(
+                                                "switch_to_pin_login".tr,
+                                                style: TextStyle(
+                                                  color: Color(0xFFB1B3BC),
+                                                  fontFamily: "SansMedium",
+                                                  fontSize: context.setSp(
+                                                    12.82,
+                                                  ),
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      }),
                                   
                                   InkWell(
                                     onTap: () {
@@ -481,7 +481,7 @@ class _UsernameAndPasswordLoginScreenState
                                     Expanded(
                                       child: Center(
                                         child: Text(
-                                          'sign_in_with',
+                                          'sign_in_with'.tr,
                                           style: TextStyle(
                                             color: Get.find<ThemeController>()
                                                     .isDarkMode
@@ -510,14 +510,7 @@ class _UsernameAndPasswordLoginScreenState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap:
-                                          SharedPr.chosenUserObj!.pinCodeLock! <
-                                                  3
-                                              ? () {
-                                                  authenticationController
-                                                      .setChoosePin();
-                                                }
-                                              : null,
+                                      onTap:(){},
                                       child: Container(
                                         width: context.setWidth(54),
                                         height: context.setHeight(54),
@@ -531,7 +524,7 @@ class _UsernameAndPasswordLoginScreenState
                                         ),
                                         child: Center(
                                           child: SvgPicture.asset(
-                                            AppImages.pinLogin,
+                                            AppImages.faceId,
                                             package: "shared_widgets",
                                             fit: BoxFit.contain,
                                           ),
