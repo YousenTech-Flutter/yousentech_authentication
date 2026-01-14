@@ -381,12 +381,13 @@ class _UsernameAndPasswordLoginScreenState
                                               SvgPicture.asset(
                                                 AppImages.pinLogin,
                                                 package: 'shared_widgets',
+                                                color: AppColor.appColor,
                                                 fit: BoxFit.cover,
                                                 width: context.setWidth(
-                                                  19.23,
+                                                  18,
                                                 ),
                                                 height: context.setHeight(
-                                                  19.23,
+                                                  18,
                                                 ),
                                               ),
                                               Text(
