@@ -753,6 +753,7 @@ forgetPasswordDialog({
                           spacing:context.setWidth(10) ,
                           children: [
                             Expanded(
+                              flex: 2,
                               child: ButtonElevated(
                                 text: "confirm_reset_password".tr,
                                 borderRadius: context.setMinSize(9),
