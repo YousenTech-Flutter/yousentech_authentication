@@ -66,7 +66,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                             children: [
                               SizedBox(height: context.setHeight(40)),
                               Expanded(
-                                flex: 2,
+                                flex: 1,
                                 child: Column(
                                   children: [
                                     Center(
