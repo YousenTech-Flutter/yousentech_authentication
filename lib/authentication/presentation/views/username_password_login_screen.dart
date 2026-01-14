@@ -750,43 +750,44 @@ forgetPasswordDialog({
                         ],
                         SizedBox(height: context.setHeight(30)),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          spacing:context.setWidth(10) ,
                           children: [
-                            ButtonElevated(
-                              text: "confirm_reset_password".tr,
-                              width: context.setWidth(200),
-                              borderRadius: context.setMinSize(9),
-                              backgroundColor:
-                                  messageTypesIcon2[MessageTypes.warning]!.last
-                                      as Color,
-                              textStyle: AppStyle.textStyle(
-                                color: AppColor.white,
-                                fontSize: context.setSp(14.42),
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w400,
+                            Expanded(
+                              child: ButtonElevated(
+                                text: "confirm_reset_password".tr,
+                                borderRadius: context.setMinSize(9),
+                                backgroundColor:
+                                    messageTypesIcon2[MessageTypes.warning]!.last
+                                        as Color,
+                                textStyle: AppStyle.textStyle(
+                                  color: AppColor.white,
+                                  fontSize: context.setSp(14.42),
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                onPressed: () async {
+                                  LoginHelper.forgetPassword(
+                                    authenticationController:
+                                        authenticationController,
+                                  );
+                                },
                               ),
-                              onPressed: () async {
-                                LoginHelper.forgetPassword(
-                                  authenticationController:
-                                      authenticationController,
-                                );
-                              },
                             ),
-                            SizedBox(width: context.setHeight(10)),
-                            ButtonElevated(
-                              text: 'cancel'.tr,
-                              width: context.setWidth(200),
-                              borderRadius: context.setMinSize(9),
-                              borderColor: AppColor.paleAqua,
-                              textStyle: AppStyle.textStyle(
-                                color: AppColor.slateGray,
-                                fontSize: context.setSp(14.42),
-                                fontFamily: 'Tajawal',
-                                fontWeight: FontWeight.w400,
+                            Expanded(
+                              child: ButtonElevated(
+                                text: 'cancel'.tr,
+                                borderRadius: context.setMinSize(9),
+                                borderColor: AppColor.paleAqua,
+                                textStyle: AppStyle.textStyle(
+                                  color: AppColor.slateGray,
+                                  fontSize: context.setSp(14.42),
+                                  fontFamily: 'Tajawal',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                onPressed: () async {
+                                  Get.back();
+                                },
                               ),
-                              onPressed: () async {
-                                Get.back();
-                              },
                             ),
                           ],
                         ),
