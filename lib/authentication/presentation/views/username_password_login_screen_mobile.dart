@@ -361,7 +361,7 @@ class _UsernameAndPasswordLoginScreenState
                               height: context.setHeight(19.23),
                               width: context.screenWidth,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   GetBuilder<AuthenticationController>(
                                       id: "choosePin",
@@ -379,7 +379,7 @@ class _UsernameAndPasswordLoginScreenState
                                             spacing: context.setWidth(6.41),
                                             children: [
                                               SvgPicture.asset(
-                                                AppImages.signOut,
+                                                AppImages.pinLogin,
                                                 package: 'shared_widgets',
                                                 fit: BoxFit.cover,
                                                 width: context.setWidth(
