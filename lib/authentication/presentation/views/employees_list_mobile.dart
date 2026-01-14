@@ -255,7 +255,9 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                       ),
                                     ),
                                   ] else ...[
-                                    ...List.generate(
+                                    Expanded(
+                                        child: Column(
+                                            children: List.generate(
                                       tokenController.finalResult.length,
                                       (index) {
                                         return InkWell(
@@ -277,8 +279,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                       context.setHeight(10)),
                                               child: Container(
                                                   width: double.infinity,
-                                                  height:
-                                                      context.setHeight(60),
+                                                  height: context.setHeight(60),
                                                   padding: EdgeInsets.all(
                                                       context.setMinSize(6)),
                                                   decoration: ShapeDecoration(
@@ -302,11 +303,9 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                             : const Color(
                                                                 0xFFE8E8E8),
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              context
-                                                                  .setMinSize(
-                                                                      10)),
+                                                      borderRadius: BorderRadius
+                                                          .circular(context
+                                                              .setMinSize(10)),
                                                     ),
                                                     shadows: [
                                                       BoxShadow(
@@ -323,38 +322,50 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                         context.setWidth(12.69),
                                                     children: [
                                                       Container(
-                                                        width: context.setWidth(50),
+                                                        width: context
+                                                            .setWidth(50),
                                                         decoration:
                                                             ShapeDecoration(
-                                                          color:Get.find<
-                                                                    ThemeController>()
-                                                                .isDarkMode
-                                                                .value ?  const Color(0xFF292929):  const Color(
-                                                              0xFFECEFF2),
+                                                          color: Get.find<
+                                                                      ThemeController>()
+                                                                  .isDarkMode
+                                                                  .value
+                                                              ? const Color(
+                                                                  0xFF292929)
+                                                              : const Color(
+                                                                  0xFFECEFF2),
                                                           shape:
                                                               RoundedRectangleBorder(
                                                             borderRadius: BorderRadius
-                                                                .circular(context.setMinSize(15)),
+                                                                .circular(context
+                                                                    .setMinSize(
+                                                                        15)),
                                                           ),
                                                         ),
                                                         child: Padding(
-                                                          padding: EdgeInsets.all(context.setMinSize(10)),
-                                                          child: SvgPicture.asset(
+                                                          padding: EdgeInsets
+                                                              .all(context
+                                                                  .setMinSize(
+                                                                      10)),
+                                                          child:
+                                                              SvgPicture.asset(
                                                             AppImages.person,
                                                             package:
                                                                 'shared_widgets',
                                                             fit: BoxFit.contain,
-                                                            color:Get.find<
-                                                                    ThemeController>()
-                                                                .isDarkMode
-                                                                .value
+                                                            color: Get.find<
+                                                                        ThemeController>()
+                                                                    .isDarkMode
+                                                                    .value
                                                                 ? AppColor.white
-                                                                : const Color(0xFFC2C3CB),
+                                                                : const Color(
+                                                                    0xFFC2C3CB),
                                                           ),
                                                         ),
                                                       ),
                                                       Column(
-                                                        spacing: context.setHeight(5),
+                                                        spacing: context
+                                                            .setHeight(5),
                                                         children: [
                                                           Text(
                                                             '${tokenController.finalResult[index].name}',
@@ -404,7 +415,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                   )),
                                             ));
                                       },
-                                    ),
+                                    ))),
                                   ],
                                 ],
                               ],
