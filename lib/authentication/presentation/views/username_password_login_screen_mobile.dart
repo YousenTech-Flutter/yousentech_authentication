@@ -60,7 +60,6 @@ class _UsernameAndPasswordLoginScreenState
                 children: [
                   Column(
                     children: [
-                      
                       Form(
                         key: _formKey,
                         child: Column(
@@ -248,111 +247,111 @@ class _UsernameAndPasswordLoginScreenState
                             GetBuilder<AuthenticationController>(
                               builder: (_) {
                                 return ContainerTextField(
-                                                                  controller: passwordController,
-                                                                  labelText: SharedPr.isForgetPass!
-                                  ? 'otp_password'.tr
-                                  : 'password'.tr,
-                                                                  keyboardType: TextInputType.text,
-                                                                  width: context.screenWidth,
-                                                                  height: context.setHeight(51.28),
-                                                                  fontSize: context.setSp(
-                                14,
-                                                                  ),
-                                                                  contentPadding: EdgeInsets.fromLTRB(
-                                context.setWidth(
-                                  14.82,
-                                ),
-                                context.setHeight(
-                                  15.22,
-                                ),
-                                context.setWidth(
-                                  14.82,
-                                ),
-                                context.setHeight(
-                                  15.22,
-                                ),
-                                                                  ),
-                                                                  showLable: false,
-                                                                  iconcolor: AppColor.appColor,
-                                                                  borderColor: const Color(0xFFC2C3CB),
-                                                                  fillColor: Get.find<ThemeController>()
-                                      .isDarkMode
-                                      .value
-                                  ? const Color(0xFF2B2B2B)
-                                  : Colors.white.withValues(alpha: 0.43),
-                                                                  hintcolor: const Color(0xFFC2C3CB),
-                                                                  color: Get.find<ThemeController>()
-                                      .isDarkMode
-                                      .value
-                                  ? AppColor.white
-                                  : AppColor.black,
-                                                                  isAddOrEdit: true,
-                                                                  borderRadius: context.setMinSize(8.01),
-                                                                  hintText: SharedPr.isForgetPass!
-                                  ? 'otp_password'.tr
-                                  : 'password'.tr,
-                                                                  prefixIcon: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: context.setWidth(
+                                  controller: passwordController,
+                                  labelText: SharedPr.isForgetPass!
+                                      ? 'otp_password'.tr
+                                      : 'password'.tr,
+                                  keyboardType: TextInputType.text,
+                                  width: context.screenWidth,
+                                  height: context.setHeight(51.28),
+                                  fontSize: context.setSp(
                                     14,
                                   ),
-                                ),
-                                child: SvgPicture.asset(
-                                  AppImages.lockOn,
-                                  package: 'shared_widgets',
-                                  color: AppColor.appColor,
-                                  width: context.setWidth(
-                                    21.63,
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                    context.setWidth(
+                                      14.82,
+                                    ),
+                                    context.setHeight(
+                                      15.22,
+                                    ),
+                                    context.setWidth(
+                                      14.82,
+                                    ),
+                                    context.setHeight(
+                                      15.22,
+                                    ),
                                   ),
-                                  height: context.setHeight(
-                                    21.63,
-                                  ),
-                                ),
-                                                                  ),
-                                                                  suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    flag = !flag;
-                                  });
-                                },
-                                icon: flag
-                                    ? SvgPicture.asset(
-                                        AppImages.eyeOpen,
-                                        package: 'shared_widgets',
-                                        width: context.setWidth(
-                                          21.63,
-                                        ),
-                                        height: context.setHeight(
-                                          21.63,
-                                        ),
-                                        color: AppColor.appColor,
-                                      )
-                                    : SvgPicture.asset(
-                                        AppImages.eyeClosed,
-                                        package: 'shared_widgets',
-                                        width: context.setWidth(
-                                          21.63,
-                                        ),
-                                        height: context.setHeight(
-                                          21.63,
-                                        ),
-                                        color: AppColor.appColor,
+                                  showLable: false,
+                                  iconcolor: AppColor.appColor,
+                                  borderColor: const Color(0xFFC2C3CB),
+                                  fillColor: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? const Color(0xFF2B2B2B)
+                                      : Colors.white.withValues(alpha: 0.43),
+                                  hintcolor: const Color(0xFFC2C3CB),
+                                  color: Get.find<ThemeController>()
+                                          .isDarkMode
+                                          .value
+                                      ? AppColor.white
+                                      : AppColor.black,
+                                  isAddOrEdit: true,
+                                  borderRadius: context.setMinSize(8.01),
+                                  hintText: SharedPr.isForgetPass!
+                                      ? 'otp_password'.tr
+                                      : 'password'.tr,
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: context.setWidth(
+                                        14,
                                       ),
-                                                                  ),
-                                                                  obscureText: flag ? false : true,
-                                                                  validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  errorMessage =
-                                      'required_message_f'.trParams({
-                                    'field_name': SharedPr.isForgetPass!
-                                        ? 'otp_password'.tr
-                                        : 'password'.tr,
-                                  });
-                                  return "";
-                                }
-                                return null;
-                                                                  },
-                                                                );
+                                    ),
+                                    child: SvgPicture.asset(
+                                      AppImages.lockOn,
+                                      package: 'shared_widgets',
+                                      color: AppColor.appColor,
+                                      width: context.setWidth(
+                                        21.63,
+                                      ),
+                                      height: context.setHeight(
+                                        21.63,
+                                      ),
+                                    ),
+                                  ),
+                                  suffixIcon: IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        flag = !flag;
+                                      });
+                                    },
+                                    icon: flag
+                                        ? SvgPicture.asset(
+                                            AppImages.eyeOpen,
+                                            package: 'shared_widgets',
+                                            width: context.setWidth(
+                                              21.63,
+                                            ),
+                                            height: context.setHeight(
+                                              21.63,
+                                            ),
+                                            color: AppColor.appColor,
+                                          )
+                                        : SvgPicture.asset(
+                                            AppImages.eyeClosed,
+                                            package: 'shared_widgets',
+                                            width: context.setWidth(
+                                              21.63,
+                                            ),
+                                            height: context.setHeight(
+                                              21.63,
+                                            ),
+                                            color: AppColor.appColor,
+                                          ),
+                                  ),
+                                  obscureText: flag ? false : true,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      errorMessage =
+                                          'required_message_f'.trParams({
+                                        'field_name': SharedPr.isForgetPass!
+                                            ? 'otp_password'.tr
+                                            : 'password'.tr,
+                                      });
+                                      return "";
+                                    }
+                                    return null;
+                                  },
+                                );
                               },
                             ),
 
@@ -362,50 +361,50 @@ class _UsernameAndPasswordLoginScreenState
                               height: context.setHeight(19.23),
                               width: context.screenWidth,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  GetBuilder<AuthenticationController>(
-                                      id: "choosePin",
-                                      builder: (_) {
-                                        return InkWell(
-                                          onTap: SharedPr.chosenUserObj!
-                                                      .pinCodeLock! <
-                                                  3
-                                              ? () {
-                                                  authenticationController
-                                                      .setChoosePin();
-                                                }
-                                              : null,
-                                          child: Row(
-                                            spacing: context.setWidth(6.41),
-                                            children: [
-                                              SvgPicture.asset(
-                                                AppImages.signOut,
-                                                package: 'shared_widgets',
-                                                fit: BoxFit.cover,
-                                                width: context.setWidth(
-                                                  19.23,
-                                                ),
-                                                height: context.setHeight(
-                                                  19.23,
-                                                ),
-                                              ),
-                                              Text(
-                                                "switch_to_pin_login".tr,
-                                                style: TextStyle(
-                                                  color: Color(0xFFB1B3BC),
-                                                  fontFamily: "SansMedium",
-                                                  fontSize: context.setSp(
-                                                    12.82,
-                                                  ),
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      }),
+                                  // GetBuilder<AuthenticationController>(
+                                  //     id: "choosePin",
+                                  //     builder: (_) {
+                                  //       return InkWell(
+                                  //         onTap: SharedPr.chosenUserObj!
+                                  //                     .pinCodeLock! <
+                                  //                 3
+                                  //             ? () {
+                                  //                 authenticationController
+                                  //                     .setChoosePin();
+                                  //               }
+                                  //             : null,
+                                  //         child: Row(
+                                  //           spacing: context.setWidth(6.41),
+                                  //           children: [
+                                  //             SvgPicture.asset(
+                                  //               AppImages.signOut,
+                                  //               package: 'shared_widgets',
+                                  //               fit: BoxFit.cover,
+                                  //               width: context.setWidth(
+                                  //                 19.23,
+                                  //               ),
+                                  //               height: context.setHeight(
+                                  //                 19.23,
+                                  //               ),
+                                  //             ),
+                                  //             Text(
+                                  //               "switch_to_pin_login".tr,
+                                  //               style: TextStyle(
+                                  //                 color: Color(0xFFB1B3BC),
+                                  //                 fontFamily: "SansMedium",
+                                  //                 fontSize: context.setSp(
+                                  //                   12.82,
+                                  //                 ),
+                                  //                 fontWeight: FontWeight.w400,
+                                  //               ),
+                                  //             ),
+                                  //           ],
+                                  //         ),
+                                  //       );
+                                  //     }),
+
                                   InkWell(
                                     onTap: () {
                                       forgetPasswordDialog(
@@ -450,7 +449,6 @@ class _UsernameAndPasswordLoginScreenState
                                           ),
                                         ),
                                       ),
-                                      
                                     ),
                                     child: Text(
                                       'login'.tr,
@@ -466,6 +464,77 @@ class _UsernameAndPasswordLoginScreenState
                                     ),
                                   ),
                                 )),
+                            SizedBox(height: context.setHeight(35)),
+                            Column(
+                              spacing: context.setHeight(10),
+                              children: [
+                                Row(
+                                  spacing: context.setWidth(10),
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        height: context.setHeight(1.06),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFF323232)),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'أو الدخول باستخدام',
+                                        style: TextStyle(
+                                          color: const Color(0xFF9A9A9A),
+                                          fontSize: context.setSp(11.63),
+                                          fontFamily: 'SansRegular',
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.82,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        height: context.setHeight(1.06),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xFF323232)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  spacing: context.setWidth(10),
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: context.setWidth(54),
+                                      height: context.setHeight(54),
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color(0xFF292929),
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.asset(
+                                          AppImages.pinLogin,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: context.setWidth(54),
+                                      height: context.setHeight(54),
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color(0xFF292929),
+                                      ),
+                                      child: Center(
+                                        child: SvgPicture.asset(
+                                          AppImages.fingerPrinter,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            )
                           ],
                         ),
                       )
