@@ -42,15 +42,9 @@ class _LoginScreenState extends State<LoginScreen> {
             id: "choosePin",
             builder: (autcontext) {
               return DeviceUtils.isMobile(context)
-                  ? SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          (!authenticationController.choosePin)
-                              ? UsernameAndPasswordLoginScreenMobile()
-                              : PINLoginScreenMobile(),
-                        ],
-                      ),
-                    )
+                  ? (!authenticationController.choosePin)
+                      ? SingleChildScrollView(child: UsernameAndPasswordLoginScreenMobile())
+                      : PINLoginScreenMobile()
                   : Center(
                       child: SingleChildScrollView(
                         child: Column(
