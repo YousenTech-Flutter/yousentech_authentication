@@ -60,12 +60,12 @@ class _UsernameAndPasswordLoginScreenState
                 children: [
                   Column(
                     children: [
+                      SizedBox(height: context.setHeight(40)),
                       Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: context.setHeight(40)),
                             Center(
                               child: Text(
                                 'login'.tr,
@@ -479,14 +479,20 @@ class _UsernameAndPasswordLoginScreenState
                                       ),
                                     ),
                                     Expanded(
-                                      child: Text(
-                                        'أو الدخول باستخدام',
-                                        style: TextStyle(
-                                          color: const Color(0xFF9A9A9A),
-                                          fontSize: context.setSp(11.63),
-                                          fontFamily: 'SansRegular',
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.82,
+                                      child: Center(
+                                        child: Text(
+                                          'أو الدخول باستخدام',
+                                          style: TextStyle(
+                                            color: Get.find<ThemeController>()
+                                                    .isDarkMode
+                                                    .value
+                                                ? AppColor.white
+                                                : Color(0xFFB1B3BC),
+                                            fontSize: context.setSp(11.63),
+                                            fontFamily: 'SansRegular',
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.82,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -503,30 +509,50 @@ class _UsernameAndPasswordLoginScreenState
                                   spacing: context.setWidth(10),
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Container(
-                                      width: context.setWidth(54),
-                                      height: context.setHeight(54),
-                                      decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Color(0xFF292929),
-                                      ),
-                                      child: Center(
-                                        child: SvgPicture.asset(
-                                          AppImages.pinLogin,
-                                          fit: BoxFit.contain,
+                                    GestureDetector(
+                                      onTap:
+                                          SharedPr.chosenUserObj!.pinCodeLock! <
+                                                  3
+                                              ? () {
+                                                  authenticationController
+                                                      .setChoosePin();
+                                                }
+                                              : null,
+                                      child: Container(
+                                        width: context.setWidth(54),
+                                        height: context.setHeight(54),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? Color(0xFF292929)
+                                              : const Color(0xFFF5F5F5),
+                                        ),
+                                        child: Center(
+                                          child: SvgPicture.asset(
+                                            AppImages.pinLogin,
+                                            package: "shared_widgets",
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
                                     ),
                                     Container(
                                       width: context.setWidth(54),
                                       height: context.setHeight(54),
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: Color(0xFF292929),
+                                        color: Get.find<ThemeController>()
+                                                .isDarkMode
+                                                .value
+                                            ? Color(0xFF292929)
+                                            : const Color(0xFFF5F5F5),
                                       ),
                                       child: Center(
                                         child: SvgPicture.asset(
                                           AppImages.fingerPrinter,
+                                          package: "shared_widgets",
                                           fit: BoxFit.contain,
                                         ),
                                       ),

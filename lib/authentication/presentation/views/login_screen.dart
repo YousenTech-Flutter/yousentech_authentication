@@ -26,8 +26,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Obx(() {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor: const Color(0xFFDDDDDD),
+            backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor:DeviceUtils.isMobile(context) ? AppColor.white:  const Color(0xFFDDDDDD),
             appBar: customAppBar(
+              isMobile:  DeviceUtils.isMobile(context) ? true : false,
               context: context,
               onDarkModeChanged: () {
                 // setState(() {});
