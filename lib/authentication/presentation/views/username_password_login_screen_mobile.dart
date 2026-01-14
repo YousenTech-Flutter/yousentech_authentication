@@ -538,7 +538,7 @@ class _UsernameAndPasswordLoginScreenState
                                       onTap:() async{
                                         ResponseResult result = await authenticationController.authenticateWithFingerprint();
                                         if(!result.status){
-                                          appSnackBar( message: result.status);
+                                          appSnackBar( message: result.message);
                                           return;
                                         }
                                         onPressed(skipAuthenticate: true);
