@@ -11,9 +11,11 @@ class NumbericItems extends StatefulWidget {
       {super.key,
       required this.authenticationController,
       this.fontFamily='Tajawal',
+      this.isMobile=false,
       required BuildContext contextApp});
   final AuthenticationController authenticationController;
   final String? fontFamily;
+  final bool? isMobile;
   @override
   State<NumbericItems> createState() => _NumbericItemsState();
 }
@@ -24,15 +26,15 @@ class _NumbericItemsState extends State<NumbericItems> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (context, constraints) {
-        double width =  (constraints.maxWidth - (context.setWidth(14) * 2)) / 3;
-        double height =  (constraints.maxHeight - (context.setHeight(20) * 3)) / 4;
+        double width =  (constraints.maxWidth - (context.setWidth(widget.isMobile! ? 27:14) * 2)) / 3;
+        double height =  (constraints.maxHeight - (context.setHeight( widget.isMobile! ? 27: 20) * 3)) / 4;
         return Directionality(
           textDirection: TextDirection.ltr,
           child: Column(
-            spacing: context.setHeight(20),
+            spacing: context.setHeight(widget.isMobile! ? 27: 20),
             children: [
               Row(
-                spacing: context.setWidth(14),
+                spacing: context.setWidth(widget.isMobile! ? 27: 14),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   itemNumber(data: "1" , width:width , height: height  ),
@@ -41,7 +43,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                 ],
               ),
               Row(
-                spacing: context.setWidth(14),
+                spacing: context.setWidth(widget.isMobile! ? 27: 14),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   itemNumber(data: "4", width:width , height: height ),
@@ -50,7 +52,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                 ],
               ),
               Row(
-                spacing: context.setWidth(14),
+                spacing: context.setWidth(widget.isMobile! ? 27:14),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   itemNumber(data: "7", width:width , height: height ),
@@ -59,7 +61,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                 ],
               ),
               Row(
-                spacing: context.setWidth(14),
+                spacing: context.setWidth(widget.isMobile! ? 27: 14),
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   itemNumber(data: "Backspace", iconData: Icons.backspace_rounded , width:width , height: height ),

@@ -223,6 +223,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                 child: NumbericItems(
                                     contextApp: context,
                                     fontFamily: 'SansMedium',
+                                    isMobile: true,
                                     authenticationController:
                                         authenticationController,
                                   ),
