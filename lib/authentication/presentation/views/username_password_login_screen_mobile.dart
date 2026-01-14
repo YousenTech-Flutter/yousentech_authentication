@@ -54,14 +54,14 @@ class _UsernameAndPasswordLoginScreenState
                 onInvoke: (ActivateIntent intent) => onPressed(),
               ),
             },
-            child: Padding(
-              padding: EdgeInsets.all(context.setMinSize(16.92)),
-              child: Stack(
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(height: context.setHeight(40)),
-                      Form(
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(height: context.setHeight(40)),
+                    Padding(
+                      padding: EdgeInsets.all(context.setMinSize(16.92)),
+                      child: Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,7 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-
+                                  
                             SizedBox(height: context.setHeight(16)),
                             Center(
                               child: RichText(
@@ -111,9 +111,9 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-
+                                  
                             SizedBox(height: context.setHeight(35)),
-
+                                  
                             // email
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -138,18 +138,18 @@ class _UsernameAndPasswordLoginScreenState
                                 TextInputFormatter.withFunction(
                                     (oldValue, newValue) {
                                   final text = newValue.text;
-
+                                  
                                   // لا يسمح إلا بحروف + أرقام + @ + .
                                   final allowed = RegExp(r'^[a-zA-Z0-9@.]*$');
                                   if (!allowed.hasMatch(text)) {
                                     return oldValue; // منع الإدخال
                                   }
-
+                                  
                                   // منع تكرار @
                                   if (text.split('@').length > 2) {
                                     return oldValue;
                                   }
-
+                                  
                                   return newValue;
                                 }),
                               ],
@@ -224,7 +224,7 @@ class _UsernameAndPasswordLoginScreenState
                                 return null;
                               },
                             ),
-
+                                  
                             // password
                             SizedBox(height: context.setHeight(16)),
                             Padding(
@@ -243,7 +243,7 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-
+                                  
                             GetBuilder<AuthenticationController>(
                               builder: (_) {
                                 return ContainerTextField(
@@ -354,7 +354,7 @@ class _UsernameAndPasswordLoginScreenState
                                 );
                               },
                             ),
-
+                                  
                             SizedBox(height: context.setHeight(35)),
                             // for forgetPass
                             SizedBox(
@@ -404,7 +404,7 @@ class _UsernameAndPasswordLoginScreenState
                                   //         ),
                                   //       );
                                   //     }),
-
+                                  
                                   InkWell(
                                     onTap: () {
                                       forgetPasswordDialog(
@@ -428,7 +428,7 @@ class _UsernameAndPasswordLoginScreenState
                               ),
                             ),
                             SizedBox(height: context.setHeight(35.0)),
-
+                                  
                             // log In
                             Focus(
                                 autofocus: true,
@@ -466,7 +466,7 @@ class _UsernameAndPasswordLoginScreenState
                                 )),
                             SizedBox(height: context.setHeight(35)),
                             Column(
-                              spacing: context.setHeight(10),
+                              spacing: context.setHeight(15),
                               children: [
                                 Row(
                                   spacing: context.setWidth(10),
@@ -563,14 +563,14 @@ class _UsernameAndPasswordLoginScreenState
                             )
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                  authenticationController.loading.value
-                      ? const LoadingWidget()
-                      : Container(),
-                ],
-              ),
+                      ),
+                    )
+                  ],
+                ),
+                authenticationController.loading.value
+                    ? const LoadingWidget()
+                    : Container(),
+              ],
             ),
           ),
         ),
