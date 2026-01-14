@@ -107,113 +107,108 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                               ),
                                         
                               SizedBox(height: context.setHeight(15)),
-                              Center(
-                                child: ContainerTextField(
-                                      focusNode: pinNumberFocus,
-                                      controller:
-                                          authenticationController
-                                              .pinKeyController,
-                                      labelText: 'pin_number'.tr,
-                                      isPIN: true,
-                                      isAddOrEdit: false,
-                                      readOnly: true,
-                                      keyboardType:
-                                          TextInputType.number,
-                                      width: context.setWidth(
-                                        250,
+                              ContainerTextField(
+                                    focusNode: pinNumberFocus,
+                                    controller:
+                                        authenticationController
+                                            .pinKeyController,
+                                    labelText: 'pin_number'.tr,
+                                    isPIN: true,
+                                    isAddOrEdit: false,
+                                    readOnly: true,
+                                    keyboardType:
+                                        TextInputType.number,
+                                    width: context.screenWidth,
+                                    height: context.setHeight(
+                                      51.28,
+                                    ),
+                                    fontSize: context.setSp(16),
+                                    testFontSize: context.setSp(19),
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(
+                                      context.setWidth(
+                                        14.82,
                                       ),
-                                      height: context.setHeight(
-                                        51.28,
+                                      context.setHeight(
+                                        15.22,
                                       ),
-                                      fontSize: context.setSp(16),
-                                      testFontSize: context.setSp(19),
-                                      contentPadding:
-                                          EdgeInsets.fromLTRB(
-                                        context.setWidth(
-                                          14.82,
-                                        ),
-                                        context.setHeight(
-                                          15.22,
-                                        ),
-                                        context.setWidth(
-                                          14.82,
-                                        ),
-                                        context.setHeight(
-                                          15.22,
-                                        ),
+                                      context.setWidth(
+                                        14.82,
                                       ),
-                                      fillColor: null,
-                                      hintcolor: const Color(0xFFC2C3CB),
-                                      color: const Color(0xFF16A6B7),
-                                      borderRadius:
-                                          context.setMinSize(8.01),
-                                      hintText: 'pin_number'.tr,
-                                      suffixIcon: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            flag = !flag;
-                                          });
-                                        },
-                                        icon: flag
-                                            ? SvgPicture.asset(
-                                                AppImages.eyeOpen,
-                                                package:
-                                                    'shared_widgets',
-                                                width:
-                                                    context.setWidth(
-                                                  21.63,
-                                                ),
-                                                height:
-                                                    context.setHeight(
-                                                  21.63,
-                                                ),
-                                                color:Get.find<ThemeController>().isDarkMode.value
-                                                    ? Colors.white
-                                                        .withValues(
-                                                            alpha:
-                                                                0.66)
-                                                    : const Color(
-                                                        0xFFD9D9D9),
-                                              )
-                                            : SvgPicture.asset(
-                                                AppImages.eyeClosed,
-                                                package:
-                                                    'shared_widgets',
-                                                width:
-                                                    context.setWidth(
-                                                  21.63,
-                                                ),
-                                                height:
-                                                    context.setHeight(
-                                                  21.63,
-                                                ),
-                                                color: Get.find<ThemeController>().isDarkMode.value
-                                                    ? Colors.white
-                                                        .withValues(
-                                                            alpha:
-                                                                0.66)
-                                                    : const Color(
-                                                        0xFFD9D9D9),
-                                              ),
+                                      context.setHeight(
+                                        15.22,
                                       ),
-                                      obscureText:
-                                          flag ? false : true,
-                                      validator: (value) {
-                                        if (value == null ||
-                                            value.isEmpty) {
-                                          errorMessage =
-                                              'required_message_f'
-                                                  .trParams({
-                                            'field_name':
-                                                'pin_number'.tr,
-                                          });
-                                          return "";
-                                        }
-                                        return null;
+                                    ),
+                                    fillColor: null,
+                                    hintcolor: const Color(0xFFC2C3CB),
+                                    color: const Color(0xFF16A6B7),
+                                    borderRadius:
+                                        context.setMinSize(8.01),
+                                    hintText: 'pin_number'.tr,
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          flag = !flag;
+                                        });
                                       },
-                                    )
-                                  
-                              ),
+                                      icon: flag
+                                          ? SvgPicture.asset(
+                                              AppImages.eyeOpen,
+                                              package:
+                                                  'shared_widgets',
+                                              width:
+                                                  context.setWidth(
+                                                21.63,
+                                              ),
+                                              height:
+                                                  context.setHeight(
+                                                21.63,
+                                              ),
+                                              color:Get.find<ThemeController>().isDarkMode.value
+                                                  ? Colors.white
+                                                      .withValues(
+                                                          alpha:
+                                                              0.66)
+                                                  : const Color(
+                                                      0xFFD9D9D9),
+                                            )
+                                          : SvgPicture.asset(
+                                              AppImages.eyeClosed,
+                                              package:
+                                                  'shared_widgets',
+                                              width:
+                                                  context.setWidth(
+                                                21.63,
+                                              ),
+                                              height:
+                                                  context.setHeight(
+                                                21.63,
+                                              ),
+                                              color: Get.find<ThemeController>().isDarkMode.value
+                                                  ? Colors.white
+                                                      .withValues(
+                                                          alpha:
+                                                              0.66)
+                                                  : const Color(
+                                                      0xFFD9D9D9),
+                                            ),
+                                    ),
+                                    obscureText:
+                                        flag ? false : true,
+                                    validator: (value) {
+                                      if (value == null ||
+                                          value.isEmpty) {
+                                        errorMessage =
+                                            'required_message_f'
+                                                .trParams({
+                                          'field_name':
+                                              'pin_number'.tr,
+                                        });
+                                        return "";
+                                      }
+                                      return null;
+                                    },
+                                  ),
                                         
                               SizedBox(
                                 height: context.setHeight(10),
