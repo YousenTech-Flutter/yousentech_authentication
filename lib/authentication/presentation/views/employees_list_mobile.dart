@@ -255,166 +255,168 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                   ),
                                 ] else ...[
                                   Expanded(
-                                      child: Column(
-                                          children: List.generate(
-                                    tokenController.finalResult.length,
-                                    (index) {
-                                      return InkWell(
-                                          onTap: () {
-                                            final TokenController
-                                                tokenUpdateController =
-                                                Get.put(
-                                              TokenController.getInstance(),
-                                            );
-                                            tokenUpdateController
-                                                .onSelectEmployee(
-                                              index,
-                                              authenticationController,
-                                            );
-                                          },
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                bottom:
-                                                    context.setHeight(10)),
-                                            child: Container(
-                                                width: double.infinity,
-                                                height: context.setHeight(60),
-                                                padding: EdgeInsets.all(
-                                                    context.setMinSize(6)),
-                                                decoration: ShapeDecoration(
-                                                  color: Get.find<
-                                                              ThemeController>()
-                                                          .isDarkMode
-                                                          .value
-                                                      ? const Color(
-                                                          0xFF353535)
-                                                      : AppColor.white,
-                                                  shape:
-                                                      RoundedRectangleBorder(
-                                                    side: BorderSide(
-                                                      width: 1.06,
-                                                      color: Get.find<
-                                                                  ThemeController>()
-                                                              .isDarkMode
-                                                              .value
-                                                          ? const Color(
-                                                              0xFF353535)
-                                                          : const Color(
-                                                              0xFFE8E8E8),
-                                                    ),
-                                                    borderRadius: BorderRadius
-                                                        .circular(context
-                                                            .setMinSize(10)),
-                                                  ),
-                                                  shadows: [
-                                                    BoxShadow(
-                                                      color:
-                                                          Color(0x00000000),
-                                                      blurRadius: 10.57,
-                                                      offset: Offset(0, 4.23),
-                                                      spreadRadius: 0,
-                                                    )
-                                                  ],
-                                                ),
-                                                child: Row(
-                                                  spacing:
-                                                      context.setWidth(12.69),
-                                                  children: [
-                                                    Container(
-                                                      width: context
-                                                          .setWidth(50),
-                                                      decoration:
-                                                          ShapeDecoration(
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                            children: List.generate(
+                                                                            tokenController.finalResult.length,
+                                                                            (index) {
+                                        return InkWell(
+                                            onTap: () {
+                                              final TokenController
+                                                  tokenUpdateController =
+                                                  Get.put(
+                                                TokenController.getInstance(),
+                                              );
+                                              tokenUpdateController
+                                                  .onSelectEmployee(
+                                                index,
+                                                authenticationController,
+                                              );
+                                            },
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom:
+                                                      context.setHeight(10)),
+                                              child: Container(
+                                                  width: double.infinity,
+                                                  height: context.setHeight(60),
+                                                  padding: EdgeInsets.all(
+                                                      context.setMinSize(6)),
+                                                  decoration: ShapeDecoration(
+                                                    color: Get.find<
+                                                                ThemeController>()
+                                                            .isDarkMode
+                                                            .value
+                                                        ? const Color(
+                                                            0xFF353535)
+                                                        : AppColor.white,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      side: BorderSide(
+                                                        width: 1.06,
                                                         color: Get.find<
                                                                     ThemeController>()
                                                                 .isDarkMode
                                                                 .value
                                                             ? const Color(
-                                                                0xFF292929)
+                                                                0xFF353535)
                                                             : const Color(
-                                                                0xFFECEFF2),
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius: BorderRadius
-                                                              .circular(context
-                                                                  .setMinSize(
-                                                                      15)),
-                                                        ),
+                                                                0xFFE8E8E8),
                                                       ),
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .all(context
-                                                                .setMinSize(
-                                                                    10)),
-                                                        child:
-                                                            SvgPicture.asset(
-                                                          AppImages.person,
-                                                          package:
-                                                              'shared_widgets',
-                                                          fit: BoxFit.contain,
+                                                      borderRadius: BorderRadius
+                                                          .circular(context
+                                                              .setMinSize(10)),
+                                                    ),
+                                                    shadows: [
+                                                      BoxShadow(
+                                                        color:
+                                                            Color(0x00000000),
+                                                        blurRadius: 10.57,
+                                                        offset: Offset(0, 4.23),
+                                                        spreadRadius: 0,
+                                                      )
+                                                    ],
+                                                  ),
+                                                  child: Row(
+                                                    spacing:
+                                                        context.setWidth(12.69),
+                                                    children: [
+                                                      Container(
+                                                        width: context
+                                                            .setWidth(50),
+                                                        decoration:
+                                                            ShapeDecoration(
                                                           color: Get.find<
                                                                       ThemeController>()
                                                                   .isDarkMode
                                                                   .value
-                                                              ? AppColor.white
+                                                              ? const Color(
+                                                                  0xFF292929)
                                                               : const Color(
-                                                                  0xFFC2C3CB),
+                                                                  0xFFECEFF2),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius
+                                                                .circular(context
+                                                                    .setMinSize(
+                                                                        15)),
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ),
-                                                    Column(
-                                                      spacing: context
-                                                          .setHeight(5),
-                                                      children: [
-                                                        Text(
-                                                          '${tokenController.finalResult[index].name}',
-                                                          style: TextStyle(
+                                                        child: Padding(
+                                                          padding: EdgeInsets
+                                                              .all(context
+                                                                  .setMinSize(
+                                                                      10)),
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            AppImages.person,
+                                                            package:
+                                                                'shared_widgets',
+                                                            fit: BoxFit.contain,
                                                             color: Get.find<
                                                                         ThemeController>()
                                                                     .isDarkMode
                                                                     .value
-                                                                ? Colors.white
-                                                                : Colors
-                                                                    .black,
-                                                            fontFamily:
-                                                                'SansMedium',
-                                                            fontSize:
-                                                                context.setSp(
-                                                              12,
-                                                            ),
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w700,
+                                                                ? AppColor.white
+                                                                : const Color(
+                                                                    0xFFC2C3CB),
                                                           ),
                                                         ),
-                                                        // Text(
-                                                        //   'No-${tokenController.finalResult[index].id}',
-                                                        //   style: TextStyle(
-                                                        //     color: AppColor.appColor,
-                                                        //     fontFamily:
-                                                        //         'SansMedium',
-                                                        //     fontSize:
-                                                        //         context.setSp(
-                                                        //       12,
-                                                        //     ),
-                                                        //     overflow:
-                                                        //         TextOverflow
-                                                        //             .ellipsis,
-                                                        //     fontWeight:
-                                                        //         FontWeight
-                                                        //             .w700,
-                                                        //   ),
-                                                        // )
-                                                      ],
-                                                    )
-                                                  ],
-                                                )),
-                                          ));
-                                    },
-                                  ))),
+                                                      ),
+                                                      Column(
+                                                        spacing: context
+                                                            .setHeight(5),
+                                                        children: [
+                                                          Text(
+                                                            '${tokenController.finalResult[index].name}',
+                                                            style: TextStyle(
+                                                              color: Get.find<
+                                                                          ThemeController>()
+                                                                      .isDarkMode
+                                                                      .value
+                                                                  ? Colors.white
+                                                                  : Colors
+                                                                      .black,
+                                                              fontFamily:
+                                                                  'SansMedium',
+                                                              fontSize:
+                                                                  context.setSp(
+                                                                12,
+                                                              ),
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                            ),
+                                                          ),
+                                                          // Text(
+                                                          //   'No-${tokenController.finalResult[index].id}',
+                                                          //   style: TextStyle(
+                                                          //     color: AppColor.appColor,
+                                                          //     fontFamily:
+                                                          //         'SansMedium',
+                                                          //     fontSize:
+                                                          //         context.setSp(
+                                                          //       12,
+                                                          //     ),
+                                                          //     overflow:
+                                                          //         TextOverflow
+                                                          //             .ellipsis,
+                                                          //     fontWeight:
+                                                          //         FontWeight
+                                                          //             .w700,
+                                                          //   ),
+                                                          // )
+                                                        ],
+                                                      )
+                                                    ],
+                                                  )),
+                                            ));
+                                                                            },
+                                                                          )),
+                                      )),
                                 ],
                               ],
                             ],
