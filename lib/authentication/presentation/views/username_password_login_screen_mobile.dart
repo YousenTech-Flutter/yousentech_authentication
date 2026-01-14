@@ -541,7 +541,7 @@ class _UsernameAndPasswordLoginScreenState
                                           appSnackBar( message: result.status);
                                           return;
                                         }
-                                        
+                                        onPressed(skipAuthenticate: true);
 
                                       },
                                       child: Container(
@@ -588,6 +588,7 @@ class _UsernameAndPasswordLoginScreenState
   onPressed({bool skipAuthenticate = false}) async {
     countErrors = 0;
     LoginHelper.authenticateUsingUsernameAndPassword(
+        skipValidate: skipAuthenticate ,
         formKey: _formKey,
         countErrors: countErrors,
         errorMessage: errorMessage,

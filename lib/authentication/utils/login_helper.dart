@@ -57,12 +57,13 @@ class LoginHelper {
     required GlobalKey<FormState> formKey,
     String? errorMessage,
     required int countErrors,
+    bool  skipValidate = false,
     required AuthenticationController authenticationController,
     required String usernameController,
     required String passwordController,
     required BuildContext context,
   }) async {
-    if (!formKey.currentState!.validate()) {
+    if (!skipValidate && !formKey.currentState!.validate()) {
       appSnackBar(
         message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage,
       );
