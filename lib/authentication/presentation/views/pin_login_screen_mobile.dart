@@ -221,6 +221,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                 height: context.setHeight(10),
                               ),
                               Expanded(
+                                flex: 2,
                                 child: NumbericItems(
                                     contextApp: context,
                                     fontFamily: 'SansMedium',
