@@ -419,7 +419,7 @@ class AuthenticationController extends GetxController {
   Future<ResponseResult> authenticateWithFingerprint() async {
     bool result = await FingerprintChecker.isBiometricAvailable();
     if(!result){
-      return ResponseResult(message: "Fingerprint_failed".tr);
+      return ResponseResult(message: "fingerprint_not_support".tr);
     }
     bool authenticateResult = await FingerprintChecker.authenticateWithFingerprint();
     if(!authenticateResult){

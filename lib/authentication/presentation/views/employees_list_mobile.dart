@@ -260,7 +260,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                       (index) {
                                         return InkWell(
                                             onTap: () {
-                                              print("user===========${tokenController.finalResult[index]}");
+                                              print("user===========${tokenController.finalResult[index].toJson()}");
                                               final TokenController
                                                   tokenUpdateController =
                                                   Get.put(
