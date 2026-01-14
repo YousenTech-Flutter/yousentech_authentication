@@ -24,36 +24,49 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-        return SafeArea(
-          child: Scaffold(
-            backgroundColor: Get.find<ThemeController>().isDarkMode.value? AppColor.darkModeBackgroundColor:DeviceUtils.isMobile(context) ? AppColor.white:  const Color(0xFFDDDDDD),
-            appBar: customAppBar(
-              isMobile:  DeviceUtils.isMobile(context) ? true : false,
-              context: context,
-              onDarkModeChanged: () {
-                // setState(() {});
-              },
-            ),
-            body: GetBuilder<AuthenticationController>(
-              id: "choosePin",
-              builder: (autcontext) {
-                return Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        (!authenticationController.choosePin)
-                            ? DeviceUtils.isMobile(context) ? UsernameAndPasswordLoginScreenMobile(): UsernameAndPasswordLoginScreen()
-                            : PINLoginScreen(),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
+      return SafeArea(
+        child: Scaffold(
+          backgroundColor: Get.find<ThemeController>().isDarkMode.value
+              ? AppColor.darkModeBackgroundColor
+              : DeviceUtils.isMobile(context)
+                  ? AppColor.white
+                  : const Color(0xFFDDDDDD),
+          appBar: customAppBar(
+            isMobile: DeviceUtils.isMobile(context) ? true : false,
+            context: context,
+            onDarkModeChanged: () {
+              // setState(() {});
+            },
           ),
-        );
-      }
-    );
+          body: GetBuilder<AuthenticationController>(
+            id: "choosePin",
+            builder: (autcontext) {
+              return DeviceUtils.isMobile(context)
+                  ? SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          (!authenticationController.choosePin)
+                              ? UsernameAndPasswordLoginScreenMobile()
+                              : PINLoginScreen(),
+                        ],
+                      ),
+                    )
+                  : Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            (!authenticationController.choosePin)
+                                ? UsernameAndPasswordLoginScreen()
+                                : PINLoginScreen(),
+                          ],
+                        ),
+                      ),
+                    );
+            },
+          ),
+        ),
+      );
+    });
   }
 }
