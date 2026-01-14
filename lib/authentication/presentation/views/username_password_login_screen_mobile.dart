@@ -56,12 +56,12 @@ class _UsernameAndPasswordLoginScreenState
             },
             child: Stack(
               children: [
-                Column(
-                  children: [
-                    SizedBox(height: context.setHeight(40)),
-                    Padding(
-                      padding: EdgeInsets.all(context.setMinSize(16.92)),
-                      child: Form(
+                Padding(
+                  padding: EdgeInsets.all(context.setMinSize(16.92)),
+                  child: Column(
+                    children: [
+                      // SizedBox(height: context.setHeight(40)),
+                      Form(
                         key: _formKey,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -563,9 +563,9 @@ class _UsernameAndPasswordLoginScreenState
                             )
                           ],
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 ),
                 authenticationController.loading.value
                     ? const LoadingWidget()
