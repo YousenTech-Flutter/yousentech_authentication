@@ -219,6 +219,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                 height: context.setHeight(20),
                               ),
                               Expanded(
+                                flex: 2,
                                 child: NumbericItems(
                                     contextApp: context,
                                     fontFamily: 'SansMedium',
@@ -228,50 +229,56 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                               ),
                               SizedBox(height: context.setHeight(15)),
                               if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
-                                GetBuilder<AuthenticationController>(
-                                  id: "choosePin",
-                                  builder: (_) {
-                                    return InkWell(
-                                      onTap: SharedPr.chosenUserObj!
-                                                  .pinCodeLock! <
-                                              3
-                                          ? () {
-                                              authenticationController
-                                                  .setChoosePin();
-                                            }
-                                          : null,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        spacing: context.setWidth(
-                                          6.41,
-                                        ),
-                                        children: [
-                                          SvgPicture.asset(
-                                            AppImages.signOut,
-                                            package: 'shared_widgets',
-                                            fit: BoxFit.cover,
-                                            width: context.setWidth(
-                                              19.23,
+                                Expanded(
+                                  
+                                  child: Align(
+                                    alignment: AlignmentGeometry.bottomCenter,
+                                    child: GetBuilder<AuthenticationController>(
+                                      id: "choosePin",
+                                      builder: (_) {
+                                        return InkWell(
+                                          onTap: SharedPr.chosenUserObj!
+                                                      .pinCodeLock! <
+                                                  3
+                                              ? () {
+                                                  authenticationController
+                                                      .setChoosePin();
+                                                }
+                                              : null,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            spacing: context.setWidth(
+                                              6.41,
                                             ),
-                                            height: context
-                                                .setHeight(19.23),
+                                            children: [
+                                              SvgPicture.asset(
+                                                AppImages.signOut,
+                                                package: 'shared_widgets',
+                                                fit: BoxFit.cover,
+                                                width: context.setWidth(
+                                                  19.23,
+                                                ),
+                                                height: context
+                                                    .setHeight(19.23),
+                                              ),
+                                              Text(
+                                                "switch_to_username_login"
+                                                    .tr,
+                                                style: TextStyle(
+                                                  color:Color(0xFF9F9FA5),
+                                                  fontFamily: 'SansMedium',
+                                                  fontSize: context.setSp(12.82),
+                                                  fontWeight:
+                                                      FontWeight.w400,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            "switch_to_username_login"
-                                                .tr,
-                                            style: TextStyle(
-                                              color:Color(0xFF9F9FA5),
-                                              fontFamily: 'SansMedium',
-                                              fontSize: context.setSp(12.82),
-                                              fontWeight:
-                                                  FontWeight.w400,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
+                                        );
+                                      },
+                                    ),
+                                  ),
                                 ),
                             ],
                           ),
