@@ -84,12 +84,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                           padding: EdgeInsets.all(context.setMinSize(16.92)),
                           child: SingleChildScrollView(
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              // mainAxisSize: MainAxisSize.min,
+                              // mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                // SizedBox(
-                                //   height: context.setHeight(39.38),
-                                // ),
+                                SizedBox(height: context.setHeight(40)),
                                 Center(
                                   child: Text(
                                     'employee_list'.tr,
