@@ -481,7 +481,7 @@ class _UsernameAndPasswordLoginScreenState
                                     Expanded(
                                       child: Center(
                                         child: Text(
-                                          'أو الدخول باستخدام',
+                                          'sign_in_with',
                                           style: TextStyle(
                                             color: Get.find<ThemeController>()
                                                     .isDarkMode
