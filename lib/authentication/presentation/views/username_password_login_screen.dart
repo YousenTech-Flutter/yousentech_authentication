@@ -142,8 +142,7 @@ class _UsernameAndPasswordLoginScreenState
                                                   text:
                                                       ' ${SharedPr.chosenUserObj!.name}  ',
                                                   style: TextStyle(
-                                                    color:
-                                                        const Color(0xFF16A6B7),
+                                                    color:AppColor.appColor,
                                                     fontSize: context.setSp(16),
                                                     fontWeight: FontWeight.w500,
                                                   ),
@@ -221,9 +220,7 @@ class _UsernameAndPasswordLoginScreenState
                                             ),
                                           ),
                                           showLable: false,
-                                          iconcolor: const Color(
-                                            0xFF16A6B7,
-                                          ),
+                                          iconcolor:AppColor.appColor,
                                           borderColor:const Color(0xFFC2C3CB),
                                           fillColor:Get.find<ThemeController>().isDarkMode.value ? const Color(0xFF2B2B2B): Colors.white.withValues(alpha: 0.43),
                                           hintcolor: const Color(0xFFC2C3CB),
@@ -241,9 +238,7 @@ class _UsernameAndPasswordLoginScreenState
                                             child: SvgPicture.asset(
                                               AppImages.emaill,
                                               package: 'shared_widgets',
-                                              color: const Color(
-                                                0xFF16A6B7,
-                                              ),
+                                              color: AppColor.appColor,
                                               width: context.setWidth(
                                                 21.63,
                                               ),
@@ -328,9 +323,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 ),
                                               ),
                                               showLable: false,
-                                              iconcolor: const Color(
-                                                0xFF16A6B7,
-                                              ),
+                                              iconcolor:AppColor.appColor,
                                           borderColor:const Color(0xFFC2C3CB),
                                           fillColor:Get.find<ThemeController>().isDarkMode.value ? const Color(0xFF2B2B2B): Colors.white.withValues(alpha: 0.43),
                                           hintcolor: const Color(0xFFC2C3CB),
@@ -350,9 +343,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 child: SvgPicture.asset(
                                                   AppImages.lockOn,
                                                   package: 'shared_widgets',
-                                                  color: const Color(
-                                                    0xFF16A6B7,
-                                                  ),
+                                                  color: AppColor.appColor,
                                                   width: context.setWidth(
                                                     21.63,
                                                   ),
@@ -379,9 +370,7 @@ class _UsernameAndPasswordLoginScreenState
                                                             context.setHeight(
                                                           21.63,
                                                         ),
-                                                        color: const Color(
-                                                          0xFF16A6B7,
-                                                        ),
+                                                        color:AppColor.appColor,
                                                       )
                                                     : SvgPicture.asset(
                                                         AppImages.eyeClosed,
@@ -394,9 +383,7 @@ class _UsernameAndPasswordLoginScreenState
                                                             context.setHeight(
                                                           21.63,
                                                         ),
-                                                        color: const Color(
-                                                          0xFF16A6B7,
-                                                        ),
+                                                        color:AppColor.appColor,
                                                       ),
                                               ),
                                               obscureText: flag ? false : true,
@@ -489,9 +476,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 child: Text(
                                                   "forget_password".tr,
                                                   style: TextStyle(
-                                                    color: const Color(
-                                                      0xFF16A6B7,
-                                                    ),
+                                                    color: AppColor.appColor,
                                                     fontSize: context.setSp(
                                                       12.82,
                                                     ),
@@ -518,9 +503,7 @@ class _UsernameAndPasswordLoginScreenState
                                                   ),
                                                   alignment: Alignment.center,
                                                   decoration: ShapeDecoration(
-                                                    color: const Color(
-                                                      0xFF16A6B7,
-                                                    ),
+                                                    color:AppColor.appColor,
                                                     shape:
                                                         RoundedRectangleBorder(
                                                       borderRadius:
