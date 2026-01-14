@@ -1,7 +1,4 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/models/authentication_data/login_info.dart';
@@ -9,6 +6,7 @@ import 'package:pos_shared_preferences/models/authentication_data/support_ticket
 import 'package:pos_shared_preferences/models/authentication_data/user.dart';
 import 'package:pos_shared_preferences/models/token.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
+import 'package:shared_widgets/config/fingerprint_helper.dart';
 import 'package:shared_widgets/utils/mac_address_helper.dart';
 import 'package:shared_widgets/utils/response_result.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_service.dart';
@@ -416,6 +414,18 @@ class AuthenticationController extends GetxController {
     } else {
       return ResponseResult(message: ticketResult);
     }
+  }
+
+  Future<ResponseResult> authenticateWithFingerprint() async {
+    bool result = await FingerprintChecker.isBiometricAvailable();
+    if(!result){
+      return ResponseResult(message: "Fingerprint_failed".tr);
+    }
+    bool authenticateResult = await FingerprintChecker.authenticateWithFingerprint();
+    if(!authenticateResult){
+      return ResponseResult(message: "Fingerprint_failed".tr);
+    }
+    return ResponseResult(status: true);
   }
 // ===================================================== [Update User Account Lock Status Ticket] =====================================================
 }

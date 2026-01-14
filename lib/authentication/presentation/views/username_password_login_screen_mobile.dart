@@ -7,7 +7,9 @@ import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
+import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
+import 'package:shared_widgets/utils/response_result.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/presentation/views/username_password_login_screen.dart';
@@ -532,22 +534,33 @@ class _UsernameAndPasswordLoginScreenState
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      width: context.setWidth(54),
-                                      height: context.setHeight(54),
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Get.find<ThemeController>()
-                                                .isDarkMode
-                                                .value
-                                            ? Color(0xFF292929)
-                                            : const Color(0xFFF5F5F5),
-                                      ),
-                                      child: Center(
-                                        child: SvgPicture.asset(
-                                          AppImages.fingerPrinter,
-                                          package: "shared_widgets",
-                                          fit: BoxFit.contain,
+                                    GestureDetector(
+                                      onTap:() async{
+                                        ResponseResult result = await authenticationController.authenticateWithFingerprint();
+                                        if(!result.status){
+                                          appSnackBar( message: result.status);
+                                          return;
+                                        }
+                                        
+
+                                      },
+                                      child: Container(
+                                        width: context.setWidth(54),
+                                        height: context.setHeight(54),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? Color(0xFF292929)
+                                              : const Color(0xFFF5F5F5),
+                                        ),
+                                        child: Center(
+                                          child: SvgPicture.asset(
+                                            AppImages.fingerPrinter,
+                                            package: "shared_widgets",
+                                            fit: BoxFit.contain,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -572,15 +585,15 @@ class _UsernameAndPasswordLoginScreenState
     );
   }
 
-  onPressed() async {
+  onPressed({bool skipAuthenticate = false}) async {
     countErrors = 0;
     LoginHelper.authenticateUsingUsernameAndPassword(
         formKey: _formKey,
         countErrors: countErrors,
         errorMessage: errorMessage,
         authenticationController: authenticationController,
-        usernameController: usernameController,
-        passwordController: passwordController,
+        usernameController:skipAuthenticate ? SharedPr.chosenUserObj!.userName! : usernameController.text,
+        passwordController:skipAuthenticate ? SharedPr.chosenUserObj!.password! : passwordController.text,
         context: context);
   }
 }

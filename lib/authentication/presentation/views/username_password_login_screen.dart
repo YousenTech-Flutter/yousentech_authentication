@@ -569,8 +569,8 @@ class _UsernameAndPasswordLoginScreenState
         countErrors: countErrors,
         errorMessage: errorMessage,
         authenticationController: authenticationController,
-        usernameController: usernameController,
-        passwordController: passwordController,
+        usernameController: usernameController.text,
+        passwordController: passwordController.text,
         context: context);
   }
 }

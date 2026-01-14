@@ -58,8 +58,8 @@ class LoginHelper {
     String? errorMessage,
     required int countErrors,
     required AuthenticationController authenticationController,
-    required TextEditingController usernameController,
-    required TextEditingController passwordController,
+    required String usernameController,
+    required String passwordController,
     required BuildContext context,
   }) async {
     if (!formKey.currentState!.validate()) {
@@ -70,8 +70,8 @@ class LoginHelper {
     }
     ResponseResult responseResult = await authenticationController
         .authenticateUsingUsernameAndPassword(LoginInfo(
-            userName: usernameController.text,
-            password: passwordController.text));
+            userName: usernameController,
+            password: passwordController));
     if (responseResult.status && responseResult.data.accountLock < 3) {
       if (SharedPr.isForgetPass!) {
         await authenticationController.countUsernameFailureAttempt(reset: true);
