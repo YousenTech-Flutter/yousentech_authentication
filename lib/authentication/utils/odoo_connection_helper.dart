@@ -18,6 +18,7 @@ class OdooProjectOwnerConnectionHelper {
           username,
           password);
       SharedPr.setOdooClientObj(odooClient: odooClient);
+      print("odooClient==========$odooClient");
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
     } on OdooException {
       return 'login_information_incorrect'.tr;
