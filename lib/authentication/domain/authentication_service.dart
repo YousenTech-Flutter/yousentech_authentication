@@ -118,6 +118,7 @@ class AuthenticationService implements AuthenticationRepository {
   @override
   Future authenticateUsingUsernameAndPassword({required String? username, required String? password}) async {
     try {
+      print("username==$username ,password $password ");
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
         if (username == null && password == null) {
