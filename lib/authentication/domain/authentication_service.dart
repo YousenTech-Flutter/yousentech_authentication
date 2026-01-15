@@ -123,9 +123,12 @@ class AuthenticationService implements AuthenticationRepository {
       if (!connectivityResult.contains(ConnectivityResult.none)) {
         if (username == null && password == null) {
           var result = await OdooProjectOwnerConnectionHelper.checkSession();
+          print("checkSession==$result");
           if ((result is bool && !result) || result is String) {
             return 'error_login_email_pass'.tr;
           }
+          print("OdooProjectOwnerConnectionHelper.odooSession?.userId==${OdooProjectOwnerConnectionHelper.odooSession?.userId} ");
+          print("SharedPr.chosenUserObj?.id==${SharedPr.chosenUserObj?.id}");
           if(SharedPr.chosenUserObj?.id != OdooProjectOwnerConnectionHelper.odooSession?.userId){
             return 'error_login_email_pass'.tr;
           }
