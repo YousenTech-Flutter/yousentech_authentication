@@ -69,8 +69,7 @@ class LoginHelper {
       );
       return;
     }
-    ResponseResult responseResult = await authenticationController
-        .authenticateUsingUsernameAndPassword(LoginInfo(
+    ResponseResult responseResult = await authenticationController.authenticateUsingUsernameAndPassword(LoginInfo(
             userName: usernameController,
             password: passwordController));
     if (responseResult.status && responseResult.data.accountLock < 3) {

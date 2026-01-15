@@ -50,7 +50,7 @@ class AuthenticationController extends GetxController {
     loading.value = true;
     dynamic authResult =
         await authenticateService.authenticateUsingUsernameAndPassword(
-            username: loginInfo.userName!, password: loginInfo.password!);
+            username: loginInfo.userName, password: loginInfo.password);
     if (authResult is User) {
       var checkDeviceId = await _tokenController.getDeviceIdRelatedToPos();
       if (checkDeviceId.data is Token &&

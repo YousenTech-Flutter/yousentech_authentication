@@ -20,6 +20,7 @@ class AuthenticationService implements AuthenticationRepository {
         _authenticationServiceInstance ?? AuthenticationService._();
     return _authenticationServiceInstance!;
   }
+
 // List userFields = [
 //     'id',
 //     'name',
@@ -49,7 +50,7 @@ class AuthenticationService implements AuthenticationRepository {
 //     'is_price_control_module_installed',
 //     'is_discount_module_installed'
 //   ];
-  List userFields= [];
+  List userFields = [];
   // ========================================== [ CHANGE PASSWORD ] =============================================
 
   // ========================================== [ ACTIVATE PIN LOGIN ] =============================================
@@ -115,17 +116,25 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
   @override
-  Future authenticateUsingUsernameAndPassword(
-      {required String username, required String password}) async {
+  Future authenticateUsingUsernameAndPassword({required String? username, required String? password}) async {
     try {
-      OdooProjectOwnerConnectionHelper.odooSession = null;
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        var odooConnectionResult =
-            await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
-                username: username, password: password);
+        if (username == null && password == null) {
+          var result = await OdooProjectOwnerConnectionHelper.checkSession();
+          if ((result is bool && !result) || result is String) {
+            return 'error_login_email_pass'.tr;
+          }
+          if(SharedPr.chosenUserObj?.id != OdooProjectOwnerConnectionHelper.odooSession?.userId){
+            return 'error_login_email_pass'.tr;
+          }
+        }
+        else{
+          await OdooProjectOwnerConnectionHelper.destroySession();
+          var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
         if (odooConnectionResult is String) {
           return odooConnectionResult;
+        }
         }
         addDiscountAndPriceControlFields();
         if (OdooProjectOwnerConnectionHelper.odooSession == null) {
@@ -147,14 +156,15 @@ class AuthenticationService implements AuthenticationRepository {
       } else {
         return 'no_connection'.tr;
       }
-    }
-    catch (e) {
+    } catch (e) {
+      print("authenticateUsingUsernameAndPassword=============$e");
       return await handleException(
           exception: e,
           navigation: false,
           methodName: "authenticateUsingUsernameAndPassword");
     }
   }
+
   @override
   Future changePassword({required String password}) async {
     try {
@@ -406,26 +416,32 @@ class AuthenticationService implements AuthenticationRepository {
       } else {
         return 'no_connection'.tr;
       }
-    } 
-    catch (e) {
-      return await handleException(exception: e,navigation: false,methodName: "getUserInformation");
+    } catch (e) {
+      return await handleException(
+          exception: e, navigation: false, methodName: "getUserInformation");
     }
   }
 
-    addDiscountAndPriceControlFields() {
-    userFields = ['id','name','login','image_1920','pin_code','pin_code_lock',
-    'account_lock',
-    'prevent_selling_with_negative_quantity',
-    'edit_invoice_and_process_it_on_closing',
-    'show_pos_app_settings',
-    'allow_print_session_reports_for_other_users',
-    'show_final_report_for_all_session',
-    'is_allowed_to_restore_local_db',
-    'is_module_installed',
-    'is_price_control_module_installed',
-    'is_discount_module_installed',
-    "is_pos_inventory_module_installed"
-  ];
+  addDiscountAndPriceControlFields() {
+    userFields = [
+      'id',
+      'name',
+      'login',
+      'image_1920',
+      'pin_code',
+      'pin_code_lock',
+      'account_lock',
+      'prevent_selling_with_negative_quantity',
+      'edit_invoice_and_process_it_on_closing',
+      'show_pos_app_settings',
+      'allow_print_session_reports_for_other_users',
+      'show_final_report_for_all_session',
+      'is_allowed_to_restore_local_db',
+      'is_module_installed',
+      'is_price_control_module_installed',
+      'is_discount_module_installed',
+      "is_pos_inventory_module_installed"
+    ];
     if (SharedPr.chosenUserObj!.isDiscountModuleInstalled!) {
       userFields.addAll(
           ['discount_value', 'discount_control', 'priority_user_discount']);

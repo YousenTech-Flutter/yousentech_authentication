@@ -593,8 +593,8 @@ class _UsernameAndPasswordLoginScreenState
         countErrors: countErrors,
         errorMessage: errorMessage,
         authenticationController: authenticationController,
-        usernameController:skipAuthenticate ? SharedPr.chosenUserObj!.userName! : usernameController.text,
-        passwordController:skipAuthenticate ? SharedPr.chosenUserObj!.password! : passwordController.text,
+        usernameController: usernameController.text,
+        passwordController: passwordController.text,
         context: context);
   }
 }
