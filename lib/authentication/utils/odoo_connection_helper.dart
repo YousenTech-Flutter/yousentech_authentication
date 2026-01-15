@@ -43,6 +43,7 @@ class OdooProjectOwnerConnectionHelper {
   }
   static Future checkSession() async {
     try {
+      print("SharedPr.odooClient ${SharedPr.odooClient}");
       if(SharedPr.odooClient != null){
         odooClient = SharedPr.odooClient!;
       }
