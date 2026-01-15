@@ -536,11 +536,11 @@ class _UsernameAndPasswordLoginScreenState
                                     ),
                                     GestureDetector(
                                       onTap:() async{
-                                        ResponseResult result = await authenticationController.authenticateWithFingerprint();
-                                        if(!result.status){
-                                          appSnackBar( message: result.message);
-                                          return;
-                                        }
+                                        // ResponseResult result = await authenticationController.authenticateWithFingerprint();
+                                        // if(!result.status){
+                                        //   appSnackBar( message: result.message);
+                                        //   return;
+                                        // }
                                         onPressed(skipAuthenticate: true);
 
                                       },
