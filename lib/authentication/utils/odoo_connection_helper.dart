@@ -17,7 +17,7 @@ class OdooProjectOwnerConnectionHelper {
           SharedPr.subscriptionDetailsObj!.db!,
           username,
           password);
-      SharedPr.setOdooClientObj(odooClient: odooClient);
+      await SharedPr.setOdooClientObj(odooClient: odooClient);
       print("odooClient==========$odooClient");
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
     } on OdooException {
