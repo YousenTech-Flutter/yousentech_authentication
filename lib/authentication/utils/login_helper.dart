@@ -59,8 +59,8 @@ class LoginHelper {
     required int countErrors,
     bool  skipValidate = false,
     required AuthenticationController authenticationController,
-    required String usernameController,
-    required String passwordController,
+    required String? usernameController,
+    required String? passwordController,
     required BuildContext context,
   }) async {
     if (!skipValidate && !formKey.currentState!.validate()) {

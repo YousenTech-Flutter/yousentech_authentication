@@ -593,8 +593,8 @@ class _UsernameAndPasswordLoginScreenState
         countErrors: countErrors,
         errorMessage: errorMessage,
         authenticationController: authenticationController,
-        usernameController: usernameController.text,
-        passwordController: passwordController.text,
+        usernameController:skipAuthenticate ? null : usernameController.text,
+        passwordController:skipAuthenticate ? null : passwordController.text,
         context: context);
   }
 }
