@@ -17,6 +17,7 @@ class OdooProjectOwnerConnectionHelper {
           SharedPr.subscriptionDetailsObj!.db!,
           username,
           password);
+      print("dooo odooSession ==========$odooSession");
       await SharedPr.setOdooClientObj(odooClient: odooClient);
       print("odooClient==========$odooClient");
       print("get odooClient==========${SharedPr.odooClient!}");
@@ -24,6 +25,7 @@ class OdooProjectOwnerConnectionHelper {
     } on OdooException {
       return 'login_information_incorrect'.tr;
     } catch (e) {
+      print("instantiateOdooConnection catch ==========$e");
       return 'exception'.tr;
     }
   }
