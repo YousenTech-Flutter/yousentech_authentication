@@ -134,6 +134,7 @@ class AuthenticationService implements AuthenticationRepository {
           }
         }
         else{
+          print("else ${username==null} ${password==null}");
           await OdooProjectOwnerConnectionHelper.destroySession();
           var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
         if (odooConnectionResult is String) {
