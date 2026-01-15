@@ -24,7 +24,7 @@ class OdooProjectOwnerConnectionHelper {
       return 'exception'.tr;
     }
   }
-  
+
   static Future destroySession() async {
     try {
       await odooClient.destroySession();
@@ -41,6 +41,7 @@ class OdooProjectOwnerConnectionHelper {
     return result;
     }
     catch (e) {
+      print("checkSession catch=========$e");
      return await handleException(exception: e, navigation: false, methodName: "checkSession");
     }
   }
