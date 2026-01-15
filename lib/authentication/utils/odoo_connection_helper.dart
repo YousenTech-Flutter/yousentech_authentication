@@ -27,6 +27,7 @@ class OdooProjectOwnerConnectionHelper {
   }
 
   static Future destroySession() async {
+    print("destroySession==========");
     try {
       if(SharedPr.odooClient != null){
         odooClient = SharedPr.odooClient!;
