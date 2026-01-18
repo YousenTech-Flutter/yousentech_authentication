@@ -18,9 +18,7 @@ class OdooProjectOwnerConnectionHelper {
           username,
           password);
       print("dooo odooSession ==========$odooSession");
-      await SharedPr.setOdooClientObj(odooClient: odooClient);
       print("odooClient==========$odooClient");
-      print("get odooClient==========${SharedPr.odooClient!}");
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
     } on OdooException {
       return 'login_information_incorrect'.tr;
@@ -33,25 +31,16 @@ class OdooProjectOwnerConnectionHelper {
   static Future destroySession() async {
     print("destroySession==========");
     try {
-      if(SharedPr.odooClient != null){
-        odooClient = SharedPr.odooClient!;
-      }
       await odooClient.destroySession();
       odooSession = null;
-      SharedPr.setOdooClientObj(odooClient: null);
     }
     catch (e) {
       odooSession = null;
-      SharedPr.setOdooClientObj(odooClient: null);
       await handleException(exception: e, navigation: false, methodName: "destroySession");
     }
   }
   static Future checkSession() async {
     try {
-      print("SharedPr.odooClient ${SharedPr.odooClient}");
-      if(SharedPr.odooClient != null){
-        odooClient = SharedPr.odooClient!;
-      }
     var result = await odooClient.checkSession();
     return result;
     }
