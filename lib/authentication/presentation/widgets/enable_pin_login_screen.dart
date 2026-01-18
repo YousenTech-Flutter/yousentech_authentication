@@ -314,7 +314,6 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                                       height: context.setHeight(35),
                                       borderRadius: context.setMinSize(5),
                                       backgroundColor: AppColor.cyanTeal,
-                                      showBoxShadow: true,
                                       textStyle: AppStyle.textStyle(
                                         color: Colors.white,
                                         fontSize: context.setSp(14.42),
