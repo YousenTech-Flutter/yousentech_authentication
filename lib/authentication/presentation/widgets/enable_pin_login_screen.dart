@@ -83,7 +83,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
           return SizeProvider(
             baseSize: Size(context.setWidth(454.48), context.setHeight(350)),
             width: context.setWidth(454.48),
-            height: context.setHeight(350),
+            height: context.setHeight(360),
             child: Obx(
               () => IgnorePointer(
                 ignoring: authenticationController.loading.value,
