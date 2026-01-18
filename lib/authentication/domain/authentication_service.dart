@@ -122,10 +122,11 @@ class AuthenticationService implements AuthenticationRepository {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-          var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
+        var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
         if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
+        print("passs==========");
         addDiscountAndPriceControlFields();
         if (OdooProjectOwnerConnectionHelper.odooSession == null) {
           return 'session_expired'.tr;
@@ -147,6 +148,7 @@ class AuthenticationService implements AuthenticationRepository {
         return 'no_connection'.tr;
       }
     } catch (e) {
+      print("authenticate=========$e");
       return await handleException(
           exception: e,
           navigation: false,
