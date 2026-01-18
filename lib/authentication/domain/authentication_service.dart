@@ -464,6 +464,7 @@ class AuthenticationService implements AuthenticationRepository {
     try {
       var generalLocalDBinstance =
           GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
+      print("userFromLocal==========");
       User userFromLocal = await generalLocalDBinstance!
           .show(val: SharedPr.chosenUserObj!.userName, whereArg: 'username');
       print("userFromLocal.password==========${userFromLocal.password}");
