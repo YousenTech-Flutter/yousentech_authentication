@@ -13,6 +13,7 @@ dependencies:
   connectivity_plus: ^6.0.3
   get: ^4.6.6
   odoo_rpc: ^0.5.4
+  http: ^1.6.0
   # flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
   pos_shared_preferences:

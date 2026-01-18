@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/models/authentication_data/support_ticket.dart';
@@ -157,7 +159,6 @@ class AuthenticationService implements AuthenticationRepository {
         return 'no_connection'.tr;
       }
     } catch (e) {
-      print("authenticateUsingUsernameAndPassword=============$e");
       return await handleException(
           exception: e,
           navigation: false,
@@ -456,4 +457,7 @@ class AuthenticationService implements AuthenticationRepository {
       ]);
     }
   }
+
+
+
 }
