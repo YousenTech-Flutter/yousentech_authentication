@@ -81,7 +81,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
       child: Builder(
         builder: (context) {
           return SizeProvider(
-            baseSize: Size(context.setWidth(454.48), context.setHeight(350)),
+            baseSize: Size(context.setWidth(454.48), context.setHeight(360)),
             width: context.setWidth(454.48),
             height: context.setHeight(360),
             child: Obx(
@@ -89,7 +89,7 @@ activatePINLogin({bool enable = true, required BuildContext context}) async {
                 ignoring: authenticationController.loading.value,
                 child: SizedBox(
                   width: context.setWidth(454.48),
-                  height: context.setHeight(350),
+                  height: context.setHeight(360),
                   child: Stack(
                     children: [
                       Form(
