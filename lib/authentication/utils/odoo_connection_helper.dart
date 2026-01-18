@@ -15,6 +15,10 @@ class OdooProjectOwnerConnectionHelper {
       odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
       // odooSession = await odooClient.authenticate(
       //     SharedPr.subscriptionDetailsObj!.db!, username, password);
+      print("dd1");
+      var dd  = await odooClient.authenticate(
+          SharedPr.subscriptionDetailsObj!.db!, "user1", 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce');
+      print("dd2============");
       odooSession = await odooClient.authenticate(
           SharedPr.subscriptionDetailsObj!.db!, "user1", 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce');
       SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
