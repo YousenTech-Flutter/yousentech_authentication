@@ -131,6 +131,7 @@ class AuthenticationService implements AuthenticationRepository {
         if (OdooProjectOwnerConnectionHelper.odooSession == null) {
           return 'session_expired'.tr;
         }
+        print("OdooProjectOwnerConnectionHelper.odooClient ${OdooProjectOwnerConnectionHelper.odooClient.runtimeType}");
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
           'model': OdooModels.resUsers,
           'method': 'search_read',
