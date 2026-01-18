@@ -513,7 +513,14 @@ class _UsernameAndPasswordLoginScreenState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap: () {},
+                                      onTap: () async{
+                                        ResponseResult result = await authenticationController.authenticateWithFingerprint();
+                                        if(!result.status){
+                                          appSnackBar( message: result.message);
+                                          return;
+                                        }
+                                        onPressed(skipAuthenticate: true);
+                                      },
                                       child: Container(
                                         width: context.setWidth(54),
                                         height: context.setHeight(54),
@@ -536,11 +543,11 @@ class _UsernameAndPasswordLoginScreenState
                                     ),
                                     GestureDetector(
                                       onTap: () async {
-                                        // ResponseResult result = await authenticationController.authenticateWithFingerprint();
-                                        // if(!result.status){
-                                        //   appSnackBar( message: result.message);
-                                        //   return;
-                                        // }
+                                        ResponseResult result = await authenticationController.authenticateWithFingerprint();
+                                        if(!result.status){
+                                          appSnackBar( message: result.message);
+                                          return;
+                                        }
                                         onPressed(skipAuthenticate: true);
                                       },
                                       child: Container(

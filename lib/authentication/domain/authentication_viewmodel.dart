@@ -421,7 +421,7 @@ class AuthenticationController extends GetxController {
     if(!result){
       return ResponseResult(message: "fingerprint_not_support".tr);
     }
-    bool authenticateResult = await FingerprintChecker.authenticateWithFingerprint();
+    bool authenticateResult = await FingerprintChecker.authenticateWithFingerprintAndFaceId();
     if(!authenticateResult){
       return ResponseResult(message: "Fingerprint_failed".tr);
     }
