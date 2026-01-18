@@ -138,7 +138,8 @@ class AuthenticationService implements AuthenticationRepository {
           'kwargs': {
             //'context': {'bin_size': true}, // for user image
             'domain': [
-              ['id', '=', OdooProjectOwnerConnectionHelper.odooSession!.userId]
+              // ['id', '=', OdooProjectOwnerConnectionHelper.odooSession!.userId]
+              ['id', '=', SharedPr.chosenUserObj!.id]
             ],
             'fields': userFields,
           },
