@@ -122,7 +122,7 @@ class AuthenticationService implements AuthenticationRepository {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
+        var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username, password: password);
         if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
