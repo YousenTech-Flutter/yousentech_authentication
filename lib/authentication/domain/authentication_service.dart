@@ -466,7 +466,7 @@ class AuthenticationService implements AuthenticationRepository {
           GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
       User userFromLocal = await generalLocalDBinstance!
           .show(val: SharedPr.chosenUserObj!.userName, whereArg: 'username');
-      if (userFromLocal.password == null) {
+      if (userFromLocal.password == null || userFromLocal.password == '') {
         return "sign_in_using_username_at_least_one_time".tr;
       }
       await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(

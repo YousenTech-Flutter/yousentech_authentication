@@ -441,7 +441,7 @@ class AuthenticationController extends GetxController {
         SessionService sessionService = SessionService.getInstance();
         await sessionService.getLastItemPosSessions();
         loginPinLoading.value = false;
-        return ResponseResult(status: true, data: result);
+        return ResponseResult(status: true, data: result , message: "Successful".tr);
       } else {
         loginPinLoading.value = false;
         return ResponseResult(message: "un_trusted_device".tr);
