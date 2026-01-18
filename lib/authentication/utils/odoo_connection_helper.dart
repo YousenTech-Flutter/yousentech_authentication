@@ -7,37 +7,34 @@ import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:yousentech_authentication/authentication/utils/handle_exception_helper.dart';
 
 class OdooProjectOwnerConnectionHelper {
-  static late OdooClient odooClient;
-  // static OdooSession? odooSession;
-  static dynamic odooSession;
+  static late dynamic odooClient;
+  static OdooSession? odooSession;
+  // static dynamic odooSession;
   static bool sessionClosed = false;
 
-  static Future instantiateOdooConnection({required String  ? username, required String ? password}) async {
+  static Future instantiateOdooConnection(
+      {required String? username, required String? password}) async {
     print("instantiateOdooConnection==========");
     try {
-      odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
-      if (username == null && password == null){
-      int uid =   await loginWithApiKey(
-        db: SharedPr.subscriptionDetailsObj!.db!,
-        login: SharedPr.chosenUserObj!.userName!,
-        baseUrl: SharedPr.subscriptionDetailsObj!.url!,
-        apiKey: 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce'
-      );
-      odooSession = OdooApiKeyClient(
-      baseUrl: SharedPr.subscriptionDetailsObj!.url!,
-      db: SharedPr.subscriptionDetailsObj!.db!,
-      uid: uid,
-      apiKey: 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce',
-    );
-      
+      if (username == null && password == null) {
+        int uid = await loginWithApiKey(
+            db: SharedPr.subscriptionDetailsObj!.db!,
+            login: SharedPr.chosenUserObj!.userName!,
+            baseUrl: SharedPr.subscriptionDetailsObj!.url!,
+            apiKey: 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce');
+        odooClient = OdooApiKeyClient(
+          baseUrl: SharedPr.subscriptionDetailsObj!.url!,
+          db: SharedPr.subscriptionDetailsObj!.db!,
+          uid: uid,
+          apiKey: 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce',
+        );
+      } else {
+        odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
+        await destroySession();
+        odooSession = await odooClient.authenticate(
+            SharedPr.subscriptionDetailsObj!.db!, username!, password!);
+        SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
       }
-      else{
-          await  destroySession();
-          odooSession = await odooClient.authenticate(
-          SharedPr.subscriptionDetailsObj!.db!, username!, password!);
-          SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
-      }
-
     } on OdooException {
       return 'login_information_incorrect'.tr;
     } catch (e) {
@@ -93,8 +90,6 @@ class OdooProjectOwnerConnectionHelper {
   }
 }
 
-
-
 class OdooApiKeyClient {
   final String baseUrl;
   final String db;
@@ -139,4 +134,3 @@ class OdooApiKeyClient {
     return data['result'];
   }
 }
-
