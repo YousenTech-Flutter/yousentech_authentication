@@ -466,6 +466,7 @@ class AuthenticationService implements AuthenticationRepository {
           GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
       User userFromLocal = await generalLocalDBinstance!
           .show(val: SharedPr.chosenUserObj!.userName, whereArg: 'username');
+      print("userFromLocal.password==========${userFromLocal.password}");
       if (userFromLocal.password == null || userFromLocal.password == '') {
         return "sign_in_using_username_at_least_one_time".tr;
       }
@@ -488,6 +489,7 @@ class AuthenticationService implements AuthenticationRepository {
 
       return result.isEmpty ? null : User.fromJson(result.first);
     } catch (e) {
+      print("authenticateUsingFingerPrinterAndFaceId=========$e");
       return await handleException(
           exception: e, navigation: false, methodName: "authenticateUsingFingerPrinterAndFaceId");
     }
