@@ -57,13 +57,12 @@ class LoginHelper {
     required GlobalKey<FormState> formKey,
     String? errorMessage,
     required int countErrors,
-    bool  skipValidate = false,
     required AuthenticationController authenticationController,
     required String? usernameController,
     required String? passwordController,
     required BuildContext context,
   }) async {
-    if (!skipValidate && !formKey.currentState!.validate()) {
+    if (!formKey.currentState!.validate()) {
       appSnackBar(
         message: countErrors > 1 ? 'enter_required_info'.tr : errorMessage,
       );
@@ -246,5 +245,42 @@ class LoginHelper {
     }
   });
 }
+  
+
+  
+  static Future authenticateUsingFingerPrinterAndFaceId({
+    required AuthenticationController authenticationController,
+    required BuildContext context,
+  }) async {
+    ResponseResult responseResult = await authenticationController.authenticateUsingFingerPrinterAndFaceId();
+    if (responseResult.status && responseResult.data.accountLock < 3) {
+      Get.off(() => Home());
+      appSnackBar(
+        messageType: MessageTypes.success,
+        message: responseResult.message,
+      );
+    } else {
+      if (responseResult.message == 'login_information_incorrect'.tr) {
+        if (SharedPr.chosenUserObj!.accountLock! < 3) {
+          await SharedPr.updateAccountLockCountLocally();
+          await authenticationController.countUsernameFailureAttempt();
+          if (SharedPr.chosenUserObj!.accountLock! < 3) {
+            appSnackBar(
+                message: 'unsuccessful_login'.trParams({
+              "field_name":
+                  "${(3 - SharedPr.chosenUserObj!.accountLock!) == 0 ? 'account_locked'.tr : 3 - SharedPr.chosenUserObj!.accountLock!}"
+            }));
+            return;
+          }
+        }
+        // ignore: use_build_context_synchronously
+        showAccountLockDialog(authenticationController: authenticationController, context: context);
+        return;
+      }
+      appSnackBar(message: responseResult.message);
+      authenticationController.loading.value = false;
+      return;
+    }
+  }
 
 }

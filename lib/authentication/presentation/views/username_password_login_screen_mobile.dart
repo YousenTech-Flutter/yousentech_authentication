@@ -84,7 +84,7 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-                                  
+
                             SizedBox(height: context.setHeight(16)),
                             Center(
                               child: RichText(
@@ -113,9 +113,9 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-                                  
+
                             SizedBox(height: context.setHeight(35)),
-                                  
+
                             // email
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -140,18 +140,18 @@ class _UsernameAndPasswordLoginScreenState
                                 TextInputFormatter.withFunction(
                                     (oldValue, newValue) {
                                   final text = newValue.text;
-                                  
+
                                   // لا يسمح إلا بحروف + أرقام + @ + .
                                   final allowed = RegExp(r'^[a-zA-Z0-9@.]*$');
                                   if (!allowed.hasMatch(text)) {
                                     return oldValue; // منع الإدخال
                                   }
-                                  
+
                                   // منع تكرار @
                                   if (text.split('@').length > 2) {
                                     return oldValue;
                                   }
-                                  
+
                                   return newValue;
                                 }),
                               ],
@@ -226,7 +226,7 @@ class _UsernameAndPasswordLoginScreenState
                                 return null;
                               },
                             ),
-                                  
+
                             // password
                             SizedBox(height: context.setHeight(16)),
                             Padding(
@@ -245,7 +245,7 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                             ),
-                                  
+
                             GetBuilder<AuthenticationController>(
                               builder: (_) {
                                 return ContainerTextField(
@@ -356,14 +356,15 @@ class _UsernameAndPasswordLoginScreenState
                                 );
                               },
                             ),
-                                  
+
                             SizedBox(height: context.setHeight(35)),
                             // for forgetPass
                             SizedBox(
                               height: context.setHeight(19.23),
                               width: context.screenWidth,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   GetBuilder<AuthenticationController>(
                                       id: "choosePin",
@@ -407,7 +408,6 @@ class _UsernameAndPasswordLoginScreenState
                                           ),
                                         );
                                       }),
-                                  
                                   InkWell(
                                     onTap: () {
                                       forgetPasswordDialog(
@@ -431,7 +431,7 @@ class _UsernameAndPasswordLoginScreenState
                               ),
                             ),
                             SizedBox(height: context.setHeight(35.0)),
-                                  
+
                             // log In
                             Focus(
                                 autofocus: true,
@@ -513,7 +513,7 @@ class _UsernameAndPasswordLoginScreenState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     GestureDetector(
-                                      onTap:(){},
+                                      onTap: () {},
                                       child: Container(
                                         width: context.setWidth(54),
                                         height: context.setHeight(54),
@@ -535,14 +535,13 @@ class _UsernameAndPasswordLoginScreenState
                                       ),
                                     ),
                                     GestureDetector(
-                                      onTap:() async{
+                                      onTap: () async {
                                         // ResponseResult result = await authenticationController.authenticateWithFingerprint();
                                         // if(!result.status){
                                         //   appSnackBar( message: result.message);
                                         //   return;
                                         // }
                                         onPressed(skipAuthenticate: true);
-
                                       },
                                       child: Container(
                                         width: context.setWidth(54),
@@ -586,15 +585,19 @@ class _UsernameAndPasswordLoginScreenState
   }
 
   onPressed({bool skipAuthenticate = false}) async {
-    countErrors = 0;
-    LoginHelper.authenticateUsingUsernameAndPassword(
-        skipValidate: skipAuthenticate ,
-        formKey: _formKey,
-        countErrors: countErrors,
-        errorMessage: errorMessage,
-        authenticationController: authenticationController,
-        usernameController:skipAuthenticate ? null : usernameController.text,
-        passwordController:skipAuthenticate ? null : passwordController.text,
-        context: context);
+    if (skipAuthenticate) {
+      LoginHelper.authenticateUsingFingerPrinterAndFaceId(
+          authenticationController: authenticationController, context: context);
+    } else {
+      countErrors = 0;
+      LoginHelper.authenticateUsingUsernameAndPassword(
+          formKey: _formKey,
+          countErrors: countErrors,
+          errorMessage: errorMessage,
+          authenticationController: authenticationController,
+          usernameController: usernameController.text,
+          passwordController: passwordController.text,
+          context: context);
+    }
   }
 }

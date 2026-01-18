@@ -19,4 +19,5 @@ abstract class AuthenticationRepository {
   Future deleteData();
   Future dropTable();
   Future countPINFailureAttempt();
+  Future authenticateUsingFingerPrinterAndFaceId();
 }

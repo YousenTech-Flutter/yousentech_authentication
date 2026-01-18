@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:pos_shared_preferences/models/authentication_data/support_ticket.dart';
 import 'package:pos_shared_preferences/models/authentication_data/user.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_odoo_models.dart';
 import 'package:shared_widgets/config/app_urls.dart';
+import 'package:shared_widgets/utils/encryption_service.dart';
 import 'package:yousentech_pos_local_db/yousentech_pos_local_db.dart';
 import '../utils/handle_exception_helper.dart';
 import '../utils/odoo_connection_helper.dart';
@@ -91,10 +93,9 @@ class AuthenticationService implements AuthenticationRepository {
       if (userFromLocal.password == null) {
         return "sign_in_using_username_at_least_one_time".tr;
       }
-      OdooProjectOwnerConnectionHelper.odooSession = null;
       await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
           username: SharedPr.chosenUserObj!.userName!,
-          password: userFromLocal.password!);
+          password:encryptDecryptPassword(password: userFromLocal.password!, isEncrypt: false) );
       addDiscountAndPriceControlFields();
 
       List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
@@ -118,7 +119,7 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
   @override
-  Future authenticateUsingUsernameAndPassword({required String? username, required String? password}) async {
+  Future authenticateUsingUsernameAndPassword({required String username, required String password}) async {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
@@ -126,12 +127,10 @@ class AuthenticationService implements AuthenticationRepository {
         if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
-        print("passs==========");
         addDiscountAndPriceControlFields();
-        // if (OdooProjectOwnerConnectionHelper.odooSession == null) {
-        //   return 'session_expired'.tr;
-        // }
-        print("OdooProjectOwnerConnectionHelper.odooClient ${OdooProjectOwnerConnectionHelper.odooClient.runtimeType}");
+        if (OdooProjectOwnerConnectionHelper.odooSession == null) {
+          return 'session_expired'.tr;
+        }
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
           'model': OdooModels.resUsers,
           'method': 'search_read',
@@ -139,8 +138,7 @@ class AuthenticationService implements AuthenticationRepository {
           'kwargs': {
             //'context': {'bin_size': true}, // for user image
             'domain': [
-              // ['id', '=', OdooProjectOwnerConnectionHelper.odooSession!.userId]
-              ['id', '=', SharedPr.chosenUserObj!.id]
+              ['id', '=', OdooProjectOwnerConnectionHelper.odooSession!.userId]
             ],
             'fields': userFields,
           },
@@ -451,5 +449,47 @@ class AuthenticationService implements AuthenticationRepository {
   }
 
 
+  
+  String encryptDecryptPassword({required String password, bool isEncrypt = true}) {
+    String encryptionKeyBase64 = dotenv.env['ENCRYPTION_KEY']!;
+    EncryptionService().init(encryptionKeyBase64);
+    if(isEncrypt){
+      return EncryptionService().encryptData(password);
+    } 
+    return EncryptionService().decryptData(password);
+}
 
+  @override
+  Future<dynamic> authenticateUsingFingerPrinterAndFaceId() async {
+    try {
+      var generalLocalDBinstance =
+          GeneralLocalDB.getInstance<User>(fromJsonFun: User.fromJson);
+      User userFromLocal = await generalLocalDBinstance!
+          .show(val: SharedPr.chosenUserObj!.userName, whereArg: 'username');
+      if (userFromLocal.password == null) {
+        return "sign_in_using_username_at_least_one_time".tr;
+      }
+      await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(
+          username: SharedPr.chosenUserObj!.userName!,
+          password:encryptDecryptPassword(password: userFromLocal.password!, isEncrypt: false) );
+      addDiscountAndPriceControlFields();
+
+      List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
+        'model': OdooModels.resUsers,
+        'method': 'search_read',
+        'args': [],
+        'kwargs': {
+          'domain': [
+            ['login', '=', SharedPr.chosenUserObj!.userName],
+          ],
+          'fields': userFields,
+        },
+      });
+
+      return result.isEmpty ? null : User.fromJson(result.first);
+    } catch (e) {
+      return await handleException(
+          exception: e, navigation: false, methodName: "authenticateUsingFingerPrinterAndFaceId");
+    }
+  }
 }

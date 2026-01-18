@@ -16,6 +16,7 @@ dependencies:
   http: ^1.6.0
   # flutter_screenutil: ^5.9.3
   flutter_svg: ^2.0.10+1
+  flutter_dotenv: ^5.2.1
   pos_shared_preferences:
     git:
       url: https://github.com/YousenTech-Flutter/yousentech_pos_shared_preferences.git

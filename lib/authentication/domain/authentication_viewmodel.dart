@@ -50,7 +50,7 @@ class AuthenticationController extends GetxController {
     loading.value = true;
     dynamic authResult =
         await authenticateService.authenticateUsingUsernameAndPassword(
-            username: loginInfo.userName, password: loginInfo.password);
+            username: loginInfo.userName!, password: loginInfo.password!);
     if (authResult is User) {
       var checkDeviceId = await _tokenController.getDeviceIdRelatedToPos();
       if (checkDeviceId.data is Token &&
@@ -104,7 +104,7 @@ class AuthenticationController extends GetxController {
       'pincode': authResult.pinCode,
     };
     objToCreate.addIf(
-        authResult.password != null, 'password', authResult.password);
+        authResult.password != null, 'password',authenticateService.encryptDecryptPassword(password:authResult.password! ) );
     bool userExist = await _generalLocalDBinstance!
         .checkRowExists(val: authResult.userName, whereKey: 'username');
     if (userExist) {
@@ -428,4 +428,36 @@ class AuthenticationController extends GetxController {
     return ResponseResult(status: true);
   }
 // ===================================================== [Update User Account Lock Status Ticket] =====================================================
+
+
+  Future<ResponseResult> authenticateUsingFingerPrinterAndFaceId() async {
+    loginPinLoading.value = true;
+    var result =await authenticateService.authenticateUsingFingerPrinterAndFaceId();
+    if (result is User) {
+      var checkDeviceId = await _tokenController.getDeviceIdRelatedToPos();
+      if (checkDeviceId.data is Token &&((checkDeviceId.data as Token).macAddress ==MacAddressHelper.macAddress)) {
+        // to save user info
+        await SharedPr.setUserObj(userObj: result);
+        SessionService sessionService = SessionService.getInstance();
+        await sessionService.getLastItemPosSessions();
+        loginPinLoading.value = false;
+        return ResponseResult(status: true, data: result);
+      } else {
+        loginPinLoading.value = false;
+        return ResponseResult(message: "un_trusted_device".tr);
+      }
+    } else if (result == null) {
+      loginPinLoading.value = false;
+      return ResponseResult(message: "user_not_found".tr);
+    } else {
+      loginPinLoading.value = false;
+      if(result is String && (result != "no_connection".tr || result != 'failed_connect_server'.tr)){
+        SharedPr.setErrorAuthentication();
+      }
+      update();
+      return ResponseResult(message: result);
+    }
+  }
+
+
 }
