@@ -128,9 +128,9 @@ class AuthenticationService implements AuthenticationRepository {
         }
         print("passs==========");
         addDiscountAndPriceControlFields();
-        if (OdooProjectOwnerConnectionHelper.odooSession == null) {
-          return 'session_expired'.tr;
-        }
+        // if (OdooProjectOwnerConnectionHelper.odooSession == null) {
+        //   return 'session_expired'.tr;
+        // }
         print("OdooProjectOwnerConnectionHelper.odooClient ${OdooProjectOwnerConnectionHelper.odooClient.runtimeType}");
         List result = await OdooProjectOwnerConnectionHelper.odooClient.callKw({
           'model': OdooModels.resUsers,
