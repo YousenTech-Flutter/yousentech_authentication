@@ -122,22 +122,10 @@ class AuthenticationService implements AuthenticationRepository {
     try {
       var connectivityResult = await (Connectivity().checkConnectivity());
       if (!connectivityResult.contains(ConnectivityResult.none)) {
-        // if (username == null && password == null) {
-        //   var result = await OdooProjectOwnerConnectionHelper.checkSession();
-        //   if ((result is bool && !result) || result is String) {
-        //     return 'error_login_email_pass'.tr;
-        //   }
-        //   if(SharedPr.chosenUserObj?.id != OdooProjectOwnerConnectionHelper.odooSession?.userId){
-        //     return 'error_login_email_pass'.tr;
-        //   }
-        // }
-        // else{
-          await OdooProjectOwnerConnectionHelper.destroySession();
           var odooConnectionResult = await OdooProjectOwnerConnectionHelper.instantiateOdooConnection(username: username!, password: password!);
         if (odooConnectionResult is String) {
           return odooConnectionResult;
         }
-        // }
         addDiscountAndPriceControlFields();
         if (OdooProjectOwnerConnectionHelper.odooSession == null) {
           return 'session_expired'.tr;

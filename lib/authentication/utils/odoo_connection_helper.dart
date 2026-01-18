@@ -11,22 +11,25 @@ class OdooProjectOwnerConnectionHelper {
   static OdooSession? odooSession;
   static bool sessionClosed = false;
 
-  static Future instantiateOdooConnection(
-      {required String username, required String password}) async {
+  static Future instantiateOdooConnection({required String  ? username, required String ? password}) async {
     print("instantiateOdooConnection==========");
     try {
       odooClient = OdooClient(SharedPr.subscriptionDetailsObj!.url!);
-      // odooSession = await odooClient.authenticate(
-      //     SharedPr.subscriptionDetailsObj!.db!, username, password);
-      print("dd1");
-      var dd = await loginWithApiKey(
+      if (username == null && password == null){
+        await loginWithApiKey(
         db: SharedPr.subscriptionDetailsObj!.db!,
-        login: "user1",
+        login: SharedPr.chosenUserObj!.userName!,
         baseUrl: SharedPr.subscriptionDetailsObj!.url!,
         apiKey: 'e486a1fd1efbe3242d558fd4b37a8f2e1ced8fce'
       );
-      print("dd2============$dd");
-      SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
+      }
+      else{
+          await  destroySession();
+          odooSession = await odooClient.authenticate(
+          SharedPr.subscriptionDetailsObj!.db!, username!, password!);
+          SharedPr.setSessionId(sessionId: "session_id=${odooSession!.id}");
+      }
+
     } on OdooException {
       return 'login_information_incorrect'.tr;
     } catch (e) {
@@ -78,6 +81,6 @@ class OdooProjectOwnerConnectionHelper {
     if (data['result'] is int) {
       return data['result']; // uid
     }
-    throw Exception('Authentication failed');
+    throw Exception('error_login_email_pass'.tr);
   }
 }
