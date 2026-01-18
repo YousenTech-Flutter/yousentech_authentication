@@ -467,7 +467,6 @@ class AuthenticationService implements AuthenticationRepository {
       print("userFromLocal==========");
       var userFromLocal = await generalLocalDBinstance!
           .show(val: SharedPr.chosenUserObj!.userName, whereArg: 'username');
-      print("userFromLocal.password==========${userFromLocal.password}");
       if (userFromLocal is String || userFromLocal.password == null || userFromLocal.password == '') {
         return "sign_in_using_username_at_least_one_time".tr;
       }
