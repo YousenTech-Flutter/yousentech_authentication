@@ -138,7 +138,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                 SizedBox(height: context.setHeight(35)),
                                 if (tokenController.isLoading.value ||
                                     tokenController.result == null) ...[
-                                  SizedBox(height: context.setHeight(40)),
                                   Center(
                                     child: CircularProgressIndicator(
                                       color: AppColor.cyanTeal,
@@ -156,93 +155,28 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     ),
                                   ),
                                 ] else if (!tokenController.result.status) ...[
-                                  Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: context.setHeight(20),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: context.setHeight(40),
-                                          ),
-                                          Icon(
-                                            Icons.error_outline,
-                                            color: Colors.red[400],
-                                            size: context.setWidth(50),
-                                          ),
-                                          SizedBox(
-                                            height: context.setHeight(10),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.all(
-                                              context.setMinSize(8),
-                                            ),
-                                            child: Text(
-                                              tokenController.result.message ??
-                                                  '',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Color(0xFF9F9FA5),
-                                                fontSize: context.setSp(
-                                                  14.42,
-                                                ),
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: context.setHeight(10),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.all(
-                                              context.setMinSize(8),
-                                            ),
-                                            child: ButtonElevated(
-                                              text: "Update_page".tr,
-                                              width: context.screenWidth,
-                                              backgroundColor: Colors.red[400],
-                                              textStyle: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: context.setSp(
-                                                  14.42,
-                                                ),
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              onPressed: () async {
-                                                tokenController
-                                                    .isLoading.value = true;
-                                                await tokenController
-                                                    .loadEmployeesBasedOnToken(
-                                                  token: SharedPr.token!,
-                                                );
-                                                tokenController.update([
-                                                  "update_employees",
-                                                ]);
-                                                tokenController
-                                                    .isLoading.value = false;
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: context.setHeight(20),
                                     ),
-                                  ),
-                                ] else ...[
-                                  if (tokenController.finalResult.isEmpty) ...[
-                                    Center(
-                                      child: Column(
-                                        children: [
-                                          SizedBox(
-                                            height: context.setHeight(40),
+                                    child: Column(
+                                      children: [
+                                        Icon(
+                                          Icons.error_outline,
+                                          color: Colors.red[400],
+                                          size: context.setWidth(50),
+                                        ),
+                                        SizedBox(
+                                          height: context.setHeight(10),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                            context.setMinSize(8),
                                           ),
-                                          Icon(
-                                            Icons.no_accounts_outlined,
-                                            color: AppColor.cyanTeal,
-                                            size: context.setWidth(50),
-                                          ),
-                                          Text(
-                                            'empty_list'.tr,
+                                          child: Text(
+                                            tokenController.result.message ??
+                                                '',
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Color(0xFF9F9FA5),
                                               fontSize: context.setSp(
@@ -251,8 +185,63 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                        SizedBox(
+                                          height: context.setHeight(10),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                            context.setMinSize(8),
+                                          ),
+                                          child: ButtonElevated(
+                                            text: "Update_page".tr,
+                                            width: context.screenWidth,
+                                            backgroundColor: Colors.red[400],
+                                            textStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: context.setSp(
+                                                14.42,
+                                              ),
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                            onPressed: () async {
+                                              tokenController
+                                                  .isLoading.value = true;
+                                              await tokenController
+                                                  .loadEmployeesBasedOnToken(
+                                                token: SharedPr.token!,
+                                              );
+                                              tokenController.update([
+                                                "update_employees",
+                                              ]);
+                                              tokenController
+                                                  .isLoading.value = false;
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ] else ...[
+                                  if (tokenController.finalResult.isEmpty) ...[
+                                    Column(
+                                      children: [
+                                        Icon(
+                                          Icons.no_accounts_outlined,
+                                          color: AppColor.cyanTeal,
+                                          size: context.setWidth(50),
+                                        ),
+                                        Text(
+                                          'empty_list'.tr,
+                                          style: TextStyle(
+                                            color: Color(0xFF9F9FA5),
+                                            fontSize: context.setSp(
+                                              14.42,
+                                            ),
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ] else ...[
                                     ...List.generate(
