@@ -155,72 +155,67 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     ),
                                   ),
                                 ] else if (!tokenController.result.status) ...[
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: context.setHeight(20),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Icon(
-                                          Icons.error_outline,
-                                          color: Colors.red[400],
-                                          size: context.setWidth(50),
+                                  Column(
+                                    children: [
+                                      Icon(
+                                        Icons.error_outline,
+                                        color: Colors.red[400],
+                                        size: context.setWidth(50),
+                                      ),
+                                      SizedBox(
+                                        height: context.setHeight(10),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(
+                                          context.setMinSize(8),
                                         ),
-                                        SizedBox(
-                                          height: context.setHeight(10),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.all(
-                                            context.setMinSize(8),
-                                          ),
-                                          child: Text(
-                                            tokenController.result.message ??
-                                                '',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              color: Color(0xFF9F9FA5),
-                                              fontSize: context.setSp(
-                                                14.42,
-                                              ),
-                                              fontWeight: FontWeight.w400,
+                                        child: Text(
+                                          tokenController.result.message ??
+                                              '',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xFF9F9FA5),
+                                            fontSize: context.setSp(
+                                              14.42,
                                             ),
+                                            fontWeight: FontWeight.w400,
                                           ),
                                         ),
-                                        SizedBox(
-                                          height: context.setHeight(10),
+                                      ),
+                                      SizedBox(
+                                        height: context.setHeight(10),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(
+                                          context.setMinSize(8),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.all(
-                                            context.setMinSize(8),
-                                          ),
-                                          child: ButtonElevated(
-                                            text: "Update_page".tr,
-                                            width: context.screenWidth,
-                                            backgroundColor: Colors.red[400],
-                                            textStyle: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: context.setSp(
-                                                14.42,
-                                              ),
-                                              fontWeight: FontWeight.w400,
+                                        child: ButtonElevated(
+                                          text: "Update_page".tr,
+                                          width: context.screenWidth,
+                                          backgroundColor: Colors.red[400],
+                                          textStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: context.setSp(
+                                              14.42,
                                             ),
-                                            onPressed: () async {
-                                              tokenController
-                                                  .isLoading.value = true;
-                                              await tokenController
-                                                  .loadEmployeesBasedOnToken(
-                                                token: SharedPr.token!,
-                                              );
-                                              tokenController.update([
-                                                "update_employees",
-                                              ]);
-                                              tokenController
-                                                  .isLoading.value = false;
-                                            },
+                                            fontWeight: FontWeight.w400,
                                           ),
+                                          onPressed: () async {
+                                            tokenController
+                                                .isLoading.value = true;
+                                            await tokenController
+                                                .loadEmployeesBasedOnToken(
+                                              token: SharedPr.token!,
+                                            );
+                                            tokenController.update([
+                                              "update_employees",
+                                            ]);
+                                            tokenController
+                                                .isLoading.value = false;
+                                          },
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ] else ...[
                                   if (tokenController.finalResult.isEmpty) ...[
