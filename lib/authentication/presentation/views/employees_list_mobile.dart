@@ -313,6 +313,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                               AppImages.person,
                                                               package:
                                                                   'shared_widgets',
+                                                              fit: BoxFit.contain,
                                                               color: Get.find<
                                                                           ThemeController>()
                                                                       .isDarkMode
