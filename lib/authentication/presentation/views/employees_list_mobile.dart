@@ -308,19 +308,22 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                           height: context
                                                               .setWidth(50.75),
                                                           child: Center(
-                                                            child: SvgPicture
-                                                                .asset(
-                                                              AppImages.person,
-                                                              package:
-                                                                  'shared_widgets',
-                                                              fit: BoxFit.contain,
-                                                              color: Get.find<
-                                                                          ThemeController>()
-                                                                      .isDarkMode
-                                                                      .value
-                                                                  ? null
-                                                                  : const Color(
-                                                                      0xFF666C6D),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.all(context.setMinSize(10)),
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                AppImages.person,
+                                                                package:
+                                                                    'shared_widgets',
+                                                                fit: BoxFit.contain,
+                                                                color: Get.find<
+                                                                            ThemeController>()
+                                                                        .isDarkMode
+                                                                        .value
+                                                                    ? null
+                                                                    : const Color(
+                                                                        0xFF666C6D),
+                                                              ),
                                                             ),
                                                           )),
                                                     ),
