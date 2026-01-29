@@ -78,7 +78,7 @@ class _UsernameAndPasswordLoginScreenState
                                           .value
                                       ? AppColor.white
                                       : AppColor.black,
-                                  fontSize: context.setSp(20.03),
+                                  fontSize: context.setSp(14),
                                   fontFamily: 'SansBold',
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -158,7 +158,7 @@ class _UsernameAndPasswordLoginScreenState
                               width: context.screenWidth,
                               height: context.setHeight(51.28),
                               fontSize: context.setSp(
-                                14,
+                                12,
                               ),
                               contentPadding: EdgeInsets.fromLTRB(
                                 context.setWidth(
@@ -257,7 +257,7 @@ class _UsernameAndPasswordLoginScreenState
                                   width: context.screenWidth,
                                   height: context.setHeight(51.28),
                                   fontSize: context.setSp(
-                                    14,
+                                    12,
                                   ),
                                   contentPadding: EdgeInsets.fromLTRB(
                                     context.setWidth(
@@ -420,6 +420,7 @@ class _UsernameAndPasswordLoginScreenState
                                       "forget_password".tr,
                                       style: TextStyle(
                                         color: AppColor.appColor,
+                                        fontFamily: "SansMedium",
                                         fontSize: context.setSp(
                                           12.82,
                                         ),
@@ -461,7 +462,7 @@ class _UsernameAndPasswordLoginScreenState
                                           14.42,
                                         ),
                                         color: AppColor.white,
-                                        fontFamily: 'Tajawal',
+                                        fontFamily: "SansMedium",
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),

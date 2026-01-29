@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
+import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/utils/submit_pin.dart' as LoginHelper;
@@ -143,7 +144,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                   style: TextStyle(
                     color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
                     fontSize: context.setSp(14),
-                    fontFamily:widget.fontFamily,
+                    fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
                     fontWeight: FontWeight.w700,
                     height: 1,
                   ),
@@ -179,8 +180,8 @@ class _NumbericItemsState extends State<NumbericItems> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
-              fontSize: context.setSp(16),
-              fontFamily:widget.fontFamily,
+              fontSize: context.setSp(14),
+              fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
               fontWeight: FontWeight.w700,
               height: 1,
             ),

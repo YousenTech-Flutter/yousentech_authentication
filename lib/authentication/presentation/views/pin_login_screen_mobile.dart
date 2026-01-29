@@ -73,7 +73,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         color: Get.find<ThemeController>().isDarkMode.value ? Colors.white :Colors.black ,
-                                        fontSize: context.setSp(20.03),
+                                        fontSize: context.setSp(14),
                                         fontFamily: 'SansBold',
                                         fontWeight: FontWeight.w700,
                                       ),
@@ -98,7 +98,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                         style: TextStyle(
                                           color:
                                               const Color(0xFF16A6B7),
-                                          fontSize: context.setSp(16),
+                                          fontSize: context.setSp(12),
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -124,7 +124,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                     height: context.setHeight(
                                       51.28,
                                     ),
-                                    fontSize: context.setSp(16),
+                                    fontSize: context.setSp(12),
                                     testFontSize: context.setSp(19),
                                     contentPadding:
                                         EdgeInsets.fromLTRB(
@@ -143,7 +143,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                     ),
                                     fillColor: null,
                                     hintcolor: const Color(0xFFC2C3CB),
-                                    color: const Color(0xFF16A6B7),
+                                    color: AppColor.appColor,
                                     borderRadius:
                                         context.setMinSize(8.01),
                                     hintText: 'pin_number'.tr,
