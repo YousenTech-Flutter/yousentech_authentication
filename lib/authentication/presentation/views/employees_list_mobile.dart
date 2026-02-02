@@ -61,16 +61,13 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-    final isLoading = tokenController.isLoading.value;
-    final isDarkMode = Get.find<ThemeController>().isDarkMode.value;
-      return IgnorePointer(
-        ignoring: isLoading,
+    return  IgnorePointer(
+        ignoring: tokenController.isLoading.value,
         child: Stack(
           children: [
             SafeArea(
               child: Scaffold(
-                backgroundColor: isDarkMode
+                backgroundColor: Get.find<ThemeController>().isDarkMode.value
                     ? AppColor.darkModeBackgroundColor
                     : AppColor.white,
                 appBar: customAppBar(
@@ -366,14 +363,15 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                     }),
               ),
             ),
-            Obx(
-              () => tokenController.isLoading.value
+            // Obx(
+            //   () => 
+              tokenController.isLoading.value
                   ? const LoadingWidget()
                   : Container(),
-            ),
+            // ),
           ],
         ),
       );
-    });
+    
   }
 }
