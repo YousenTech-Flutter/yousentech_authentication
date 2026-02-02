@@ -61,7 +61,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
 
   @override
   Widget build(BuildContext context) {
-    return  IgnorePointer(
+    return Obx(() {
+      return IgnorePointer(
         ignoring: tokenController.isLoading.value,
         child: Stack(
           children: [
@@ -242,11 +243,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     (index) {
                                       return GestureDetector(
                                           onTap: () {
-                                            final TokenController
-                                                tokenUpdateController = Get.put(
-                                              TokenController.getInstance(),
-                                            );
-                                            tokenUpdateController
+                                            tokenController
                                                 .onSelectEmployee(
                                               index,
                                               authenticationController,
@@ -363,15 +360,14 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                     }),
               ),
             ),
-            // Obx(
-            //   () => 
-              tokenController.isLoading.value
+            Obx(
+              () => tokenController.isLoading.value
                   ? const LoadingWidget()
                   : Container(),
-            // ),
+            ),
           ],
         ),
       );
-    
+    });
   }
 }
