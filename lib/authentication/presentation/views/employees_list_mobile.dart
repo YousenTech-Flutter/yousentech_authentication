@@ -66,6 +66,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
       return WillPopScope(
         onWillPop: () async {
           if (SharedPr.userObj == null) {
+            Get.reset();
             SystemNavigator.pop();
             return false;
           }
