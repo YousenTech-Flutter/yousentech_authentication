@@ -68,6 +68,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
           onWillPop: () async{
             if(SharedPr.userObj == null ){
               SystemNavigator.pop();
+              return false;
             }
             return true;
           },
