@@ -64,7 +64,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-        bool ignoring = tokenController.isLoading.value;
         return WillPopScope(
           onWillPop: () async{
             if(SharedPr.userObj == null ){
@@ -74,7 +73,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
             return true;
           },
           child: IgnorePointer(
-            ignoring:ignoring ,
+            ignoring: tokenController.isLoading.value,
             child: Stack(
               children: [
                 SafeArea(
