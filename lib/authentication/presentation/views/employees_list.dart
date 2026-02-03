@@ -33,7 +33,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
   void initState() {
     super.initState();
     _focusNode = FocusNode();
-    tokenController == Get.put(TokenController.getInstance());
+    tokenController = Get.put(TokenController.getInstance());
     authenticationController = Get.put(AuthenticationController.getInstance());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       flutterWindowCloseshow(context);
