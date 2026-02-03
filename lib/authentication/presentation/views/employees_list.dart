@@ -63,8 +63,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-        return WillPopScope(
+    return  WillPopScope(
           onWillPop: () async{
             if(SharedPr.userObj == null ){
               SystemNavigator.pop();
@@ -460,7 +459,6 @@ class _EmployeesListScreenState extends State<EmployeesListScreen> {
             ),
           ),
         );
-      }
-    );
+      
   }
 }
