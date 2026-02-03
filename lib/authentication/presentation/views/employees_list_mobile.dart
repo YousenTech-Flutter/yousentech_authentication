@@ -23,12 +23,8 @@ class EmployeesListScreenMobile extends StatefulWidget {
 }
 
 class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
-  final TokenController tokenController = Get.put(
-    TokenController.getInstance(),
-  );
-  final AuthenticationController authenticationController = Get.put(
-    AuthenticationController.getInstance(),
-  );
+  late final TokenController tokenController;
+  late final AuthenticationController authenticationController;
   late FocusNode _focusNode;
   final ScrollController _scrollController = ScrollController();
   bool lightMode = true;
@@ -36,6 +32,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
   void initState() {
     super.initState();
     _focusNode = FocusNode();
+    tokenController == Get.put(TokenController.getInstance());
+    authenticationController = Get.put(AuthenticationController.getInstance());
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       flutterWindowCloseshow(context);
       _focusNode.requestFocus();
