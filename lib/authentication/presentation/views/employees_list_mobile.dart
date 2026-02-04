@@ -40,7 +40,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
       flutterWindowCloseshow(context);
       _focusNode.requestFocus();
       await tokenController.loadEmployeesBasedOnToken(token: SharedPr.token!);
-      // tokenController.update(["update_employees"]);
+      tokenController.update(["update_employees"]);
     });
   }
 
