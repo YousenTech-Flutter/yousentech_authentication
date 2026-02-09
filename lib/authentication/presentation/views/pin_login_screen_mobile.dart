@@ -98,7 +98,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                         style: TextStyle(
                                           color:
                                               const Color(0xFF16A6B7),
-                                          fontSize: context.setSp(12),
+                                          fontSize: context.setSp(16),
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -124,7 +124,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                     height: context.setHeight(
                                       51.28,
                                     ),
-                                    fontSize: context.setSp(12),
+                                    fontSize: context.setSp(14),
                                     testFontSize: context.setSp(19),
                                     contentPadding:
                                         EdgeInsets.fromLTRB(
