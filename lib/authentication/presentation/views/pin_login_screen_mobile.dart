@@ -8,7 +8,6 @@ import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
-import 'package:shared_widgets/utils/responsive_helpers/size_provider.dart';
 import 'package:yousentech_authentication/authentication/domain/authentication_viewmodel.dart';
 import 'package:yousentech_authentication/authentication/presentation/widgets/numberic_item.dart';
 import 'package:yousentech_authentication/authentication/utils/pin_shortcut_action.dart';
@@ -59,27 +58,30 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
               child: Stack(
                 children: [
                   Form(
-                        key: _formKey,
-                        child: Padding(
-                          padding: EdgeInsets.all(context.setMinSize(16.92)),
-                          child: Column(
+                    key: _formKey,
+                    child: Padding(
+                      padding: EdgeInsets.all(context.setMinSize(16.92)),
+                      child: Column(
+                        children: [
+                          SizedBox(height: context.setHeight(40)),
+                          Column(
                             children: [
-                              SizedBox(height: context.setHeight(40)),
-                              Column(
-                                children: [
-                                  Center(
-                                    child: Text(
-                                      'login'.tr,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Get.find<ThemeController>().isDarkMode.value ? Colors.white :Colors.black ,
-                                        fontSize: context.setSp(14),
-                                        fontFamily: 'SansBold',
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
+                              Center(
+                                child: Text(
+                                  'login'.tr,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Get.find<ThemeController>()
+                                            .isDarkMode
+                                            .value
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: context.setSp(14),
+                                    fontFamily: 'SansBold',
+                                    fontWeight: FontWeight.w700,
                                   ),
-                                                                          
+                                ),
+                              ),
                               SizedBox(height: context.setHeight(16)),
                               Center(
                                 child: RichText(
@@ -96,8 +98,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                         text:
                                             ' ${SharedPr.chosenUserObj!.name}  ',
                                         style: TextStyle(
-                                          color:
-                                              const Color(0xFF16A6B7),
+                                          color: const Color(0xFF16A6B7),
                                           fontSize: context.setSp(16),
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -107,184 +108,161 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                   ),
                                 ),
                               ),
-                                        
                               SizedBox(height: context.setHeight(15)),
                               ContainerTextField(
-                                    focusNode: pinNumberFocus,
-                                    controller:
-                                        authenticationController
-                                            .pinKeyController,
-                                    labelText: 'pin_number'.tr,
-                                    isPIN: true,
-                                    isAddOrEdit: false,
-                                    readOnly: true,
-                                    keyboardType:
-                                        TextInputType.number,
-                                    width: context.screenWidth,
-                                    height: context.setHeight(
-                                      51.28,
-                                    ),
-                                    fontSize: context.setSp(14),
-                                    testFontSize: context.setSp(19),
-                                    contentPadding:
-                                        EdgeInsets.fromLTRB(
-                                      context.setWidth(
-                                        14.82,
-                                      ),
-                                      context.setHeight(
-                                        15.22,
-                                      ),
-                                      context.setWidth(
-                                        14.82,
-                                      ),
-                                      context.setHeight(
-                                        15.22,
-                                      ),
-                                    ),
-                                    fillColor: null,
-                                    hintcolor: const Color(0xFFC2C3CB),
-                                    color: AppColor.appColor,
-                                    borderRadius:
-                                        context.setMinSize(8.01),
-                                    hintText: 'pin_number'.tr,
-                                    suffixIcon: IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          flag = !flag;
-                                        });
-                                      },
-                                      icon: flag
-                                          ? SvgPicture.asset(
-                                              AppImages.eyeOpen,
-                                              package:
-                                                  'shared_widgets',
-                                              width:
-                                                  context.setWidth(
-                                                21.63,
-                                              ),
-                                              height:
-                                                  context.setHeight(
-                                                21.63,
-                                              ),
-                                              color:Get.find<ThemeController>().isDarkMode.value
-                                                  ? Colors.white
-                                                      .withValues(
-                                                          alpha:
-                                                              0.66)
-                                                  : const Color(
-                                                      0xFFD9D9D9),
-                                            )
-                                          : SvgPicture.asset(
-                                              AppImages.eyeClosed,
-                                              package:
-                                                  'shared_widgets',
-                                              width:
-                                                  context.setWidth(
-                                                21.63,
-                                              ),
-                                              height:
-                                                  context.setHeight(
-                                                21.63,
-                                              ),
-                                              color: Get.find<ThemeController>().isDarkMode.value
-                                                  ? Colors.white
-                                                      .withValues(
-                                                          alpha:
-                                                              0.66)
-                                                  : const Color(
-                                                      0xFFD9D9D9),
-                                            ),
-                                    ),
-                                    obscureText:
-                                        flag ? false : true,
-                                    validator: (value) {
-                                      if (value == null ||
-                                          value.isEmpty) {
-                                        errorMessage =
-                                            'required_message_f'
-                                                .trParams({
-                                          'field_name':
-                                              'pin_number'.tr,
-                                        });
-                                        return "";
-                                      }
-                                      return null;
-                                    },
+                                focusNode: pinNumberFocus,
+                                controller:
+                                    authenticationController.pinKeyController,
+                                labelText: 'pin_number'.tr,
+                                isPIN: true,
+                                isAddOrEdit: false,
+                                readOnly: true,
+                                keyboardType: TextInputType.number,
+                                width: context.screenWidth,
+                                height: context.setHeight(
+                                  51.28,
+                                ),
+                                fontSize: context.setSp(16),
+                                testFontSize: context.setSp(19),
+                                contentPadding: EdgeInsets.fromLTRB(
+                                  context.setWidth(
+                                    14.82,
                                   ),
-                                 
-                                ],
-                              ),
-                              SizedBox(
-                                height: context.setHeight(20),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: NumbericItems(
-                                    contextApp: context,
-                                    fontFamily: 'SansMedium',
-                                    isMobile: true,
-                                    authenticationController:
-                                        authenticationController,
+                                  context.setHeight(
+                                    15.22,
                                   ),
+                                  context.setWidth(
+                                    14.82,
+                                  ),
+                                  context.setHeight(
+                                    15.22,
+                                  ),
+                                ),
+                                fillColor: null,
+                                hintcolor: const Color(0xFFC2C3CB),
+                                color: AppColor.appColor,
+                                borderRadius: context.setMinSize(8.01),
+                                hintText: 'pin_number'.tr,
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      flag = !flag;
+                                    });
+                                  },
+                                  icon: flag
+                                      ? SvgPicture.asset(
+                                          AppImages.eyeOpen,
+                                          package: 'shared_widgets',
+                                          width: context.setWidth(
+                                            21.63,
+                                          ),
+                                          height: context.setHeight(
+                                            21.63,
+                                          ),
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? Colors.white
+                                                  .withValues(alpha: 0.66)
+                                              : const Color(0xFFD9D9D9),
+                                        )
+                                      : SvgPicture.asset(
+                                          AppImages.eyeClosed,
+                                          package: 'shared_widgets',
+                                          width: context.setWidth(
+                                            21.63,
+                                          ),
+                                          height: context.setHeight(
+                                            21.63,
+                                          ),
+                                          color: Get.find<ThemeController>()
+                                                  .isDarkMode
+                                                  .value
+                                              ? Colors.white
+                                                  .withValues(alpha: 0.66)
+                                              : const Color(0xFFD9D9D9),
+                                        ),
+                                ),
+                                obscureText: flag ? false : true,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    errorMessage =
+                                        'required_message_f'.trParams({
+                                      'field_name': 'pin_number'.tr,
+                                    });
+                                    return "";
+                                  }
+                                  return null;
+                                },
                               ),
-                              SizedBox(height: context.setHeight(15)),
-                              if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
-                                Expanded(
-                                  
-                                  child: Align(
-                                    alignment: AlignmentGeometry.bottomCenter,
-                                    child: GetBuilder<AuthenticationController>(
-                                      id: "choosePin",
-                                      builder: (_) {
-                                        return InkWell(
-                                          onTap: SharedPr.chosenUserObj!
-                                                      .pinCodeLock! <
+                            ],
+                          ),
+                          SizedBox(
+                            height: context.setHeight(20),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: NumbericItems(
+                              contextApp: context,
+                              fontFamily: 'SansMedium',
+                              isMobile: true,
+                              authenticationController:
+                                  authenticationController,
+                            ),
+                          ),
+                          SizedBox(height: context.setHeight(15)),
+                          if (SharedPr.chosenUserObj!.pinCodeLock! < 3)
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentGeometry.bottomCenter,
+                                child: GetBuilder<AuthenticationController>(
+                                  id: "choosePin",
+                                  builder: (_) {
+                                    return InkWell(
+                                      onTap:
+                                          SharedPr.chosenUserObj!.pinCodeLock! <
                                                   3
                                               ? () {
                                                   authenticationController
                                                       .setChoosePin();
                                                 }
                                               : null,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            spacing: context.setWidth(
-                                              6.41,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        spacing: context.setWidth(
+                                          6.41,
+                                        ),
+                                        children: [
+                                          SvgPicture.asset(
+                                            AppImages.signOut,
+                                            package: 'shared_widgets',
+                                            fit: BoxFit.cover,
+                                            width: context.setWidth(
+                                              19.23,
                                             ),
-                                            children: [
-                                              SvgPicture.asset(
-                                                AppImages.signOut,
-                                                package: 'shared_widgets',
-                                                fit: BoxFit.cover,
-                                                width: context.setWidth(
-                                                  19.23,
-                                                ),
-                                                height: context
-                                                    .setHeight(19.23),
-                                              ),
-                                              Text(
-                                                "switch_to_username_login"
-                                                    .tr,
-                                                style: TextStyle(
-                                                  color:Color(0xFF9F9FA5),
-                                                  fontFamily: 'SansMedium',
-                                                  fontSize: context.setSp(12.82),
-                                                  fontWeight:
-                                                      FontWeight.w400,
-                                                ),
-                                              ),
-                                            ],
+                                            height: context.setHeight(19.23),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                          Text(
+                                            "switch_to_username_login".tr,
+                                            style: TextStyle(
+                                              color: Color(0xFF9F9FA5),
+                                              fontFamily: 'SansMedium',
+                                              fontSize: context.setSp(12.82),
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
-                            ],
-                          ),
-                        ),
+                              ),
+                            ),
+                        ],
                       ),
-                    
+                    ),
+                  ),
                   authenticationController.loading.value
                       ? const LoadingWidget()
                       : Container(),
