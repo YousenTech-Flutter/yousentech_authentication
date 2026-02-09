@@ -158,7 +158,7 @@ class _UsernameAndPasswordLoginScreenState
                               width: context.screenWidth,
                               height: context.setHeight(51.28),
                               fontSize: context.setSp(
-                                16,
+                                15,
                               ),
                               contentPadding: EdgeInsets.fromLTRB(
                                 context.setWidth(
@@ -257,7 +257,7 @@ class _UsernameAndPasswordLoginScreenState
                                   width: context.screenWidth,
                                   height: context.setHeight(51.28),
                                   fontSize: context.setSp(
-                                    16,
+                                    15,
                                   ),
                                   contentPadding: EdgeInsets.fromLTRB(
                                     context.setWidth(
