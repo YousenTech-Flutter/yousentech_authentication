@@ -409,7 +409,7 @@ class _UsernameAndPasswordLoginScreenState
                                         SizedBox(height: context.setHeight(35)),
                                         // for forgetPass
                                         SizedBox(
-                                          height: context.setHeight(19.23),
+                                          // height: context.setHeight(19.23),
                                           width: context.screenWidth,
                                           child: Row(
                                             mainAxisAlignment:
