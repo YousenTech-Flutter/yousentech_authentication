@@ -82,7 +82,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                     id: "update_employees",
                     builder: (contextx) {
                       return Padding(
-                        padding: EdgeInsets.all(context.setMinSize(16.92)),
+                        // padding: EdgeInsets.all(context.setMinSize(16.92)),
+                        padding: EdgeInsets.all(context.setMinSize(10)),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,

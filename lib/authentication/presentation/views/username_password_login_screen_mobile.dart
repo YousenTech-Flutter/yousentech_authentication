@@ -59,7 +59,8 @@ class _UsernameAndPasswordLoginScreenState
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(context.setMinSize(16.92)),
+                  // padding: EdgeInsets.all(context.setMinSize(16.92)),
+                  padding: EdgeInsets.all(context.setMinSize(10)),
                   child: Column(
                     children: [
                       SizedBox(height: context.setHeight(40)),
