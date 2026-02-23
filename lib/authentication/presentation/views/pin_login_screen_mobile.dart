@@ -77,7 +77,8 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                             .value
                                         ? Colors.white
                                         : Colors.black,
-                                    fontSize: context.setSp(14),
+                                    // fontSize: context.setSp(14),
+                                    fontSize: context.setSp(24),
                                     fontFamily: 'SansBold',
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -89,7 +90,8 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                   text: TextSpan(
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
-                                      fontSize: context.setSp(14.42),
+                                      // fontSize: context.setSp(14.42),
+                                      fontSize: context.setSp(16),
                                       fontFamily: 'SansRegular',
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -123,22 +125,24 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                 height: context.setHeight(
                                   51.28,
                                 ),
-                                fontSize: context.setSp(15),
-                                testFontSize: context.setSp(19),
-                                contentPadding: EdgeInsets.fromLTRB(
-                                  context.setWidth(
-                                    14.82,
-                                  ),
-                                  context.setHeight(
-                                    15.22,
-                                  ),
-                                  context.setWidth(
-                                    14.82,
-                                  ),
-                                  context.setHeight(
-                                    15.22,
-                                  ),
-                                ),
+                                // fontSize: context.setSp(15),
+                                // testFontSize: context.setSp(19),
+                                fontSize: context.setSp(14),
+                                contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                                // contentPadding: EdgeInsets.fromLTRB(
+                                //   context.setWidth(
+                                //     14.82,
+                                //   ),
+                                //   context.setHeight(
+                                //     15.22,
+                                //   ),
+                                //   context.setWidth(
+                                //     14.82,
+                                //   ),
+                                //   context.setHeight(
+                                //     15.22,
+                                //   ),
+                                // ),
                                 fillColor: null,
                                 hintcolor: const Color(0xFFC2C3CB),
                                 color: AppColor.appColor,
@@ -249,7 +253,8 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                             style: TextStyle(
                                               color: Color(0xFF9F9FA5),
                                               fontFamily: 'SansMedium',
-                                              fontSize: context.setSp(12.82),
+                                              // fontSize: context.setSp(12.82),
+                                              fontSize: context.setSp(14),
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
