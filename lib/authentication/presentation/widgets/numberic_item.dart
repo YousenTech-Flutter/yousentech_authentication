@@ -171,6 +171,7 @@ class _NumbericItemsState extends State<NumbericItems> {
             side: BorderSide(
               width: 1,
               // color: Colors.white.withValues(alpha: 0.50),
+              color: AppColor.appColor,
             ),
             borderRadius: BorderRadius.circular(context.setMinSize(13)),
           ),
