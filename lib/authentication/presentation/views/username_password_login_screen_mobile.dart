@@ -79,9 +79,11 @@ class _UsernameAndPasswordLoginScreenState
                                           .value
                                       ? AppColor.white
                                       : AppColor.black,
-                                  fontSize: context.setSp(14),
+                                  // fontSize: context.setSp(14),
+                                  fontSize: context.setSp(22),
                                   fontFamily: 'SansBold',
                                   fontWeight: FontWeight.w700,
+                                  height: 1.4
                                 ),
                               ),
                             ),
@@ -93,8 +95,10 @@ class _UsernameAndPasswordLoginScreenState
                                   style: TextStyle(
                                     color: Color(0xFFB1B3BC),
                                     fontFamily: 'SansRegular',
-                                    fontSize: context.setSp(14.42),
+                                    // fontSize: context.setSp(14.42),
+                                    fontSize: context.setSp(15),
                                     fontWeight: FontWeight.w400,
+
                                   ),
                                   children: <TextSpan>[
                                     TextSpan(text: 'hi'.tr),
@@ -127,7 +131,8 @@ class _UsernameAndPasswordLoginScreenState
                                 style: TextStyle(
                                   color: Color(0xFFB1B3BC),
                                   fontFamily: "SansMedium",
-                                  fontSize: context.setSp(12.82),
+                                  // fontSize: context.setSp(12.82),
+                                  fontSize: context.setSp(14),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -158,9 +163,10 @@ class _UsernameAndPasswordLoginScreenState
                               ],
                               width: context.screenWidth,
                               height: context.setHeight(51.28),
-                              fontSize: context.setSp(
-                                15,
-                              ),
+                              // fontSize: context.setSp(
+                              //   15,
+                              // ),
+                              fontSize: context.setSp(14),
                               contentPadding: EdgeInsets.fromLTRB(
                                 context.setWidth(
                                   14.82,
@@ -176,7 +182,7 @@ class _UsernameAndPasswordLoginScreenState
                                 ),
                               ),
                               showLable: false,
-                              iconcolor: AppColor.appColor,
+                              iconcolor: AppColor.appColor.withOpacity(.6),
                               borderColor: const Color(0xFFC2C3CB),
                               fillColor:
                                   Get.find<ThemeController>().isDarkMode.value
@@ -241,7 +247,8 @@ class _UsernameAndPasswordLoginScreenState
                                 style: TextStyle(
                                   color: Color(0xFFB1B3BC),
                                   fontFamily: "SansMedium",
-                                  fontSize: context.setSp(12.82),
+                                  // fontSize: context.setSp(12.82),
+                                  fontSize: context.setSp(14),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -257,25 +264,27 @@ class _UsernameAndPasswordLoginScreenState
                                   keyboardType: TextInputType.text,
                                   width: context.screenWidth,
                                   height: context.setHeight(51.28),
-                                  fontSize: context.setSp(
-                                    15,
-                                  ),
-                                  contentPadding: EdgeInsets.fromLTRB(
-                                    context.setWidth(
-                                      14.82,
-                                    ),
-                                    context.setHeight(
-                                      15.22,
-                                    ),
-                                    context.setWidth(
-                                      14.82,
-                                    ),
-                                    context.setHeight(
-                                      15.22,
-                                    ),
-                                  ),
+                                  // fontSize: context.setSp(
+                                  //   15,
+                                  // ),
+                                  fontSize: context.setSp(14),
+                                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                                  // contentPadding: EdgeInsets.fromLTRB(
+                                  //   context.setWidth(
+                                  //     14.82,
+                                  //   ),
+                                  //   context.setHeight(
+                                  //     15.22,
+                                  //   ),
+                                  //   context.setWidth(
+                                  //     14.82,
+                                  //   ),
+                                  //   context.setHeight(
+                                  //     15.22,
+                                  //   ),
+                                  // ),
                                   showLable: false,
-                                  iconcolor: AppColor.appColor,
+                                  iconcolor: AppColor.appColor.withOpacity(.6),
                                   borderColor: const Color(0xFFC2C3CB),
                                   fillColor: Get.find<ThemeController>()
                                           .isDarkMode
@@ -399,9 +408,10 @@ class _UsernameAndPasswordLoginScreenState
                                                 style: TextStyle(
                                                   color: Color(0xFFB1B3BC),
                                                   fontFamily: "SansMedium",
-                                                  fontSize: context.setSp(
-                                                    12.82,
-                                                  ),
+                                                  // fontSize: context.setSp(
+                                                  //   12.82,
+                                                  // ),
+                                                  fontSize: context.setSp(14),
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
@@ -422,9 +432,10 @@ class _UsernameAndPasswordLoginScreenState
                                       style: TextStyle(
                                         color: AppColor.appColor,
                                         fontFamily: "SansMedium",
-                                        fontSize: context.setSp(
-                                          12.82,
-                                        ),
+                                        // fontSize: context.setSp(
+                                        //   12.82,
+                                        // ),
+                                        fontSize: context.setSp(14),
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -459,9 +470,10 @@ class _UsernameAndPasswordLoginScreenState
                                       'login'.tr,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontSize: context.setSp(
-                                          14.42,
-                                        ),
+                                        // fontSize: context.setSp(
+                                        //   14.42,
+                                        // ),
+                                        fontSize: context.setSp(17),
                                         color: AppColor.white,
                                         fontFamily: "SansMedium",
                                         fontWeight: FontWeight.w700,
@@ -493,7 +505,8 @@ class _UsernameAndPasswordLoginScreenState
                                                     .value
                                                 ? AppColor.white
                                                 : Color(0xFFB1B3BC),
-                                            fontSize: context.setSp(11.63),
+                                            // fontSize: context.setSp(11.63),
+                                            fontSize: context.setSp(14),
                                             fontFamily: 'SansRegular',
                                             fontWeight: FontWeight.w400,
                                             height: 1.82,
