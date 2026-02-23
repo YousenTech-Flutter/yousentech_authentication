@@ -80,7 +80,7 @@ class _UsernameAndPasswordLoginScreenState
                                       ? AppColor.white
                                       : AppColor.black,
                                   // fontSize: context.setSp(14),
-                                  fontSize: context.setSp(22),
+                                  fontSize: context.setSp(24),
                                   fontFamily: 'SansBold',
                                   fontWeight: FontWeight.w700,
                                   height: 1.4
@@ -96,7 +96,7 @@ class _UsernameAndPasswordLoginScreenState
                                     color: Color(0xFFB1B3BC),
                                     fontFamily: 'SansRegular',
                                     // fontSize: context.setSp(14.42),
-                                    fontSize: context.setSp(15),
+                                    fontSize: context.setSp(16),
                                     fontWeight: FontWeight.w400,
 
                                   ),
@@ -107,7 +107,7 @@ class _UsernameAndPasswordLoginScreenState
                                           ' ${SharedPr.chosenUserObj!.name}  ',
                                       style: TextStyle(
                                         color: AppColor.appColor,
-                                        fontSize: context.setSp(16),
+                                        // fontSize: context.setSp(16),
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -124,7 +124,10 @@ class _UsernameAndPasswordLoginScreenState
                             // email
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: context.setWidth(10.42)),
+                                  horizontal: context.setWidth(10.42),
+                                  vertical: context.setHeight(5)
+                                  
+                                  ),
                               child: Text(
                                 'email'.tr,
                                 textAlign: TextAlign.right,
@@ -167,20 +170,21 @@ class _UsernameAndPasswordLoginScreenState
                               //   15,
                               // ),
                               fontSize: context.setSp(14),
-                              contentPadding: EdgeInsets.fromLTRB(
-                                context.setWidth(
-                                  14.82,
-                                ),
-                                context.setHeight(
-                                  15.22,
-                                ),
-                                context.setWidth(
-                                  14.82,
-                                ),
-                                context.setHeight(
-                                  15.22,
-                                ),
-                              ),
+                              contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                              // contentPadding: EdgeInsets.fromLTRB(
+                              //   context.setWidth(
+                              //     14.82,
+                              //   ),
+                              //   context.setHeight(
+                              //     15.22,
+                              //   ),
+                              //   context.setWidth(
+                              //     14.82,
+                              //   ),
+                              //   context.setHeight(
+                              //     15.22,
+                              //   ),
+                              // ),
                               showLable: false,
                               iconcolor: AppColor.appColor.withOpacity(.6),
                               borderColor: const Color(0xFFC2C3CB),
@@ -238,7 +242,9 @@ class _UsernameAndPasswordLoginScreenState
                             SizedBox(height: context.setHeight(16)),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: context.setWidth(10.42)),
+                                  horizontal: context.setWidth(10.42),
+                                  vertical: context.setHeight(5)
+                                  ),
                               child: Text(
                                 SharedPr.isForgetPass!
                                     ? 'otp_password'.tr
@@ -336,7 +342,7 @@ class _UsernameAndPasswordLoginScreenState
                                             height: context.setHeight(
                                               21.63,
                                             ),
-                                            color: AppColor.appColor,
+                                            color: AppColor.appColor.withOpacity(.6),
                                           )
                                         : SvgPicture.asset(
                                             AppImages.eyeClosed,
@@ -347,7 +353,7 @@ class _UsernameAndPasswordLoginScreenState
                                             height: context.setHeight(
                                               21.63,
                                             ),
-                                            color: AppColor.appColor,
+                                            color: AppColor.appColor.withOpacity(.6),
                                           ),
                                   ),
                                   obscureText: flag ? false : true,
