@@ -165,12 +165,12 @@ class _NumbericItemsState extends State<NumbericItems> {
         width:width ?? context.setWidth(95.76),
         height:height?? context.setHeight(66),
         decoration: ShapeDecoration(
-          color: AppColor.appColor.withOpacity(0.6),
+          color: AppColor.appColor,
           // Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
-              color: Colors.white.withValues(alpha: 0.50),
+              // color: Colors.white.withValues(alpha: 0.50),
             ),
             borderRadius: BorderRadius.circular(context.setMinSize(13)),
           ),

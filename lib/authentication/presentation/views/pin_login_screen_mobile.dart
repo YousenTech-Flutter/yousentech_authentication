@@ -126,7 +126,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                   51.28,
                                 ),
                                 // fontSize: context.setSp(15),
-                                // testFontSize: context.setSp(19),
+                                testFontSize: context.setSp(22),
                                 fontSize: context.setSp(14),
                                 contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
                                 // contentPadding: EdgeInsets.fromLTRB(
