@@ -170,6 +170,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                               ? AppColor.white
                                                   .withValues(alpha: 0.66)
                                               : AppColor.black,
+                                          fit: BoxFit.contain
                                         )
                                       : SvgPicture.asset(
                                           AppImages.eyeClosed,
@@ -186,6 +187,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                               ? AppColor.white
                                                   .withValues(alpha: 0.66)
                                               : AppColor.black,
+                                          fit: BoxFit.contain
                                         ),
                                 ),
                                 obscureText: flag ? false : true,
