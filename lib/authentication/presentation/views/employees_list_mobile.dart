@@ -136,6 +136,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     // fontSize: context.setSp(12),
                                     fontSize: context.setSp(16),
                                     fontWeight: FontWeight.w400,
+                                    
                                   ),
                                 ),
                               ),
