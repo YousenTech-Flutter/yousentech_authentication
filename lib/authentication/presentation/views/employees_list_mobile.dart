@@ -101,7 +101,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                             .value
                                         ? Colors.white
                                         : Colors.black,
-                                    fontSize: context.setSp(14),
+                                    // fontSize: context.setSp(14),
+                                    fontSize: context.setSp(24),
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -119,7 +120,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         text: '${'qimam'.tr}  ',
                                         style: TextStyle(
                                           color: AppColor.appColor,
-                                          fontSize: context.setSp(12),
+                                          // fontSize: context.setSp(12),
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -132,7 +133,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                   style: TextStyle(
                                     color: Color(0xFF9F9FA5),
                                     fontFamily: 'SansRegular',
-                                    fontSize: context.setSp(12),
+                                    // fontSize: context.setSp(12),
+                                    fontSize: context.setSp(16),
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
@@ -151,7 +153,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     'loading'.tr,
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
-                                      fontSize: context.setSp(12),
+                                      // fontSize: context.setSp(12),
+                                      fontSize: context.setSp(14),
                                       fontFamily: "SansMedium",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -177,9 +180,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           color: Color(0xFF9F9FA5),
-                                          fontSize: context.setSp(
-                                            14.42,
-                                          ),
+                                          // fontSize: context.setSp(
+                                          //   14.42,
+                                          // ),
+                                          fontSize: context.setSp(14),
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -197,9 +201,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         backgroundColor: Colors.red[400],
                                         textStyle: TextStyle(
                                           color: Colors.white,
-                                          fontSize: context.setSp(
-                                            12,
-                                          ),
+                                          // fontSize: context.setSp(
+                                          //   12,
+                                          // ),
+                                          fontSize: context.setSp(17),
                                           fontWeight: FontWeight.w400,
                                         ),
                                         onPressed: () async {
@@ -233,9 +238,10 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         style: TextStyle(
                                           color: Color(0xFF9F9FA5),
                                           fontFamily: "SansMedium",
-                                          fontSize: context.setSp(
-                                            12,
-                                          ),
+                                          // fontSize: context.setSp(
+                                          //   12,
+                                          // ),
+                                          fontSize: context.setSp(14),
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -350,10 +356,11 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                               : Colors.black,
                                                           fontFamily:
                                                               'SansMedium',
-                                                          fontSize:
-                                                              context.setSp(
-                                                            12,
-                                                          ),
+                                                          // fontSize:
+                                                          //     context.setSp(
+                                                          //   12,
+                                                          // ),
+                                                          fontSize: context.setSp(14),
                                                           overflow:
                                                               TextOverflow
                                                                   .ellipsis,
