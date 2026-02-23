@@ -180,7 +180,8 @@ class _NumbericItemsState extends State<NumbericItems> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
-              fontSize: context.setSp(14),
+              // fontSize: context.setSp(14),
+              fontSize: context.setSp(DeviceUtils.isMobile(context)? 17 :14),
               fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
               fontWeight: FontWeight.w700,
               height: 1,
