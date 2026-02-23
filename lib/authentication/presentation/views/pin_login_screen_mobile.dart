@@ -167,9 +167,9 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                           color: Get.find<ThemeController>()
                                                   .isDarkMode
                                                   .value
-                                              ? Colors.white
+                                              ? AppColor.white
                                                   .withValues(alpha: 0.66)
-                                              : const Color(0xFFD9D9D9),
+                                              : AppColor.black,
                                         )
                                       : SvgPicture.asset(
                                           AppImages.eyeClosed,
@@ -183,9 +183,9 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                           color: Get.find<ThemeController>()
                                                   .isDarkMode
                                                   .value
-                                              ? Colors.white
+                                              ? AppColor.white
                                                   .withValues(alpha: 0.66)
-                                              : const Color(0xFFD9D9D9),
+                                              : AppColor.black,
                                         ),
                                 ),
                                 obscureText: flag ? false : true,
