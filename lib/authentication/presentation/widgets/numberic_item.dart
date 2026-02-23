@@ -165,7 +165,8 @@ class _NumbericItemsState extends State<NumbericItems> {
         width:width ?? context.setWidth(95.76),
         height:height?? context.setHeight(66),
         decoration: ShapeDecoration(
-          color: Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
+          color: AppColor.appColor.withOpacity(0.6),
+          // Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               width: 1,
@@ -179,7 +180,8 @@ class _NumbericItemsState extends State<NumbericItems> {
             "enter".tr,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
+              color: AppColor.white,
+              // Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
               // fontSize: context.setSp(14),
               fontSize: context.setSp(DeviceUtils.isMobile(context)? 17 :14),
               fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
