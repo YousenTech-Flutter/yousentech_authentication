@@ -563,6 +563,7 @@ class _UsernameAndPasswordLoginScreenState
   }
 
   onPressed() async {
+    FocusManager.instance.primaryFocus?.unfocus();
     countErrors = 0;
     LoginHelper.authenticateUsingUsernameAndPassword(
         formKey: _formKey,

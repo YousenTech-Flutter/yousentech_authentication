@@ -615,6 +615,7 @@ class _UsernameAndPasswordLoginScreenState
   }
 
   onPressed({bool skipAuthenticate = false}) async {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (skipAuthenticate) {
       LoginHelper.authenticateUsingFingerPrinterAndFaceId(
           authenticationController: authenticationController, context: context);
