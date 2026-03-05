@@ -429,6 +429,7 @@ class _UsernameAndPasswordLoginScreenState
                                     Expanded(
                                       child: Center(
                                         child: Text(
+                                          textAlign: TextAlign.center,
                                           'sign_in_with'.tr,
                                           style: TextStyle(
                                             color: Get.find<ThemeController>()
