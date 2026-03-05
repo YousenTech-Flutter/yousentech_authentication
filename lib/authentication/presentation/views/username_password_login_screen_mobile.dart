@@ -304,77 +304,73 @@ class _UsernameAndPasswordLoginScreenState
 
                             SizedBox(height: context.setHeight(35)),
                             // for forgetPass
-                            SizedBox(
-                              // height: context.setHeight(19.23),
-                              width: context.screenWidth,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  GetBuilder<AuthenticationController>(
-                                      id: "choosePin",
-                                      builder: (_) {
-                                        return InkWell(
-                                          onTap: SharedPr.chosenUserObj!
-                                                      .pinCodeLock! <
-                                                  3
-                                              ? () {
-                                                  authenticationController
-                                                      .setChoosePin();
-                                                }
-                                              : null,
-                                          child: Row(
-                                            spacing: context.setWidth(6.41),
-                                            children: [
-                                              SvgPicture.asset(
-                                                AppImages.pinLogin,
-                                                package: 'shared_widgets',
-                                                color: AppColor.appColor,
-                                                fit: BoxFit.cover,
-                                                width: context.setWidth(
-                                                  AppSizes.iconTextField,
-                                                ),
-                                                height: context.setHeight(
-                                                  AppSizes.iconTextField,
-                                                ),
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: [
+                                GetBuilder<AuthenticationController>(
+                                    id: "choosePin",
+                                    builder: (_) {
+                                      return InkWell(
+                                        onTap: SharedPr.chosenUserObj!
+                                                    .pinCodeLock! <
+                                                3
+                                            ? () {
+                                                authenticationController
+                                                    .setChoosePin();
+                                              }
+                                            : null,
+                                        child: Row(
+                                          spacing: context.setWidth(6.41),
+                                          children: [
+                                            SvgPicture.asset(
+                                              AppImages.pinLogin,
+                                              package: 'shared_widgets',
+                                              color: AppColor.appColor,
+                                              fit: BoxFit.cover,
+                                              width: context.setWidth(
+                                                AppSizes.iconTextField,
                                               ),
-                                              Text(
-                                                "switch_to_pin_login".tr,
-                                                style: TextStyle(
-                                                  color: Color(0xFFB1B3BC),
-                                                  fontFamily: "SansMedium",
-                                                  
-                                                  fontSize: context.setSp(AppSizes.text),
-                                                  fontWeight: FontWeight.w400,
-                                                ),
+                                              height: context.setHeight(
+                                                AppSizes.iconTextField,
                                               ),
-                                            ],
-                                          ),
-                                        );
-                                      }),
-                                  InkWell(
-                                    onTap: () {
-                                      forgetPasswordDialog(
-                                        context: context,
-                                        authenticationController:
-                                            authenticationController,
+                                            ),
+                                            Text(
+                                              "switch_to_pin_login".tr,
+                                              style: TextStyle(
+                                                color: Color(0xFFB1B3BC),
+                                                fontFamily: "SansMedium",
+                                                
+                                                fontSize: context.setSp(AppSizes.text),
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       );
-                                    },
-                                    child: Text(
-                                      "forget_password".tr,
-                                      style: TextStyle(
-                                        color: AppColor.appColor,
-                                        fontFamily: "SansMedium",
-                                        // fontSize: context.setSp(
-                                        //   12.82,
-                                        // ),
-                                        fontSize: context.setSp(AppSizes.text),
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                    }),
+                                InkWell(
+                                  onTap: () {
+                                    forgetPasswordDialog(
+                                      context: context,
+                                      authenticationController:
+                                          authenticationController,
+                                    );
+                                  },
+                                  child: Text(
+                                    "forget_password".tr,
+                                    style: TextStyle(
+                                      color: AppColor.appColor,
+                                      fontFamily: "SansMedium",
+                                      // fontSize: context.setSp(
+                                      //   12.82,
+                                      // ),
+                                      fontSize: context.setSp(AppSizes.text),
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                             SizedBox(height: context.setHeight(35.0)),
 
@@ -384,7 +380,7 @@ class _UsernameAndPasswordLoginScreenState
                                 child: InkWell(
                                   onTap: onPressed,
                                   child: Container(
-                                    width: context.screenWidth,
+                                    width:double.infinity,
                                     height: context.setHeight(
                                       AppSizes.buttonHeight,
                                     ),
