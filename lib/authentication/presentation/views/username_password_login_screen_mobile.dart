@@ -276,21 +276,21 @@ class _UsernameAndPasswordLoginScreenState
                                   // ),
                                   fontSize: context.setSp(14),
                                   testFontSize: context.setSp(18),
-                                  contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-                                  // contentPadding: EdgeInsets.fromLTRB(
-                                  //   context.setWidth(
-                                  //     14.82,
-                                  //   ),
-                                  //   context.setHeight(
-                                  //     15.22,
-                                  //   ),
-                                  //   context.setWidth(
-                                  //     14.82,
-                                  //   ),
-                                  //   context.setHeight(
-                                  //     15.22,
-                                  //   ),
-                                  // ),
+                                  // contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                                  contentPadding: EdgeInsets.fromLTRB(
+                                    context.setWidth(
+                                      14.82,
+                                    ),
+                                    context.setHeight(
+                                      15.22,
+                                    ),
+                                    context.setWidth(
+                                      14.82,
+                                    ),
+                                    context.setHeight(
+                                      15.22,
+                                    ),
+                                  ),
                                   showLable: false,
                                   iconcolor: AppColor.appColor.withOpacity(.6),
                                   borderColor: const Color(0xFFC2C3CB),
