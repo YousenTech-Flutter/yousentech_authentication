@@ -92,6 +92,7 @@ class _UsernameAndPasswordLoginScreenState
                             SizedBox(height: context.setHeight(16)),
                             Center(
                               child: RichText(
+                                textAlign: TextAlign.center,
                                 text: TextSpan(
                                   style: TextStyle(
                                     color: Color(0xFFB1B3BC),
@@ -99,6 +100,7 @@ class _UsernameAndPasswordLoginScreenState
                                     // fontSize: context.setSp(14.42),
                                     fontSize: context.setSp(AppSizes.subTitle),
                                     fontWeight: FontWeight.w400,
+                                    
 
                                   ),
                                   children: <TextSpan>[
@@ -114,6 +116,7 @@ class _UsernameAndPasswordLoginScreenState
                                     ),
                                     TextSpan(
                                       text: 'enter_username_and_password'.tr,
+                                      
                                     ),
                                   ],
                                 ),
@@ -173,22 +176,15 @@ class _UsernameAndPasswordLoginScreenState
                               isAddOrEdit: true,
                               
                               hintText: 'email'.tr,
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: context.setWidth(
-                                    AppSizes.prefixIconPadding,
-                                  ),
+                              prefixIcon: SvgPicture.asset(
+                                AppImages.emaill,
+                                package: 'shared_widgets',
+                                color: AppColor.appColor,
+                                width: context.setWidth(
+                                  AppSizes.iconTextField,
                                 ),
-                                child: SvgPicture.asset(
-                                  AppImages.emaill,
-                                  package: 'shared_widgets',
-                                  color: AppColor.appColor,
-                                  width: context.setWidth(
-                                    AppSizes.iconTextField,
-                                  ),
-                                  height: context.setHeight(
-                                    AppSizes.iconTextField,
-                                  ),
+                                height: context.setHeight(
+                                  AppSizes.iconTextField,
                                 ),
                               ),
                               validator: (value) {
