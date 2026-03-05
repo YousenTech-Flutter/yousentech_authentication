@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_sizes.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_text_field.dart';
@@ -60,11 +61,10 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                   Form(
                     key: _formKey,
                     child: Padding(
-                      // padding: EdgeInsets.all(context.setMinSize(16.92)),
-                      padding: EdgeInsets.all(context.setMinSize(10)),
+                      padding: EdgeInsets.all(context.setMinSize(AppSizes.pagePadding)),
                       child: Column(
                         children: [
-                          SizedBox(height: context.setHeight(40)),
+                          SizedBox(height: context.setHeight(AppSizes.topPagePadding)),
                           Column(
                             children: [
                               Center(
@@ -77,8 +77,8 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                             .value
                                         ? Colors.white
                                         : Colors.black,
-                                    // fontSize: context.setSp(14),
-                                    fontSize: context.setSp(24),
+                                    
+                                    fontSize: context.setSp(AppSizes.title),
                                     fontFamily: 'SansBold',
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -91,7 +91,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
                                       // fontSize: context.setSp(14.42),
-                                      fontSize: context.setSp(16),
+                                      fontSize: context.setSp(AppSizes.subTitle),
                                       fontFamily: 'SansRegular',
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -121,33 +121,13 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                 isAddOrEdit: false,
                                 readOnly: true,
                                 keyboardType: TextInputType.number,
-                                width: context.screenWidth,
-                                height: context.setHeight(
-                                  51.28,
-                                ),
-                                // fontSize: context.setSp(15),
-                                testFontSize: context.setSp(20),
-                                fontSize: context.setSp(14),
-                                contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-                                // contentPadding: EdgeInsets.fromLTRB(
-                                //   context.setWidth(
-                                //     14.82,
-                                //   ),
-                                //   context.setHeight(
-                                //     15.22,
-                                //   ),
-                                //   context.setWidth(
-                                //     14.82,
-                                //   ),
-                                //   context.setHeight(
-                                //     15.22,
-                                //   ),
-                                // ),
+
+                                testFontSize: context.setSp(AppSizes.textFieldNumber),
+                                
                                 fillColor: null,
-                                // fillColor: Get.find<ThemeController>().isDarkMode.value ?const Color(0x2B555555): const Color(0xFFF6F6F6) ,
                                 hintcolor: const Color(0xFFC2C3CB),
                                 color: AppColor.appColor,
-                                borderRadius: context.setMinSize(8.01),
+                                
                                 hintText: 'pin_number'.tr,
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -177,10 +157,10 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                           AppImages.eyeClosed,
                                           package: 'shared_widgets',
                                           width: context.setWidth(
-                                            21.63,
+                                            AppSizes.iconTextField,
                                           ),
                                           height: context.setHeight(
-                                            21.63,
+                                            AppSizes.iconTextField,
                                           ),
                                           color: Get.find<ThemeController>()
                                                   .isDarkMode
@@ -247,9 +227,9 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                             package: 'shared_widgets',
                                             fit: BoxFit.cover,
                                             width: context.setWidth(
-                                              19.23,
+                                              AppSizes.iconTextField,
                                             ),
-                                            height: context.setHeight(19.23),
+                                            height: context.setHeight(AppSizes.iconTextField),
                                           ),
                                           Text(
                                             "switch_to_username_login".tr,
@@ -257,7 +237,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                                               color: Color(0xFF9F9FA5),
                                               fontFamily: 'SansMedium',
                                               // fontSize: context.setSp(12.82),
-                                              fontSize: context.setSp(14),
+                                              fontSize: context.setSp(AppSizes.text),
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_widgets/config/app_colors.dart';
+import 'package:shared_widgets/config/app_sizes.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/utils/responsive_helpers/device_utils.dart';
 import 'package:shared_widgets/utils/responsive_helpers/size_helper_extenstions.dart';
@@ -110,7 +111,7 @@ class _NumbericItemsState extends State<NumbericItems> {
               child: Icon(
                 iconData,
                 color: AppColor.cyanTeal,
-                size: context.setWidth(23),
+                size: context.setWidth(AppSizes.iconTextField),
               ),
             )
           // IconButton(
@@ -143,7 +144,7 @@ class _NumbericItemsState extends State<NumbericItems> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
-                    fontSize: context.setSp(DeviceUtils.isMobile(context)? 22 : 14),
+                    fontSize: context.setSp(DeviceUtils.isMobile(context)? AppSizes.numberText : 14),
                     fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
                     fontWeight: FontWeight.w700,
                     height: 1,
@@ -184,7 +185,7 @@ class _NumbericItemsState extends State<NumbericItems> {
               color: AppColor.white,
               // Get.find<ThemeController>().isDarkMode.value?AppColor.white:AppColor.black,
               // fontSize: context.setSp(14),
-              fontSize: context.setSp(DeviceUtils.isMobile(context)? 17 :14),
+              fontSize: context.setSp(DeviceUtils.isMobile(context)? AppSizes.buttonText :14),
               fontFamily:DeviceUtils.isMobile(context)? "SansMedium": 'Tajawal',
               fontWeight: FontWeight.w700,
               height: 1,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_sizes.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_button.dart';
 import 'package:shared_widgets/shared_widgets/app_close_dialog.dart';
@@ -82,14 +83,14 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                     id: "update_employees",
                     builder: (contextx) {
                       return Padding(
-                        // padding: EdgeInsets.all(context.setMinSize(16.92)),
-                        padding: EdgeInsets.all(context.setMinSize(10)),
+                        
+                        padding: EdgeInsets.all(context.setMinSize(AppSizes.pagePadding)),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                            // mainAxisAlignment: MainAxisAlignment.center,
+                            
                             children: [
-                              SizedBox(height: context.setHeight(40)),
+                              SizedBox(height: context.setHeight(AppSizes.topPagePadding)),
                               Center(
                                 child: Text(
                                   'employee_list'.tr,
@@ -102,7 +103,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         ? Colors.white
                                         : Colors.black,
                                     // fontSize: context.setSp(14),
-                                    fontSize: context.setSp(24),
+                                    fontSize: context.setSp(AppSizes.title),
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -134,7 +135,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     color: Color(0xFF9F9FA5),
                                     fontFamily: 'SansRegular',
                                     // fontSize: context.setSp(12),
-                                    fontSize: context.setSp(16),
+                                    fontSize: context.setSp(AppSizes.subTitle),
                                     fontWeight: FontWeight.w400,
                                     
                                   ),
@@ -155,7 +156,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
                                       // fontSize: context.setSp(12),
-                                      fontSize: context.setSp(14),
+                                      fontSize: context.setSp(AppSizes.text),
                                       fontFamily: "SansMedium",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -184,7 +185,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                           // fontSize: context.setSp(
                                           //   14.42,
                                           // ),
-                                          fontSize: context.setSp(14),
+                                          fontSize: context.setSp(AppSizes.text),
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -198,14 +199,13 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                       ),
                                       child: ButtonElevated(
                                         text: "Update_page".tr,
+                                        height: AppSizes.buttonHeight,
                                         width: context.screenWidth,
                                         backgroundColor: Colors.red[400],
                                         textStyle: TextStyle(
                                           color: Colors.white,
-                                          // fontSize: context.setSp(
-                                          //   12,
-                                          // ),
-                                          fontSize: context.setSp(17),
+                                          
+                                          fontSize: context.setSp(AppSizes.buttonText),
                                           fontWeight: FontWeight.w400,
                                         ),
                                         onPressed: () async {
@@ -239,10 +239,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                         style: TextStyle(
                                           color: Color(0xFF9F9FA5),
                                           fontFamily: "SansMedium",
-                                          // fontSize: context.setSp(
-                                          //   12,
-                                          // ),
-                                          fontSize: context.setSp(14),
+                                          
+                                          fontSize: context.setSp(AppSizes.text),
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
@@ -291,7 +289,7 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                     ),
                                                     borderRadius: BorderRadius
                                                         .circular(context
-                                                            .setMinSize(10)),
+                                                            .setMinSize(AppSizes.textFieldButtonBorderRadius)),
                                                   ),
                                                 ),
                                                 child: Row(
@@ -357,11 +355,8 @@ class _EmployeesListScreenState extends State<EmployeesListScreenMobile> {
                                                               : Colors.black,
                                                           fontFamily:
                                                               'SansMedium',
-                                                          // fontSize:
-                                                          //     context.setSp(
-                                                          //   12,
-                                                          // ),
-                                                          fontSize: context.setSp(14),
+                                                          
+                                                          fontSize: context.setSp(AppSizes.text),
                                                           overflow:
                                                               TextOverflow
                                                                   .ellipsis,

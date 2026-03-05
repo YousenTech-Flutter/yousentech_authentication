@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pos_shared_preferences/pos_shared_preferences.dart';
 import 'package:shared_widgets/config/app_colors.dart';
 import 'package:shared_widgets/config/app_images.dart';
+import 'package:shared_widgets/config/app_sizes.dart';
 import 'package:shared_widgets/config/theme_controller.dart';
 import 'package:shared_widgets/shared_widgets/app_loading.dart';
 import 'package:shared_widgets/shared_widgets/app_snack_bar.dart';
@@ -25,8 +26,8 @@ class UsernameAndPasswordLoginScreenMobile extends StatefulWidget {
 
 class _UsernameAndPasswordLoginScreenState
     extends State<UsernameAndPasswordLoginScreenMobile> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   AuthenticationController authenticationController = Get.put(
     AuthenticationController.getInstance(),
   );
@@ -59,11 +60,11 @@ class _UsernameAndPasswordLoginScreenState
             child: Stack(
               children: [
                 Padding(
-                  // padding: EdgeInsets.all(context.setMinSize(16.92)),
-                  padding: EdgeInsets.all(context.setMinSize(10)),
+                  
+                  padding: EdgeInsets.all(context.setMinSize(AppSizes.pagePadding)),
                   child: Column(
                     children: [
-                      SizedBox(height: context.setHeight(40)),
+                      SizedBox(height: context.setHeight(AppSizes.topPagePadding)),
                       Form(
                         key: _formKey,
                         child: Column(
@@ -79,8 +80,8 @@ class _UsernameAndPasswordLoginScreenState
                                           .value
                                       ? AppColor.white
                                       : AppColor.black,
-                                  // fontSize: context.setSp(14),
-                                  fontSize: context.setSp(24),
+                                
+                                  fontSize: context.setSp(AppSizes.title),
                                   fontFamily: 'SansBold',
                                   fontWeight: FontWeight.w700,
                                   height: 1.4
@@ -96,7 +97,7 @@ class _UsernameAndPasswordLoginScreenState
                                     color: Color(0xFFB1B3BC),
                                     fontFamily: 'SansRegular',
                                     // fontSize: context.setSp(14.42),
-                                    fontSize: context.setSp(16),
+                                    fontSize: context.setSp(AppSizes.subTitle),
                                     fontWeight: FontWeight.w400,
 
                                   ),
@@ -135,7 +136,7 @@ class _UsernameAndPasswordLoginScreenState
                                   color: Color(0xFFB1B3BC),
                                   fontFamily: "SansMedium",
                                   // fontSize: context.setSp(12.82),
-                                  fontSize: context.setSp(14),
+                                  fontSize: context.setSp(AppSizes.text),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -164,47 +165,18 @@ class _UsernameAndPasswordLoginScreenState
                                   return newValue;
                                 }),
                               ],
-                              width: context.screenWidth,
-                              height: context.setHeight(51.28),
-                              // fontSize: context.setSp(
-                              //   15,
-                              // ),
-                              fontSize: context.setSp(14),
-                              testFontSize: context.setSp(18),
-                              contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-                              // contentPadding: EdgeInsets.fromLTRB(
-                              //   context.setWidth(
-                              //     14.82,
-                              //   ),
-                              //   context.setHeight(
-                              //     15.22,
-                              //   ),
-                              //   context.setWidth(
-                              //     14.82,
-                              //   ),
-                              //   context.setHeight(
-                              //     15.22,
-                              //   ),
-                              // ),
+                              
+                              
+                              
                               showLable: false,
-                              iconcolor: AppColor.appColor.withOpacity(.6),
-                              borderColor: const Color(0xFFC2C3CB),
-                              fillColor:
-                                  Get.find<ThemeController>().isDarkMode.value
-                                      ? const Color(0xFF2B2B2B)
-                                      : Colors.white.withValues(alpha: 0.43),
-                              hintcolor: const Color(0xFFC2C3CB),
-                              color:
-                                  Get.find<ThemeController>().isDarkMode.value
-                                      ? AppColor.white
-                                      : AppColor.black,
+                              
                               isAddOrEdit: true,
-                              borderRadius: context.setMinSize(8.01),
+                              
                               hintText: 'email'.tr,
                               prefixIcon: Padding(
                                 padding: EdgeInsets.symmetric(
                                   horizontal: context.setWidth(
-                                    14,
+                                    AppSizes.prefixIconPadding,
                                   ),
                                 ),
                                 child: SvgPicture.asset(
@@ -212,10 +184,10 @@ class _UsernameAndPasswordLoginScreenState
                                   package: 'shared_widgets',
                                   color: AppColor.appColor,
                                   width: context.setWidth(
-                                    21.63,
+                                    AppSizes.iconTextField,
                                   ),
                                   height: context.setHeight(
-                                    21.63,
+                                    AppSizes.iconTextField,
                                   ),
                                 ),
                               ),
@@ -255,7 +227,7 @@ class _UsernameAndPasswordLoginScreenState
                                   color: Color(0xFFB1B3BC),
                                   fontFamily: "SansMedium",
                                   // fontSize: context.setSp(12.82),
-                                  fontSize: context.setSp(14),
+                                  fontSize: context.setSp(AppSizes.text),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -269,63 +241,22 @@ class _UsernameAndPasswordLoginScreenState
                                       ? 'otp_password'.tr
                                       : 'password'.tr,
                                   keyboardType: TextInputType.text,
-                                  width: context.screenWidth,
-                                  height: context.setHeight(51.28),
-                                  // fontSize: context.setSp(
-                                  //   15,
-                                  // ),
-                                  fontSize: context.setSp(14),
-                                  testFontSize: context.setSp(18),
-                                  // contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
-                                  contentPadding: EdgeInsets.fromLTRB(
-                                    context.setWidth(
-                                      14.82,
-                                    ),
-                                    context.setHeight(
-                                      15.22,
-                                    ),
-                                    context.setWidth(
-                                      14.82,
-                                    ),
-                                    context.setHeight(
-                                      15.22,
-                                    ),
-                                  ),
                                   showLable: false,
-                                  iconcolor: AppColor.appColor.withOpacity(.6),
-                                  borderColor: const Color(0xFFC2C3CB),
-                                  fillColor: Get.find<ThemeController>()
-                                          .isDarkMode
-                                          .value
-                                      ? const Color(0xFF2B2B2B)
-                                      : Colors.white.withValues(alpha: 0.43),
-                                  hintcolor: const Color(0xFFC2C3CB),
-                                  color: Get.find<ThemeController>()
-                                          .isDarkMode
-                                          .value
-                                      ? AppColor.white
-                                      : AppColor.black,
+                                  
                                   isAddOrEdit: true,
-                                  borderRadius: context.setMinSize(8.01),
+                                  
                                   hintText: SharedPr.isForgetPass!
                                       ? 'otp_password'.tr
                                       : 'password'.tr,
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: context.setWidth(
-                                        14,
-                                      ),
+                                  prefixIcon: SvgPicture.asset(
+                                    AppImages.lockOn,
+                                    package: 'shared_widgets',
+                                    color: AppColor.appColor,
+                                    width: context.setWidth(
+                                      AppSizes.iconTextField,
                                     ),
-                                    child: SvgPicture.asset(
-                                      AppImages.lockOn,
-                                      package: 'shared_widgets',
-                                      color: AppColor.appColor,
-                                      width: context.setWidth(
-                                        21.63,
-                                      ),
-                                      height: context.setHeight(
-                                        21.63,
-                                      ),
+                                    height: context.setHeight(
+                                      AppSizes.iconTextField,
                                     ),
                                   ),
                                   suffixIcon: IconButton(
@@ -339,10 +270,10 @@ class _UsernameAndPasswordLoginScreenState
                                             AppImages.eyeOpen,
                                             package: 'shared_widgets',
                                             width: context.setWidth(
-                                              21.63,
+                                              AppSizes.iconTextField,
                                             ),
                                             height: context.setHeight(
-                                              21.63,
+                                              AppSizes.iconTextField,
                                             ),
                                             color: AppColor.appColor.withOpacity(.6),
                                           )
@@ -350,10 +281,10 @@ class _UsernameAndPasswordLoginScreenState
                                             AppImages.eyeClosed,
                                             package: 'shared_widgets',
                                             width: context.setWidth(
-                                              21.63,
+                                              AppSizes.iconTextField,
                                             ),
                                             height: context.setHeight(
-                                              21.63,
+                                              AppSizes.iconTextField,
                                             ),
                                             color: AppColor.appColor.withOpacity(.6),
                                           ),
@@ -405,10 +336,10 @@ class _UsernameAndPasswordLoginScreenState
                                                 color: AppColor.appColor,
                                                 fit: BoxFit.cover,
                                                 width: context.setWidth(
-                                                  18,
+                                                  AppSizes.iconTextField,
                                                 ),
                                                 height: context.setHeight(
-                                                  18,
+                                                  AppSizes.iconTextField,
                                                 ),
                                               ),
                                               Text(
@@ -416,10 +347,8 @@ class _UsernameAndPasswordLoginScreenState
                                                 style: TextStyle(
                                                   color: Color(0xFFB1B3BC),
                                                   fontFamily: "SansMedium",
-                                                  // fontSize: context.setSp(
-                                                  //   12.82,
-                                                  // ),
-                                                  fontSize: context.setSp(14),
+                                                  
+                                                  fontSize: context.setSp(AppSizes.text),
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
@@ -443,7 +372,7 @@ class _UsernameAndPasswordLoginScreenState
                                         // fontSize: context.setSp(
                                         //   12.82,
                                         // ),
-                                        fontSize: context.setSp(14),
+                                        fontSize: context.setSp(AppSizes.text),
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -461,7 +390,7 @@ class _UsernameAndPasswordLoginScreenState
                                   child: Container(
                                     width: context.screenWidth,
                                     height: context.setHeight(
-                                      47.27,
+                                      AppSizes.buttonHeight,
                                     ),
                                     alignment: Alignment.center,
                                     decoration: ShapeDecoration(
@@ -469,7 +398,7 @@ class _UsernameAndPasswordLoginScreenState
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(
                                           context.setMinSize(
-                                            7.21,
+                                            AppSizes.textFieldButtonBorderRadius,
                                           ),
                                         ),
                                       ),
@@ -478,10 +407,8 @@ class _UsernameAndPasswordLoginScreenState
                                       'login'.tr,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        // fontSize: context.setSp(
-                                        //   14.42,
-                                        // ),
-                                        fontSize: context.setSp(17),
+                                        
+                                        fontSize: context.setSp(AppSizes.buttonText),
                                         color: AppColor.white,
                                         fontFamily: "SansMedium",
                                         fontWeight: FontWeight.w700,
@@ -514,7 +441,7 @@ class _UsernameAndPasswordLoginScreenState
                                                 ? AppColor.white
                                                 : Color(0xFFB1B3BC),
                                             // fontSize: context.setSp(11.63),
-                                            fontSize: context.setSp(14),
+                                            fontSize: context.setSp(AppSizes.text),
                                             fontFamily: 'SansRegular',
                                             fontWeight: FontWeight.w400,
                                             height: 1.82,
