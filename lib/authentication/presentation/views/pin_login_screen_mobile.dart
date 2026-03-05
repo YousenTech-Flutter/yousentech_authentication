@@ -87,6 +87,7 @@ class _PINLoginScreenState extends State<PINLoginScreenMobile> {
                               SizedBox(height: context.setHeight(16)),
                               Center(
                                 child: RichText(
+                                  textAlign: TextAlign.center,
                                   text: TextSpan(
                                     style: TextStyle(
                                       color: Color(0xFF9F9FA5),
